@@ -62,6 +62,7 @@ if (isset($_GET['action'])) {
             case 'updateRow':
                 $_POST = Validator::validateForm($_POST);
                 if (
+                    !$empleado->setId($_POST['id_empleado']) or
                     !$empleado->setNombre($_POST['nombre_empleado']) or
                     !$empleado->setCorreo($_POST['correo_empleado']) or
                     !$empleado->setDui($_POST['dui_empleado']) or

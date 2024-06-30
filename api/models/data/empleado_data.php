@@ -42,16 +42,13 @@ class EmpleadoData extends EmpleadoHandler
         }
     }
 
-    public function setFecha($value, $min = 2, $max = 50)
+    public function setFecha($value)
     {
-        if (!Validator::validateDate($value)) {
-            $this->data_error = 'La fecha tiene un formato incorrecto';
-            return false;
-        } elseif (Validator::validateLength($value, $min, $max)) {
+        if (Validator::validateDate($value)) {
             $this->fecha = $value;
             return true;
         } else {
-            $this->data_error = 'La fecha debe tener una longitud entre ' . $min . ' y ' . $max;
+            $this->data_error = 'La fecha de nacimiento es incorrecta';
             return false;
         }
     }

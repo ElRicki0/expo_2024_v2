@@ -50,11 +50,11 @@ class EmpleadoHandler{
 
     public function searchRows() {
         $value = '%' . Validator::getSearchValue() . '%';
-        $sql = 'SELECT id_cliente, nombre_cliente, apellido_cliente, dui_client, telf_cliente, correo_cliente
-                FROM tb_clientes
-                WHERE apellido_cliente LIKE ? OR nombre_cliente LIKE ?
-                ORDER BY apellido_cliente';
-        $params = array($value, $value);
+        $sql = 'SELECT id_empleado, nombre_empleado, dui_empleado, correo_empleado, telefono_empleado, nacimiento_empleado
+                FROM tb_empleado
+                WHERE nombre_empleado LIKE ?
+                ORDER BY nombre_empleado';
+        $params = array($value);
         return Database::getRows($sql, $params);
     }
 

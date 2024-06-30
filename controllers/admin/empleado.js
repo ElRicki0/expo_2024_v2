@@ -137,8 +137,7 @@ const openUpdate = async (id) => {
         CORREO_EMPLEADO.value = ROW.correo_empleado;
         TELEFONO_EMPLEADO.value = ROW.telefono_empleado;
         DUI_EMPLEADO.value = ROW.dui_empleado;
-        FECHA_EMPLEADO.value = ROW.fecha_empleado;
-        ESTADO_EMPLEADO.checked = ROW.estado_empleado;
+        FECHA_EMPLEADO.value = ROW.nacimiento_empleado;
     } else {
         sweetAlert(2, DATA.error, false);
     }
