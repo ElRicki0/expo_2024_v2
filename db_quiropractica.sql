@@ -34,9 +34,9 @@ estado_empleado	bool
 ); 
 
 create table tb_admin(
-id_usuario	int auto_increment key,
+id_admin	int auto_increment key,
 nombre_admin	varchar(50) unique not null,
-contrasenia		varchar(500) not null,
+contrasenia_admin		varchar(500) not null,
 foto_admin	varchar(200),
 id_empleado INT ,
 FOREIGN KEY (id_empleado) REFERENCES tb_empleado (id_empleado)
