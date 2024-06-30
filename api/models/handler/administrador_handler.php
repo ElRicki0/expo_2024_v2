@@ -12,7 +12,7 @@ require_once('../../helpers/database.php');
      */
 
      protected $id = null;
-     protected $usuario = null;
+     protected $nombre = null;
      protected $contrasenia = null;
      protected $foto = null;
      protected $empleado = null;
@@ -54,19 +54,28 @@ require_once('../../helpers/database.php');
 
     public function changePassword()
     {
-        $sql = 'UPDATE administrador
-                SET clave_administrador = ?
-                WHERE id_administrador = ?';
+        $sql = 'UPDATE tb_admin
+                SET contrasenia_admin = ?
+                WHERE id_admin = ?';
         $params = array($this->contrasenia, $_SESSION['idAdmin']);
         return Database::executeRow($sql, $params);
     }
-    
+
     public function readProfile()
     {
-        $sql = 'SELECT id_administrador, nombre_administrador, apellido_administrador, correo_administrador, alias_administrador
-                FROM administrador
-                WHERE id_administrador = ?';
-        $params = array($_SESSION['idAdministrador']);
+        $sql = 'SELECT id_admin, nombre_admin, foto_admin
+                FROM tb_admin
+                WHERE id_admin = ?';
+        $params = array($_SESSION['idAdmin']);
         return Database::getRow($sql, $params);
+    }
+
+    public function editProfile()
+    {
+        $sql = 'UPDATE tb_admin
+                SET nombre_admin = ?, foto_admin = ?, id_empleado = ?
+                WHERE id_admin = ?';
+        $params = array($this->nombre, $this->foto, $this->empleado, $_SESSION['idAdministrador']);
+        return Database::executeRow($sql, $params);
     }
  }
