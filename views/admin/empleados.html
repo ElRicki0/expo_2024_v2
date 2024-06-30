@@ -46,11 +46,10 @@
                             <button type="submit" class="btn btn-success">
                                 <i class="bi bi-search"></i>
                             </button>
-                            <button type="reset" class="btn btn-secondary">
+                            <button type="reset" class="btn btn-secondary" onclick="fillTable()">
                                 <i class="bi bi-arrow-counterclockwise"></i>
                             </button>
-                            <button type="button" class="btn btn-warning" data-bs-toggle="modal"
-                                data-bs-target="#modalEmpleado"><i class="bi bi-person-fill-add"></i>
+                            <button type="button" class="btn btn-warning" onclick="openCreate()"><i class="bi bi-person-fill-add"></i>
                             </button>
                         </div>
                     </div>
@@ -103,7 +102,7 @@
                             <div class="modal-body">
                                 <button type="button" class="btn-close" data-bs-dismiss="modal"
                                     aria-label="Close"></button>
-                                <h1 class="fs-4 fw-bold text-center mb-4" id="modalTitle"> AGREGAR EMPLEADO </h1>
+                                <h1 class="fs-4 fw-bold text-center mb-4" id="modalTitle"> </h1>
 
                                 <!-- Inputs -->
                                 <div class="row p-3">
@@ -114,7 +113,7 @@
                                         </div>
                                         <div class="col-12 mt-3">
                                             <label class="form-label">Correo electronico</label>
-                                            <input id="apellido_empleado" name="apellido_empleado" class="form-control">
+                                            <input id="correo_empleado" name="correo_empleado" class="form-control">
                                         </div>
                                     </div>
                                     <div class="row">
@@ -163,7 +162,11 @@
     <!-- Librerias -->
     <!-- Bootstrap -->
     <script type="text/javascript" src="../../resources/js/bootstrap.bundle.min.js"> </script>
+
+    <!-- Js -->
     <script type="text/javascript" src="../../controllers/utils/componets.js"></script>
+    <script type="text/javascript" src="../../resources/js/sweetalert.min.js"></script>
+    <script type="text/javascript" src="../../controllers/admin/empleado.js"></script>
 </body>
 
 </html>
