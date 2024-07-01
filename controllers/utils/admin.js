@@ -25,45 +25,48 @@ MAIN_TITLE.classList.add('text-center', 'py-3');
 
 const header = document.querySelector("header");
 
-header.innerHTML = `<div class="fondo_oscuro">
-<div class="row">
-    <div class="col-sm-1 col-md-1 col-lg-1 text-center mt-4">
-        <div class="btn-menu ">
-            <label for="btn-menu"><img src="../../resources/img/menu.png" width="50px"
-                    for="btn-menu"></label>
-        </div>
-        <input type="checkbox" id="btn-menu">
-        <div class="containerzzz-menu">
-            <div class="cont-menu">
-                <nav>
-                    <a href="../../../vistas/privada/inicio.html">Inicio</a>
-                    <a href="../../../vistas/privada/cita.html">Citas</a>
-                    <a href="../../../vistas/privada/notas_privada.html">Notas</a>
-                    <a href="../../../vistas/privada/pacientes_privada.html">Pacientes</a>
-                    <a href="../../../vistas/privada/pagina_principal.html">Sitio publico</a>
-                    <a href="../../../vistas/privada/datos.html">Gráficas</a>
-                    <a href="../../../vistas/privada/comentarios.html">Comentarios</a>
-                </nav>
-                <label for="btn-menu">✖️</label>
+header.innerHTML = `
+<div class="fondo_oscuro">
+            <div class="row">
+                <div class="col-sm-1 col-md-1 col-lg-1 text-center mt-4">
+                    <div class="btn-menu ">
+                        <label for="btn-menu"><img src="../../resources/img/menu.png" width="50px"
+                                for="btn-menu"></label>
+                    </div>
+                    <input type="checkbox" id="btn-menu">
+                    <div class="containerzzz-menu">
+                        <div class="cont-menu">
+                            <nav>
+                                <a href="../../../vistas/privada/inicio.html">Inicio</a>
+                                <a href="../../../vistas/privada/cita.html">Citas</a>
+                                <a href="../../../vistas/privada/notas_privada.html">Notas</a>
+                                <a href="../../../vistas/privada/pacientes_privada.html">Pacientes</a>
+                                <a href="../../../vistas/privada/pagina_principal.html">Sitio publico</a>
+                                <a href="../../../vistas/privada/datos.html">Gráficas</a>
+                                <a href="../../../vistas/privada/comentarios.html">Comentarios</a>
+                            </nav>
+                            <label for="btn-menu">✖️</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-9 col-md-9 col-lg-9 text-center mt-4">
+                    <img src="../../resources/img/icono.png" alt="">
+                </div>
+
+                <div class="col-sm-2 col-md-2 col-lg-2 text-center dropdown ">
+                    <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <a class="boton" href="#">
+                            <img src="../../resources/img/admin/usuario.png" width="80px"
+                                alt="Descripción de la imagen">
+                        </a>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="../../vistas/privada/perfil.html">perfil</a></li>
+                    </ul>
+                </div>
             </div>
         </div>
-    </div>
-    <div class="col-sm-9 col-md-9 col-lg-9 text-center mt-4">
-        <img src="../../resources/img/icono.png" alt="">
-    </div>
-
-    <div class="col-sm-2 col-md-2 col-lg-2 text-center dropdown ">
-        <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-            <a class="boton" href="#">
-                <img src="../../resources/img/admin/usuario.png" width="80px" alt="Descripción de la imagen">
-            </a>
-        </button>
-        <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="../../vistas/privada/perfil.html">perfil</a></li>
-        </ul>
-    </div>
-</div>
-</div>`
+`
 
 // Código para tener el footer, para luego mandarlo a llamar
 

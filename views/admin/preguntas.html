@@ -6,15 +6,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Preguntas</title>
     <!--Script para ponerle icono a la pagina-->
-    <link rel="icon" href="../../resources/img/iconos/icon.jpg">
+    <link rel="icon" href="../../resources/img/icons/icon.jpg">
     <link rel="stylesheet" href="../../resources/css/boostrap_css.css">
+    <link rel="stylesheet" href="../../resources/css/archive.css">
+    <link rel="stylesheet" href="../../resources/css/bootstrap-icons.min.css">
 </head>
 
 <body>
     <!-- contenido del header generado automáticamente -->
-    <header></header>
+    <header>
+    </header>
     <!-- contenido principal -->
-    <main class="container">
+    <main>
         <!-- titulo principal -->
         <h3 id="mainTitle"></h3>
         <div class="row">
@@ -52,7 +55,7 @@
                 <tr>
                     <th>IMAGEN</th>
                     <th>PREGUNTA</th>
-                    <th>CONTENIDOth>
+                    <th>CONTENIDO</th>
                     <th>EMPLEADO</th>
                 </tr>
             </thead>
@@ -75,39 +78,24 @@
                             <!-- Campo oculto para asignar el id del registro al momento de modificar -->
                             <input type="number" class="d-none" id="idPregunta" name="idPregunta">
                             <div class="col-sm-12 col-md-6">
-                                <label for="nombreProducto" class="form-label">Nombre</label>
-                                <input id="nombreProducto" type="text" name="nombreProducto" class="form-control"
+                                <label for="imagenPregunta" class="form-label">Imagen</label>
+                                <input id="imagenPregunta" type="file" name="imagenPregunta" class="form-control"
+                                    accept=".png, .jpg">
+                            </div>
+                            <div class="col-sm-12 col-md-6">
+                                <label for="nombrePregunta" class="form-label">Pregunta</label>
+                                <input id="nombrePregunta" type="text" name="nombrePregunta" class="form-control"
                                     required>
                             </div>
                             <div class="col-sm-12 col-md-6">
-                                <label for="descripcionProducto" class="form-label">Descripción</label>
-                                <input id="descripcionProducto" type="text" name="descripcionProducto"
-                                    class="form-control" required>
+                                <label for="contenidoPregunta" class="form-label">Contenido</label>
+                                <input id="contenidoPregunta" type="text" name="contenidoPregunta" class="form-control"
+                                    required>
                             </div>
                             <div class="col-sm-12 col-md-6">
-                                <label for="precioProducto" class="form-label">Precio (US$)</label>
-                                <input id="precioProducto" type="number" name="precioProducto" min="0.01" step="0.01"
-                                    class="form-control" required>
-                            </div>
-                            <div class="col-sm-12 col-md-6">
-                                <label for="existenciasProducto" class="form-label">Existencias</label>
-                                <input id="existenciasProducto" type="number" name="existenciasProducto" min="1"
-                                    step="1" class="form-control" required>
-                            </div>
-                            <div class="col-sm-12 col-md-6">
-                                <label for="categoriaProducto" class="form-label">Categoría</label>
-                                <select id="categoriaProducto" name="categoriaProducto" class="form-select" required>
+                                <label for="empleadoPregunta" class="form-label">Empleado</label>
+                                <select id="empleadoPregunta" name="empleadoPregunta" class="form-select" required>
                                 </select>
-                            </div>
-                            <div class="col-sm-12 col-md-6">
-                                <label for="imagenProducto" class="form-label">Imagen</label>
-                                <input id="imagenProducto" type="file" name="imagenProducto" class="form-control"
-                                    accept=".png, .jpg">
-                            </div>
-                            <div class="form-check form-switch form-check-reverse">
-                                <input class="form-check-input" type="checkbox" id="estadoProducto"
-                                    name="estadoProducto" checked>
-                                <label class="form-check-label" for="estadoProducto">Estado</label>
                             </div>
                         </div>
                         <div class="modal-footer">
