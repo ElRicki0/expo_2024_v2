@@ -30,7 +30,7 @@ if (isset($_GET['action'])) {
                 if (
                     !$administrador->setCorreo($_POST['correo_admin']) or
                     !$administrador->setContrasenia($_POST['contra_admin']) or     
-                    !$administrador->setNombre($_POST['contra_admin']) or            
+                    !$administrador->setNombre($_POST['contra_admin'])       
                 ) {
                     $result['error'] = $administrador->getDataError();
                 } elseif ($administrador->createRow()) {
