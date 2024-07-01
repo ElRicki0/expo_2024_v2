@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiropráctica Específica </title>
+    <link rel="stylesheet" href="../../recursos/css/boostrap_css.css">
+    <link rel="stylesheet" href="../../recursos/css/colores.css">
+    <link rel="stylesheet" href="../../recursos/css/general.css">
+</head>
+
+<body>
+    <header>
+
+    </header>
+
+    <main class="container">
+        <div class="row container justify-content-center">
+            <div class="col-lg-6 my-5">
+                <div class="col-sm-12 col-md-6   text-center">
+                    <img src="../../recursos/img/admin/usuario_persona.jpg" height="350px" alt=""
+                        style="border-radius: 5%; border: 5px solid navy;">
+                    <h1>Usuario_RM</h1>
+                    <div class="row">
+                        <button type="button" class="btn btn-primary btn-lg my-3" data-bs-toggle="modal"
+                            data-bs-target="#Modaleditarempleado"><img src="../../recursos/img/admin/mas.png"
+                                class="me-2" width="30px">Editar
+                            Empleado
+                        </button>
+                        <button type="button" class="btn btn-primary btn-lg " data-bs-toggle="modal"
+                            data-bs-target="#ModalEditarUsuario"><img src="../../recursos/img/admin/mas.png"
+                                class="me-2" width="30px">Editar
+                            Usuario
+                        </button>
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-lg-6 my-5">
+                <h3 class="texto_claro">Nombre Empleado</h3>
+                <input class="form-control" type="text" value="Ricardo Nicolas Melara" aria-label="Disabled input"
+                    disabled readonly>
+                <h3 class="texto_claro">Dui</h3>
+                <input class="form-control" type="text" value="1235484-8" aria-label="Disabled input" disabled readonly>
+                <h3 class="texto_claro">Correo Empleado</h3>
+                <input class="form-control" type="text" value="Ricardo@gmail.com" aria-label="Disabled input" disabled
+                    readonly>
+                <h3 class="texto_claro">Teléfono Empleado</h3>
+                <input class="form-control" type="text" value="7599-2988" aria-label="Disabled input" disabled readonly>
+                <h3 class="texto_claro">Fecha nacimiento</h3>
+                <input class="form-control" type="text" value="18/03/06" aria-label="Disabled input"
+                    disabled readonly>
+            </div>
+        </div>
+
+        <!-- Modal EditarUsuario -->
+        <div class="modal fade modal-xl" id="Modaleditarempleado" tabindex="-1" data-bs-backdrop="static"
+            aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+
+                    <!-- Header del modal -->
+                    <div class="modal-header bg-dark">
+                        <button type="button" class="btn " data-bs-dismiss="modal" aria-label="Close"> <img
+                                src="../../recursos/img/Atras.png" alt="" width="20px"></button>
+                        <h1 class="modal-title fs-5 text-bg-dark" id="exampleModalLabel"> Editar usuario </h1>
+                    </div>
+
+                    <!-- Body del modal -->
+                    <div class="Modaleditarempleado modal-body">
+                        <div class="container mt-3 mb-2">
+                            <div class="row d-flex flex-row">
+                                <div class="row container justify-content-center">
+                                    <div class="col-lg-6 my-5">
+                                        <div class="col-sm-12 col-md-6   text-center">
+                                            <img src="../../recursos/img/admin/usuario_persona.jpg" height="350px"
+                                                alt="" style="border-radius: 5%; border: 5px solid navy;">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 my-5">
+                                        <br>
+                                        <h3 class="texto_claro">Nombre usuario</h3>
+                                        <input type="text" class="form-control" id="validationCustom01"
+                                            placeholder="Usuario_RM" aria-label="Username"
+                                            aria-describedby="basic-addon1" required>
+                                        <br>
+                                        <h4 class="texto_claro">Dui</h4>
+
+                                        <input type="text" class="form-control" id="dui" placeholder="00000000-0"
+                                            aria-label="Username" aria-describedby="basic-addon1" required
+                                            oninput="formatDui(this)">
+                                        <div class="form-text" id="basic-addon2">
+                                        </div>
+
+                                        <br>
+                                        <h4 class="texto_claro">Correo Empleado</h4>
+                                        <input type="text" class="form-control mb-3" id="email"
+                                            placeholder="correoempleado@gmail.com" aria-label="Username"
+                                            aria-describedby="basic-addon1" required oninput="formatEmail(this)">
+
+                                        <br>
+                                        <h4 class="texto_claro">Teléfono Empleado</h4>
+                                        <input type="text" class="form-control" id="telefono" placeholder="0000-0000"
+                                            aria-label="Username" aria-describedby="basic-addon2" required
+                                            oninput="formatPhoneNumber(this)">
+                                        <div class="form-text" id="basic-addon2">
+                                        </div>
+                                        <br>
+                                        <h4 class="texto_claro">Nivel usuario</h4>
+                                        <input type="text" class="form-control" id="validationCustom01" placeholder=""
+                                            aria-label="Username" aria-describedby="basic-addon1" required>
+                                        <br>
+                                        <h4 class="texto_claro">Fecha nacimiento</h4>
+                                        <br>
+                                        <form action="https://example.com">
+                                              <input type="date" name="bday" />
+                                            </label>
+                                          </form>
+                                    </div>
+
+                                </div>
+                                <div class=" justify-content-center text-center">
+                                    <button type="button" class="btn btn-primary btn-lg my-3" data-bs-toggle="modal"
+                                        data-bs-target="#ModalInterrogante">Editar
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal EditarEmpleado -->
+        <div class="modal fade modal-xl" id="ModalEditarUsuario" tabindex="-1" data-bs-backdrop="static"
+            aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+
+                    <!-- Header del modal -->
+                    <div class="modal-header bg-dark">
+                        <button type="button" class="btn " data-bs-dismiss="modal" aria-label="Close"> <img
+                                src="../../recursos/img/Atras.png" alt="" width="20px"></button>
+                        <h1 class="modal-title fs-5 text-bg-dark" id="exampleModalLabel"> Editar empleado
+                        </h1>
+                    </div>
+
+                    <!-- Body del modal -->
+                    <div class="modaleditarusuPerfil modal-body">
+                        <div class="container mt-3 mb-2">
+                            <div class="row d-flex flex-row">
+                                <div class="row container justify-content-center">
+                                    <div class="col-lg-6 my-5">
+                                        <div class="col-sm-12 col-md-6   text-center">
+                                            <img src="../../recursos/img/admin/usuario_persona.jpg" height="350px"
+                                                alt="" style="border-radius: 5%; border: 5px solid navy;">
+                                            <div class="col-12">
+                                                <br>
+                                                <input id="agregarfoto" type="file" name="agregarfoto"
+                                                    class="form-control" accept=".png, .jpg">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 my-5">
+
+                                        <h4 class="texto_claro">Nombre Usuario</h4>
+                                        <input type="text" class="form-control" id="validationCustom01"
+                                            placeholder="Usuario_RM" aria-label="Username"
+                                            aria-describedby="basic-addon1" required>
+
+                                        <br>
+                                        <h4 class="texto_claro">Contraseña</h4>
+                                        <input type="text" class="form-control" id="validationCustom01" placeholder=""
+                                            aria-label="Username" aria-describedby="basic-addon1" required>
+                                        <br>
+                                        <h4 class="texto_claro">Ingrese nuevamente contraseña</h4>
+                                        <input type="text" class="form-control" id="validationCustom01" placeholder=""
+                                            aria-label="Username" aria-describedby="basic-addon1" required>
+                                    </div>
+                                    <div class=" justify-content-center text-center">
+                                        <button type="button" class="btn btn-primary btn-lg my-3" data-bs-toggle="modal"
+                                            data-bs-target="#ModalInterrogante">Editar
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+    </main>
+    <!-- Modal Interrogante -->
+    <div class="modal fade" id="ModalInterrogante" tabindex="-1" data-bs-backdrop="static"
+        aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+
+                <!-- Body del modal -->
+                <div class="modal-body text-center">
+                    <img src="../../recursos/img/Interrogante.png" alt="" width="100px">
+                    <p class="mt-2"> ¿Estas seguro de realizar estos cambios? </p>
+                    <hr>
+                    <button type="button" id="BtnInterrogante" class="btn bg-dark text-light me-2"
+                        data-bs-toggle="modal" data-bs-target="#ModalRealizado"> Si </button>
+                    <button type="button" class="btn bg-dark text-light" data-bs-dismiss="modal"> No </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Cambio realizado -->
+    <div class="modal fade" id="ModalRealizado" tabindex="-1" data-bs-backdrop="static"
+        aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+
+                <!-- Body del modal -->
+                <div class="modal-body text-center">
+                    <img src="../../recursos/img/Listo.png" alt="" width="100px">
+                    <p class="mt-2"> Cambios realizados. </p>
+                    <div class="progress">
+                        <div id="progressBar" class="progress-bar" role="progressbar" aria-valuenow="0"
+                            aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <footer>
+
+    </footer>
+
+    <script src="../../controllers/utils/admin/plantilla_completa.js"></script>
+    <script src="../../recursos/js/bootstrap_js.js"></script>
+    <!-- Javascript de alerta modal -->
+    <script src="../../controllers/admin/alerta.js"></script>
+    <script src="../../recursos/js/calendario.js"></script>
+</body>
+
+</html>

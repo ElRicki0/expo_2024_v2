@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiropráctica Específica </title>
+    <link rel="stylesheet" href="../../recursos/css/boostrap_css.css">
+    <link rel="stylesheet" href="../../recursos/css/colores.css">
+</head>
+
+<body>
+    <header>
+
+    </header>
+
+    <main class="container">
+
+        <div class="row my-5">
+            <h1 class="display-3">Ventas totales</h1>
+            <div class="col-md-6">
+                <canvas id="grafica_1" height="170px"></canvas>
+            </div>
+            <div class="col-md-6">
+                <canvas id="grafica_2" height="170px"></canvas>
+            </div>
+        </div>
+
+        <div class="row my-5">
+            <h1 class="display-3">Futuras citas</h1>
+            <div class="col-md-6">
+                <canvas id="grafica_3" height="170px"></canvas>
+            </div>
+            <div class="col-md-6">
+                <canvas id="grafica_4" height="170px"></canvas>
+            </div>
+        </div>
+
+        <div class="row my-5">
+            <h1 class="display-3">Valoraciones generales </h1>
+            <div class="col-md-6">
+                <canvas id="grafica_5" height="170px"></canvas>
+            </div>
+            <div class="col-md-6">
+                <canvas id="grafica_6" height="170px"></canvas>
+            </div>
+        </div>
+
+    </main>
+
+    <footer>
+
+    </footer>
+
+    <script src="../../controllers/utils/admin/plantilla_completa.js"></script>
+    <script src="../../recursos/js/bootstrap_js.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.2/dist/chart.umd.min.js"></script>
+    <script src="../../controllers/admin/graficas/graficas_datos.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,42 @@
+#headercolor{
+    background-color: #28930D;
+    border: #65AE52;
+    color: #ffffff;
+    border-bottom-right-radius: 20px;
+    border-bottom-left-radius: 20px;
+    /*margin: 20px;
+    box-shadow: 20px 20px 20px rgba(0, 0, 0, 0.2);*/
+}
+
+#footerColor{
+    background-color:#28930D;
+    border: #65AE52;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+}
+ 
+#botonPacienteedit{
+    margin-top: 35px;
+    background-color: #28930D;
+    color: #ffffff;
+}
+
+body{
+    background-color: #5C5C5C;
+}
+
+#modalcitaeditar{
+    background-color: #303231;
+}
+
+#editaruser{
+    color: #ffffff;
+}
+
+#texto{
+    color: #ffffff;
+}
+#botoncumple{
+    background-color:#28930D;
+    border-radius: #28930D;
+}

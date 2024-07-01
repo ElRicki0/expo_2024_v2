@@ -84,7 +84,7 @@ header {
 
 /*quienes somos?*/
 .fondo-imagen {
-    background-image: url("../../resources/img/admin/fondo_quienees_somos.png");
+    background-image: url("../../recursos/img/admin/fondo_quienees_somos.png");
     background-size: cover;
     /* Ajusta el tamaño de la imagen para cubrir todo el div */
     background-position: center;

@@ -1,0 +1,110 @@
+.cartaPacientePrivado {
+    width: 18rem;
+    height: auto;
+    border-color: #28930D;
+}
+
+.textopacienteprivado {
+    height: 288px;
+    max-height: 288px;
+}
+
+.textodenotadefinido {
+    height: auto;
+    max-height: 400px;
+    border-color: rgb(42, 141, 180);
+    height:400px !important;
+}
+
+.textodenotasgregar {
+    height: auto;
+    max-height: 400px;
+    border-color: rgb(42, 141, 180);
+}
+
+.cardsServiciosPrivado {
+    width: 18rem;
+}
+
+.Tarjetapreguntaestilo {
+    width: 18rem;
+}
+
+.contactohu {
+    background-color: #303231;
+}
+
+.contactespacio {
+    margin: 90px;
+}
+
+.tarjetacont {
+    width: 100px;
+    height: 100px;
+    padding: 20px;
+    margin-top: 90px;
+}
+
+.tarcontacting {
+    color: aliceblue;
+}
+
+.direcontatcard {
+    width: 100px;
+    height: 100px;
+    padding: 20px;
+    margin-top: 90px;
+}
+
+
+.contactespacio {
+
+    margin: 90px;
+
+}
+
+.contatdirect {
+
+    color: aliceblue;
+}
+
+.pregunasfrecuentesbody {
+
+    background-color: #303231;
+}
+
+.modalheaderTratamiento {
+
+    background-color: #303231;
+}
+.textomoltratamiento {
+
+    color: aliceblue;
+}
+
+.Modaleditarempleado {
+
+    background-color: #303231;
+}
+
+.ModalEditarUsuario {
+
+    background-color: #303231;
+}
+
+.modaleditarusuPerfil{
+
+    background-color: #303231;
+}
+
+.notatarjetaeditablenota
+{
+
+    width: 17rem; 
+    height:19rem;
+}
+.cardfotonota{
+
+    width: 17rem; 
+    height:19rem;
+}
