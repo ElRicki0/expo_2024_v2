@@ -17,13 +17,25 @@ class PreguntaData extends PreguntasHandler
     /*
      *   Métodos para validar y establecer los datos.
      */
+
     public function setId($value)
     {
         if (Validator::validateNaturalNumber($value)) {
             $this->id = $value;
             return true;
         } else {
-            $this->data_error = 'El identificador del producto es incorrecto';
+            $this->data_error = 'El identificador de la pregunta es incorrecto';
+            return false;
+        }
+    }
+
+    public function setFilename()
+    {
+        if ($data = $this->readFilename()) {
+            $this->filename = $data['imagen_pregunta'];
+            return true;
+        } else {
+            $this->data_error = 'Pregunta inexistente';
             return false;
         }
     }

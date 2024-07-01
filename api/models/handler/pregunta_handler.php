@@ -36,14 +36,14 @@ class PreguntasHandler
     public function createRow()
     {
         $sql = 'INSERT INTO tb_preguntas(imagen_pregunta, nombre_pregunta, contenido_pregunta, id_empleado)
-                VALUES(?, ?, ?, ?, ?, ?, ?, ?)';
+                VALUES(?, ?, ?, ?)';
         $params = array($this->imagen, $this->pregunta, $this->contenido, $this->empleado);
         return Database::executeRow($sql, $params);
     }
     
     public function readAll()
     {
-        $sql = 'SELECT p.imagen_pregunta, p.nombre_pregunta, p.contenido_pregunta, e.nombre_empleado
+        $sql = 'SELECT p. id_pregunta, p.imagen_pregunta, p.nombre_pregunta, p.contenido_pregunta, e.nombre_empleado
                 FROM tb_preguntas p
                 JOIN tb_empleado e ON p.id_empleado = e.id_empleado ';
         return Database::getRows($sql);
@@ -51,9 +51,7 @@ class PreguntasHandler
 
     public function readOne()
     {
-        $sql = 'SELECT p.imagen_pregunta, p.nombre_pregunta, p.contenido_pregunta, e.nombre_empleado
-                FROM tb_preguntas p
-                JOIN tb_empleado e ON p.id_empleado = e.id_empleado 
+        $sql = 'SELECT*FROM tb_preguntas 
                 where id_pregunta = ?';
         $params = array($this->id);
         return Database::getRow($sql, $params);
@@ -71,9 +69,9 @@ class PreguntasHandler
     public function updateRow()
     {
         $sql = 'UPDATE tb_preguntas
-                SET imagen_pregunta = ?, nombre_pregunta = ?, contenido_pregunta = ?, id_empleado = ?
+                SET  nombre_pregunta = ?, contenido_pregunta = ?, id_empleado = ?
                 WHERE id_pregunta = ?';
-        $params = array($this->imagen, $this->pregunta, $this->contenido, $this->empleado, $this->id);
+        $params = array($this->pregunta, $this->contenido, $this->empleado, $this->id);
         return Database::executeRow($sql, $params);
     }    
 
