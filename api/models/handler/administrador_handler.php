@@ -13,9 +13,11 @@ require_once('../../helpers/database.php');
 
      protected $id = null;
      protected $nombre = null;
+     protected $correo = null;
      protected $contrasenia = null;
      protected $foto = null;
      protected $empleado = null;
+     protected $nivel = null;
 
      /*
      *  Métodos para gestionar la cuenta del administrador.
@@ -76,6 +78,14 @@ require_once('../../helpers/database.php');
                 SET nombre_admin = ?, foto_admin = ?, id_empleado = ?
                 WHERE id_admin = ?';
         $params = array($this->nombre, $this->foto, $this->empleado, $_SESSION['idAdministrador']);
+        return Database::executeRow($sql, $params);
+    }
+
+    public function createRow()
+    {
+        $sql = 'INSERT INTO tb_admin(nombre_admin, contrasenia_admin, correo_admin)
+                VALUES(?, ?, ?)';
+        $params = array($this->correo, $this->contrasenia, $this->nombre);
         return Database::executeRow($sql, $params);
     }
  }
