@@ -28,16 +28,16 @@ if (isset($_GET['action'])) {
             case 'createRow':
                 $_POST = Validator::validateForm($_POST);
                 if (
-                    !$administrador->setCorreo($_POST['correo_admin']) or
-                    !$administrador->setContrasenia($_POST['contra_admin']) or     
-                    !$administrador->setNombre($_POST['contra_admin'])       
+                    !$administrador->setCorreo($_POST['correo_admin2']) or
+                    !$administrador->setContrasenia($_POST['contra_admin2']) or     
+                    !$administrador->setNombre($_POST['nombre_admin2'])       
                 ) {
                     $result['error'] = $administrador->getDataError();
                 } elseif ($administrador->createRow()) {
                     $result['status'] = 1;
-                    $result['message'] = 'Empleado creado correctamente';
+                    $result['message'] = 'Administrador agregado correctamente';
                 } else {
-                    $result['error'] = 'Ocurrió un problema al crear al Empleado';
+                    $result['error'] = 'Ocurrió un problema al crear al Administrador';
                 }
                 break;
             case 'readAll':
@@ -45,44 +45,42 @@ if (isset($_GET['action'])) {
                     $result['status'] = 1;
                     $result['message'] = 'Existen ' . count($result['dataset']) . ' registros';
                 } else {
-                    $result['error'] = 'No existen Empleados registrados';
+                    $result['error'] = 'No existen administradores registrados';
                 }
                 break;
             case 'readOne':
                 if (!$administrador->setId($_POST['id_empleado'])) {
-                    $result['error'] = 'Empleado incorrecto';
+                    $result['error'] = 'Administrador incorrecto';
                 } elseif ($result['dataset'] = $administrador->readOne()) {
                     $result['status'] = 1;
                 } else {
-                    $result['error'] = 'Empleado inexistente';
+                    $result['error'] = 'Administrador inexistente';
                 }
                 break;
             case 'updateRow':
                 $_POST = Validator::validateForm($_POST);
                 if (
-                    !$administrador->setId($_POST['id_empleado']) or
-                    !$administrador->setNombre($_POST['nombre_empleado']) or
-                    !$administrador->setCorreo($_POST['correo_empleado']) or
-                    !$administrador->setDui($_POST['dui_empleado']) or
-                    !$administrador->setTelefono($_POST['telefono_empleado']) or
-                    !$administrador->setFecha($_POST['fecha_empleado'])  
+                    !$administrador->setId($_POST['idAdministrador']) or
+                    !$administrador->setCorreo($_POST['correo_admin']) or
+                    !$administrador->setContrasenia($_POST['contra_admin']) or
+                    !$administrador->setNombre($_POST['nombre_admin'])
                 ) {
                     $result['error'] = $administrador->getDataError();
                 } elseif ($administrador->updateRow()) {
                     $result['status'] = 1;
-                    $result['message'] = 'Empleado modificado correctamente';
+                    $result['message'] = 'Administrador modificado correctamente';
                 } else {
-                    $result['error'] = 'Ocurrió un problema al modificar el Empleado';
+                    $result['error'] = 'Ocurrió un problema al modificar el administrador';
                 }
                 break;
             case 'deleteRow':
-                if (!$administrador->setId($_POST['id_empleado'])) {
+                if (!$administrador->setId($_POST['idAdministrador'])) {
                     $result['error'] = $administrador->getDataError();
                 } elseif ($administrador->deleteRow()) {
                     $result['status'] = 1;
-                    $result['message'] = 'Empleado eliminado correctamente';
+                    $result['message'] = 'Adminitrador eliminado correctamente';
                 } else {
-                    $result['error'] = 'Ocurrió un problema al eliminar al Empleado';
+                    $result['error'] = 'Ocurrió un problema al eliminar al administrador';
                 }
                 break;
             default:

@@ -88,4 +88,11 @@ require_once('../../helpers/database.php');
         $params = array($this->correo, $this->contrasenia, $this->nombre);
         return Database::executeRow($sql, $params);
     }
+
+    public function readUsers()
+    {
+        $sql = 'SELECT FROM tb_admin';
+        $params = array($this->correo, $this->contrasenia, $this->nombre);
+        return Database::executeRow($sql, $params); 
+    }
  }
