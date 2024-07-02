@@ -50,6 +50,20 @@ class AdministradorData extends AdministradorHandler
         }
     }
 
+    public function setCorreo($value, $min = 8, $max = 100)
+    {
+        if (!Validator::validateEmail($value)) {
+            $this->data_error = 'El correo no es válido';
+            return false;
+        } elseif (Validator::validateLength($value, $min, $max)) {
+            $this->correo = $value;
+            return true;
+        } else {
+            $this->data_error = 'El correo debe tener una longitud entre ' . $min . ' y ' . $max;
+            return false;
+        }
+    }
+
     // Método para obtener el error de los datos.
     public function getDataError()
     {

@@ -85,8 +85,8 @@ if (isset($_GET['action'])) {
                 break;
             default:
                 $result['error'] = 'Acción no disponible dentro de la sesión';
-        }
-        else {
+            }
+        } else {
             // Se compara la acción a realizar cuando el administrador no ha iniciado sesión.
             switch ($_GET['action']) {
                 case 'readUsers':
@@ -100,14 +100,12 @@ if (isset($_GET['action'])) {
                 case 'signUp':
                     $_POST = Validator::validateForm($_POST);
                     if (
-                        !$administrador->setNombre($_POST['nombreAdministrador']) or
-                        !$administrador->setApellido($_POST['apellidoAdministrador']) or
-                        !$administrador->setCorreo($_POST['correoAdministrador']) or
-                        !$administrador->setAlias($_POST['aliasAdministrador']) or
-                        !$administrador->setClave($_POST['claveAdministrador'])
+                        !$administrador->setCorreo($_POST['correo_admin2']) or
+                        !$administrador->setContrasenia($_POST['contra_admin2']) or     
+                        !$administrador->setNombre($_POST['nombre_admin2'])
                     ) {
                         $result['error'] = $administrador->getDataError();
-                    } elseif ($_POST['claveAdministrador'] != $_POST['confirmarClave']) {
+                    } elseif ($_POST['contra_admin2'] != $_POST['confirmar_admin2']) {
                         $result['error'] = 'Contraseñas diferentes';
                     } elseif ($administrador->createRow()) {
                         $result['status'] = 1;
@@ -136,8 +134,5 @@ if (isset($_GET['action'])) {
         // Se imprime el resultado en formato JSON y se retorna al controlador.
         print(json_encode($result));
     } else {
-        print(json_encode('Acceso denegado'));
+        print(json_encode('Recurso no disponible'));
     }
-} else {
-    print(json_encode('Recurso no disponible'));
-}

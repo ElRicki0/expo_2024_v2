@@ -85,7 +85,7 @@ require_once('../../helpers/database.php');
     {
         $sql = 'INSERT INTO tb_admin(nombre_admin, contrasenia_admin, correo_admin)
                 VALUES(?, ?, ?)';
-        $params = array($this->correo, $this->contrasenia, $this->nombre);
+        $params = array($this->nombre, $this->contrasenia, $this->correo);
         return Database::executeRow($sql, $params);
     }
 
