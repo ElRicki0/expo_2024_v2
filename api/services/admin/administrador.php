@@ -86,6 +86,49 @@ if (isset($_GET['action'])) {
             default:
                 $result['error'] = 'Acción no disponible dentro de la sesión';
         }
+        else {
+            // Se compara la acción a realizar cuando el administrador no ha iniciado sesión.
+            switch ($_GET['action']) {
+                case 'readUsers':
+                    if ($administrador->readAll()) {
+                        $result['status'] = 1;
+                        $result['message'] = 'Debe autenticarse para ingresar';
+                    } else {
+                        $result['error'] = 'Debe crear un administrador para comenzar';
+                    }
+                    break;
+                case 'signUp':
+                    $_POST = Validator::validateForm($_POST);
+                    if (
+                        !$administrador->setNombre($_POST['nombreAdministrador']) or
+                        !$administrador->setApellido($_POST['apellidoAdministrador']) or
+                        !$administrador->setCorreo($_POST['correoAdministrador']) or
+                        !$administrador->setAlias($_POST['aliasAdministrador']) or
+                        !$administrador->setClave($_POST['claveAdministrador'])
+                    ) {
+                        $result['error'] = $administrador->getDataError();
+                    } elseif ($_POST['claveAdministrador'] != $_POST['confirmarClave']) {
+                        $result['error'] = 'Contraseñas diferentes';
+                    } elseif ($administrador->createRow()) {
+                        $result['status'] = 1;
+                        $result['message'] = 'Administrador registrado correctamente';
+                    } else {
+                        $result['error'] = 'Ocurrió un problema al registrar el administrador';
+                    }
+                    break;
+                case 'logIn':
+                    $_POST = Validator::validateForm($_POST);
+                    if ($administrador->checkUser($_POST['alias'], $_POST['clave'])) {
+                        $result['status'] = 1;
+                        $result['message'] = 'Autenticación correcta';
+                    } else {
+                        $result['error'] = 'Credenciales incorrectas';
+                    }
+                    break;
+                default:
+                    $result['error'] = 'Acción no disponible fuera de la sesión';
+            }
+        }
         // Se obtiene la excepción del servidor de base de datos por si ocurrió un problema.
         $result['exception'] = Database::getException();
         // Se indica el tipo de contenido a mostrar y su respectivo conjunto de caracteres.

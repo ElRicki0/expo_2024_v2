@@ -89,10 +89,11 @@ require_once('../../helpers/database.php');
         return Database::executeRow($sql, $params);
     }
 
-    public function readUsers()
+    public function readAll()
     {
-        $sql = 'SELECT FROM tb_admin';
-        $params = array($this->correo, $this->contrasenia, $this->nombre);
-        return Database::executeRow($sql, $params); 
+        $sql = 'SELECT id_admin, nombre_admin, contrasenia_admin, correo_admin
+                FROM tb_admin
+                ORDER BY nombre_admin';
+        return Database::getRows($sql);
     }
  }
