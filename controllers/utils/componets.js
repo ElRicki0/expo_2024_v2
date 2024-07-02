@@ -2,10 +2,8 @@
 *   CONTROLADOR DE USO GENERAL EN TODAS LAS PÁGINAS WEB.
 */
 // Constante para establecer la ruta base del servidor.
-const SERVER_URL = 'http://localhost/expo_2024_v2-1/api/';
+const SERVER_URL = 'http://localhost/expo_2024_v2/api/';
 
-// Constante para completar la ruta de la API.
-const USER_API = 'services/admin/administrador.php';
 
 /*
 *   Función para mostrar un mensaje de confirmación.
