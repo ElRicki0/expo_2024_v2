@@ -21,62 +21,52 @@
 
     <header>
         <nav class="navbar bg-body-white border-bottom border-secondary fixed-top">
-            <div class="row float-start">
-                <div class="col-lg-8 col-md-8">
-                    <a class="navbar-brand" href="#"><img src="../../resources/img/icono.png" alt="" height="50px"></a>
-
-                </div>
-                <div class="col-lg-2 col-md-2">
-                    <a class="nav-link" href="#" data-bs-toggle="dropdown" aria-expanded="false"><i
-                            class="bi bi-person-circle me-1"></i>
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="profile.html"><b>${DATA.username}</b></a></li>
-                        <li>
-                        </li>
-                        <li><a class="dropdown-item" href="#"> Editar perfil </a>
-                        </li>
-                        <hr class="dropdown-divider">
-                        <li><a class="dropdown-item" href="#" onclick="logOut()">Cerrar sesión</a>
-                        </li>
-                    </ul>
-                </div>
-                <div class="col-lg-2 col-md-2">
-                    <button class="navbar-toggler rounded-5" type="button" data-bs-toggle="offcanvas"
-                        data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar"
-                        aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar"
-                        aria-labelledby="offcanvasNavbarLabel">
-                        <div class="offcanvas-header">
-                            <button type="button" class="btn-close" data-bs-dismiss="offcanvas"
-                                aria-label="Close"></button>
-                        </div>
-                        <div class="offcanvas-body">
-                            <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
-                                <li class="nav-item">
-                                    <a class="nav-link active" aria-current="page" href="#"><i
-                                            class="bi bi-app-indicator"></i> Home</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="#"><i class="bi bi-app-indicator"></i> About</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="#"><i class="bi bi-app-indicator"></i> Products</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="#"><i class="bi bi-app-indicator"></i> Pricing</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="#"><i class="bi bi-app-indicator"></i> Contact</a>
-                                </li>
-                            </ul>
-                        </div>
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#"><img src="../../resources/img/icono.png" alt="" height="50px"></a>
+                <button class="navbar-toggler rounded-5" type="button" data-bs-toggle="offcanvas"
+                    data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="offcanvas offcanvas-end " tabindex="-1" id="offcanvasNavbar"
+                    aria-labelledby="offcanvasNavbarLabel">
+                    <div class="offcanvas-header">
+                        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                    </div>
+                    <div class="offcanvas-body">
+                        <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                            <li class="nav-item dropdown text-center">
+                                <a class="nav-link" href="#" data-bs-toggle="dropdown" aria-expanded="false"><i
+                                        class="bi bi-person-circle me-1"></i> <b>${DATA.username}</b>
+                                </a>
+                                <hr>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="#">Action</a></li>
+                                    <li><a class="dropdown-item" href="#">Editar perfil</a></li>
+                                    <li>
+                                        <hr class="dropdown-divider">
+                                    </li>
+                                    <li><a class="dropdown-item" href="#"> Cerrar sesion </a></li>
+                                </ul>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" href="#"><i
+                                        class="bi bi-app-indicator"></i> Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#"><i class="bi bi-app-indicator"></i> About</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#"><i class="bi bi-app-indicator"></i> Products</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#"><i class="bi bi-app-indicator"></i> Pricing</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#"><i class="bi bi-app-indicator"></i> Contact</a>
+                            </li>
+                        </ul>
                     </div>
                 </div>
-
-
             </div>
         </nav>
     </header>

@@ -32,7 +32,7 @@ require_once('../../helpers/database.php');
             return false;
         } elseif (password_verify($password, $data['contrasenia_admin'])) {
             $_SESSION['idAdministrador'] = $data['id_admin'];
-            $_SESSION['correoAdmin'] = $data['correoAdmin'];
+            $_SESSION['correoAdmin'] = $data['correo_admin'];
             return true;
         } else {
             return false;
