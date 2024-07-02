@@ -29,7 +29,7 @@ class PreguntasHandler
                     JOIN tb_empleado e ON p.id_empleado = e.id_empleado
                 WHERE nombre_pregunta LIKE ? OR contenido_pregunta LIKE ? or nombre_empleado like ?
                 ORDER BY nombre_pregunta';
-        $params = array($value, $value);
+        $params = array($value, $value, $value);
         return Database::getRows($sql, $params);
     }
 

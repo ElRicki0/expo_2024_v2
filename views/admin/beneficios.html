@@ -25,7 +25,7 @@
             <form class="col-sm-12 col-md-6" id="searchForm">
                 <div class="row">
                     <div class="col-6">
-                        <input type="search" class="form-control" name="search" placeholder="Pregunta, Empleado, Contenido" required>
+                        <input type="search" class="form-control" name="search" placeholder="Buscar" required>
                     </div>
                     <div class="col-6">
                         <button type="submit" class="btn btn-success">
@@ -50,13 +50,12 @@
             <!-- Cabeza de la tabla para mostrar la cantidad de registros y los títulos de las columnas -->
             <thead>
                 <tr>
-                    <td colspan="5" id="rowsFound"></td>
+                    <td colspan="4" id="rowsFound"></td>
                 </tr>
                 <tr>
-                    <th>IMAGEN</th>
-                    <th>PREGUNTA</th>
+                    <th>TITULO</th>
                     <th>CONTENIDO</th>
-                    <th>EMPLEADO</th>
+                    <th>SERVICIO</th>
                     <th>ACCIONES</th>
                 </tr>
             </thead>
@@ -79,23 +78,18 @@
                             <!-- Campo oculto para asignar el id del registro al momento de modificar -->
                             <input type="number" class="d-none" id="idPregunta" name="idPregunta">
                             <div class="col-sm-12 col-md-6">
-                                <label for="imagenPregunta" class="form-label">Imagen</label>
-                                <input id="imagenPregunta" type="file" name="imagenPregunta" class="form-control"
-                                    accept=".png, .jpg">
-                            </div>
-                            <div class="col-sm-12 col-md-6">
-                                <label for="nombrePregunta" class="form-label">Pregunta</label>
-                                <input id="nombrePregunta" type="text" name="nombrePregunta" class="form-control"
+                                <label for="tituloBeneficio" class="form-label">Pregunta</label>
+                                <input id="tituloBeneficio" type="text" name="tituloBeneficio" class="form-control"
                                     required>
                             </div>
                             <div class="col-sm-12 col-md-6">
-                                <label for="contenidoPregunta" class="form-label">Contenido</label>
-                                <input id="contenidoPregunta" type="text" name="contenidoPregunta" class="form-control"
+                                <label for="contenidoBeneficio" class="form-label">Contenido</label>
+                                <input id="contenidoBeneficio" type="text" name="contenidoBeneficio" class="form-control"
                                     required>
                             </div>
                             <div class="col-sm-12 col-md-6">
-                                <label for="empleadoPregunta" class="form-label">Empleado</label>
-                                <select id="empleadoPregunta" name="empleadoPregunta" class="form-select" required>
+                                <label for="servicioBeneficio" class="form-label">Empleado</label>
+                                <select id="servicioBeneficio" name="empleadoPregunta" class="form-select" required>
                                 </select>
                             </div>
                         </div>
@@ -116,7 +110,7 @@
     <!-- controladores del sitio privado -->
     <script src="../../controllers/utils/componets.js"></script>
     <script src="../../controllers/utils/admin.js"></script>
-    <script src="../../controllers/admin/preguntas.js"></script>
+    <script src="../../controllers/admin/beneficios.js"></script>
 
 </body>
 

@@ -19,8 +19,10 @@ id_testimonio INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
 titulo_testimonio VARCHAR(50) NOT NULL,
 contenido_testimonio VARCHAR(200)NOT NULL,
 id_cliente INT ,
-FOREIGN KEY (id_cliente) REFERENCES tb_clientes (id_cliente)
+estado_testimonio bool
+FOREIGN KEY (id_cliente) REFERENCES tb_clientes (id_cliente),
 );
+
 CREATE TABLE tb_empleado(
 id_empleado INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
 nombre_empleado VARCHAR (50) NOT NULL,
