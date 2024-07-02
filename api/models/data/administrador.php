@@ -17,6 +17,7 @@ class AdministradorData extends AdministradorHandler
      *  Métodos para validar y asignar valores de los atributos.
      */
 
+    // Método setId: valida y asigna el identificador del cliente.
     public function setId($value)
     {
         if (Validator::validateNaturalNumber($value)) {
@@ -28,6 +29,7 @@ class AdministradorData extends AdministradorHandler
         }
     }
 
+    // Método setNombre: valida y asigna el nombre del administrador.
     public function setNombre($value, $min = 2, $max = 250)
     {
         if (!Validator::validateAlphabetic($value)) {
@@ -42,8 +44,7 @@ class AdministradorData extends AdministradorHandler
         }
     }
 
-
-    
+    // Método setCorreo: valida y asigna el correo electrónico del administrador.
     public function setCorreo($value, $min = 8, $max = 100)
     {
         if (!Validator::validateEmail($value)) {
@@ -58,7 +59,7 @@ class AdministradorData extends AdministradorHandler
         }
     }
 
-
+    // Método setNivel: valida y asigna el nivel del administrador.
     public function setNivel($value, $min = 2, $max = 250)
     {
         if (!Validator::validateAlphabetic($value)) {
@@ -73,7 +74,7 @@ class AdministradorData extends AdministradorHandler
         }
     }
 
-
+    // Método setcontrasenia: valida y asigna la contraseña del administrador.
     public function setcontrasenia($value, $min = 8, $max = 250)
     {
         if (!Validator::validatePassword($value)) {
@@ -88,9 +89,10 @@ class AdministradorData extends AdministradorHandler
         }
     }
 
-    // Método para obtener el error de los datos.
+    // Método getDataError: retorna el error actual de los datos.
     public function getDataError()
     {
         return $this->data_error;
     }
 }
+?>

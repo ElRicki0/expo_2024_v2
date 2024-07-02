@@ -17,6 +17,7 @@ class EmpleadoData extends EmpleadoHandler
      *  Métodos para validar y asignar valores de los atributos.
      */
 
+    // Método setId: valida y asigna el identificador del empleado.
     public function setId($value)
     {
         if (Validator::validateNaturalNumber($value)) {
@@ -28,6 +29,7 @@ class EmpleadoData extends EmpleadoHandler
         }
     }
 
+    // Método setNombre: valida y asigna el nombre del empleado.
     public function setNombre($value, $min = 2, $max = 50)
     {
         if (!Validator::validateAlphabetic($value)) {
@@ -42,6 +44,7 @@ class EmpleadoData extends EmpleadoHandler
         }
     }
 
+    // Método setFecha: valida y asigna la fecha de nacimiento del empleado.
     public function setFecha($value)
     {
         if (Validator::validateDate($value)) {
@@ -53,6 +56,7 @@ class EmpleadoData extends EmpleadoHandler
         }
     }
 
+    // Método setDui: valida y asigna el DUI del empleado.
     public function setDui($value)
     {
         if (Validator::validateDui($value)) {
@@ -64,6 +68,7 @@ class EmpleadoData extends EmpleadoHandler
         }
     }
 
+    // Método setTelefono: valida y asigna el teléfono del empleado.
     public function setTelefono($value)
     {
         if (Validator::validatePhone($value)) {
@@ -75,6 +80,7 @@ class EmpleadoData extends EmpleadoHandler
         }
     }
 
+    // Método setCorreo: valida y asigna el correo electrónico del empleado.
     public function setCorreo($value, $min = 8, $max = 100)
     {
         if (!Validator::validateEmail($value)) {
@@ -89,6 +95,7 @@ class EmpleadoData extends EmpleadoHandler
         }
     }
 
+    // Método setEstado: valida y asigna el estado del empleado.
     public function setEstado($value)
     {
         if (Validator::validateBoolean($value)) {
@@ -100,9 +107,10 @@ class EmpleadoData extends EmpleadoHandler
         }
     }
 
-    // Método para obtener el error de los datos.
+    // Método getDataError: retorna el error actual de los datos.
     public function getDataError()
     {
         return $this->data_error;
     }
 }
+?>

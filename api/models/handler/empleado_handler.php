@@ -24,6 +24,7 @@ class EmpleadoHandler{
      *  Métodos para gestionar la cuenta del empleado.
      */
 
+    // Método checkStatus: verifica el estado del empleado y establece variables de sesión si está activo.
     public function checkStatus()
     {
         if ($this->estado) {
@@ -35,6 +36,7 @@ class EmpleadoHandler{
         }
     }
 
+    // Método changeStatus: cambia el estado del empleado en la base de datos.
     public function changeStatus()
     {
         $sql = 'UPDATE tb_clientes
@@ -48,6 +50,7 @@ class EmpleadoHandler{
      *  Métodos para realizar las operaciones SCRUD (search, create, read, update, and delete).
      */
 
+    // Método searchRows: busca empleados en la base de datos según un criterio de búsqueda.
     public function searchRows() {
         $value = '%' . Validator::getSearchValue() . '%';
         $sql = 'SELECT id_empleado, nombre_empleado, dui_empleado, correo_empleado, telefono_empleado, nacimiento_empleado
@@ -58,6 +61,7 @@ class EmpleadoHandler{
         return Database::getRows($sql, $params);
     }
 
+    // Método createRow: inserta un nuevo empleado en la base de datos.
     public function createRow()
     {
         $sql = 'INSERT INTO tb_empleado(nombre_empleado, dui_empleado, correo_empleado, telefono_empleado, nacimiento_empleado)
@@ -66,6 +70,7 @@ class EmpleadoHandler{
         return Database::executeRow($sql, $params);
     }
 
+    // Método readAll: lee todos los empleados de la base de datos.
     public function readAll()
     {
         $sql = 'SELECT id_empleado, nombre_empleado, dui_empleado, correo_empleado, telefono_empleado, nacimiento_empleado
@@ -74,6 +79,7 @@ class EmpleadoHandler{
         return Database::getRows($sql);
     }
 
+    // Método readOne: lee un empleado específico de la base de datos según su ID.
     public function readOne()
     {
         $sql = 'SELECT id_empleado, nombre_empleado, dui_empleado, correo_empleado, telefono_empleado, nacimiento_empleado
@@ -83,6 +89,7 @@ class EmpleadoHandler{
         return Database::getRow($sql, $params);
     }
 
+    // Método updateRow: actualiza los datos de un empleado en la base de datos.
     public function updateRow()
     {
         $sql = 'UPDATE tb_empleado
@@ -92,6 +99,7 @@ class EmpleadoHandler{
         return Database::executeRow($sql, $params);
     }
 
+    // Método deleteRow: elimina un empleado de la base de datos según su ID.
     public function deleteRow()
     {
         $sql = 'DELETE FROM tb_empleado
@@ -100,3 +108,4 @@ class EmpleadoHandler{
         return Database::executeRow($sql, $params);
     }
 }
+?>

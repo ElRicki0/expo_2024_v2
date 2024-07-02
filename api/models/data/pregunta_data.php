@@ -3,6 +3,7 @@
 require_once('../../helpers/validator.php');
 // Se incluye la clase padre.
 require_once('../../models/handler/pregunta_handler.php');
+
 /*
  *	Clase para manejar el encapsulamiento de los datos de la tabla PRODUCTO.
  */
@@ -18,6 +19,7 @@ class PreguntaData extends PreguntasHandler
      *   Métodos para validar y establecer los datos.
      */
 
+    // Método setId: valida y asigna el identificador de la pregunta.
     public function setId($value)
     {
         if (Validator::validateNaturalNumber($value)) {
@@ -29,6 +31,7 @@ class PreguntaData extends PreguntasHandler
         }
     }
 
+    // Método setFilename: verifica y asigna el nombre de archivo de imagen de la pregunta.
     public function setFilename()
     {
         if ($data = $this->readFilename()) {
@@ -40,6 +43,7 @@ class PreguntaData extends PreguntasHandler
         }
     }
 
+    // Método setPregunta: valida y asigna la pregunta.
     public function setPregunta($value, $min = 2, $max = 250)
     {
         if (!Validator::validateAlphanumeric($value)) {
@@ -54,6 +58,7 @@ class PreguntaData extends PreguntasHandler
         }
     }
 
+    // Método setContenido: valida y asigna el contenido de la pregunta.
     public function setContenido($value, $min = 2, $max = 250)
     {
         if (!Validator::validateString($value)) {
@@ -68,17 +73,19 @@ class PreguntaData extends PreguntasHandler
         }
     }
 
+    // Método setEmpleado: valida y asigna el identificador del empleado relacionado con la pregunta.
     public function setEmpleado($value)
     {
         if (Validator::validateNaturalNumber($value)) {
             $this->empleado = $value;
             return true;
         } else {
-            $this->data_error = 'El identificador de el empleado es incorrecto';
+            $this->data_error = 'El identificador del empleado es incorrecto';
             return false;
         }
     }
 
+    // Método setImagen: valida y asigna la imagen relacionada con la pregunta.
     public function setImagen($file, $filename = null)
     {
         if (Validator::validateImageFile($file, 1000)) {
@@ -99,13 +106,17 @@ class PreguntaData extends PreguntasHandler
     /*
      *  Métodos para obtener el valor de los atributos adicionales.
      */
+
+    // Método getDataError: retorna el error actual de los datos.
     public function getDataError()
     {
         return $this->data_error;
     }
 
+    // Método getFilename: retorna el nombre del archivo de imagen relacionado con la pregunta.
     public function getFilename()
     {
         return $this->filename;
     }
 }
+?>
