@@ -24,15 +24,15 @@ require_once('../../helpers/database.php');
      */
     public function checkUser($username, $password)
     {
-        $sql = 'SELECT id_admin, nombre_admin, contrasenia_admin
+        $sql = 'SELECT id_admin, correo_admin, contrasenia_admin
                 FROM tb_admin
-                WHERE nombre_admin = ?';
+                WHERE correo_admin = ?';
         $params = array($username);
         if (!($data = Database::getRow($sql, $params))) {
             return false;
         } elseif (password_verify($password, $data['contrasenia_admin'])) {
-            $_SESSION['idAdmin'] = $data['id_admin'];
-            $_SESSION['nombreAdmin'] = $data['nombre_admin'];
+            $_SESSION['idAdministrador'] = $data['id_admin'];
+            $_SESSION['correo_admin'] = $data['correo_admin'];
             return true;
         } else {
             return false;

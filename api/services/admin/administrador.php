@@ -116,7 +116,7 @@ if (isset($_GET['action'])) {
                     break;
                 case 'logIn':
                     $_POST = Validator::validateForm($_POST);
-                    if ($administrador->checkUser($_POST['alias'], $_POST['clave'])) {
+                    if ($administrador->checkUser($_POST['correo_admin'], $_POST['contra_admin'])) {
                         $result['status'] = 1;
                         $result['message'] = 'Autenticación correcta';
                     } else {
