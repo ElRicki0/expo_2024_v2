@@ -12,8 +12,8 @@ require_once('../../helpers/database.php');
     protected $descripcion = null;
     protected $foto = null;
     
-   
-
+    // Constante para establecer la ruta de las imágenes.
+    const RUTA_IMAGEN = '../../images/servicios/';
 
     /*
      *  Métodos para realizar las operaciones SCRUD (search, create, read, update, and delete).
@@ -31,7 +31,8 @@ require_once('../../helpers/database.php');
 
     public function createRow()
     {
-        $sql = 'INSERT INTO tb_servicios(tipo_servicio, descripcion_servicio, id_foto)
+        $sql = 'INSERT INTO tb_servicios AS S (S.tipo_servicio, S.descripcion_servicio, F.imagen)
+                INNER JOIN tb_fotos AS F ON S.id_foto = F.id_foto
                 VALUES(?, ?, ?)';
         $params = array($this->servicio, $this->descripcion, $this->foto);
         return Database::executeRow($sql, $params);
@@ -61,6 +62,15 @@ require_once('../../helpers/database.php');
                 WHERE id_servicio = ?';
         $params = array($this->servicio, $this->descripcion, $this->foto);
         return Database::executeRow($sql, $params);
+    }
+
+    public function readFilename()
+    {
+        $sql = 'SELECT id_foto 
+                FROM tb_servicios
+                WHERE id_servicio  = ?';
+        $params = array($this->id);
+        return Database::getRow($sql, $params);
     }
 
     public function deleteRow()

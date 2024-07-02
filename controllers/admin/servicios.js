@@ -5,7 +5,7 @@ const SEARCH_FORM = document.getElementById('searchForm');
 const TABLE_BODY = document.getElementById('tableBody'),
     ROWS_FOUND = document.getElementById('rowsFound');
 // Constantes para establecer los elementos del componente Modal.
-const SAVE_MODAL = new bootstrap.Modal('#modalServio'),
+const SAVE_MODAL = new bootstrap.Modal('#modalServicio'),
     MODAL_TITLE = document.getElementById('modalTitle');
 // Constantes para establecer los elementos del formulario de guardar.
 const SAVE_FORM = document.getElementById('saveForm'),
@@ -34,11 +34,11 @@ SAVE_FORM.addEventListener('submit', async (event) => {
     // Se evita recargar la página web después de enviar el formulario.
     event.preventDefault();
     // Se verifica la acción a realizar.
-    (ID_EMPLEADO.value) ? action = 'updateRow' : action = 'createRow';
+    (ID_SERVICIO.value) ? action = 'updateRow' : action = 'createRow';
     // Constante tipo objeto con los datos del formulario.
     const FORM = new FormData(SAVE_FORM);
     // Petición para guardar los datos del formulario.
-    const DATA = await fetchData(EMPLEADO_API, action, FORM);
+    const DATA = await fetchData(SERVICIO_API, action, FORM);
     // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
     if (DATA.status) {
         // Se cierra la caja de diálogo.
@@ -64,7 +64,7 @@ const fillTable = async (form = null) => {
     // Se verifica la acción a realizar.
     (form) ? action = 'searchRows' : action = 'readAll';
     // Petición para obtener los registros disponibles.
-    const DATA = await fetchData(EMPLEADO_API, action, form);
+    const DATA = await fetchData(SERVICIO_API, action, form);
     // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
     if (DATA.status) {
         // Se recorre el conjunto de registros fila por fila.
@@ -113,7 +113,7 @@ const openUpdate = async (id) => {
     const FORM = new FormData();
     FORM.append('id_servicio', id);
     // Petición para obtener los datos del registro solicitado.
-    const DATA = await fetchData(EMPLEADO_API, 'readOne', FORM);
+    const DATA = await fetchData(SERVICIO_API, 'readOne', FORM);
     // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
     if (DATA.status) {
         // Se muestra la caja de diálogo con su título.
@@ -162,13 +162,7 @@ const openDelete = async (id) => {
 
 
 
-
-
-
-
-
-
-// Obtener el input de carga de imagen y la imagen
+/* Obtener el input de carga de imagen y la imagen
 var imageUpload = document.getElementById("id_foto");
 var serviceImage = document.getElementById("serviceImage");
 
@@ -184,4 +178,4 @@ imageUpload.onchange = function(event) {
         serviceImage.src = reader.result;
     }
     reader.readAsDataURL(event.target.files[0]);
-}
+}*/
