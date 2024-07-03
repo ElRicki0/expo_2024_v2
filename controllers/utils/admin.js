@@ -6,15 +6,15 @@
 // Constante para completar la ruta de la API.
 const USER_API = 'services/admin/administrador.php';
 // Constante para establecer el elemento del contenido principal.
-const MAIN = document.querySelector('main');
-MAIN.style.paddingTop = '75px';
-MAIN.style.paddingBottom = '100px';
-MAIN.classList.add('container');
+//const MAIN = document.querySelector('main');
+//MAIN.style.paddingTop = '75px';
+//MAIN.style.paddingBottom = '100px';
+//MAIN.classList.add('container');
 // Se establece el título de la página web.
-document.querySelector('title').textContent = 'Quiropráctica Especifica';
+//document.querySelector('title').textContent = 'Quiropráctica Especifica';
 // Constante para establecer el elemento del título principal.
-const MAIN_TITLE = document.getElementById('mainTitle');
-MAIN_TITLE.classList.add('text-center', 'py-3');
+//const MAIN_TITLE = document.getElementById('mainTitle');
+//MAIN_TITLE.classList.add('text-center', 'py-3');
 
 
 /* Función asíncrona para cargar el encabezado y pie del documento.
@@ -23,86 +23,122 @@ MAIN_TITLE.classList.add('text-center', 'py-3');
 */
 // Codigo para tener el header, para luego mandarlo a llamar
 
-const header = document.querySelector("header");
-
-header.innerHTML = `
-<div class="fondo_oscuro">
-            <div class="row">
-                <div class="col-sm-1 col-md-1 col-lg-1 text-center mt-4">
-                    <div class="btn-menu ">
-                        <label for="btn-menu"><img src="../../resources/img/menu.png" width="50px"
-                                for="btn-menu"></label>
+const loadTemplate = async () => {
+    // Petición para obtener en nombre del usuario que ha iniciado sesión.
+    const DATA = await fetchData(USER_API, 'getUser');
+    // Se verifica si el usuario está autenticado, de lo contrario se envía a iniciar sesión.
+    if (DATA.session) {
+        // Se comprueba si existe un alias definido para el usuario, de lo contrario se muestra un mensaje con la excepción.
+        if (DATA.status) {
+            // Se agrega el encabezado de la página web antes del contenido principal.
+            MAIN.insertAdjacentHTML('beforebegin', `
+                        <nav class="navbar navbar-dark border-bottom border-secondary fixed-top">
+            <div class="container-fluid">
+                <a class="navbar-brand fw-bold d-flex align-items-center" href="#">
+                    <img src="../../resources/img/icons/icon.jpg" alt="" height="50px" class="d-inline-block align-text-top">
+                    Quiropractica Especifica
+                </a>
+                <button class="navbar-toggler rounded-5" type="button" data-bs-toggle="offcanvas"
+                    data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1" id="offcanvasNavbar"
+                    aria-labelledby="offcanvasNavbarLabel">
+                    <div class="offcanvas-header">
+                        <a type="button" class="btn-close" data-bs-dismiss="offcanvas"></i></a>
                     </div>
-                    <input type="checkbox" id="btn-menu">
-                    <div class="containerzzz-menu">
-                        <div class="cont-menu">
-                            <nav>
-                                <a href="../../../vistas/privada/inicio.html">Inicio</a>
-                                <a href="../../../vistas/privada/cita.html">Citas</a>
-                                <a href="../../../vistas/privada/notas_privada.html">Notas</a>
-                                <a href="../../../vistas/privada/pacientes_privada.html">Pacientes</a>
-                                <a href="../../../vistas/privada/pagina_principal.html">Sitio publico</a>
-                                <a href="../../../vistas/privada/datos.html">Gráficas</a>
-                                <a href="../../../vistas/privada/comentarios.html">Comentarios</a>
-                            </nav>
-                            <label for="btn-menu">✖️</label>
-                        </div>
+                    <div class="offcanvas-body">
+                        <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                            <li class="nav-item dropdown text-center">
+                                <a class="nav-link" href="#" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="bi bi-gear-fill"></i> <b>${DATA.username}</b>
+                                </a>
+                                <hr>
+                                <ul class="dropdown-menu dropdown-menu-dark">
+                                    <li><a class="dropdown-item" href="#">Ver perfil</a></li>
+                                    <li>
+                                        <hr class="dropdown-divider">
+                                    </li>
+                                    <li><a class="dropdown-item" href="#" onclick="logOut()"> Cerrar sesion </a></li>
+                                </ul>
+                            </li>
+                            <li class="nav-item ms-4">
+                                <a class="nav-link active" aria-current="page" href="#"><i
+                                        class="bi bi-house-fill me-1"></i>
+                                    Inicio</a>
+                            </li>
+                            <li class="nav-item ms-4">
+                                <a class="nav-link" href="#"><i class="bi bi-person-circle me-1"></i></i> Admin</a>
+                            </li>
+                            <li class="nav-item ms-4">
+                                <a class="nav-link" href="#"><i class="bi bi-lungs-fill me-1"></i> Beneficios</a>
+                            </li>
+                            <li class="nav-item ms-4">
+                                <a class="nav-link" href="#"><i class="bi bi-bookmark-plus-fill me-1"></i> Citas</a>
+                            </li>
+                            <li class="nav-item ms-4">
+                                <a class="nav-link" href="#"><i class="bi bi-people-fill me-1"></i> Clientes</a>
+                            </li>
+                            <li class="nav-item ms-4">
+                                <a class="nav-link" href="#"><i class="bi bi-chat-left-text-fill me-1"></i>
+                                    Comentarios</a>
+                            </li>
+                            <li class="nav-item ms-4">
+                                <a class="nav-link" href="#"><i class="bi bi-person-standing me-1"></i> Empleados</a>
+                            </li>
+                            <li class="nav-item ms-4">
+                                <a class="nav-link" href="#"><i class="bi bi-images me-1"></i> Galeria</a>
+                            </li>
+                            <li class="nav-item ms-4">
+                                <a class="nav-link" href="#"><i class="bi bi-clipboard2-pulse-fill me-1"></i>
+                                    Tratamientos</a>
+                            </li>
+                            <li class="nav-item ms-4">
+                                <a class="nav-link" href="#"><i class="bi bi-question-lg me-1"></i> Preguntas</a>
+                            </li>
+                            <li class="nav-item ms-4">
+                                <a class="nav-link" href="#"><i class="bi bi-file-medical-fill me-1"></i> Servicios</a>
+                            </li>
+                            <li class="nav-item ms-4">
+                                <a class="nav-link" href="#"><i class="bi bi-fast-forward-btn-fill me-1"></i>
+                                    Testimonios</a>
+                            </li>
+                        </ul>
                     </div>
-                </div>
-                <div class="col-sm-9 col-md-9 col-lg-9 text-center mt-4">
-                    <img src="../../resources/img/icono.png" alt="">
-                </div>
-
-                <div class="col-sm-2 col-md-2 col-lg-2 text-center dropdown ">
-                    <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        <a class="boton" href="#">
-                            <img src="../../resources/img/admin/usuario.png" width="80px"
-                                alt="Descripción de la imagen">
-                        </a>
-                    </button>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="../../vistas/privada/perfil.html">perfil</a></li>
-                    </ul>
                 </div>
             </div>
-        </div>
-`
-
-// Código para tener el footer, para luego mandarlo a llamar
-
-const footer = document.querySelector("footer");
-
-footer.innerHTML = `
-<div class="bg-light text-center text-white">
-<!-- Grid container -->
-<div class="container p-4 pb-0" >
-    <!-- Section: Social media -->
-    <section class="mb-4">
-        <!-- Facebook -->
-        <a class="btn btn-primary btn-floating m-1 footer_color_boton"  href="#!"
-            role="button"><img src="../../resources/img/footer/facebook_img.png"  width="30px" alt=""></a>
-
-        <!-- Correo -->
-        <a class="btn btn-primary btn-floating m-1 footer_color_boton"  href="#!"
-            role="button"><img src="../../resources/img/footer/correo_img.png" width="30px" alt=""></a>
-
-        <!-- Ubicación -->
-        <a class="btn btn-primary btn-floating m-1 footer_color_boton"  href="#!"
-            role="button"><img src="../../resources/img/footer/lugar_img.png" width="30px" alt=""></a>
-
-        <!-- WhatsApp -->
-        <a class="btn btn-primary btn-floating m-1 footer_color_boton"  href="#!"
-            role="button"><img src="../../resources/img/footer/whatsapp_img.png" width="30px" alt=""></a>
-
-    </section>
-    <!-- Section: Social media -->
-</div>
-<!-- Grid container -->
-
-<!-- Copyright -->
-<div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
-    © 2024 Copyright:
-    <a class="text-white" href="#">Quiropráctica Específica</a>
-</div>
-<!-- Copyright -->
-</div>`
+        </nav>`);
+        } else {
+            sweetAlert(3, DATA.error, false, 'index.html');
+        }
+    } else {
+        // Se comprueba si la página web es la principal, de lo contrario se direcciona a iniciar sesión.
+        if (location.pathname.endsWith('index.html')) {
+            // Se agrega el encabezado de la página web antes del contenido principal.
+            MAIN.insertAdjacentHTML('beforebegin', `
+                <header>
+                    <nav class="navbar fixed-top bg-body-tertiary">
+                        <div class="container">
+                            <a class="navbar-brand" href="index.html">
+                                <img src="../../resources/img/logo.png" alt="inventory" width="50">
+                            </a>
+                        </div>
+                    </nav>
+                </header>
+            `);
+            // Se agrega el pie de la página web después del contenido principal.
+            MAIN.insertAdjacentHTML('afterend', `
+                <footer>
+                    <nav class="navbar fixed-bottom bg-body-tertiary">
+                        <div class="container">
+                            <p><a class="nav-link" href="https://github.com/dacasoft/coffeeshop" target="_blank"><i class="bi bi-github"></i> CoffeeShop</a></p>
+                            <p><i class="bi bi-envelope-fill"></i> dacasoft@outlook.com</p>
+                        </div>
+                    </nav>
+                </footer>
+            `);
+        } else {
+            location.href = 'index.html';
+        }
+    }
+}

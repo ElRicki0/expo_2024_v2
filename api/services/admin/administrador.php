@@ -1,6 +1,6 @@
 <?php
 // Se incluye la clase del modelo.
-require_once('../../models/data/administrador_data.php');
+require_once ('../../models/data/administrador_data.php');
 
 // Se comprueba si existe una acción a realizar, de lo contrario se finaliza el script con un mensaje de error.
 if (isset($_GET['action'])) {
@@ -43,8 +43,8 @@ if (isset($_GET['action'])) {
                 $_POST = Validator::validateForm($_POST);
                 if (
                     !$administrador->setCorreo($_POST['correo_admin2']) ||
-                    !$administrador->setContrasenia($_POST['contra_admin2']) ||     
-                    !$administrador->setNombre($_POST['nombre_admin2'])       
+                    !$administrador->setContrasenia($_POST['contra_admin2']) ||
+                    !$administrador->setNombre($_POST['nombre_admin2'])
                 ) {
                     $result['error'] = $administrador->getDataError();
                 } elseif ($administrador->createRow()) {
@@ -65,6 +65,22 @@ if (isset($_GET['action'])) {
                 } else {
                     // Si no hay registros, se registra un error.
                     $result['error'] = 'No existen administradores registrados';
+                }
+                break;
+            case 'logOut':
+                if (session_destroy()) {
+                    $result['status'] = 1;
+                    $result['message'] = 'Sesión eliminada correctamente';
+                } else {
+                    $result['error'] = 'Ocurrió un problema al cerrar la sesión';
+                }
+                break;
+            case 'getUser':
+                if (isset($_SESSION['correo_admin'])) {
+                    $result['status'] = 1;
+                    $result['username'] = $_SESSION['correo_admin'];
+                } else {
+                    $result['error'] = 'Alias de administrador indefinido';
                 }
                 break;
             case 'readOne':
@@ -137,7 +153,7 @@ if (isset($_GET['action'])) {
                 $_POST = Validator::validateForm($_POST);
                 if (
                     !$administrador->setCorreo($_POST['correo_admin2']) ||
-                    !$administrador->setContrasenia($_POST['contra_admin2']) ||     
+                    !$administrador->setContrasenia($_POST['contra_admin2']) ||
                     !$administrador->setNombre($_POST['nombre_admin2'])
                 ) {
                     // Si los datos no son válidos, se registra un error.
@@ -179,8 +195,8 @@ if (isset($_GET['action'])) {
     header('Content-type: application/json; charset=utf-8');
 
     // Se imprime el resultado en formato JSON y se retorna al controlador.
-    print(json_encode($result));
+    print (json_encode($result));
 } else {
     // Si no hay acción definida, se imprime un mensaje indicando que el recurso no está disponible.
-    print(json_encode('Recurso no disponible'));
+    print (json_encode('Recurso no disponible'));
 }
