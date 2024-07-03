@@ -6,15 +6,15 @@
 // Constante para completar la ruta de la API.
 const USER_API = 'services/admin/administrador.php';
 // Constante para establecer el elemento del contenido principal.
-//const MAIN = document.querySelector('main');
-//MAIN.style.paddingTop = '75px';
-//MAIN.style.paddingBottom = '100px';
-//MAIN.classList.add('container');
+const MAIN = document.querySelector('main');
+MAIN.style.paddingTop = '75px';
+MAIN.style.paddingBottom = '100px';
+MAIN.classList.add('container');
 // Se establece el título de la página web.
-//document.querySelector('title').textContent = 'Quiropráctica Especifica';
+document.querySelector('title').textContent = 'Quiropráctica Especifica';
 // Constante para establecer el elemento del título principal.
-//const MAIN_TITLE = document.getElementById('mainTitle');
-//MAIN_TITLE.classList.add('text-center', 'py-3');
+const MAIN_TITLE = document.getElementById('mainTitle');
+MAIN_TITLE.classList.add('text-center', 'py-3');
 
 
 /* Función asíncrona para cargar el encabezado y pie del documento.

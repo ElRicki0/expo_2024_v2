@@ -1,4 +1,4 @@
-// Constantes para completar las rutas de la API.
+    // Constantes para completar las rutas de la API.
 const SERVICIO_API = 'services/admin/servicio.php';
 const BENEFICIO_API = 'services/admin/beneficio.php';
 // Constante para establecer el formulario de buscar.
@@ -141,7 +141,7 @@ const openUpdate = async (id) => {
         ID_BENEFICIO.value = ROW.id_beneficio;
         TITULO_BENEFICIO.value = ROW.titulo_beneficio;
         CONTENIDO_BENEFICIO.value = ROW.contenido_beneficio;
-        fillSelect(BENEFICIO_API, 'readAll', 'servicioBeneficio', ROW.id_servicio);
+        fillSelect(SERVICIO_API, 'readAll', 'servicioBeneficio', ROW.id_servicio);
     } else {
         sweetAlert(2, DATA.error, false);
     }
