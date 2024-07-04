@@ -68,40 +68,1207 @@ const loadTemplate = async () => {
                                     Inicio</a>
                             </li>
                             <li class="nav-item ms-4">
-                                <a class="nav-link" href="#"><i class="bi bi-person-circle me-1"></i></i> Admin</a>
+                                <a class="nav-link" href="#"><i class="bi bi-person-circle me-1"></i></i> ADMIN</a>
                             </li>
                             <li class="nav-item ms-4">
-                                <a class="nav-link" href="#"><i class="bi bi-lungs-fill me-1"></i> Beneficios</a>
+                                <a class="nav-link" href="#"><i class="bi bi-lungs-fill me-1"></i> BENEFICIOS</a>
                             </li>
                             <li class="nav-item ms-4">
-                                <a class="nav-link" href="#"><i class="bi bi-bookmark-plus-fill me-1"></i> Citas</a>
+                                <a class="nav-link" href="#"><i class="bi bi-bookmark-plus-fill me-1"></i> CITAS</a>
                             </li>
                             <li class="nav-item ms-4">
-                                <a class="nav-link" href="#"><i class="bi bi-people-fill me-1"></i> Clientes</a>
+                                <a class="nav-link" href="#"><i class="bi bi-people-fill me-1"></i> CLIENTES</a>
                             </li>
                             <li class="nav-item ms-4">
-                                <a class="nav-link" href="#"><i class="bi bi-chat-left-text-fill me-1"></i>
-                                    Comentarios</a>
+                                <a class="nav-link" href="#"><i class="bi bi-chat-left-text-fill me-1"></i>COMENTARIOS</a>           
                             </li>
                             <li class="nav-item ms-4">
-                                <a class="nav-link" href="#"><i class="bi bi-person-standing me-1"></i> Empleados</a>
+                                <a class="nav-link" href="#"><i class="bi bi-person-standing me-1"></i> EMPLEADOS</a>
                             </li>
                             <li class="nav-item ms-4">
-                                <a class="nav-link" href="#"><i class="bi bi-images me-1"></i> Galeria</a>
+                                <a class="nav-link" href="#"><i class="bi bi-images me-1"></i> GALERIA</a>
                             </li>
                             <li class="nav-item ms-4">
-                                <a class="nav-link" href="#"><i class="bi bi-clipboard2-pulse-fill me-1"></i>
-                                    Tratamientos</a>
+                                <a class="nav-link" href="#"><i class="bi bi-clipboard2-pulse-fill me-1"></i>TRATAMIENTOS</a>                       
                             </li>
                             <li class="nav-item ms-4">
-                                <a class="nav-link" href="#"><i class="bi bi-question-lg me-1"></i> Preguntas</a>
+                                <a class="nav-link" href="#"><i class="bi bi-question-lg me-1"></i> PREGUNTAS</a>
                             </li>
                             <li class="nav-item ms-4">
-                                <a class="nav-link" href="#"><i class="bi bi-file-medical-fill me-1"></i> Servicios</a>
+                                <a class="nav-link" href="#"><i class="bi bi-file-medical-fill me-1"></i> SERVICIOS</a>
                             </li>
                             <li class="nav-item ms-4">
-                                <a class="nav-link" href="#"><i class="bi bi-fast-forward-btn-fill me-1"></i>
-                                    Testimonios</a>
+                                <a class="nav-link" href="#"><i class="bi bi-fast-forward-btn-fill me-1"></i>TESTIMONIOS</a>       
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </nav>`);
+        } else {
+            sweetAlert(3, DATA.error, false, 'index.html');
+        }
+    } else {
+        // Se comprueba si la página web es la principal, de lo contrario se direcciona a iniciar sesión.
+        if (location.pathname.endsWith('index.html')) {
+            // Se agrega el encabezado de la página web antes del contenido principal.
+            MAIN.insertAdjacentHTML('beforebegin', `
+                <header>
+                    <nav class="navbar fixed-top bg-body-tertiary">
+                        <div class="container">
+                            <a class="navbar-brand" href="index.html">
+                                <img src="../../resources/img/logo.png" alt="inventory" width="50">
+                            </a>
+                        </div>
+                    </nav>
+                </header>
+            `);
+            // Se agrega el pie de la página web después del contenido principal.
+            MAIN.insertAdjacentHTML('afterend', `
+                <footer>
+                    <nav class="navbar fixed-bottom bg-body-tertiary">
+                        <div class="container">
+                            <p><a class="nav-link" href="https://github.com/dacasoft/coffeeshop" target="_blank"><i class="bi bi-github"></i> CoffeeShop</a></p>
+                            <p><i class="bi bi-envelope-fill"></i> dacasoft@outlook.com</p>
+                        </div>
+                    </nav>
+                </footer>
+            `);
+        } else {
+            location.href = 'index.html';
+        }
+    }
+}
+
+const loadTemplate2 = async () => {
+    // Petición para obtener en nombre del usuario que ha iniciado sesión.
+    const DATA = await fetchData(USER_API, 'getUser');
+    // Se verifica si el usuario está autenticado, de lo contrario se envía a iniciar sesión.
+    if (DATA.session) {
+        // Se comprueba si existe un alias definido para el usuario, de lo contrario se muestra un mensaje con la excepción.
+        if (DATA.status) {
+            // Se agrega el encabezado de la página web antes del contenido principal.
+            MAIN.insertAdjacentHTML('beforebegin', `
+                        <nav class="navbar navbar-dark border-bottom border-secondary fixed-top">
+            <div class="container-fluid">
+                <a class="navbar-brand fw-bold d-flex align-items-center" href="#">
+                    <img src="../../resources/img/icons/icon.jpg" alt="" height="50px" class="d-inline-block align-text-top">
+                    Quiropractica Especifica
+                </a>
+                <button class="navbar-toggler rounded-5" type="button" data-bs-toggle="offcanvas"
+                    data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1" id="offcanvasNavbar"
+                    aria-labelledby="offcanvasNavbarLabel">
+                    <div class="offcanvas-header">
+                        <a type="button" class="btn-close" data-bs-dismiss="offcanvas"></i></a>
+                    </div>
+                    <div class="offcanvas-body">
+                        <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                            <li class="nav-item dropdown text-center">
+                                <a class="nav-link" href="#" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="bi bi-gear-fill"></i> <b>${DATA.username}</b>
+                                </a>
+                                <hr>
+                                <ul class="dropdown-menu dropdown-menu-dark">
+                                    <li><a class="dropdown-item" href="#">Ver perfil</a></li>
+                                    <li>
+                                        <hr class="dropdown-divider">
+                                    </li>
+                                    <li><a class="dropdown-item" href="#" onclick="logOut()"> Cerrar sesion </a></li>
+                                </ul>
+                            </li>
+                            <li class="nav-item ms-4">
+                                <a class="nav-link active" aria-current="page" href="#"><i
+                                        class="bi bi-house-fill me-1"></i>
+                                    Inicio</a>
+                            </li>
+                            <li class="nav-item ms-4">
+                                <a class="nav-link" href="#"><i class="bi bi-person-circle me-1"></i></i> ADMIN</a>
+                            </li>
+                            <li class="nav-item ms-4">
+                                <a class="nav-link" href="#"><i class="bi bi-lungs-fill me-1" id="beneficio"></i> BENEFICIOS</a>
+                            </li>
+                            <li class="nav-item ms-4">
+                                <a class="nav-link" href="#"><i class="bi bi-bookmark-plus-fill me-1"></i> CITAS</a>
+                            </li>
+                            <li class="nav-item ms-4">
+                                <a class="nav-link" href="#"><i class="bi bi-people-fill me-1"></i> CLIENTES</a>
+                            </li>
+                            <li class="nav-item ms-4">
+                                <a class="nav-link" href="#"><i class="bi bi-chat-left-text-fill me-1"></i>COMENTARIOS</a>           
+                            </li>
+                            <li class="nav-item ms-4">
+                                <a class="nav-link" href="#"><i class="bi bi-person-standing me-1"></i> EMPLEADOS</a>
+                            </li>
+                            <li class="nav-item ms-4">
+                                <a class="nav-link" href="#"><i class="bi bi-images me-1"></i> GALERIA</a>
+                            </li>
+                            <li class="nav-item ms-4">
+                                <a class="nav-link" href="#"><i class="bi bi-clipboard2-pulse-fill me-1"></i>TRATAMIENTOS</a>                       
+                            </li>
+                            <li class="nav-item ms-4">
+                                <a class="nav-link" href="#"><i class="bi bi-question-lg me-1"></i> PREGUNTAS</a>
+                            </li>
+                            <li class="nav-item ms-4">
+                                <a class="nav-link" href="#"><i class="bi bi-file-medical-fill me-1"></i> SERVICIOS</a>
+                            </li>
+                            <li class="nav-item ms-4">
+                                <a class="nav-link" href="#"><i class="bi bi-fast-forward-btn-fill me-1"></i>TESTIMONIOS</a>       
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </nav>`);
+        } else {
+            sweetAlert(3, DATA.error, false, 'index.html');
+        }
+    } else {
+        // Se comprueba si la página web es la principal, de lo contrario se direcciona a iniciar sesión.
+        if (location.pathname.endsWith('index.html')) {
+            // Se agrega el encabezado de la página web antes del contenido principal.
+            MAIN.insertAdjacentHTML('beforebegin', `
+                <header>
+                    <nav class="navbar fixed-top bg-body-tertiary">
+                        <div class="container">
+                            <a class="navbar-brand" href="index.html">
+                                <img src="../../resources/img/logo.png" alt="inventory" width="50">
+                            </a>
+                        </div>
+                    </nav>
+                </header>
+            `);
+            // Se agrega el pie de la página web después del contenido principal.
+            MAIN.insertAdjacentHTML('afterend', `
+                <footer>
+                    <nav class="navbar fixed-bottom bg-body-tertiary">
+                        <div class="container">
+                            <p><a class="nav-link" href="https://github.com/dacasoft/coffeeshop" target="_blank"><i class="bi bi-github"></i> CoffeeShop</a></p>
+                            <p><i class="bi bi-envelope-fill"></i> dacasoft@outlook.com</p>
+                        </div>
+                    </nav>
+                </footer>
+            `);
+        } else {
+            location.href = 'index.html';
+        }
+    }
+}
+
+const loadTemplate3 = async () => {
+    // Petición para obtener en nombre del usuario que ha iniciado sesión.
+    const DATA = await fetchData(USER_API, 'getUser');
+    // Se verifica si el usuario está autenticado, de lo contrario se envía a iniciar sesión.
+    if (DATA.session) {
+        // Se comprueba si existe un alias definido para el usuario, de lo contrario se muestra un mensaje con la excepción.
+        if (DATA.status) {
+            // Se agrega el encabezado de la página web antes del contenido principal.
+            MAIN.insertAdjacentHTML('beforebegin', `
+                        <nav class="navbar navbar-dark border-bottom border-secondary fixed-top">
+            <div class="container-fluid">
+                <a class="navbar-brand fw-bold d-flex align-items-center" href="#">
+                    <img src="../../resources/img/icons/icon.jpg" alt="" height="50px" class="d-inline-block align-text-top">
+                    Quiropractica Especifica
+                </a>
+                <button class="navbar-toggler rounded-5" type="button" data-bs-toggle="offcanvas"
+                    data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1" id="offcanvasNavbar"
+                    aria-labelledby="offcanvasNavbarLabel">
+                    <div class="offcanvas-header">
+                        <a type="button" class="btn-close" data-bs-dismiss="offcanvas"></i></a>
+                    </div>
+                    <div class="offcanvas-body">
+                        <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                            <li class="nav-item dropdown text-center">
+                                <a class="nav-link" href="#" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="bi bi-gear-fill"></i> <b>${DATA.username}</b>
+                                </a>
+                                <hr>
+                                <ul class="dropdown-menu dropdown-menu-dark">
+                                    <li><a class="dropdown-item" href="#">Ver perfil</a></li>
+                                    <li>
+                                        <hr class="dropdown-divider">
+                                    </li>
+                                    <li><a class="dropdown-item" href="#" onclick="logOut()"> Cerrar sesion </a></li>
+                                </ul>
+                            </li>
+                            <li class="nav-item ms-4">
+                                <a class="nav-link active" aria-current="page" href="#"><i
+                                        class="bi bi-house-fill me-1"></i>
+                                    Inicio</a>
+                            </li>
+                            <li class="nav-item ms-4">
+                                <a class="nav-link" href="#"><i class="bi bi-person-circle me-1"></i></i> ADMIN</a>
+                            </li>
+                            <li class="nav-item ms-4">
+                                <a class="nav-link" href="#"><i class="bi bi-lungs-fill me-1"></i> BENEFICIOS</a>
+                            </li>
+                            <li class="nav-item ms-4">
+                                <a class="nav-link" href="#"><i class="bi bi-bookmark-plus-fill me-1" id="citas"></i> CITAS</a>
+                            </li>
+                            <li class="nav-item ms-4">
+                                <a class="nav-link" href="#"><i class="bi bi-people-fill me-1"></i> CLIENTES</a>
+                            </li>
+                            <li class="nav-item ms-4">
+                                <a class="nav-link" href="#"><i class="bi bi-chat-left-text-fill me-1"></i>COMENTARIOS</a>           
+                            </li>
+                            <li class="nav-item ms-4">
+                                <a class="nav-link" href="#"><i class="bi bi-person-standing me-1"></i> EMPLEADOS</a>
+                            </li>
+                            <li class="nav-item ms-4">
+                                <a class="nav-link" href="#"><i class="bi bi-images me-1"></i> GALERIA</a>
+                            </li>
+                            <li class="nav-item ms-4">
+                                <a class="nav-link" href="#"><i class="bi bi-clipboard2-pulse-fill me-1"></i>TRATAMIENTOS</a>                       
+                            </li>
+                            <li class="nav-item ms-4">
+                                <a class="nav-link" href="#"><i class="bi bi-question-lg me-1"></i> PREGUNTAS</a>
+                            </li>
+                            <li class="nav-item ms-4">
+                                <a class="nav-link" href="#"><i class="bi bi-file-medical-fill me-1"></i> SERVICIOS</a>
+                            </li>
+                            <li class="nav-item ms-4">
+                                <a class="nav-link" href="#"><i class="bi bi-fast-forward-btn-fill me-1"></i>TESTIMONIOS</a>       
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </nav>`);
+        } else {
+            sweetAlert(3, DATA.error, false, 'index.html');
+        }
+    } else {
+        // Se comprueba si la página web es la principal, de lo contrario se direcciona a iniciar sesión.
+        if (location.pathname.endsWith('index.html')) {
+            // Se agrega el encabezado de la página web antes del contenido principal.
+            MAIN.insertAdjacentHTML('beforebegin', `
+                <header>
+                    <nav class="navbar fixed-top bg-body-tertiary">
+                        <div class="container">
+                            <a class="navbar-brand" href="index.html">
+                                <img src="../../resources/img/logo.png" alt="inventory" width="50">
+                            </a>
+                        </div>
+                    </nav>
+                </header>
+            `);
+            // Se agrega el pie de la página web después del contenido principal.
+            MAIN.insertAdjacentHTML('afterend', `
+                <footer>
+                    <nav class="navbar fixed-bottom bg-body-tertiary">
+                        <div class="container">
+                            <p><a class="nav-link" href="https://github.com/dacasoft/coffeeshop" target="_blank"><i class="bi bi-github"></i> CoffeeShop</a></p>
+                            <p><i class="bi bi-envelope-fill"></i> dacasoft@outlook.com</p>
+                        </div>
+                    </nav>
+                </footer>
+            `);
+        } else {
+            location.href = 'index.html';
+        }
+    }
+}
+
+const loadTemplate4 = async () => {
+    // Petición para obtener en nombre del usuario que ha iniciado sesión.
+    const DATA = await fetchData(USER_API, 'getUser');
+    // Se verifica si el usuario está autenticado, de lo contrario se envía a iniciar sesión.
+    if (DATA.session) {
+        // Se comprueba si existe un alias definido para el usuario, de lo contrario se muestra un mensaje con la excepción.
+        if (DATA.status) {
+            // Se agrega el encabezado de la página web antes del contenido principal.
+            MAIN.insertAdjacentHTML('beforebegin', `
+                        <nav class="navbar navbar-dark border-bottom border-secondary fixed-top">
+            <div class="container-fluid">
+                <a class="navbar-brand fw-bold d-flex align-items-center" href="#">
+                    <img src="../../resources/img/icons/icon.jpg" alt="" height="50px" class="d-inline-block align-text-top">
+                    Quiropractica Especifica
+                </a>
+                <button class="navbar-toggler rounded-5" type="button" data-bs-toggle="offcanvas"
+                    data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1" id="offcanvasNavbar"
+                    aria-labelledby="offcanvasNavbarLabel">
+                    <div class="offcanvas-header">
+                        <a type="button" class="btn-close" data-bs-dismiss="offcanvas"></i></a>
+                    </div>
+                    <div class="offcanvas-body">
+                        <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                            <li class="nav-item dropdown text-center">
+                                <a class="nav-link" href="#" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="bi bi-gear-fill"></i> <b>${DATA.username}</b>
+                                </a>
+                                <hr>
+                                <ul class="dropdown-menu dropdown-menu-dark">
+                                    <li><a class="dropdown-item" href="#">Ver perfil</a></li>
+                                    <li>
+                                        <hr class="dropdown-divider">
+                                    </li>
+                                    <li><a class="dropdown-item" href="#" onclick="logOut()"> Cerrar sesion </a></li>
+                                </ul>
+                            </li>
+                            <li class="nav-item ms-4">
+                                <a class="nav-link active" aria-current="page" href="#"><i
+                                        class="bi bi-house-fill me-1"></i>
+                                    Inicio</a>
+                            </li>
+                            <li class="nav-item ms-4">
+                                <a class="nav-link" href="#"><i class="bi bi-person-circle me-1"></i></i> ADMIN</a>
+                            </li>
+                            <li class="nav-item ms-4">
+                                <a class="nav-link" href="#"><i class="bi bi-lungs-fill me-1"></i> BENEFICIOS</a>
+                            </li>
+                            <li class="nav-item ms-4">
+                                <a class="nav-link" href="#"><i class="bi bi-bookmark-plus-fill me-1" ></i> CITAS</a>
+                            </li>
+                            <li class="nav-item ms-4">
+                                <a class="nav-link" href="#"><i class="bi bi-people-fill me-1" id="clientes"></i> CLIENTES</a>
+                            </li>
+                            <li class="nav-item ms-4">
+                                <a class="nav-link" href="#"><i class="bi bi-chat-left-text-fill me-1"></i>COMENTARIOS</a>           
+                            </li>
+                            <li class="nav-item ms-4">
+                                <a class="nav-link" href="#"><i class="bi bi-person-standing me-1"></i> EMPLEADOS</a>
+                            </li>
+                            <li class="nav-item ms-4">
+                                <a class="nav-link" href="#"><i class="bi bi-images me-1"></i> GALERIA</a>
+                            </li>
+                            <li class="nav-item ms-4">
+                                <a class="nav-link" href="#"><i class="bi bi-clipboard2-pulse-fill me-1"></i>TRATAMIENTOS</a>                       
+                            </li>
+                            <li class="nav-item ms-4">
+                                <a class="nav-link" href="#"><i class="bi bi-question-lg me-1"></i> PREGUNTAS</a>
+                            </li>
+                            <li class="nav-item ms-4">
+                                <a class="nav-link" href="#"><i class="bi bi-file-medical-fill me-1"></i> SERVICIOS</a>
+                            </li>
+                            <li class="nav-item ms-4">
+                                <a class="nav-link" href="#"><i class="bi bi-fast-forward-btn-fill me-1"></i>TESTIMONIOS</a>       
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </nav>`);
+        } else {
+            sweetAlert(3, DATA.error, false, 'index.html');
+        }
+    } else {
+        // Se comprueba si la página web es la principal, de lo contrario se direcciona a iniciar sesión.
+        if (location.pathname.endsWith('index.html')) {
+            // Se agrega el encabezado de la página web antes del contenido principal.
+            MAIN.insertAdjacentHTML('beforebegin', `
+                <header>
+                    <nav class="navbar fixed-top bg-body-tertiary">
+                        <div class="container">
+                            <a class="navbar-brand" href="index.html">
+                                <img src="../../resources/img/logo.png" alt="inventory" width="50">
+                            </a>
+                        </div>
+                    </nav>
+                </header>
+            `);
+            // Se agrega el pie de la página web después del contenido principal.
+            MAIN.insertAdjacentHTML('afterend', `
+                <footer>
+                    <nav class="navbar fixed-bottom bg-body-tertiary">
+                        <div class="container">
+                            <p><a class="nav-link" href="https://github.com/dacasoft/coffeeshop" target="_blank"><i class="bi bi-github"></i> CoffeeShop</a></p>
+                            <p><i class="bi bi-envelope-fill"></i> dacasoft@outlook.com</p>
+                        </div>
+                    </nav>
+                </footer>
+            `);
+        } else {
+            location.href = 'index.html';
+        }
+    }
+}
+
+const loadTemplate5 = async () => {
+    // Petición para obtener en nombre del usuario que ha iniciado sesión.
+    const DATA = await fetchData(USER_API, 'getUser');
+    // Se verifica si el usuario está autenticado, de lo contrario se envía a iniciar sesión.
+    if (DATA.session) {
+        // Se comprueba si existe un alias definido para el usuario, de lo contrario se muestra un mensaje con la excepción.
+        if (DATA.status) {
+            // Se agrega el encabezado de la página web antes del contenido principal.
+            MAIN.insertAdjacentHTML('beforebegin', `
+                        <nav class="navbar navbar-dark border-bottom border-secondary fixed-top">
+            <div class="container-fluid">
+                <a class="navbar-brand fw-bold d-flex align-items-center" href="#">
+                    <img src="../../resources/img/icons/icon.jpg" alt="" height="50px" class="d-inline-block align-text-top">
+                    Quiropractica Especifica
+                </a>
+                <button class="navbar-toggler rounded-5" type="button" data-bs-toggle="offcanvas"
+                    data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1" id="offcanvasNavbar"
+                    aria-labelledby="offcanvasNavbarLabel">
+                    <div class="offcanvas-header">
+                        <a type="button" class="btn-close" data-bs-dismiss="offcanvas"></i></a>
+                    </div>
+                    <div class="offcanvas-body">
+                        <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                            <li class="nav-item dropdown text-center">
+                                <a class="nav-link" href="#" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="bi bi-gear-fill"></i> <b>${DATA.username}</b>
+                                </a>
+                                <hr>
+                                <ul class="dropdown-menu dropdown-menu-dark">
+                                    <li><a class="dropdown-item" href="#">Ver perfil</a></li>
+                                    <li>
+                                        <hr class="dropdown-divider">
+                                    </li>
+                                    <li><a class="dropdown-item" href="#" onclick="logOut()"> Cerrar sesion </a></li>
+                                </ul>
+                            </li>
+                            <li class="nav-item ms-4">
+                                <a class="nav-link active" aria-current="page" href="#"><i
+                                        class="bi bi-house-fill me-1"></i>
+                                    Inicio</a>
+                            </li>
+                            <li class="nav-item ms-4">
+                                <a class="nav-link" href="#"><i class="bi bi-person-circle me-1"></i></i> ADMIN</a>
+                            </li>
+                            <li class="nav-item ms-4">
+                                <a class="nav-link" href="#"><i class="bi bi-lungs-fill me-1"></i> BENEFICIOS</a>
+                            </li>
+                            <li class="nav-item ms-4">
+                                <a class="nav-link" href="#"><i class="bi bi-bookmark-plus-fill me-1" ></i> CITAS</a>
+                            </li>
+                            <li class="nav-item ms-4">
+                                <a class="nav-link" href="#"><i class="bi bi-people-fill me-1""></i> CLIENTES</a>
+                            </li>
+                            <li class="nav-item ms-4">
+                                <a class="nav-link" href="#"><i class="bi bi-chat-left-text-fill me-1" id="comentarios></i>COMENTARIOS</a>           
+                            </li>
+                            <li class="nav-item ms-4">
+                                <a class="nav-link" href="#"><i class="bi bi-person-standing me-1"></i> EMPLEADOS</a>
+                            </li>
+                            <li class="nav-item ms-4">
+                                <a class="nav-link" href="#"><i class="bi bi-images me-1"></i> GALERIA</a>
+                            </li>
+                            <li class="nav-item ms-4">
+                                <a class="nav-link" href="#"><i class="bi bi-clipboard2-pulse-fill me-1"></i>TRATAMIENTOS</a>                       
+                            </li>
+                            <li class="nav-item ms-4">
+                                <a class="nav-link" href="#"><i class="bi bi-question-lg me-1"></i> PREGUNTAS</a>
+                            </li>
+                            <li class="nav-item ms-4">
+                                <a class="nav-link" href="#"><i class="bi bi-file-medical-fill me-1"></i> SERVICIOS</a>
+                            </li>
+                            <li class="nav-item ms-4">
+                                <a class="nav-link" href="#"><i class="bi bi-fast-forward-btn-fill me-1"></i>TESTIMONIOS</a>       
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </nav>`);
+        } else {
+            sweetAlert(3, DATA.error, false, 'index.html');
+        }
+    } else {
+        // Se comprueba si la página web es la principal, de lo contrario se direcciona a iniciar sesión.
+        if (location.pathname.endsWith('index.html')) {
+            // Se agrega el encabezado de la página web antes del contenido principal.
+            MAIN.insertAdjacentHTML('beforebegin', `
+                <header>
+                    <nav class="navbar fixed-top bg-body-tertiary">
+                        <div class="container">
+                            <a class="navbar-brand" href="index.html">
+                                <img src="../../resources/img/logo.png" alt="inventory" width="50">
+                            </a>
+                        </div>
+                    </nav>
+                </header>
+            `);
+            // Se agrega el pie de la página web después del contenido principal.
+            MAIN.insertAdjacentHTML('afterend', `
+                <footer>
+                    <nav class="navbar fixed-bottom bg-body-tertiary">
+                        <div class="container">
+                            <p><a class="nav-link" href="https://github.com/dacasoft/coffeeshop" target="_blank"><i class="bi bi-github"></i> CoffeeShop</a></p>
+                            <p><i class="bi bi-envelope-fill"></i> dacasoft@outlook.com</p>
+                        </div>
+                    </nav>
+                </footer>
+            `);
+        } else {
+            location.href = 'index.html';
+        }
+    }
+}
+
+const loadTemplate6 = async () => {
+    // Petición para obtener en nombre del usuario que ha iniciado sesión.
+    const DATA = await fetchData(USER_API, 'getUser');
+    // Se verifica si el usuario está autenticado, de lo contrario se envía a iniciar sesión.
+    if (DATA.session) {
+        // Se comprueba si existe un alias definido para el usuario, de lo contrario se muestra un mensaje con la excepción.
+        if (DATA.status) {
+            // Se agrega el encabezado de la página web antes del contenido principal.
+            MAIN.insertAdjacentHTML('beforebegin', `
+                        <nav class="navbar navbar-dark border-bottom border-secondary fixed-top">
+            <div class="container-fluid">
+                <a class="navbar-brand fw-bold d-flex align-items-center" href="#">
+                    <img src="../../resources/img/icons/icon.jpg" alt="" height="50px" class="d-inline-block align-text-top">
+                    Quiropractica Especifica
+                </a>
+                <button class="navbar-toggler rounded-5" type="button" data-bs-toggle="offcanvas"
+                    data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1" id="offcanvasNavbar"
+                    aria-labelledby="offcanvasNavbarLabel">
+                    <div class="offcanvas-header">
+                        <a type="button" class="btn-close" data-bs-dismiss="offcanvas"></i></a>
+                    </div>
+                    <div class="offcanvas-body">
+                        <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                            <li class="nav-item dropdown text-center">
+                                <a class="nav-link" href="#" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="bi bi-gear-fill"></i> <b>${DATA.username}</b>
+                                </a>
+                                <hr>
+                                <ul class="dropdown-menu dropdown-menu-dark">
+                                    <li><a class="dropdown-item" href="#">Ver perfil</a></li>
+                                    <li>
+                                        <hr class="dropdown-divider">
+                                    </li>
+                                    <li><a class="dropdown-item" href="#" onclick="logOut()"> Cerrar sesion </a></li>
+                                </ul>
+                            </li>
+                            <li class="nav-item ms-4">
+                                <a class="nav-link active" aria-current="page" href="#"><i
+                                        class="bi bi-house-fill me-1"></i>
+                                    Inicio</a>
+                            </li>
+                            <li class="nav-item ms-4">
+                                <a class="nav-link" href="#"><i class="bi bi-person-circle me-1"></i></i> ADMIN</a>
+                            </li>
+                            <li class="nav-item ms-4">
+                                <a class="nav-link" href="#"><i class="bi bi-lungs-fill me-1"></i> BENEFICIOS</a>
+                            </li>
+                            <li class="nav-item ms-4">
+                                <a class="nav-link" href="#"><i class="bi bi-bookmark-plus-fill me-1" ></i> CITAS</a>
+                            </li>
+                            <li class="nav-item ms-4">
+                                <a class="nav-link" href="#"><i class="bi bi-people-fill me-1""></i> CLIENTES</a>
+                            </li>
+                            <li class="nav-item ms-4">
+                                <a class="nav-link" href="#"><i class="bi bi-chat-left-text-fill me-1"></i>COMENTARIOS</a>           
+                            </li>
+                            <li class="nav-item ms-4">
+                                <a class="nav-link" href="#"><i class="bi bi-person-standing me-1" id="empleados></i> EMPLEADOS</a>
+                            </li>
+                            <li class="nav-item ms-4">
+                                <a class="nav-link" href="#"><i class="bi bi-images me-1"></i> GALERIA</a>
+                            </li>
+                            <li class="nav-item ms-4">
+                                <a class="nav-link" href="#"><i class="bi bi-clipboard2-pulse-fill me-1"></i>TRATAMIENTOS</a>                       
+                            </li>
+                            <li class="nav-item ms-4">
+                                <a class="nav-link" href="#"><i class="bi bi-question-lg me-1"></i> PREGUNTAS</a>
+                            </li>
+                            <li class="nav-item ms-4">
+                                <a class="nav-link" href="#"><i class="bi bi-file-medical-fill me-1"></i> SERVICIOS</a>
+                            </li>
+                            <li class="nav-item ms-4">
+                                <a class="nav-link" href="#"><i class="bi bi-fast-forward-btn-fill me-1"></i>TESTIMONIOS</a>       
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </nav>`);
+        } else {
+            sweetAlert(3, DATA.error, false, 'index.html');
+        }
+    } else {
+        // Se comprueba si la página web es la principal, de lo contrario se direcciona a iniciar sesión.
+        if (location.pathname.endsWith('index.html')) {
+            // Se agrega el encabezado de la página web antes del contenido principal.
+            MAIN.insertAdjacentHTML('beforebegin', `
+                <header>
+                    <nav class="navbar fixed-top bg-body-tertiary">
+                        <div class="container">
+                            <a class="navbar-brand" href="index.html">
+                                <img src="../../resources/img/logo.png" alt="inventory" width="50">
+                            </a>
+                        </div>
+                    </nav>
+                </header>
+            `);
+            // Se agrega el pie de la página web después del contenido principal.
+            MAIN.insertAdjacentHTML('afterend', `
+                <footer>
+                    <nav class="navbar fixed-bottom bg-body-tertiary">
+                        <div class="container">
+                            <p><a class="nav-link" href="https://github.com/dacasoft/coffeeshop" target="_blank"><i class="bi bi-github"></i> CoffeeShop</a></p>
+                            <p><i class="bi bi-envelope-fill"></i> dacasoft@outlook.com</p>
+                        </div>
+                    </nav>
+                </footer>
+            `);
+        } else {
+            location.href = 'index.html';
+        }
+    }
+}
+
+const loadTemplate7 = async () => {
+    // Petición para obtener en nombre del usuario que ha iniciado sesión.
+    const DATA = await fetchData(USER_API, 'getUser');
+    // Se verifica si el usuario está autenticado, de lo contrario se envía a iniciar sesión.
+    if (DATA.session) {
+        // Se comprueba si existe un alias definido para el usuario, de lo contrario se muestra un mensaje con la excepción.
+        if (DATA.status) {
+            // Se agrega el encabezado de la página web antes del contenido principal.
+            MAIN.insertAdjacentHTML('beforebegin', `
+                        <nav class="navbar navbar-dark border-bottom border-secondary fixed-top">
+            <div class="container-fluid">
+                <a class="navbar-brand fw-bold d-flex align-items-center" href="#">
+                    <img src="../../resources/img/icons/icon.jpg" alt="" height="50px" class="d-inline-block align-text-top">
+                    Quiropractica Especifica
+                </a>
+                <button class="navbar-toggler rounded-5" type="button" data-bs-toggle="offcanvas"
+                    data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1" id="offcanvasNavbar"
+                    aria-labelledby="offcanvasNavbarLabel">
+                    <div class="offcanvas-header">
+                        <a type="button" class="btn-close" data-bs-dismiss="offcanvas"></i></a>
+                    </div>
+                    <div class="offcanvas-body">
+                        <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                            <li class="nav-item dropdown text-center">
+                                <a class="nav-link" href="#" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="bi bi-gear-fill"></i> <b>${DATA.username}</b>
+                                </a>
+                                <hr>
+                                <ul class="dropdown-menu dropdown-menu-dark">
+                                    <li><a class="dropdown-item" href="#">Ver perfil</a></li>
+                                    <li>
+                                        <hr class="dropdown-divider">
+                                    </li>
+                                    <li><a class="dropdown-item" href="#" onclick="logOut()"> Cerrar sesion </a></li>
+                                </ul>
+                            </li>
+                            <li class="nav-item ms-4">
+                                <a class="nav-link active" aria-current="page" href="#"><i
+                                        class="bi bi-house-fill me-1"></i>
+                                    Inicio</a>
+                            </li>
+                            <li class="nav-item ms-4">
+                                <a class="nav-link" href="#"><i class="bi bi-person-circle me-1"></i></i> ADMIN</a>
+                            </li>
+                            <li class="nav-item ms-4">
+                                <a class="nav-link" href="#"><i class="bi bi-lungs-fill me-1"></i> BENEFICIOS</a>
+                            </li>
+                            <li class="nav-item ms-4">
+                                <a class="nav-link" href="#"><i class="bi bi-bookmark-plus-fill me-1" ></i> CITAS</a>
+                            </li>
+                            <li class="nav-item ms-4">
+                                <a class="nav-link" href="#"><i class="bi bi-people-fill me-1""></i> CLIENTES</a>
+                            </li>
+                            <li class="nav-item ms-4">
+                                <a class="nav-link" href="#"><i class="bi bi-chat-left-text-fill me-1"></i>COMENTARIOS</a>           
+                            </li>
+                            <li class="nav-item ms-4">
+                                <a class="nav-link" href="#"><i class="bi bi-person-standing me-1"></i> EMPLEADOS</a>
+                            </li>
+                            <li class="nav-item ms-4">
+                                <a class="nav-link" href="#"><i class="bi bi-images me-1" id="galeria></i> GALERIA</a>
+                            </li>
+                            <li class="nav-item ms-4">
+                                <a class="nav-link" href="#"><i class="bi bi-clipboard2-pulse-fill me-1"></i>TRATAMIENTOS</a>                       
+                            </li>
+                            <li class="nav-item ms-4">
+                                <a class="nav-link" href="#"><i class="bi bi-question-lg me-1"></i> PREGUNTAS</a>
+                            </li>
+                            <li class="nav-item ms-4">
+                                <a class="nav-link" href="#"><i class="bi bi-file-medical-fill me-1"></i> SERVICIOS</a>
+                            </li>
+                            <li class="nav-item ms-4">
+                                <a class="nav-link" href="#"><i class="bi bi-fast-forward-btn-fill me-1"></i>TESTIMONIOS</a>       
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </nav>`);
+        } else {
+            sweetAlert(3, DATA.error, false, 'index.html');
+        }
+    } else {
+        // Se comprueba si la página web es la principal, de lo contrario se direcciona a iniciar sesión.
+        if (location.pathname.endsWith('index.html')) {
+            // Se agrega el encabezado de la página web antes del contenido principal.
+            MAIN.insertAdjacentHTML('beforebegin', `
+                <header>
+                    <nav class="navbar fixed-top bg-body-tertiary">
+                        <div class="container">
+                            <a class="navbar-brand" href="index.html">
+                                <img src="../../resources/img/logo.png" alt="inventory" width="50">
+                            </a>
+                        </div>
+                    </nav>
+                </header>
+            `);
+            // Se agrega el pie de la página web después del contenido principal.
+            MAIN.insertAdjacentHTML('afterend', `
+                <footer>
+                    <nav class="navbar fixed-bottom bg-body-tertiary">
+                        <div class="container">
+                            <p><a class="nav-link" href="https://github.com/dacasoft/coffeeshop" target="_blank"><i class="bi bi-github"></i> CoffeeShop</a></p>
+                            <p><i class="bi bi-envelope-fill"></i> dacasoft@outlook.com</p>
+                        </div>
+                    </nav>
+                </footer>
+            `);
+        } else {
+            location.href = 'index.html';
+        }
+    }
+}
+
+const loadTemplate8 = async () => {
+    // Petición para obtener en nombre del usuario que ha iniciado sesión.
+    const DATA = await fetchData(USER_API, 'getUser');
+    // Se verifica si el usuario está autenticado, de lo contrario se envía a iniciar sesión.
+    if (DATA.session) {
+        // Se comprueba si existe un alias definido para el usuario, de lo contrario se muestra un mensaje con la excepción.
+        if (DATA.status) {
+            // Se agrega el encabezado de la página web antes del contenido principal.
+            MAIN.insertAdjacentHTML('beforebegin', `
+                        <nav class="navbar navbar-dark border-bottom border-secondary fixed-top">
+            <div class="container-fluid">
+                <a class="navbar-brand fw-bold d-flex align-items-center" href="#">
+                    <img src="../../resources/img/icons/icon.jpg" alt="" height="50px" class="d-inline-block align-text-top">
+                    Quiropractica Especifica
+                </a>
+                <button class="navbar-toggler rounded-5" type="button" data-bs-toggle="offcanvas"
+                    data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1" id="offcanvasNavbar"
+                    aria-labelledby="offcanvasNavbarLabel">
+                    <div class="offcanvas-header">
+                        <a type="button" class="btn-close" data-bs-dismiss="offcanvas"></i></a>
+                    </div>
+                    <div class="offcanvas-body">
+                        <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                            <li class="nav-item dropdown text-center">
+                                <a class="nav-link" href="#" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="bi bi-gear-fill"></i> <b>${DATA.username}</b>
+                                </a>
+                                <hr>
+                                <ul class="dropdown-menu dropdown-menu-dark">
+                                    <li><a class="dropdown-item" href="#">Ver perfil</a></li>
+                                    <li>
+                                        <hr class="dropdown-divider">
+                                    </li>
+                                    <li><a class="dropdown-item" href="#" onclick="logOut()"> Cerrar sesion </a></li>
+                                </ul>
+                            </li>
+                            <li class="nav-item ms-4">
+                                <a class="nav-link active" aria-current="page" href="#"><i
+                                        class="bi bi-house-fill me-1"></i>
+                                    Inicio</a>
+                            </li>
+                            <li class="nav-item ms-4">
+                                <a class="nav-link" href="#"><i class="bi bi-person-circle me-1"></i></i> ADMIN</a>
+                            </li>
+                            <li class="nav-item ms-4">
+                                <a class="nav-link" href="#"><i class="bi bi-lungs-fill me-1"></i> BENEFICIOS</a>
+                            </li>
+                            <li class="nav-item ms-4">
+                                <a class="nav-link" href="#"><i class="bi bi-bookmark-plus-fill me-1" ></i> CITAS</a>
+                            </li>
+                            <li class="nav-item ms-4">
+                                <a class="nav-link" href="#"><i class="bi bi-people-fill me-1""></i> CLIENTES</a>
+                            </li>
+                            <li class="nav-item ms-4">
+                                <a class="nav-link" href="#"><i class="bi bi-chat-left-text-fill me-1"></i>COMENTARIOS</a>           
+                            </li>
+                            <li class="nav-item ms-4">
+                                <a class="nav-link" href="#"><i class="bi bi-person-standing me-1"></i> EMPLEADOS</a>
+                            </li>
+                            <li class="nav-item ms-4">
+                                <a class="nav-link" href="#"><i class="bi bi-images me-1"></i> GALERIA</a>
+                            </li>
+                            <li class="nav-item ms-4">
+                                <a class="nav-link" href="#"><i class="bi bi-clipboard2-pulse-fill me-1" id="tratamientos></i>TRATAMIENTOS</a>                       
+                            </li>
+                            <li class="nav-item ms-4">
+                                <a class="nav-link" href="#"><i class="bi bi-question-lg me-1"></i> PREGUNTAS</a>
+                            </li>
+                            <li class="nav-item ms-4">
+                                <a class="nav-link" href="#"><i class="bi bi-file-medical-fill me-1"></i> SERVICIOS</a>
+                            </li>
+                            <li class="nav-item ms-4">
+                                <a class="nav-link" href="#"><i class="bi bi-fast-forward-btn-fill me-1"></i>TESTIMONIOS</a>       
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </nav>`);
+        } else {
+            sweetAlert(3, DATA.error, false, 'index.html');
+        }
+    } else {
+        // Se comprueba si la página web es la principal, de lo contrario se direcciona a iniciar sesión.
+        if (location.pathname.endsWith('index.html')) {
+            // Se agrega el encabezado de la página web antes del contenido principal.
+            MAIN.insertAdjacentHTML('beforebegin', `
+                <header>
+                    <nav class="navbar fixed-top bg-body-tertiary">
+                        <div class="container">
+                            <a class="navbar-brand" href="index.html">
+                                <img src="../../resources/img/logo.png" alt="inventory" width="50">
+                            </a>
+                        </div>
+                    </nav>
+                </header>
+            `);
+            // Se agrega el pie de la página web después del contenido principal.
+            MAIN.insertAdjacentHTML('afterend', `
+                <footer>
+                    <nav class="navbar fixed-bottom bg-body-tertiary">
+                        <div class="container">
+                            <p><a class="nav-link" href="https://github.com/dacasoft/coffeeshop" target="_blank"><i class="bi bi-github"></i> CoffeeShop</a></p>
+                            <p><i class="bi bi-envelope-fill"></i> dacasoft@outlook.com</p>
+                        </div>
+                    </nav>
+                </footer>
+            `);
+        } else {
+            location.href = 'index.html';
+        }
+    }
+}
+
+const loadTemplate9 = async () => {
+    // Petición para obtener en nombre del usuario que ha iniciado sesión.
+    const DATA = await fetchData(USER_API, 'getUser');
+    // Se verifica si el usuario está autenticado, de lo contrario se envía a iniciar sesión.
+    if (DATA.session) {
+        // Se comprueba si existe un alias definido para el usuario, de lo contrario se muestra un mensaje con la excepción.
+        if (DATA.status) {
+            // Se agrega el encabezado de la página web antes del contenido principal.
+            MAIN.insertAdjacentHTML('beforebegin', `
+                        <nav class="navbar navbar-dark border-bottom border-secondary fixed-top">
+            <div class="container-fluid">
+                <a class="navbar-brand fw-bold d-flex align-items-center" href="#">
+                    <img src="../../resources/img/icons/icon.jpg" alt="" height="50px" class="d-inline-block align-text-top">
+                    Quiropractica Especifica
+                </a>
+                <button class="navbar-toggler rounded-5" type="button" data-bs-toggle="offcanvas"
+                    data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1" id="offcanvasNavbar"
+                    aria-labelledby="offcanvasNavbarLabel">
+                    <div class="offcanvas-header">
+                        <a type="button" class="btn-close" data-bs-dismiss="offcanvas"></i></a>
+                    </div>
+                    <div class="offcanvas-body">
+                        <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                            <li class="nav-item dropdown text-center">
+                                <a class="nav-link" href="#" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="bi bi-gear-fill"></i> <b>${DATA.username}</b>
+                                </a>
+                                <hr>
+                                <ul class="dropdown-menu dropdown-menu-dark">
+                                    <li><a class="dropdown-item" href="#">Ver perfil</a></li>
+                                    <li>
+                                        <hr class="dropdown-divider">
+                                    </li>
+                                    <li><a class="dropdown-item" href="#" onclick="logOut()"> Cerrar sesion </a></li>
+                                </ul>
+                            </li>
+                            <li class="nav-item ms-4">
+                                <a class="nav-link active" aria-current="page" href="#"><i
+                                        class="bi bi-house-fill me-1"></i>
+                                    Inicio</a>
+                            </li>
+                            <li class="nav-item ms-4">
+                                <a class="nav-link" href="#"><i class="bi bi-person-circle me-1"></i></i> ADMIN</a>
+                            </li>
+                            <li class="nav-item ms-4">
+                                <a class="nav-link" href="#"><i class="bi bi-lungs-fill me-1"></i> BENEFICIOS</a>
+                            </li>
+                            <li class="nav-item ms-4">
+                                <a class="nav-link" href="#"><i class="bi bi-bookmark-plus-fill me-1" ></i> CITAS</a>
+                            </li>
+                            <li class="nav-item ms-4">
+                                <a class="nav-link" href="#"><i class="bi bi-people-fill me-1""></i> CLIENTES</a>
+                            </li>
+                            <li class="nav-item ms-4">
+                                <a class="nav-link" href="#"><i class="bi bi-chat-left-text-fill me-1"></i>COMENTARIOS</a>           
+                            </li>
+                            <li class="nav-item ms-4">
+                                <a class="nav-link" href="#"><i class="bi bi-person-standing me-1"></i> EMPLEADOS</a>
+                            </li>
+                            <li class="nav-item ms-4">
+                                <a class="nav-link" href="#"><i class="bi bi-images me-1"></i> GALERIA</a>
+                            </li>
+                            <li class="nav-item ms-4">
+                                <a class="nav-link" href="#"><i class="bi bi-clipboard2-pulse-fill me-1"></i>TRATAMIENTOS</a>                       
+                            </li>
+                            <li class="nav-item ms-4">
+                                <a class="nav-link" href="#"><i class="bi bi-question-lg me-1" id="preguntas></i> PREGUNTAS</a>
+                            </li>
+                            <li class="nav-item ms-4">
+                                <a class="nav-link" href="#"><i class="bi bi-file-medical-fill me-1"></i> SERVICIOS</a>
+                            </li>
+                            <li class="nav-item ms-4">
+                                <a class="nav-link" href="#"><i class="bi bi-fast-forward-btn-fill me-1"></i>TESTIMONIOS</a>       
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </nav>`);
+        } else {
+            sweetAlert(3, DATA.error, false, 'index.html');
+        }
+    } else {
+        // Se comprueba si la página web es la principal, de lo contrario se direcciona a iniciar sesión.
+        if (location.pathname.endsWith('index.html')) {
+            // Se agrega el encabezado de la página web antes del contenido principal.
+            MAIN.insertAdjacentHTML('beforebegin', `
+                <header>
+                    <nav class="navbar fixed-top bg-body-tertiary">
+                        <div class="container">
+                            <a class="navbar-brand" href="index.html">
+                                <img src="../../resources/img/logo.png" alt="inventory" width="50">
+                            </a>
+                        </div>
+                    </nav>
+                </header>
+            `);
+            // Se agrega el pie de la página web después del contenido principal.
+            MAIN.insertAdjacentHTML('afterend', `
+                <footer>
+                    <nav class="navbar fixed-bottom bg-body-tertiary">
+                        <div class="container">
+                            <p><a class="nav-link" href="https://github.com/dacasoft/coffeeshop" target="_blank"><i class="bi bi-github"></i> CoffeeShop</a></p>
+                            <p><i class="bi bi-envelope-fill"></i> dacasoft@outlook.com</p>
+                        </div>
+                    </nav>
+                </footer>
+            `);
+        } else {
+            location.href = 'index.html';
+        }
+    }
+}
+
+const loadTemplate10 = async () => {
+    // Petición para obtener en nombre del usuario que ha iniciado sesión.
+    const DATA = await fetchData(USER_API, 'getUser');
+    // Se verifica si el usuario está autenticado, de lo contrario se envía a iniciar sesión.
+    if (DATA.session) {
+        // Se comprueba si existe un alias definido para el usuario, de lo contrario se muestra un mensaje con la excepción.
+        if (DATA.status) {
+            // Se agrega el encabezado de la página web antes del contenido principal.
+            MAIN.insertAdjacentHTML('beforebegin', `
+                        <nav class="navbar navbar-dark border-bottom border-secondary fixed-top">
+            <div class="container-fluid">
+                <a class="navbar-brand fw-bold d-flex align-items-center" href="#">
+                    <img src="../../resources/img/icons/icon.jpg" alt="" height="50px" class="d-inline-block align-text-top">
+                    Quiropractica Especifica
+                </a>
+                <button class="navbar-toggler rounded-5" type="button" data-bs-toggle="offcanvas"
+                    data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1" id="offcanvasNavbar"
+                    aria-labelledby="offcanvasNavbarLabel">
+                    <div class="offcanvas-header">
+                        <a type="button" class="btn-close" data-bs-dismiss="offcanvas"></i></a>
+                    </div>
+                    <div class="offcanvas-body">
+                        <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                            <li class="nav-item dropdown text-center">
+                                <a class="nav-link" href="#" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="bi bi-gear-fill"></i> <b>${DATA.username}</b>
+                                </a>
+                                <hr>
+                                <ul class="dropdown-menu dropdown-menu-dark">
+                                    <li><a class="dropdown-item" href="#">Ver perfil</a></li>
+                                    <li>
+                                        <hr class="dropdown-divider">
+                                    </li>
+                                    <li><a class="dropdown-item" href="#" onclick="logOut()"> Cerrar sesion </a></li>
+                                </ul>
+                            </li>
+                            <li class="nav-item ms-4">
+                                <a class="nav-link active" aria-current="page" href="#"><i
+                                        class="bi bi-house-fill me-1"></i>
+                                    Inicio</a>
+                            </li>
+                            <li class="nav-item ms-4">
+                                <a class="nav-link" href="#"><i class="bi bi-person-circle me-1"></i></i> ADMIN</a>
+                            </li>
+                            <li class="nav-item ms-4">
+                                <a class="nav-link" href="#"><i class="bi bi-lungs-fill me-1"></i> BENEFICIOS</a>
+                            </li>
+                            <li class="nav-item ms-4">
+                                <a class="nav-link" href="#"><i class="bi bi-bookmark-plus-fill me-1" ></i> CITAS</a>
+                            </li>
+                            <li class="nav-item ms-4">
+                                <a class="nav-link" href="#"><i class="bi bi-people-fill me-1""></i> CLIENTES</a>
+                            </li>
+                            <li class="nav-item ms-4">
+                                <a class="nav-link" href="#"><i class="bi bi-chat-left-text-fill me-1"></i>COMENTARIOS</a>           
+                            </li>
+                            <li class="nav-item ms-4">
+                                <a class="nav-link" href="#"><i class="bi bi-person-standing me-1"></i> EMPLEADOS</a>
+                            </li>
+                            <li class="nav-item ms-4">
+                                <a class="nav-link" href="#"><i class="bi bi-images me-1"></i> GALERIA</a>
+                            </li>
+                            <li class="nav-item ms-4">
+                                <a class="nav-link" href="#"><i class="bi bi-clipboard2-pulse-fill me-1"></i>TRATAMIENTOS</a>                       
+                            </li>
+                            <li class="nav-item ms-4">
+                                <a class="nav-link" href="#"><i class="bi bi-question-lg me-1"></i> PREGUNTAS</a>
+                            </li>
+                            <li class="nav-item ms-4">
+                                <a class="nav-link" href="#"><i class="bi bi-file-medical-fill me-1" id="servicios></i> SERVICIOS</a>
+                            </li>
+                            <li class="nav-item ms-4">
+                                <a class="nav-link" href="#"><i class="bi bi-fast-forward-btn-fill me-1"></i>TESTIMONIOS</a>       
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </nav>`);
+        } else {
+            sweetAlert(3, DATA.error, false, 'index.html');
+        }
+    } else {
+        // Se comprueba si la página web es la principal, de lo contrario se direcciona a iniciar sesión.
+        if (location.pathname.endsWith('index.html')) {
+            // Se agrega el encabezado de la página web antes del contenido principal.
+            MAIN.insertAdjacentHTML('beforebegin', `
+                <header>
+                    <nav class="navbar fixed-top bg-body-tertiary">
+                        <div class="container">
+                            <a class="navbar-brand" href="index.html">
+                                <img src="../../resources/img/logo.png" alt="inventory" width="50">
+                            </a>
+                        </div>
+                    </nav>
+                </header>
+            `);
+            // Se agrega el pie de la página web después del contenido principal.
+            MAIN.insertAdjacentHTML('afterend', `
+                <footer>
+                    <nav class="navbar fixed-bottom bg-body-tertiary">
+                        <div class="container">
+                            <p><a class="nav-link" href="https://github.com/dacasoft/coffeeshop" target="_blank"><i class="bi bi-github"></i> CoffeeShop</a></p>
+                            <p><i class="bi bi-envelope-fill"></i> dacasoft@outlook.com</p>
+                        </div>
+                    </nav>
+                </footer>
+            `);
+        } else {
+            location.href = 'index.html';
+        }
+    }
+}
+
+const loadTemplate11 = async () => {
+    // Petición para obtener en nombre del usuario que ha iniciado sesión.
+    const DATA = await fetchData(USER_API, 'getUser');
+    // Se verifica si el usuario está autenticado, de lo contrario se envía a iniciar sesión.
+    if (DATA.session) {
+        // Se comprueba si existe un alias definido para el usuario, de lo contrario se muestra un mensaje con la excepción.
+        if (DATA.status) {
+            // Se agrega el encabezado de la página web antes del contenido principal.
+            MAIN.insertAdjacentHTML('beforebegin', `
+                        <nav class="navbar navbar-dark border-bottom border-secondary fixed-top">
+            <div class="container-fluid">
+                <a class="navbar-brand fw-bold d-flex align-items-center" href="#">
+                    <img src="../../resources/img/icons/icon.jpg" alt="" height="50px" class="d-inline-block align-text-top">
+                    Quiropractica Especifica
+                </a>
+                <button class="navbar-toggler rounded-5" type="button" data-bs-toggle="offcanvas"
+                    data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1" id="offcanvasNavbar"
+                    aria-labelledby="offcanvasNavbarLabel">
+                    <div class="offcanvas-header">
+                        <a type="button" class="btn-close" data-bs-dismiss="offcanvas"></i></a>
+                    </div>
+                    <div class="offcanvas-body">
+                        <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                            <li class="nav-item dropdown text-center">
+                                <a class="nav-link" href="#" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="bi bi-gear-fill"></i> <b>${DATA.username}</b>
+                                </a>
+                                <hr>
+                                <ul class="dropdown-menu dropdown-menu-dark">
+                                    <li><a class="dropdown-item" href="#">Ver perfil</a></li>
+                                    <li>
+                                        <hr class="dropdown-divider">
+                                    </li>
+                                    <li><a class="dropdown-item" href="#" onclick="logOut()"> Cerrar sesion </a></li>
+                                </ul>
+                            </li>
+                            <li class="nav-item ms-4">
+                                <a class="nav-link active" aria-current="page" href="#"><i
+                                        class="bi bi-house-fill me-1"></i>
+                                    Inicio</a>
+                            </li>
+                            <li class="nav-item ms-4">
+                                <a class="nav-link" href="#"><i class="bi bi-person-circle me-1"></i></i> ADMIN</a>
+                            </li>
+                            <li class="nav-item ms-4">
+                                <a class="nav-link" href="#"><i class="bi bi-lungs-fill me-1"></i> BENEFICIOS</a>
+                            </li>
+                            <li class="nav-item ms-4">
+                                <a class="nav-link" href="#"><i class="bi bi-bookmark-plus-fill me-1" ></i> CITAS</a>
+                            </li>
+                            <li class="nav-item ms-4">
+                                <a class="nav-link" href="#"><i class="bi bi-people-fill me-1""></i> CLIENTES</a>
+                            </li>
+                            <li class="nav-item ms-4">
+                                <a class="nav-link" href="#"><i class="bi bi-chat-left-text-fill me-1"></i>COMENTARIOS</a>           
+                            </li>
+                            <li class="nav-item ms-4">
+                                <a class="nav-link" href="#"><i class="bi bi-person-standing me-1"></i> EMPLEADOS</a>
+                            </li>
+                            <li class="nav-item ms-4">
+                                <a class="nav-link" href="#"><i class="bi bi-images me-1"></i> GALERIA</a>
+                            </li>
+                            <li class="nav-item ms-4">
+                                <a class="nav-link" href="#"><i class="bi bi-clipboard2-pulse-fill me-1"></i>TRATAMIENTOS</a>                       
+                            </li>
+                            <li class="nav-item ms-4">
+                                <a class="nav-link" href="#"><i class="bi bi-question-lg me-1"></i> PREGUNTAS</a>
+                            </li>
+                            <li class="nav-item ms-4">
+                                <a class="nav-link" href="#"><i class="bi bi-file-medical-fill me-1" ></i> SERVICIOS</a>
+                            </li>
+                            <li class="nav-item ms-4">
+                                <a class="nav-link" href="#"><i class="bi bi-fast-forward-btn-fill me-1"id="testimonios></i>TESTIMONIOS</a>       
                             </li>
                         </ul>
                     </div>
