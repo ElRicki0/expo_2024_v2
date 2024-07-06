@@ -1,3 +1,7 @@
+body {
+    background-color: #000000;
+}
+
 .cartaPacientePrivado {
     width: 18rem;
     height: auto;
@@ -7,6 +11,23 @@
 .textopacienteprivado {
     height: 288px;
     max-height: 288px;
+}
+
+.custom-input {
+    background-color: black;
+    color: white;
+}
+
+.custom-input:focus {
+    background-color: black;
+    color: white;
+    outline: none;
+    box-shadow: none;
+}
+
+#offcanvasNavbar {
+    opacity: 0.8;
+    border-color: white;
 }
 
 .textodenotadefinido {
