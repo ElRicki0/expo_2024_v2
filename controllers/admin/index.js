@@ -16,14 +16,10 @@ document.addEventListener('DOMContentLoaded', async () => {
         // Se direcciona a la página web de bienvenida.
         location.href = 'inicio.html';
     } else if (DATA.status) {
-        // Se establece el título del contenido principal.
-        //MAIN_TITLE.textContent = 'Iniciar sesión';
         // Se muestra el formulario para iniciar sesión.
         CONTENEDOR_LOGIN_FORM.classList.remove('d-none');
         sweetAlert(4, DATA.message, true);
     } else {
-        // Se establece el título del contenido principal.
-        //MAIN_TITLE.textContent = 'Registrar primer usuario';
         // Se muestra el formulario para registrar el primer usuario.
         CONTENEDOR_SIGNUP_FORM.classList.remove('d-none');
         sweetAlert(4, DATA.error, true);

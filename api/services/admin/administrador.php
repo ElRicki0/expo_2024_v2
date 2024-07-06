@@ -1,6 +1,6 @@
 <?php
 // Se incluye la clase del modelo.
-require_once ('../../models/data/administrador_data.php');
+require_once('../../models/data/administrador_data.php');
 
 // Se comprueba si existe una acción a realizar, de lo contrario se finaliza el script con un mensaje de error.
 if (isset($_GET['action'])) {
@@ -173,7 +173,7 @@ if (isset($_GET['action'])) {
             case 'logIn':
                 // Inicio de sesión de un administrador (puede ser una acción pública).
                 $_POST = Validator::validateForm($_POST);
-                if ($administrador->checkUser($_POST['correoAdmin'], $_POST['contraAdmin'])) {
+                if ($administrador->checkUser($_POST['correo_admin'], $_POST['contra_admin'])) {
                     // Si las credenciales son correctas, se actualiza el estado y mensaje.
                     $result['status'] = 1;
                     $result['message'] = 'Autenticación correcta';
@@ -195,8 +195,8 @@ if (isset($_GET['action'])) {
     header('Content-type: application/json; charset=utf-8');
 
     // Se imprime el resultado en formato JSON y se retorna al controlador.
-    print (json_encode($result));
+    print(json_encode($result));
 } else {
     // Si no hay acción definida, se imprime un mensaje indicando que el recurso no está disponible.
-    print (json_encode('Recurso no disponible'));
+    print(json_encode('Recurso no disponible'));
 }

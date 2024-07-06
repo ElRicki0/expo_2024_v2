@@ -25,17 +25,17 @@ class AdministradorHandler
     // Método para verificar el inicio de sesión del administrador.
     public function checkUser($username, $password)
     {
-        $sql = 'SELECT id_admin, correo_admin, contrasenia_admin
+        $sql = 'SELECT id_admin, correo_admin, contraseña_admin
                 FROM tb_admin
                 WHERE correo_admin = ?';
         $params = array($username);
         // Se intenta obtener el registro del administrador según el correo.
         if (!($data = Database::getRow($sql, $params))) {
             return false; // Si no se encuentra el usuario, retorna falso.
-        } elseif (password_verify($password, $data['contrasenia_admin'])) {
+        } elseif (password_verify($password, $data['contraseña_admin'])) {
             // Si la contraseña coincide con el hash almacenado, se inicia la sesión del administrador.
             $_SESSION['idAdministrador'] = $data['id_admin'];
-            $_SESSION['correoAdmin'] = $data['correo_admin'];
+            $_SESSION['correo_admin'] = $data['correo_admin'];
             return true; // Retorna verdadero indicando que el inicio de sesión fue exitoso.
         } else {
             return false; // Si la contraseña no coincide, retorna falso.
@@ -94,8 +94,8 @@ class AdministradorHandler
     // Método para crear un nuevo administrador.
     public function createRow()
     {
-        $sql = 'INSERT INTO tb_admin(nombre_admin, contrasenia_admin, correo_admin, id_empleado)
-                VALUES(?, ?, ?, 1)';
+        $sql = 'INSERT INTO tb_admin(nombre_admin, contraseña_admin, correo_admin)
+                VALUES(?, ?, ?)';
         $params = array($this->nombre, $this->contrasenia, $this->correo);
         // Se ejecuta la consulta para insertar un nuevo registro de administrador.
         return Database::executeRow($sql, $params);
@@ -104,7 +104,7 @@ class AdministradorHandler
     // Método para leer todos los administradores registrados.
     public function readAll()
     {
-        $sql = 'SELECT id_admin, nombre_admin, contrasenia_admin, correo_admin
+        $sql = 'SELECT id_admin, nombre_admin, correo_admin
                 FROM tb_admin
                 ORDER BY nombre_admin';
         // Se obtienen todos los registros de administradores ordenados por nombre.
