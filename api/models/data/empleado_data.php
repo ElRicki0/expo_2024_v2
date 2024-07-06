@@ -44,6 +44,21 @@ class EmpleadoData extends EmpleadoHandler
         }
     }
 
+        // Método setApellido: valida y asigna el nombre del empleado.
+        public function setApelldo($value, $min = 2, $max = 50)
+        {
+            if (!Validator::validateAlphabetic($value)) {
+                $this->data_error = 'El apellido debe ser un valor alfabético';
+                return false;
+            } elseif (Validator::validateLength($value, $min, $max)) {
+                $this->apellido = $value;
+                return true;
+            } else {
+                $this->data_error = 'El apellido debe tener una longitud entre ' . $min . ' y ' . $max;
+                return false;
+            }
+        }
+
     // Método setFecha: valida y asigna la fecha de nacimiento del empleado.
     public function setFecha($value)
     {
@@ -64,18 +79,6 @@ class EmpleadoData extends EmpleadoHandler
             return true;
         } else {
             $this->data_error = 'El DUI no es válido';
-            return false;
-        }
-    }
-
-    // Método setTelefono: valida y asigna el teléfono del empleado.
-    public function setTelefono($value)
-    {
-        if (Validator::validatePhone($value)) {
-            $this->telefono = $value;
-            return true;
-        } else {
-            $this->data_error = 'El teléfono no es válido';
             return false;
         }
     }

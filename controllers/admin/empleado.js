@@ -12,8 +12,8 @@ const SAVE_MODAL = new bootstrap.Modal('#modalEmpleado'),
 const SAVE_FORM = document.getElementById('saveForm'),
     ID_EMPLEADO = document.getElementById('id_empleado'),
     NOMBRE_EMPLEADO = document.getElementById('nombre_empleado'),
+    APELLIDO_EMPLEADO = document.getElementById('apellido_empleado'),
     CORREO_EMPLEADO = document.getElementById('correo_empleado'),
-    TELEFONO_EMPLEADO = document.getElementById('telefono_empleado'),
     DUI_EMPLEADO = document.getElementById('dui_empleado'),
     FECHA_EMPLEADO = document.getElementById('fecha_empleado'),
     ESTADO_EMPLEADO = document.getElementById('estado_empleado');
@@ -81,10 +81,9 @@ const fillTable = async (form = null) => {
             // Se crean y concatenan las filas de la tabla con los datos de cada registro.
             TABLE_BODY.innerHTML += `
             <tr>
-                <td>${row.nombre_empleado}</td>
+                <td>${row.nombre_empleado} ${row.apellido_empleado}</td>
                 <td>${row.dui_empleado}</td>
                 <td>${row.correo_empleado}</td>
-                <td>${row.telefono_empleado}</td>
                 <td>${row.nacimiento_empleado}</td>
                 <td><i class="${icon}"></i></td>
                 <td>
@@ -129,15 +128,15 @@ const openUpdate = async (id) => {
     if (DATA.status) {
         // Se muestra la caja de diálogo con su título.
         SAVE_MODAL.show();
-        MODAL_TITLE.textContent = 'ACTUALIZAR EMPLEADO';
+        MODAL_TITLE.textContent = 'EDITAR EMPLEADO';
         // Se prepara el formulario.
         SAVE_FORM.reset();
         // Se inicializan los campos con los datos.
         const ROW = DATA.dataset;
         ID_EMPLEADO.value = ROW.id_empleado;
         NOMBRE_EMPLEADO.value = ROW.nombre_empleado;
+        APELLIDO_EMPLEADO.value = ROW.apellido_empleado;
         CORREO_EMPLEADO.value = ROW.correo_empleado;
-        TELEFONO_EMPLEADO.value = ROW.telefono_empleado;
         DUI_EMPLEADO.value = ROW.dui_empleado;
         FECHA_EMPLEADO.value = ROW.nacimiento_empleado;
     } else {

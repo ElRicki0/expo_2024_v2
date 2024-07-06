@@ -29,9 +29,9 @@ if (isset($_GET['action'])) {
                 $_POST = Validator::validateForm($_POST);
                 if (
                     !$empleado->setNombre($_POST['nombre_empleado']) or
+                    !$empleado->setApelldo($_POST['apellido_empleado']) or
                     !$empleado->setCorreo($_POST['correo_empleado']) or
                     !$empleado->setDui($_POST['dui_empleado']) or
-                    !$empleado->setTelefono($_POST['telefono_empleado']) or
                     !$empleado->setFecha($_POST['fecha_empleado'])                   
                 ) {
                     $result['error'] = $empleado->getDataError();
@@ -45,7 +45,7 @@ if (isset($_GET['action'])) {
             case 'readAll':
                 if ($result['dataset'] = $empleado->readAll()) {
                     $result['status'] = 1;
-                    $result['message'] = 'Existen ' . count($result['dataset']) . ' registros';
+                    $result['message'] = 'Existen ' . count($result['dataset']) . ' registro(s)';
                 } else {
                     $result['error'] = 'No existen Empleados registrados';
                 }
@@ -64,9 +64,9 @@ if (isset($_GET['action'])) {
                 if (
                     !$empleado->setId($_POST['id_empleado']) or
                     !$empleado->setNombre($_POST['nombre_empleado']) or
+                    !$empleado->setApelldo($_POST['apellido_empleado']) or
                     !$empleado->setCorreo($_POST['correo_empleado']) or
                     !$empleado->setDui($_POST['dui_empleado']) or
-                    !$empleado->setTelefono($_POST['telefono_empleado']) or
                     !$empleado->setFecha($_POST['fecha_empleado'])  
                 ) {
                     $result['error'] = $empleado->getDataError();

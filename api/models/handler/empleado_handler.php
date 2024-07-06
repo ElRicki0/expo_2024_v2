@@ -14,8 +14,8 @@ class EmpleadoHandler{
 
     protected $id = null;
     protected $nombre = null;
+    protected $apellido = null;
     protected $dui = null;
-    protected $telefono = null;
     protected $correo = null;
     protected $fecha = null;
     protected $estado = null;
@@ -64,16 +64,16 @@ class EmpleadoHandler{
     // Método createRow: inserta un nuevo empleado en la base de datos.
     public function createRow()
     {
-        $sql = 'INSERT INTO tb_empleado(nombre_empleado, dui_empleado, correo_empleado, telefono_empleado, nacimiento_empleado)
+        $sql = 'INSERT INTO tb_empleado(nombre_empleado, apellido_empleado, dui_empleado, correo_empleado, nacimiento_empleado)
                 VALUES(?, ?, ?, ?, ?)';
-        $params = array($this->nombre, $this->dui, $this->correo, $this->telefono, $this->fecha);
+        $params = array($this->nombre, $this->apellido, $this->dui, $this->correo, $this->fecha);
         return Database::executeRow($sql, $params);
     }
 
     // Método readAll: lee todos los empleados de la base de datos.
     public function readAll()
     {
-        $sql = 'SELECT id_empleado, nombre_empleado, dui_empleado, correo_empleado, telefono_empleado, nacimiento_empleado
+        $sql = 'SELECT id_empleado, nombre_empleado, apellido_empleado, dui_empleado, correo_empleado, nacimiento_empleado
                 FROM tb_empleado
                 ORDER BY nombre_empleado';
         return Database::getRows($sql);
@@ -82,7 +82,7 @@ class EmpleadoHandler{
     // Método readOne: lee un empleado específico de la base de datos según su ID.
     public function readOne()
     {
-        $sql = 'SELECT id_empleado, nombre_empleado, dui_empleado, correo_empleado, telefono_empleado, nacimiento_empleado
+        $sql = 'SELECT id_empleado, nombre_empleado, apellido_empleado, dui_empleado, correo_empleado, nacimiento_empleado
                 FROM tb_empleado
                 WHERE id_empleado = ?';
         $params = array($this->id);
@@ -93,9 +93,9 @@ class EmpleadoHandler{
     public function updateRow()
     {
         $sql = 'UPDATE tb_empleado
-                SET nombre_empleado = ?, dui_empleado = ?, correo_empleado = ?, telefono_empleado = ?, nacimiento_empleado = ?
+                SET nombre_empleado = ?, apellido_empleado = ?, dui_empleado = ?, correo_empleado = ?, nacimiento_empleado = ?
                 WHERE id_empleado = ?';
-        $params = array($this->nombre, $this->dui, $this->correo, $this->telefono, $this->fecha, $this->id);
+        $params = array($this->nombre, $this->apellido, $this->dui, $this->correo, $this->fecha, $this->id);
         return Database::executeRow($sql, $params);
     }
 
@@ -108,4 +108,3 @@ class EmpleadoHandler{
         return Database::executeRow($sql, $params);
     }
 }
-?>
