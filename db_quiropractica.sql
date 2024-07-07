@@ -14,6 +14,7 @@ telefono_cliente VARCHAR (9) NOT NULL,
 nacimiento_cliente DATE NOT NULL,
 responsable_cliente VARCHAR(50)
 ); 
+
 CREATE TABLE tb_testimonios(
 id_testimonio INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
 titulo_testimonio VARCHAR(50) NOT NULL,
@@ -97,5 +98,7 @@ CREATE TABLE tb_comentarios(
 id_comentario INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
 contenido_comentario VARCHAR (250) NOT NULL,
 id_cliente INT ,
-FOREIGN KEY (id_cliente) REFERENCES tb_clientes (id_cliente)
+FOREIGN KEY (id_cliente) REFERENCES tb_clientes (id_cliente),
+id_servicio INT ,
+FOREIGN KEY (id_servicio) REFERENCES tb_servicios (id_servicio)
 );

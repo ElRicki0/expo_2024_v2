@@ -6,7 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quiropráctica Específica </title>
     <link rel="stylesheet" href="../../resources/css/boostrap_css.css">
-    <link rel="stylesheet" href="../../resources/css/colores.css">
+    <link rel="stylesheet" href="../../resources/css/general.css">
+    <link rel="stylesheet" href="../../resources/css/bootstrap-icons.min.css">
 </head>
 
 <body>
@@ -15,194 +16,113 @@
     </header>
 
     <main class="container">
+
+
+        <!-- Título del contenido principal -->
+        <h3 id="mainTitle" class="display-3"></h3>
         <div class="row">
-            <div class="col-md-6 col-lg-6 text-start">
-                <h1 class="display-3">Comentarios</h1>
-            </div>
-
-            <div class="col-md-6 col-lg-6 text-end my-5">
-                <div class="btn-group dropend">
-                    <button type="button" class="btn color_verde dropdown-toggle" data-bs-toggle="dropdown"
-                        aria-expanded="false">
-                        Clasificar por...
-                    </button>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">Masaje preventivo</a></li>
-                        <li><a class="dropdown-item" href="#">Tratamiento de escoliosis</a></li>
-                        <li><a class="dropdown-item" href="#">Colocación de columna</a></li>
-                        <li><a class="dropdown-item" href="#">Ejercicios de flexibilidad</a></li>
-                    </ul>
+            <!-- Formulario de búsqueda -->
+            <form class="col-sm-12 col-md-6" id="searchForm">
+                <div class="row">
+                    <div class="col-6">
+                        <input type="search" class="form-control" name="search" placeholder="Buscar" required>
+                    </div>
+                    <div class="col-6">
+                        <button type="submit" class="btn btn-success">
+                            <i class="bi bi-search"></i>
+                        </button>
+                        <button type="reset" class="btn btn-secondary" onclick="fillTable()">
+                            <i class="bi bi-x-square-fill"></i>
+                        </button>
+                    </div>
                 </div>
+            </form>
+            <div class="col-sm-12 col-md-6 text-end">
+                <!-- Botón para abrir una caja de diálogo al momento de crear un nuevo registro -->
+                <button type="button" class="btn btn-primary" onclick="openCreate()">
+                    <i class="bi bi-plus-square-fill"></i>
+                </button>
             </div>
-
         </div>
 
+        <!-- Tabla para mostrar los registros existentes -->
+        <table class="table table-hover table-dark">
+            <!-- Cabeza de la tabla para mostrar la cantidad de registros y los títulos de las columnas -->
+            <thead>
+                <tr>
+                    <td colspan="4" class="text-white  fw-bold mt-3" id="rowsFound"></td>
+                </tr>
+                <tr>
+                    <th>COMENTARIO</th>
+                    <th>CLIENTE</th>
+                    <th>SERVICIO
+                    <th>
+                    <th>ESTADO</th>
+                </tr>
+            </thead>
+            <!-- Cuerpo de la tabla para mostrar un registro por fila -->
+            <tbody id="tableBody" class="table-group-divider"></tbody>
+        </table>
 
 
-        <div class="my-5">
-            <!--Comentarios de servicios-->
+        <!-- este es un futuro disenio de las cards del comentarios -->
 
+        <!--Comentarios de servicios-->
+        <!-- 
+        <div class="my-5" id="Comentarios">
             <div class="card my-4">
                 <div class="card-body">
                     <h5 class="card-title">Tratamiento de escoliosis</h5>
                     <p class="card-text">El tratamiento fue increíblemente efectivo. Sentí una mejora notable en mi
                         postura y reducción del dolor en poco tiempo. El equipo médico fue profesional y atento durante
                         todo el proceso.</p>
-                    <a href="#" data-bs-toggle="modal" data-bs-target="#ModalInterrogante" class="texto_verde">Eliminar Comentario</a>
+                    <a href="#" data-bs-toggle="modal" data-bs-target="#ModalInterrogante" class="texto_verde">Eliminar
+                        Comentario</a>
                 </div>
             </div>
-
-            <div class="card my-4">
-                <div class="card-body">
-                    <h5 class="card-title">Tratamiento de escoliosis</h5>
-                    <p class="card-text">Después del tratamiento de escoliosis, he notado un cambio significativo en mi
-                        postura y menos dolores de espalda</p>
-                    <a href="#" data-bs-toggle="modal" data-bs-target="#ModalInterrogante" class="texto_verde">Eliminar Comentario</a>
-                </div>
-            </div>
-
-            <div class="card my-4">
-                <div class="card-body">
-                    <h5 class="card-title">Tratamiento de escoliosis</h5>
-                    <p class="card-text">El tratamiento de escoliosis me dio confianza en mi cuerpo y me permitió
-                        moverme con más libertad.</p>
-                    <a href="#" data-bs-toggle="modal" data-bs-target="#ModalInterrogante" class="texto_verde">Eliminar Comentario</a>
-                </div>
-            </div>
-
-            <div class="card my-4">
-                <div class="card-body">
-                    <h5 class="card-title">Tratamiento de escoliosis</h5>
-                    <p class="card-text">El proceso para tratar mi escoliosis fue suave y eficaz. Ahora puedo llevar una
-                        vida más activa sin dolor.</p>
-                    <a href="#" data-bs-toggle="modal" data-bs-target="#ModalInterrogante" class="texto_verde">Eliminar Comentario</a>
-                </div>
-            </div>
-
-            <div class="card my-4">
-                <div class="card-body">
-                    <h5 class="card-title">Masaje Preventivo</h5>
-                    <p class="card-text">El masaje preventivo me dejó totalmente relajado y sin tensiones. Lo recomiendo
-                        para mantener el cuerpo en forma.</p>
-                    <a href="#" data-bs-toggle="modal" data-bs-target="#ModalInterrogante" class="texto_verde">Eliminar Comentario</a>
-                </div>
-            </div>
-
-            <div class="card my-4">
-                <div class="card-body">
-                    <h5 class="card-title">Masaje Preventivo</h5>
-                    <p class="card-text">Con el masaje preventivo, mis dolores musculares han desaparecido. Ahora me
-                        siento más suelto y con energía.</p>
-                    <a href="#" data-bs-toggle="modal" data-bs-target="#ModalInterrogante" class="texto_verde">Eliminar Comentario</a>
-                </div>
-            </div>
-
-            <div class="card my-4">
-                <div class="card-body">
-                    <h5 class="card-title">Masaje Preventivo</h5>
-                    <p class="card-text">Gracias al masaje preventivo, mi estrés se ha reducido considerablemente. Es un
-                        tratamiento que quiero repetir regularmente.</p>
-                    <a href="#" data-bs-toggle="modal" data-bs-target="#ModalInterrogante" class="texto_verde">Eliminar Comentario</a>
-                </div>
-            </div>
-
-            <div class="card my-4">
-                <div class="card-body">
-                    <h5 class="card-title">Masaje Preventivo</h5>
-                    <p class="card-text">Gracias al masaje preventivo, mi estrés se ha reducido considerablemente. Es un
-                        tratamiento que quiero repetir regularmente.</p>
-                    <a href="#" data-bs-toggle="modal" data-bs-target="#ModalInterrogante" class="texto_verde">Eliminar Comentario</a>
-                </div>
-            </div><div class="card my-4">
-                <div class="card-body">
-                    <h5 class="card-title">Masaje Preventivo</h5>
-                    <p class="card-text">Gracias al masaje preventivo, mi estrés se ha reducido considerablemente. Es un
-                        tratamiento que quiero repetir regularmente.</p>
-                    <a href="#" data-bs-toggle="modal" data-bs-target="#ModalInterrogante" class="texto_verde">Eliminar Comentario</a>
-                </div>
-            </div><div class="card my-4">
-                <div class="card-body">
-                    <h5 class="card-title">Masaje Preventivo</h5>
-                    <p class="card-text">Gracias al masaje preventivo, mi estrés se ha reducido considerablemente. Es un
-                        tratamiento que quiero repetir regularmente.</p>
-                    <a href="#" data-bs-toggle="modal" data-bs-target="#ModalInterrogante" class="texto_verde">Eliminar Comentario</a>
-                </div>
-            </div>
-
-            <div class="card my-4">
-                <div class="card-body">
-                    <h5 class="card-title">Masaje Preventivo</h5>
-                    <p class="card-text">Gracias al masaje preventivo, mi estrés se ha reducido considerablemente. Es un
-                        tratamiento que quiero repetir regularmente.</p>
-                    <a href="#" class="texto_verde">Eliminar Comentario</a>
-                </div>
-            </div><div class="card my-4">
-                <div class="card-body">
-                    <h5 class="card-title">Masaje Preventivo</h5>
-                    <p class="card-text">Gracias al masaje preventivo, mi estrés se ha reducido considerablemente. Es un
-                        tratamiento que quiero repetir regularmente.</p>
-                    <a href="#" class="texto_verde">Eliminar Comentario</a>
-                </div>
-            </div><div class="card my-4">
-                <div class="card-body">
-                    <h5 class="card-title">Masaje Preventivo</h5>
-                    <p class="card-text">Gracias al masaje preventivo, mi estrés se ha reducido considerablemente. Es un
-                        tratamiento que quiero repetir regularmente.</p>
-                    <a href="#" class="texto_verde">Eliminar Comentario</a>
-                </div>
-            </div>
-
-        </div>
-
-    </main>
-
-        <!-- Modal Interrogante -->
-        <div class="modal fade" id="ModalInterrogante" tabindex="-1" data-bs-backdrop="static"
-        aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-
-                <!-- Body del modal -->
-                <div class="modal-body text-center">
-                    <img src="../../resources/img/Interrogante.png" alt="" width="100px">
-                    <p class="mt-2"> ¿Estas seguro de eliminar comentario? </p>
-                    <hr>
-                    <button type="button" id="BtnInterrogante" class="btn bg-dark text-light me-2"
-                        data-bs-toggle="modal" data-bs-target="#ModalRealizado"> Si </button>
-                    <button type="button" class="btn bg-dark text-light" data-bs-dismiss="modal"> No </button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Modal Cambio realizado -->
-    <div class="modal fade" id="ModalRealizado" tabindex="-1" data-bs-backdrop="static"
-        aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-
-                <!-- Body del modal -->
-                <div class="modal-body text-center">
-                    <img src="../../resources/img/Listo.png" alt="" width="100px">
-                    <p class="mt-2"> eliminando comentario. </p>
-                    <div class="progress">
-                        <div id="progressBar" class="progress-bar" role="progressbar" aria-valuenow="0"
-                            aria-valuemin="0" aria-valuemax="100"></div>
+        </div> -->
+        <!-- Componente Modal para guardar un registro -->
+        <div class="modal fade" id="saveModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+            aria-labelledby="modalTitle" aria-hidden="true">
+            <div class="modal-dialog modal-lg modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="modalTitle"></h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
+                    <!-- Formulario para crear o actualizar un registro -->
+                    <form id="saveForm">
+                        <div class="modal-body row g-3">
+                            <!-- Campo oculto para asignar el id del registro al momento de modificar -->
+                            <input type="number" class="d-none" id="idComentario" name="idComentario">
+                            <div class="form-check form-switch form-check-reverse">
+                                <input class="form-check-input" type="checkbox" id="estadoComentario"
+                                    name="estadoComentario" checked>
+                                <label class="form-check-label" for="estadoComentario">Estado</label>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-primary">Guardar</button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
-    </div>
+    </main>
 
     <footer>
 
     </footer>
 
-    <script src="../../controllers/utils/admin/plantilla_completa.js"></script>
     <script src="../../resources/js/bootstrap_js.js"></script>
+    <script type="text/javascript" src="../../resources/js/sweetalert.min.js"></script>
 
-        <!-- Javascript de alerta modal -->
-        <script src="../../controllers/admin/alerta.js"></script>
+    <!-- llamar al controntrolador del sitio privado-->
+    <script src="../../controllers/utils/components.js"></script>
+    <!-- llamar al controntrolador del los sitios-->
+    <script src="../../controllers/utils/admin.js"></script>
+    <!-- llamar al controntrolador de la pagina-->
+    <script src="../../controllers/admin/comentarios.js"></script>
 </body>
 
 </html>
