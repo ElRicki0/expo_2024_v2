@@ -45,13 +45,13 @@ class AdministradorHandler
     // Método para verificar si la contraseña actual del administrador es correcta.
     public function checkPassword($password)
     {
-        $sql = 'SELECT contrasenia_admin
+        $sql = 'SELECT contraseña_admin
                 FROM tb_admin
                 WHERE id_admin = ?';
-        $params = array($_SESSION['idAdmin']);
+        $params = array($_SESSION['idAdministrador']);
         $data = Database::getRow($sql, $params);
         // Se verifica si la contraseña actual coincide con el hash almacenado en la base de datos.
-        if (password_verify($password, $data['contrasenia_admin'])) {
+        if (password_verify($password, $data['contraseña_admin'])) {
             return true; // Retorna verdadero si la contraseña es correcta.
         } else {
             return false; // Retorna falso si la contraseña no coincide.
@@ -62,9 +62,9 @@ class AdministradorHandler
     public function changePassword()
     {
         $sql = 'UPDATE tb_admin
-                SET contrasenia_admin = ?
+                SET contraseña_admin = ?
                 WHERE id_admin = ?';
-        $params = array($this->contrasenia, $_SESSION['idAdmin']);
+        $params = array($this->contrasenia, $_SESSION['idAdministrador']);
         // Se ejecuta la consulta para actualizar la contraseña del administrador.
         return Database::executeRow($sql, $params);
     }
@@ -72,10 +72,10 @@ class AdministradorHandler
     // Método para leer el perfil del administrador actual.
     public function readProfile()
     {
-        $sql = 'SELECT id_admin, nombre_admin, foto_admin
+        $sql = 'SELECT id_admin, nombre_admin, correo_admin
                 FROM tb_admin
                 WHERE id_admin = ?';
-        $params = array($_SESSION['idAdmin']);
+        $params = array($_SESSION['idAdministrador']);
         // Se obtiene la información del perfil del administrador actual.
         return Database::getRow($sql, $params);
     }

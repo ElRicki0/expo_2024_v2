@@ -43,7 +43,7 @@ if (isset($_GET['action'])) {
                 $_POST = Validator::validateForm($_POST);
                 if (
                     !$administrador->setCorreo($_POST['correo_admin2']) ||
-                    !$administrador->setContrasenia($_POST['contra_admin2']) ||
+                    !$administrador->setContraseña($_POST['contra_admin2']) ||
                     !$administrador->setNombre($_POST['nombre_admin2'])
                 ) {
                     $result['error'] = $administrador->getDataError();
@@ -102,7 +102,7 @@ if (isset($_GET['action'])) {
                 if (
                     !$administrador->setId($_POST['idAdministrador']) ||
                     !$administrador->setCorreo($_POST['correo_admin']) ||
-                    !$administrador->setContrasenia($_POST['contra_admin']) ||
+                    !$administrador->setContraseña($_POST['contra_admin']) ||
                     !$administrador->setNombre($_POST['nombre_admin'])
                 ) {
                     // Si los datos no son válidos, se registra un error.
@@ -130,6 +130,26 @@ if (isset($_GET['action'])) {
                     $result['error'] = 'Ocurrió un problema al eliminar al administrador';
                 }
                 break;
+            case 'readProfile':
+                if ($result['dataset'] = $administrador->readProfile()) {
+                    $result['status'] = 1;
+                } else {
+                    $result['error'] = 'Ocurrió un problema al leer el perfil';
+                }
+                break;
+            case 'changePassword':
+                $_POST = Validator::validateForm($_POST);
+                if (!$administrador->checkPassword($_POST['contraseña_actual'])) {
+                    $result['error'] = 'Contraseña actual incorrecta';
+                } elseif (!$administrador->setContraseña($_POST['contraseña_nueva'])) {
+                    $result['error'] = $administrador->getDataError();
+                } elseif ($administrador->changePassword()) {
+                    $result['status'] = 1;
+                    $result['message'] = 'Contraseña actualizada correctamente';
+                } else {
+                    $result['error'] = 'Ocurrió un problema al cambiar la contraseña';
+                }
+                break;
             default:
                 // Acción no disponible dentro de la sesión.
                 $result['error'] = 'Acción no disponible dentro de la sesión';
@@ -153,7 +173,7 @@ if (isset($_GET['action'])) {
                 $_POST = Validator::validateForm($_POST);
                 if (
                     !$administrador->setCorreo($_POST['correo_admin2']) ||
-                    !$administrador->setContrasenia($_POST['contra_admin2']) ||
+                    !$administrador->setContraseña($_POST['contra_admin2']) ||
                     !$administrador->setNombre($_POST['nombre_admin2'])
                 ) {
                     // Si los datos no son válidos, se registra un error.

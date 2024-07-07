@@ -7,9 +7,6 @@
 const USER_API = 'services/admin/administrador.php';
 // Constante para establecer el elemento del contenido principal.
 const MAIN = document.querySelector('main');
-MAIN.style.paddingTop = '75px';
-MAIN.style.paddingBottom = '100px';
-MAIN.classList.add('container');
 // Se establece el título de la página web.
 document.querySelector('title').textContent = 'Quiropráctica Especifica';
 
@@ -29,77 +26,79 @@ const loadTemplate = async () => {
         if (DATA.status) {
             // Se agrega el encabezado de la página web antes del contenido principal.
             MAIN.insertAdjacentHTML('beforebegin', `
-                        <nav class="navbar navbar-dark border-bottom border-secondary fixed-top">
-            <div class="container-fluid">
-                <a class="navbar-brand fw-bold d-flex align-items-center" href="inicio.html">
-                    <img src="../../resources/img/icons/icon.jpg" alt="" height="50px" class="d-inline-block align-text-top">
-                    Quiropractica Especifica
-                </a>
-                <button class="navbar-toggler rounded-5" type="button" data-bs-toggle="offcanvas"
-                    data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1" id="offcanvasNavbar"
-                    aria-labelledby="offcanvasNavbarLabel">
-                    <div class="offcanvas-header">
-                        <a type="button" class="btn-close" data-bs-dismiss="offcanvas"></i></a>
-                    </div>
-                    <div class="offcanvas-body">
-                        <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
-                            <li class="nav-item dropdown text-center">
-                                <a class="nav-link" href="#" data-bs-toggle="dropdown" aria-expanded="false">
-                                    <i class="bi bi-gear-fill"></i> <b>${DATA.username}</b>
-                                </a>
-                                <hr>
-                                <ul class="dropdown-menu dropdown-menu-dark">
-                                    <li><a class="dropdown-item" href="#">Ver perfil</a></li>
-                                    <li>
-                                        <hr class="dropdown-divider">
-                                    </li>
-                                    <li><a class="dropdown-item" href="#" onclick="logOut()"> Cerrar sesion </a></li>
-                                </ul>
-                            </li>
-                            <li class="nav-item ms-4">
-                                <a class="nav-link" aria-current="page" href="#"><i class="bi bi-house-fill me-1"></i> Inicio</a>
-                            </li>
-                            <li class="nav-item ms-4">
-                                <a class="nav-link" href="#"><i class="bi bi-person-circle me-1"></i></i> ADMIN</a>
-                            </li>
-                            <li class="nav-item ms-4">
-                                <a class="nav-link" href="#"><i class="bi bi-lungs-fill me-1"></i> BENEFICIOS</a>
-                            </li>
-                            <li class="nav-item ms-4">
-                                <a class="nav-link" href="#"><i class="bi bi-bookmark-plus-fill me-1"></i> CITAS</a>
-                            </li>
-                            <li class="nav-item ms-4">
-                                <a class="nav-link" href="#"><i class="bi bi-people-fill me-1"></i> CLIENTES</a>
-                            </li>
-                            <li class="nav-item ms-4">
-                                <a class="nav-link" href="#"><i class="bi bi-chat-left-text-fill me-1"></i> COMENTARIOS</a>           
-                            </li>
-                            <li class="nav-item ms-4">
-                                <a class="nav-link" href="empleados.html"><i class="bi bi-person-standing me-1"></i> EMPLEADOS</a>
-                            </li>
-                            <li class="nav-item ms-4">
-                                <a class="nav-link" href="#"><i class="bi bi-images me-1"></i> GALERIA</a>
-                            </li>
-                            <li class="nav-item ms-4">
-                                <a class="nav-link" href="#"><i class="bi bi-clipboard2-pulse-fill me-1"></i> TRATAMIENTOS</a>                       
-                            </li>
-                            <li class="nav-item ms-4">
-                                <a class="nav-link" href="#"><i class="bi bi-question-lg me-1"></i> PREGUNTAS</a>
-                            </li>
-                            <li class="nav-item ms-4">
-                                <a class="nav-link" href="#"><i class="bi bi-file-medical-fill me-1"></i> SERVICIOS</a>
-                            </li>
-                            <li class="nav-item ms-4">
-                                <a class="nav-link" href="#"><i class="bi bi-fast-forward-btn-fill me-1"></i> TESTIMONIOS</a>       
-                            </li>
-                        </ul>
+            <nav class="navbar navbar-dark border-bottom border-secondary fixed-top">
+                <div class="container-fluid">
+                    <a class="navbar-brand fw-bold d-flex align-items-center" href="inicio.html">
+                        <img src="../../resources/img/icons/icon.jpg" alt="" height="50px" class="d-inline-block align-text-top"> Quiropractica Especifica
+                    </a>
+                    <button class="navbar-toggler rounded-5" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" 
+                        aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+                        <div class="offcanvas-header">
+                            <a type="button" class="btn-close" data-bs-dismiss="offcanvas"></i></a>
+                        </div>
+                        <div class="offcanvas-body">
+                            <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                                <li class="nav-item dropdown text-center">
+                                    <a class="nav-link" href="#" data-bs-toggle="dropdown" aria-expanded="false">
+                                        <i class="bi bi-gear-fill"></i> <b>${DATA.username}</b>
+                                    </a>
+                                    <hr>
+                                    <ul class="dropdown-menu dropdown-menu-dark">
+                                        <li>
+                                            <a class="dropdown-item" href="perfil.html">Ver perfil</a>
+                                        </li>
+                                        <li>
+                                            <hr class="dropdown-divider">
+                                        </li>
+                                        <li>
+                                            <a class="dropdown-item" href="#" onclick="logOut()"> Cerrar sesion </a>
+                                        </li>
+                                 </ul>
+                                </li>
+                                <li class="nav-item ms-4">
+                                    <a class="nav-link" aria-current="page" href="inicio.html"><i class="bi bi-house-fill me-1"></i> INICIO</a>
+                                </li>
+                                <li class="nav-item ms-4">
+                                    <a class="nav-link" href="#"><i class="bi bi-person-circle me-1"></i></i> ADMIN</a>
+                                </li>
+                                <li class="nav-item ms-4">
+                                    <a class="nav-link" href="#"><i class="bi bi-lungs-fill me-1"></i> BENEFICIOS</a>
+                                </li>
+                                <li class="nav-item ms-4">
+                                    <a class="nav-link" href="#"><i class="bi bi-bookmark-plus-fill me-1"></i> CITAS</a>
+                                </li>
+                                <li class="nav-item ms-4">
+                                    <a class="nav-link" href="#"><i class="bi bi-people-fill me-1"></i> CLIENTES</a>
+                                </li>
+                                <li class="nav-item ms-4">
+                                    <a class="nav-link" href="#"><i class="bi bi-chat-left-text-fill me-1"></i> COMENTARIOS</a>           
+                                </li>
+                                <li class="nav-item ms-4">
+                                    <a class="nav-link" href="empleados.html"><i class="bi bi-person-standing me-1"></i> EMPLEADOS</a>
+                                </li>
+                                <li class="nav-item ms-4">
+                                    <a class="nav-link" href="#"><i class="bi bi-images me-1"></i> GALERIA</a>
+                                </li>
+                                <li class="nav-item ms-4">
+                                    <a class="nav-link" href="#"><i class="bi bi-clipboard2-pulse-fill me-1"></i> TRATAMIENTOS</a>                       
+                                </li>
+                                <li class="nav-item ms-4">
+                                    <a class="nav-link" href="#"><i class="bi bi-question-lg me-1"></i> PREGUNTAS</a>
+                                </li>
+                                <li class="nav-item ms-4">
+                                    <a class="nav-link" href="#"><i class="bi bi-file-medical-fill me-1"></i> SERVICIOS</a>
+                                </li>
+                                <li class="nav-item ms-4">
+                                    <a class="nav-link" href="#"><i class="bi bi-fast-forward-btn-fill me-1"></i> TESTIMONIOS</a>       
+                                </li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </nav>`);
+            </nav>`);
         } else {
             sweetAlert(3, DATA.error, false, 'index.html');
         }

@@ -39,7 +39,7 @@ class AdministradorData extends AdministradorHandler
         }
     }
 
-    public function setContrasenia($value)
+    public function setContraseña($value)
     {
         if (Validator::validatePassword($value)) {
             $this->contrasenia = password_hash($value, PASSWORD_DEFAULT);

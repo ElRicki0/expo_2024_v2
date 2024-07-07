@@ -75,7 +75,7 @@ class AdministradorData extends AdministradorHandler
     }
 
     // Método setcontrasenia: valida y asigna la contraseña del administrador.
-    public function setcontrasenia($value, $min = 8, $max = 250)
+    public function setcontraseña($value, $min = 8, $max = 250)
     {
         if (!Validator::validatePassword($value)) {
             $this->data_error = 'El formato de la contraseña es incorrecto';
