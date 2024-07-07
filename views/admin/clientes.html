@@ -4,28 +4,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Preguntas</title>
-    <!--Script para ponerle icono a la pagina-->
-    <link rel="icon" href="../../resources/img/icons/icon.jpg">
+    <title>Quiropráctica Específica </title>
     <link rel="stylesheet" href="../../resources/css/boostrap_css.css">
     <link rel="stylesheet" href="../../resources/css/general.css">
     <link rel="stylesheet" href="../../resources/css/bootstrap-icons.min.css">
 </head>
 
 <body>
-    <!-- contenido del header generado automáticamente -->
     <header>
+
     </header>
-    <!-- contenido principal -->
-    <main>
-        <!-- titulo principal -->
-        <h3 id="mainTitle" class="contatdirect display-3"></h3>
+
+    <main class="container">
+
+
+        <!-- Título del contenido principal -->
+        <h3 id="mainTitle" class="display-3"></h3>
         <div class="row">
             <!-- Formulario de búsqueda -->
             <form class="col-sm-12 col-md-6" id="searchForm">
                 <div class="row">
                     <div class="col-6">
-                        <input type="search" class="form-control" name="search" placeholder="Pregunta, Empleado, Contenido" required>
+                        <input type="search" class="form-control" name="search" placeholder="Buscar" required>
                     </div>
                     <div class="col-6">
                         <button type="submit" class="btn btn-success">
@@ -37,37 +37,47 @@
                     </div>
                 </div>
             </form>
-            <div class="col-sm-12 col-md-6 text-end">
-                <!-- Botón para abrir una caja de diálogo al momento de crear un nuevo registro -->
-                <button type="button" class="btn btn-primary" onclick="openCreate()">
-                    <i class="bi bi-plus-square-fill"></i>
-                </button>
-            </div>
-
         </div>
+
         <!-- Tabla para mostrar los registros existentes -->
         <table class="table table-hover table-dark">
             <!-- Cabeza de la tabla para mostrar la cantidad de registros y los títulos de las columnas -->
             <thead>
                 <tr>
-                    <td colspan="5" class="text-white fw-bold mt-3" id="rowsFound"></td>
+                    <td colspan="4" class="text-white  fw-bold mt-3" id="rowsFound"></td>
                 </tr>
                 <tr>
-                    <th>IMAGEN</th>
-                    <th>PREGUNTA</th>
-                    <th>CONTENIDO</th>
-                    <th>EMPLEADO</th>
-                    <th>ACCIONES</th>
+                    <th>COMENTARIO</th>
+                    <th>CLIENTE</th>
+                    <th>SERVICIO<th>
+                    <th>ESTADO</th>
                 </tr>
             </thead>
             <!-- Cuerpo de la tabla para mostrar un registro por fila -->
             <tbody id="tableBody" class="table-group-divider"></tbody>
         </table>
 
+
+        <!-- este es un futuro disenio de las cards del comentarios -->
+
+        <!--Comentarios de servicios-->
+        <!-- 
+        <div class="my-5" id="Comentarios">
+            <div class="card my-4">
+                <div class="card-body">
+                    <h5 class="card-title">Tratamiento de escoliosis</h5>
+                    <p class="card-text">El tratamiento fue increíblemente efectivo. Sentí una mejora notable en mi
+                        postura y reducción del dolor en poco tiempo. El equipo médico fue profesional y atento durante
+                        todo el proceso.</p>
+                    <a href="#" data-bs-toggle="modal" data-bs-target="#ModalInterrogante" class="texto_verde">Eliminar
+                        Comentario</a>
+                </div>
+            </div>
+        </div> -->
         <!-- Componente Modal para guardar un registro -->
         <div class="modal fade" id="saveModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
             aria-labelledby="modalTitle" aria-hidden="true">
-            <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-dialog modal-sm modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h1 class="modal-title fs-5" id="modalTitle"></h1>
@@ -77,27 +87,14 @@
                     <form id="saveForm">
                         <div class="modal-body row g-3">
                             <!-- Campo oculto para asignar el id del registro al momento de modificar -->
-                            <input type="number" class="d-none" id="idPregunta" name="idPregunta">
-                            <div class="col-sm-12 col-md-6">
-                                <label for="imagenPregunta" class="form-label">Imagen</label>
-                                <input id="imagenPregunta" type="file" name="imagenPregunta" class="form-control"
-                                    accept=".png, .jpg">
+                            <input type="number" class="d-none" id="idComentario" name="idComentario">
+                            <div class="d-flex justify-content-center">
+                                <div class="form-check form-switch form-check-reverse text-center">
+                                    <input class="form-check-input" type="checkbox" id="estadoComentario" name="estadoComentario" checked>
+                                    <label class="form-check-label" for="estadoComentario">Estado</label>
+                                </div>
                             </div>
-                            <div class="col-sm-12 col-md-6">
-                                <label for="nombrePregunta" class="form-label">Pregunta</label>
-                                <input id="nombrePregunta" type="text" name="nombrePregunta" class="form-control"
-                                    required>
-                            </div>
-                            <div class="col-sm-12 col-md-6">
-                                <label for="contenidoPregunta" class="form-label">Contenido</label>
-                                <input id="contenidoPregunta" type="text" name="contenidoPregunta" class="form-control"
-                                    required>
-                            </div>
-                            <div class="col-sm-12 col-md-6">
-                                <label for="empleadoPregunta" class="form-label">Empleado</label>
-                                <select id="empleadoPregunta" name="empleadoPregunta" class="form-select" required>
-                                </select>
-                            </div>
+                            
                         </div>
                         <div class="modal-footer">
                             <button type="submit" class="btn btn-primary">Guardar</button>
@@ -106,19 +103,21 @@
                 </div>
             </div>
         </div>
-
     </main>
 
-    <footer></footer>
-    <!-- importaciones de archivos js -->
-    <!-- importaciones de resources  -->
-    <script src="../../resources/js/bootstrap_js.js"></script>
-    <script src="../../resources/js/sweetalert.min.js"></script>
-    <!-- controladores del sitio privado -->
-    <script src="../../controllers/utils/components.js"></script>
-    <script src="../../controllers/utils/admin.js"></script>
-    <script src="../../controllers/admin/preguntas.js"></script>
+    <footer>
 
+    </footer>
+
+    <script src="../../resources/js/bootstrap_js.js"></script>
+    <script type="text/javascript" src="../../resources/js/sweetalert.min.js"></script>
+
+    <!-- llamar al controntrolador del sitio privado-->
+    <script src="../../controllers/utils/components.js"></script>
+    <!-- llamar al controntrolador del los sitios-->
+    <script src="../../controllers/utils/admin.js"></script>
+    <!-- llamar al controntrolador de la pagina-->
+    <script src="../../controllers/admin/comentarios.js"></script>
 </body>
 
 </html>

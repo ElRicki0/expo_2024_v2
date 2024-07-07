@@ -10,6 +10,7 @@ nombre_cliente VARCHAR (50) NOT NULL,
 apellido_cliente VARCHAR (50) NOT NULL,
 dui_cliente VARCHAR (10), 
 correo_cliente VARCHAR (100) NOT NULL,
+contrasenia_cliente VARCHAR(200) not null,
 telefono_cliente VARCHAR (9) NOT NULL, 
 nacimiento_cliente DATE NOT NULL,
 responsable_cliente VARCHAR(50)
@@ -100,5 +101,6 @@ contenido_comentario VARCHAR (250) NOT NULL,
 id_cliente INT ,
 FOREIGN KEY (id_cliente) REFERENCES tb_clientes (id_cliente),
 id_servicio INT ,
-FOREIGN KEY (id_servicio) REFERENCES tb_servicios (id_servicio)
+FOREIGN KEY (id_servicio) REFERENCES tb_servicios (id_servicio),
+ estado_comentario tinyint(1) NOT NULL
 );

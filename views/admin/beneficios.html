@@ -8,7 +8,7 @@
     <!--Script para ponerle icono a la pagina-->
     <link rel="icon" href="../../resources/img/icons/icon.jpg">
     <link rel="stylesheet" href="../../resources/css/boostrap_css.css">
-    <link rel="stylesheet" href="../../resources/css/archive.css">
+    <link rel="stylesheet" href="../../resources/css/general.css">
     <link rel="stylesheet" href="../../resources/css/bootstrap-icons.min.css">
 </head>
 
@@ -19,7 +19,7 @@
     <!-- contenido principal -->
     <main>
         <!-- titulo principal -->
-        <h3 id="mainTitle"></h3>
+        <h3 id="mainTitle" class="contatdirect display-3"></h3>
         <div class="row">
             <!-- Formulario de búsqueda -->
             <form class="col-sm-12 col-md-6" id="searchForm">
@@ -46,11 +46,11 @@
 
         </div>
         <!-- Tabla para mostrar los registros existentes -->
-        <table class="table table-hover">
+        <table class="table table-hover table-dark">
             <!-- Cabeza de la tabla para mostrar la cantidad de registros y los títulos de las columnas -->
             <thead>
                 <tr>
-                    <td colspan="4" id="rowsFound"></td>
+                    <td colspan="4" class="text-white fw-bold mt-3" id="rowsFound"></td>
                 </tr>
                 <tr>
                     <th>TITULO</th>
@@ -60,7 +60,7 @@
                 </tr>
             </thead>
             <!-- Cuerpo de la tabla para mostrar un registro por fila -->
-            <tbody id="tableBody"></tbody>
+            <tbody id="tableBody" class="table-group-divider"></tbody>
         </table>
 
         <!-- Componente Modal para guardar un registro -->
