@@ -6,10 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quiropráctica Específica </title>
     <link rel="stylesheet" href="../../resources/css/boostrap_css.css">
-    <link rel="stylesheet" href="../../resources/css/colores.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="../../resources/css/general.css">
+    <link rel="stylesheet" href="../../resources/css/admin/inicio.css">
+    <link rel="stylesheet" href="../../resources/css/bootstrap-icons.min.css">
 
 </head>
 
@@ -22,187 +21,6 @@
 
         <div class="row justify-content-center">
 
-            <div class="col-sm-12 col-md-6 my-5  text-center">
-                <img src="../../resources/img/admin/usuario_persona.jpg" height="350px" alt=""
-                    style="border-radius: 5%; border: 5px solid navy;">
-
-                <p class="my-2"><button type="button" class="btn btn-primary">Editar datos</button></p>
-            </div>
-
-
-            <div class="col text-center">
-
-                <h1 class="titulo_estilo">Agenda Mensual</h1>
-                <table class="table">
-                    <thead class="table-dark">
-                        <tr>
-                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                                aria-expanded="false">
-                                Marzo
-                            </a>
-
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#">Enero</a></li>
-                                <li><a class="dropdown-item" href="#">Febrero</a></li>
-                                <li><a class="dropdown-item" href="#">Marzo</a></li>
-                                <li><a class="dropdown-item" href="#">Abril</a></li>
-                                <li><a class="dropdown-item" href="#">Mayo</a></li>
-                                <li><a class="dropdown-item" href="#">Junio</a></li>
-                                <li><a class="dropdown-item" href="#">Julio</a></li>
-                                <li><a class="dropdown-item" href="#">Agosto</a></li>
-                                <li><a class="dropdown-item" href="#">Septiembre</a></li>
-                                <li><a class="dropdown-item" href="#">Octubre</a></li>
-                                <li><a class="dropdown-item" href="#">Noviembre</a></li>
-                                <li><a class="dropdown-item" href="#">Diciembre</a></li>
-                                <li>
-                            </ul>
-
-                            <th scope="col">Lunes</th>
-                            <th scope="col">Martes</th>
-                            <th scope="col">Miércoles</th>
-                            <th scope="col">Jueves</th>
-                            <th scope="col">Viernes</th>
-                            <th scope="col">Sábado</th>
-                            <th scope="col">Domingo</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td class="color_fondo">1</td>
-                            <td>2</td>
-                            <td>3</td>
-                            <td class="color_fondo">4</td>
-                            <td>5</td>
-                            <td>6</td>
-                            <td>7</td>
-                        </tr>
-                        <tr class="color_fondo">
-                            <td>8</td>
-                            <td class="color_fondo">9</td>
-                            <td class="color_fondo">10</td>
-                            <td class="color_fondo">11</td>
-                            <td class="color_fondo">12</td>
-                            <td>13</td>
-                            <td class="color_fondo">14</td>
-                        </tr>
-                        <tr>
-                            <td class="color_fondo">15</td>
-                            <td>16</td>
-                            <td class="color_fondo">17</td>
-                            <td>18</td>
-                            <td>19</td>
-                            <td>20</td>
-                            <td class="color_fondo">21</td>
-                        </tr>
-                        <tr>
-                            <td>22</td>
-                            <td class="color_fondo">23</td>
-                            <td>24</td>
-                            <td class="color_fondo">25</td>
-                            <td>26</td>
-                            <td class="color_fondo">27</td>
-                            <td>28</td>
-                        </tr>
-                        <tr>
-                            <td class="color_fondo">29</td>
-                            <td class="color_fondo">30</td>
-                            <td class="color_fondo">31</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-        <!--Graficas de datos generales-->
-        <div class="my-5">
-            <div class="row text-center">
-                <h1 class="display-3">Total de ventas</h1>
-                <div class="col-sm-12 col-md-6">
-                    <canvas id="grafica_1" height="170px"></canvas>
-                </div>
-                <div class="col-sm-12 col-md-6">
-                    <canvas id="grafica_2" width="170px"></canvas>
-
-                </div>
-            </div>
-        </div>
-
-        <div class="container">
-            <div class="row justify-content-center ">
-
-                <div class="col-sm-12 col-md-6 col-lg-4 my-5 ">
-                    <div class="card fondo_oscuro" style="width: 18rem;">
-                        <img src="../../resources/img/admin/agenda_imagen.jpg" height="200px" class="card-img-top"
-                            alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title texto_claro">Ver agenda</h5>
-                            <a href="#" class="btn btn-primary">Ir a agenda</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-sm-12 col-md-6 col-lg-4 my-5 ">
-                    <div class="card fondo_oscuro" style="width: 18rem;">
-                        <img src="../../resources/img/admin/citio_publico.jpg" height="200px" class="card-img-top"
-                            alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title texto_claro">Editar Sitio publico</h5>
-                            <div class="dropdown ">
-                                <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown"
-                                    aria-expanded="false">
-                                    seleccionar parte
-                                </button>
-                                <ul class="dropdown-menu dropdown-menu-dark">
-                                    <li><a class="dropdown-item active"
-                                            href="../admin/pagina_principal.html#servicio_pt">Servicios</a></li>
-                                    <li><a class="dropdown-item"
-                                            href="../admin/pagina_principal.html#preguntas_pt">Preguntas
-                                            frecuentes</a></li>
-                                    <li><a class="dropdown-item"
-                                            href="../admin/pagina_principal.html#contacto_pt">Contactos</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-sm-12 col-md-6 col-lg-4 my-5 ">
-                    <div class="card fondo_oscuro" style="width: 18rem;">
-                        <img src="../../resources/img/admin/estadisticas.png" height="200px" class="card-img-top"
-                            alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title texto_claro">Estadísticas Generales</h5>
-                            <a href="../admin/datos.html" class="btn btn-primary">Ver estadísticas </a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-sm-12 col-md-6 col-lg-4 my-5 ">
-                    <div class="card fondo_oscuro" style="width: 18rem;">
-                        <img src="../../../resources/img/admin/equipo.png" height="200px" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title  texto_claro">Administrar empleados</h5>
-                            <div class="dropdown ">
-                                <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown"
-                                    aria-expanded="false">
-                                    Editar
-                                </button>
-                                <ul class="dropdown-menu dropdown-menu-dark">
-                                    <li><a class="dropdown-item active"
-                                            href="../admin/empleado_admin.html">Empleados</a></li>
-                                    <li><a class="dropdown-item" href="../admin/usuarios.html">Usuarios
-                                            frecuentes</a></li>
-                                    <li><a class="dropdown-item" href="../admin/niveles_usuario.html">Niveles
-                                            usuarios</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </div>
     </main>
 
@@ -212,9 +30,15 @@
 
     </footer>
 
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.2/dist/chart.umd.min.js"></script>
     <script src="../../resources/js/bootstrap_js.js"></script>
+    <script type="text/javascript" src="../../resources/js/sweetalert.min.js"></script>
+
+    <!-- llamar al controntrolador del sitio privado-->
     <script src="../../controllers/utils/components.js"></script>
+    <!-- llamar al controntrolador del los sitios-->
+    <script src="../../controllers/utils/admin.js"></script>
+
+    <script type="module" src="../../controllers/admin/inicio.js"></script>
 </body>
 
 
