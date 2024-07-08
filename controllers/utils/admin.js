@@ -27,7 +27,7 @@ const loadTemplate = async () => {
         <header>
         <nav class="navbar navbar-dark border-bottom border-secondary fixed-top">
             <div class="container-fluid">
-                <a class="navbar-brand fw-bold d-flex align-items-center" href="#">
+                <a class="navbar-brand fw-bold d-flex align-items-center" href="inicio.html">
                     <img src="../../resources/img/icons/icon.jpg" alt="" height="50px"
                         class="d-inline-block align-text-top">
                     Quiropractica Especifica
