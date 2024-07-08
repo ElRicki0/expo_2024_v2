@@ -38,7 +38,7 @@ require_once('../../helpers/database.php');
         return Database::getRow($sql, $params);
     }
 
-    public function updateRowEstado()
+    public function updateRow()
     {
         $sql = 'UPDATE tb_citas
                 SET estado_cita = ?
@@ -46,4 +46,12 @@ require_once('../../helpers/database.php');
         $params = array($this->estado, $this->id);
         return Database::executeRow($sql, $params);
     }
+     // Método deleteRow: elimina un empleado de la base de datos según su ID.
+     public function deleteRow()
+     {
+         $sql = 'DELETE FROM tb_citas
+                 WHERE id_cita = ?';
+         $params = array($this->id);
+         return Database::executeRow($sql, $params);
+     }
  }

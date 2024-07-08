@@ -28,6 +28,16 @@ class CitaData extends CitaHandler{
              return false;
          }
      }
+     public function setFecha($value)
+     {
+         if (Validator::validateDate($value)) {
+             $this->fecha = $value;
+             return true;
+         } else {
+             $this->data_error = 'La fecha de la cita es incorrecta';
+             return false;
+         }
+     }
 
      public function setEstado($value)
      {
@@ -36,6 +46,17 @@ class CitaData extends CitaHandler{
              return true;
          } else {
              $this->data_error = 'Estado incorrecto';
+             return false;
+         }
+     }
+     
+     public function setSecciones($value)
+     {
+         if (Validator::validateNaturalNumber($value)) {
+             $this->seciones = $value;
+             return true;
+         } else {
+             $this->data_error = 'Seciones Incorrectas';
              return false;
          }
      }

@@ -1,5 +1,5 @@
 // Constante para completar la ruta de la API.
-const EMPLEADO_API = 'services/admin/empleado.php';
+const CITA_API = 'services/admin/cita.php';
 // Constante para establecer el formulario de buscar.
 const SEARCH_FORM = document.getElementById('searchForm');
 // Constantes para establecer los elementos de la tabla.
@@ -13,7 +13,7 @@ const SAVE_FORM = document.getElementById('saveForm'),
     ID_CITA = document.getElementById('id_cita'),
     FECHA_CITA = document.getElementById('fecha_cita'),
     ESTADO_CITA = document.getElementById('estado_cita'),
-    SECIONES_CITA = document.getElementById('seciones_cita')
+    NUMERO_SECIONES = document.getElementById('numero_seciones')
 
 // Método del evento para cuando el documento ha cargado.
 document.addEventListener('DOMContentLoaded', () => {
@@ -38,11 +38,11 @@ SAVE_FORM.addEventListener('submit', async (event) => {
     // Se evita recargar la página web después de enviar el formulario.
     event.preventDefault();
     // Se verifica la acción a realizar.
-    (ID_EMPLEADO.value) ? action = 'updateRow' : action = 'createRow';
+    (ID_CITA.value) ? action = 'updateRow' : action = 'createRow';
     // Constante tipo objeto con los datos del formulario.
     const FORM = new FormData(SAVE_FORM);
     // Petición para guardar los datos del formulario.
-    const DATA = await fetchData(EMPLEADO_API, action, FORM);
+    const DATA = await fetchData(CITA_API, action, FORM);
     // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
     if (DATA.status) {
         // Se cierra la caja de diálogo.
@@ -68,13 +68,13 @@ const fillTable = async (form = null) => {
     // Se verifica la acción a realizar.
     (form) ? action = 'searchRows' : action = 'readAll';
     // Petición para obtener los registros disponibles.
-    const DATA = await fetchData(EMPLEADO_API, action, form);
+    const DATA = await fetchData(CITA_API, action, form);
     // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
     if (DATA.status) {
         // Se recorre el conjunto de registros fila por fila.
         DATA.dataset.forEach(row => {
             // Se establece un icono para el estado del empleado.
-            (row.estado_empleado) ? icon = 'bi bi-person-check-fill' : icon = 'bi bi-person-x-fill';
+            (row.estado_cita) ? icon = 'bi bi-person-check-fill' : icon = 'bi bi-person-x-fill';
             // Se crean y concatenan las filas de la tabla con los datos de cada registro.
             TABLE_BODY.innerHTML += `
             <tr>
@@ -83,6 +83,7 @@ const fillTable = async (form = null) => {
                 <td>${row.seciones_cita}</td>
                 <td><i class="${icon}"></i></td>
                 <td>
+                <button class="btn btn-danger"><i class="bi bi-trash3-fill" onclick="openDelete(${row.id_cita})"></i></button>
                 <button class="btn btn-primary"><i class="bi bi-pen-fill" onclick="openUpdate(${row.id_cita})"></i></button>
             </td>
         </tr>
@@ -103,7 +104,7 @@ const fillTable = async (form = null) => {
 const openUpdate = async (id) => {
     // Se define un objeto con los datos del registro seleccionado.
     const FORM = new FormData();
-    FORM.append('idCita', id);
+    FORM.append('id_cita', id);
     // Petición para obtener los datos del registro solicitado.
     const DATA = await fetchData(CLIENTE_API, 'readOne', FORM);
     // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
@@ -114,8 +115,10 @@ const openUpdate = async (id) => {
         // Se prepara el formulario.
         SAVE_FORM.reset();
         const ROW = DATA.dataset;
-        ID_CLIENTE.value = ROW.id_cliente;
-        ESTADO_CLIENTE.checked = ROW.estado_cliente;
+        ID_CITA.value = ROW.id_cita;
+        FECHA_CITA.checked = ROW.fecha_cita;
+        ESTADO_CITA.checked = ROW.estado_cita;
+        SECIONES_CITA.checked = ROW.seciones_cita;
     } else {
         sweetAlert(2, DATA.error, false);
     }
@@ -125,7 +128,7 @@ const openUpdate = async (id) => {
 *   Función asíncrona para eliminar un registro.
 *   Parámetros: id (identificador del registro seleccionado).
 *   Retorno: ninguno.
-
+*/
 
 const openDelete = async (id) => {
     // Llamada a la función para mostrar un mensaje de confirmación, capturando la respuesta en una constante.
@@ -136,7 +139,7 @@ const openDelete = async (id) => {
         const FORM = new FormData();
         FORM.append('id_cita', id);
         // Petición para eliminar el registro seleccionado.
-        const DATA = await fetchData(EMPLEADO_API, 'deleteRow', FORM);
+        const DATA = await fetchData(CITA_API, 'deleteRow', FORM);
         // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
         if (DATA.status) {
             // Se muestra un mensaje de éxito.
@@ -148,4 +151,3 @@ const openDelete = async (id) => {
         }
     }
 }
-*/
