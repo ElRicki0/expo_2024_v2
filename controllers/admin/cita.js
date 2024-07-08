@@ -83,7 +83,6 @@ const fillTable = async (form = null) => {
                 <td>${row.seciones_cita}</td>
                 <td><i class="${icon}"></i></td>
                 <td>
-                <button class="btn btn-danger"><i class="bi bi-trash3-fill" onclick="openDelete(${row.id_cita})"></i></button>
                 <button class="btn btn-primary"><i class="bi bi-pen-fill" onclick="openUpdate(${row.id_cita})"></i></button>
             </td>
         </tr>
@@ -126,7 +125,7 @@ const openUpdate = async (id) => {
 *   Función asíncrona para eliminar un registro.
 *   Parámetros: id (identificador del registro seleccionado).
 *   Retorno: ninguno.
-*/
+
 
 const openDelete = async (id) => {
     // Llamada a la función para mostrar un mensaje de confirmación, capturando la respuesta en una constante.
@@ -149,3 +148,4 @@ const openDelete = async (id) => {
         }
     }
 }
+*/
