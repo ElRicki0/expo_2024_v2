@@ -78,9 +78,39 @@
                     </div>
                 </div>
             </div>
-
             
         </div>
+
+         <!-- Componente Modal para guardar un registro -->
+         <div class="modal fade" id="saveModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+         aria-labelledby="modalTitle" aria-hidden="true">
+         <div class="modal-dialog modal-sm modal-dialog-centered">
+             <div class="modal-content">
+                 <div class="modal-header">
+                     <h1 class="modal-title fs-5" id="modalTitle"></h1>
+                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                 </div>
+                 <!-- Formulario para crear o actualizar un registro -->
+                 <form id="saveForm">
+                     <div class="modal-body row g-3">
+                         <!-- Campo oculto para asignar el id del registro al momento de modificar -->
+                         <input type="number" class="d-none" id="idCita" name="idCita">
+                         <div class="d-flex justify-content-center">
+                             <div class="form-check form-switch form-check-reverse text-center">
+                                 <input class="form-check-input" type="checkbox" id="estadoCliente"
+                                     name="estadoCliente" checked>
+                                 <label class="form-check-label" for="estadoCliente">Estado</label>
+                             </div>
+                         </div>
+
+                     </div>
+                     <div class="modal-footer">
+                         <button type="submit" class="btn btn-primary">Guardar</button>
+                     </div>
+                 </form>
+             </div>
+         </div>
+     </div>
     </main>
 
     <!-- Librerias -->

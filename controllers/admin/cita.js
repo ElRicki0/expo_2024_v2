@@ -5,6 +5,9 @@ const SEARCH_FORM = document.getElementById('searchForm');
 // Constantes para establecer los elementos de la tabla.
 const TABLE_BODY = document.getElementById('tableBody'),
     ROWS_FOUND = document.getElementById('rowsFound');
+    // Constantes para establecer los elementos del componente Modal.
+const SAVE_MODAL = new bootstrap.Modal('#saveModal'),
+MODAL_TITLE = document.getElementById('modalTitle');
 // Constantes para establecer los elementos del formulario de guardar.
 const SAVE_FORM = document.getElementById('saveForm'),
     ID_CITA = document.getElementById('id_cita'),
@@ -93,3 +96,56 @@ const fillTable = async (form = null) => {
     }
 }
 
+/*
+*   Función asíncrona para preparar el formulario al momento de actualizar un registro.
+*   Parámetros: id (identificador del registro seleccionado).
+*   Retorno: ninguno.
+*/
+const openUpdate = async (id) => {
+    // Se define un objeto con los datos del registro seleccionado.
+    const FORM = new FormData();
+    FORM.append('idCita', id);
+    // Petición para obtener los datos del registro solicitado.
+    const DATA = await fetchData(CLIENTE_API, 'readOne', FORM);
+    // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+    if (DATA.status) {
+        // Se muestra la caja de diálogo con su título.
+        SAVE_MODAL.show();
+        MODAL_TITLE.textContent = 'Actualizar Cita';
+        // Se prepara el formulario.
+        SAVE_FORM.reset();
+        const ROW = DATA.dataset;
+        ID_CLIENTE.value = ROW.id_cliente;
+        ESTADO_CLIENTE.checked = ROW.estado_cliente;
+    } else {
+        sweetAlert(2, DATA.error, false);
+    }
+}
+
+/*
+*   Función asíncrona para eliminar un registro.
+*   Parámetros: id (identificador del registro seleccionado).
+*   Retorno: ninguno.
+*/
+
+const openDelete = async (id) => {
+    // Llamada a la función para mostrar un mensaje de confirmación, capturando la respuesta en una constante.
+    const RESPONSE = await confirmAction('¿Desea eliminar la cita de forma permanente?');
+    // Se verifica la respuesta del mensaje.
+    if (RESPONSE) {
+        // Se define una constante tipo objeto con los datos del registro seleccionado.
+        const FORM = new FormData();
+        FORM.append('id_cita', id);
+        // Petición para eliminar el registro seleccionado.
+        const DATA = await fetchData(EMPLEADO_API, 'deleteRow', FORM);
+        // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+        if (DATA.status) {
+            // Se muestra un mensaje de éxito.
+            await sweetAlert(1, DATA.message, true);
+            // Se carga nuevamente la tabla para visualizar los cambios.
+            fillTable();
+        } else {
+            sweetAlert(2, DATA.error, false);
+        }
+    }
+}
