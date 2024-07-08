@@ -81,7 +81,7 @@ const loadTemplate = async () => {
                                 <a class="nav-link" href="empleados.html"><i class="bi bi-people"></i> Empleados</a>
                             </li>
                             <li class="nav-item ms-4">
-                                <a class="nav-link" href="#"><i class="bi bi-images me-1"></i> Galeria</a>
+                                <a class="nav-link" href="../../views/admin/imagenes.html"><i class="bi bi-images me-1"></i> Galeria</a>
                             </li>
                             <li class="nav-item ms-4">
                                 <a class="nav-link" href="#"><i class="bi bi-clipboard2-pulse-fill me-1"></i>

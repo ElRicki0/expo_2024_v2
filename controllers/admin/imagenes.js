@@ -133,6 +133,7 @@ const openUpdate = async (id) => {
         const ROW = DATA.dataset;
         ID_FOTO.value = ROW.id_foto;
         NOMBRE_FOTO.value = ROW.nombre_foto;
+        // FOTO.value = ROW.foto;
     } else {
         sweetAlert(2, DATA.error, false);
     }
