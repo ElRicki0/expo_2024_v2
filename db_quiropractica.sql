@@ -46,7 +46,8 @@ FOREIGN KEY (id_empleado) REFERENCES tb_empleado (id_empleado)
  
 CREATE TABLE tb_fotos (
 id_foto INT PRIMARY KEY AUTO_INCREMENT NOT NULL, 
-imagen VARCHAR (250) NOT NULL
+nombre_foto VARCHAR (100) not null,
+foto VARCHAR (250) NOT NULL
 );
  
 CREATE TABLE tb_servicios(
