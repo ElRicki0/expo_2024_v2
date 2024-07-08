@@ -19,7 +19,7 @@
 
 
         <!-- Título del contenido principal -->
-        <h3 id="mainTitle" class="display-3"></h3>
+        <h3 id="mainTitle" class="contatdirect display-3"></h3>
         <div class="row">
             <!-- Formulario de búsqueda -->
             <form class="col-sm-12 col-md-6" id="searchForm">
@@ -44,13 +44,17 @@
             <!-- Cabeza de la tabla para mostrar la cantidad de registros y los títulos de las columnas -->
             <thead>
                 <tr>
-                    <td colspan="4" class="text-white  fw-bold mt-3" id="rowsFound"></td>
+                    <td colspan="8" class="text-white  fw-bold mt-3" id="rowsFound"></td>
                 </tr>
                 <tr>
-                    <th>COMENTARIO</th>
-                    <th>CLIENTE</th>
-                    <th>SERVICIO<th>
+                    <th>NOMBRE</th>
+                    <th>APELLIDO</th>
+                    <th>DUI</th>
+                    <th>CORREO</th>
+                    <th>TELÉFONO</th>
+                    <th>NACIMIENTO</th>
                     <th>ESTADO</th>
+                    <th>ACCIONES</th>
                 </tr>
             </thead>
             <!-- Cuerpo de la tabla para mostrar un registro por fila -->
@@ -87,11 +91,11 @@
                     <form id="saveForm">
                         <div class="modal-body row g-3">
                             <!-- Campo oculto para asignar el id del registro al momento de modificar -->
-                            <input type="number" class="d-none" id="idComentario" name="idComentario">
+                            <input type="number" class="d-none" id="idCliente" name="idCliente">
                             <div class="d-flex justify-content-center">
                                 <div class="form-check form-switch form-check-reverse text-center">
-                                    <input class="form-check-input" type="checkbox" id="estadoComentario" name="estadoComentario" checked>
-                                    <label class="form-check-label" for="estadoComentario">Estado</label>
+                                    <input class="form-check-input" type="checkbox" id="estadoCliente" name="estadoCliente" checked>
+                                    <label class="form-check-label" for="estadoCliente">Estado</label>
                                 </div>
                             </div>
                             
@@ -117,7 +121,7 @@
     <!-- llamar al controntrolador del los sitios-->
     <script src="../../controllers/utils/admin.js"></script>
     <!-- llamar al controntrolador de la pagina-->
-    <script src="../../controllers/admin/comentarios.js"></script>
+    <script src="../../controllers/admin/cliente.js"></script>
 </body>
 
 </html>

@@ -12,8 +12,8 @@ dui_cliente VARCHAR (10),
 correo_cliente VARCHAR (100) NOT NULL,
 contrasenia_cliente VARCHAR(200) not null,
 telefono_cliente VARCHAR (9) NOT NULL, 
-nacimiento_cliente DATE NOT NULL,
-responsable_cliente VARCHAR(50)
+nacimiento_cliente DATE NOT NULL, 
+estado_cliente tinyint(1) NOT NULL
 ); 
 
 CREATE TABLE tb_testimonios(

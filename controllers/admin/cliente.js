@@ -1,5 +1,5 @@
 // Constantes para completar las rutas de la API.
-const COMENTARIO_API = 'services/admin/comentario.php';
+const CLIENTE_API = 'services/admin/cliente.php';
 // Constante para establecer el formulario de buscar.
 const SEARCH_FORM = document.getElementById('searchForm');
 // Constantes para establecer el contenido de la tabla.
@@ -8,17 +8,17 @@ const TABLE_BODY = document.getElementById('tableBody'),
 // Constantes para establecer los elementos del componente Modal.
 const SAVE_MODAL = new bootstrap.Modal('#saveModal'),
     MODAL_TITLE = document.getElementById('modalTitle');
-// Constantes para establecer los elementos del formulario de guardar.
+    // Constantes para establecer los elementos del formulario de guardar.
 const SAVE_FORM = document.getElementById('saveForm'),
-    ID_COMENTARIO = document.getElementById('idComentario'),
-    ESTADO_COMENTARIO = document.getElementById('estadoComentario');
+ID_CLIENTE = document.getElementById('idCliente'),
+ESTADO_CLIENTE = document.getElementById('estadoCliente');
 
 // Método del evento para cuando el documento ha cargado.
 document.addEventListener('DOMContentLoaded', () => {
     // Llamada a la función para mostrar el encabezado y pie del documento.
     loadTemplate();
     // Se establece el título del contenido principal.
-    MAIN_TITLE.textContent = 'Gestionar comentarios';
+    MAIN_TITLE.textContent = 'Gestionar clientes';
     // Llamada a la función para llenar la tabla con los registros existentes.
     fillTable();
 });
@@ -41,7 +41,7 @@ SAVE_FORM.addEventListener('submit', async (event) => {
     // Constante tipo objeto con los datos del formulario.
     const FORM = new FormData(SAVE_FORM);
     // Petición para guardar los datos del formulario.
-    const DATA = await fetchData(COMENTARIO_API, 'updateRowEstado', FORM);
+    const DATA = await fetchData(CLIENTE_API, 'updateRowEstado', FORM);
     // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
     if (DATA.status) {
         // Se cierra la caja de diálogo.
@@ -55,7 +55,6 @@ SAVE_FORM.addEventListener('submit', async (event) => {
     }
 });
 
-
 /*
 *   Función asíncrona para llenar la tabla con los registros disponibles.
 *   Parámetros: form (objeto opcional con los datos de búsqueda).
@@ -68,22 +67,25 @@ const fillTable = async (form = null) => {
     // Se verifica la acción a realizar.
     (form) ? action = 'searchRows' : action = 'readAll';
     // Petición para obtener los registros disponibles.
-    const DATA = await fetchData(COMENTARIO_API, action, form);
+    const DATA = await fetchData(CLIENTE_API, action, form);
     // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
     if (DATA.status) {
         // Se recorre el conjunto de registros (dataset) fila por fila a través del objeto row.
         DATA.dataset.forEach(row => {
             // Se establece un icono para el estado del producto.
-            (row.estado_comentario) ? icon = 'bi bi-eye-fill' : icon = 'bi bi-eye-slash-fill';
+            (row.estado_cliente) ? icon = 'bi bi-eye-fill' : icon = 'bi bi-eye-slash-fill';
             // Se crean y concatenan las filas de la tabla con los datos de cada registro.
             TABLE_BODY.innerHTML += `
                 <tr>
-                    <td>${row.contenido_comentario}</td>
                     <td>${row.nombre_cliente}</td>
-                    <td>${row.tipo_servicio}</td>
+                    <td>${row.apellido_cliente}</td>
+                    <td>${row.dui_cliente}</td>
+                    <td>${row.correo_cliente}</td>
+                    <td>${row.telefono_cliente}</td>
+                    <td>${row.nacimiento_cliente}</td>
                     <td><i class="${icon}"></i></td>
                     <td>
-                        <button type="button" class="btn btn-info" onclick="openUpdate(${row.id_comentario})">
+                        <button type="button" class="btn btn-info" onclick="openUpdate(${row.id_cliente})">
                             <i class="bi bi-pencil-fill"></i>
                         </button>
                     </td>
@@ -97,6 +99,7 @@ const fillTable = async (form = null) => {
     }
 }
 
+
 /*
 *   Función asíncrona para preparar el formulario al momento de actualizar un registro.
 *   Parámetros: id (identificador del registro seleccionado).
@@ -105,19 +108,19 @@ const fillTable = async (form = null) => {
 const openUpdate = async (id) => {
     // Se define un objeto con los datos del registro seleccionado.
     const FORM = new FormData();
-    FORM.append('idComentario', id);
+    FORM.append('idCliente', id);
     // Petición para obtener los datos del registro solicitado.
-    const DATA = await fetchData(COMENTARIO_API, 'readOne', FORM);
+    const DATA = await fetchData(CLIENTE_API, 'readOne', FORM);
     // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
     if (DATA.status) {
         // Se muestra la caja de diálogo con su título.
         SAVE_MODAL.show();
-        MODAL_TITLE.textContent = 'Actualizar comentario';
+        MODAL_TITLE.textContent = 'Actualizar cliente';
         // Se prepara el formulario.
         SAVE_FORM.reset();
         const ROW = DATA.dataset;
-        ID_COMENTARIO.value = ROW.id_comentario;
-        ESTADO_COMENTARIO.checked = ROW.estado_comentario;
+        ID_CLIENTE.value = ROW.id_cliente;
+        ESTADO_CLIENTE.checked = ROW.estado_cliente;
     } else {
         sweetAlert(2, DATA.error, false);
     }
