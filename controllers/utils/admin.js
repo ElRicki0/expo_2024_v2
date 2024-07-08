@@ -5,17 +5,10 @@
 
 // Constante para completar la ruta de la API.
 const USER_API = 'services/admin/administrador.php';
-// Constante para establecer el elemento del contenido principal.
-const MAIN = document.querySelector('main');
-MAIN.style.paddingTop = '75px';
-MAIN.style.paddingBottom = '100px';
-MAIN.classList.add('container');
 // Se establece el título de la página web.
 document.querySelector('title').textContent = 'Quiropráctica Especifica';
-// Constante para establecer el elemento del título principal.
-const MAIN_TITLE = document.getElementById('mainTitle');
-MAIN_TITLE.classList.add('text-center', 'py-3');
-
+// Constante para establecer el elemento del contenido principal.
+const MAIN = document.querySelector('main');
 /* Función asíncrona para cargar el encabezado y pie del documento.
 * Parámetros: ninguno.
 * Retorno: ninguno.
@@ -56,7 +49,7 @@ const loadTemplate = async () => {
                                 </a>
                                 <hr>
                                 <ul class="dropdown-menu dropdown-menu-dark">
-                                    <li><a class="dropdown-item" href="#">Ver perfil</a></li>
+                                    <li><a class="dropdown-item" href="perfil.html">Ver perfil</a></li>
                                     <li>
                                         <hr class="dropdown-divider">
                                     </li>
@@ -85,7 +78,7 @@ const loadTemplate = async () => {
                                     Comentarios</a>
                             </li>
                             <li class="nav-item ms-4">
-                                <a class="nav-link" href="#"><i class="bi bi-people"></i> Empleados</a>
+                                <a class="nav-link" href="empleados.html"><i class="bi bi-people"></i> Empleados</a>
                             </li>
                             <li class="nav-item ms-4">
                                 <a class="nav-link" href="#"><i class="bi bi-images me-1"></i> Galeria</a>
@@ -95,7 +88,7 @@ const loadTemplate = async () => {
                                     Tratamientos</a>
                             </li>
                             <li class="nav-item ms-4">
-                                <a class="nav-link" href="../../views/admin/preguntas.html"><i class="bi bi-question-lg me-1"></i> Preguntas</a>
+                                <a class="nav-link" href="preguntas.html"><i class="bi bi-question-lg me-1"></i> Preguntas</a>
                             </li>
                             <li class="nav-item ms-4">
                                 <a class="nav-link" href="#"><i class="bi bi-file-medical-fill me-1"></i> Servicios</a>
