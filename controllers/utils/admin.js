@@ -62,19 +62,19 @@ const loadTemplate = async () => {
                                     Inicio</a>
                             </li>
                             <li class="nav-item ms-4">
-                                <a class="nav-link" href="#"><i class="bi bi-person-circle me-1"></i></i> Admin</a>
+                                <a class="nav-link" href="administradores.html"><i class="bi bi-person-circle me-1"></i></i> Admin</a>
                             </li>
                             <li class="nav-item ms-4">
-                                <a class="nav-link" href="../../views/admin/beneficios.html"><i class="bi bi-lungs-fill me-1"></i> Beneficios</a>
+                                <a class="nav-link" href="beneficios.html"><i class="bi bi-lungs-fill me-1"></i> Beneficios</a>
                             </li>
                             <li class="nav-item ms-4">
                                 <a class="nav-link" href="#"><i class="bi bi-bookmark-plus-fill me-1"></i> Citas</a>
                             </li>
                             <li class="nav-item ms-4">
-                                <a class="nav-link" href="../../views/admin/clientes.html"><i class="bi bi-people-fill me-1"></i> Clientes</a>
+                                <a class="nav-link" href="clientes.html"><i class="bi bi-people-fill me-1"></i> Clientes</a>
                             </li>
                             <li class="nav-item ms-4">
-                                <a class="nav-link" href="../../views/admin/comentarios.html"><i class="bi bi-chat-left-text-fill me-1"></i>
+                                <a class="nav-link" href="comentarios.html"><i class="bi bi-chat-left-text-fill me-1"></i>
                                     Comentarios</a>
                             </li>
                             <li class="nav-item ms-4">
