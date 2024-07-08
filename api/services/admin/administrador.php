@@ -114,9 +114,7 @@ if (isset($_GET['action'])) {
                 $_POST = Validator::validateForm($_POST);
                 if (
                     !$administrador->setCorreo($_POST['correo_admin']) or
-                    !$administrador->setContraseña($_POST['contra_admin']) or
-                    !$administrador->setNombre($_POST['nombre_admin']) or
-                    !$administrador->setEmpleado($_POST['id_empleado'])
+                    !$administrador->setNombre($_POST['nombre_admin'])
                 ) {
                     // Si los datos no son válidos, se registra un error.
                     $result['error'] = $administrador->getDataError();
@@ -172,7 +170,7 @@ if (isset($_GET['action'])) {
         switch ($_GET['action']) {
             case 'readUsers':
                 // Lectura de todos los administradores (puede ser una acción pública).
-                if ($administrador->readUsers()) {
+                if ($administrador->readAll()) {
                     // Si hay administradores registrados, se devuelve un mensaje de autenticación requerida.
                     $result['status'] = 1;
                     $result['message'] = 'Debe autenticarse para ingresar';

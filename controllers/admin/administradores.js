@@ -112,6 +112,7 @@ const openCreate = () => {
     SAVE_FORM.reset();
     CONTRASEÑA_TITLE.style.display = "block";
     CONTRASEÑA_ADMINISTRADOR.style.display = "block";
+    CONTRASEÑA_ADMINISTRADOR.disabled = false;
     fillSelect(EMPLEADO_API, 'readAll', 'nombre_empleado');
 }
 
@@ -140,6 +141,7 @@ const openUpdate = async (id) => {
         CORREO_ADMINISTRADOR.value = ROW.correo_admin;
         CONTRASEÑA_TITLE.style.display = "none";
         CONTRASEÑA_ADMINISTRADOR.style.display = "none";
+        CONTRASEÑA_ADMINISTRADOR.disabled = true;
     } else {
         sweetAlert(2, DATA.error, false);
     }

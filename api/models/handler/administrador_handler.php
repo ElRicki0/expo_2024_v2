@@ -113,6 +113,16 @@ class AdministradorHandler
         return Database::executeRow($sql, $params);
     }
 
+    // Método updateRow: actualiza los datos de un empleado en la base de datos.
+    public function updateRow()
+    {
+        $sql = 'UPDATE tb_admin
+                SET nombre_admin = ?, correo_admin = ?
+                WHERE id_admin = ?';
+        $params = array($this->nombre, $this->correo, $this->id);
+        return Database::executeRow($sql, $params);
+    }
+    
     // Método para leer todos los administradores registrados.
     public function readAll()
     {
@@ -131,7 +141,7 @@ class AdministradorHandler
                 FROM tb_admin
                 WHERE id_admin = ?';
         $params = array($this->id);
-        return Database::getRows($sql, $params);
+        return Database::getRow($sql, $params);
     }
 
     // Método para leer un empleado.
