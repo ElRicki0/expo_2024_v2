@@ -1,6 +1,6 @@
 <?php
 // Se incluye la clase del modelo.
-require_once('../../models/data/administrador_data.php');
+require_once ('../../models/data/administrador_data.php');
 
 // Se comprueba si existe una acción a realizar, de lo contrario se finaliza el script con un mensaje de error.
 if (isset($_GET['action'])) {
@@ -42,9 +42,9 @@ if (isset($_GET['action'])) {
                 // Validación y creación de un nuevo administrador.
                 $_POST = Validator::validateForm($_POST);
                 if (
-                    !$administrador->setCorreo($_POST['correo_admin2']) ||
-                    !$administrador->setContraseña($_POST['contra_admin2']) ||
-                    !$administrador->setNombre($_POST['nombre_admin2'])
+                    !$administrador->setCorreo($_POST['correo_admin']) or
+                    !$administrador->setContraseña($_POST['contra_admin']) or
+                    !$administrador->setNombre($_POST['nombre_admin'])
                 ) {
                     $result['error'] = $administrador->getDataError();
                 } elseif ($administrador->createRow()) {
@@ -61,7 +61,7 @@ if (isset($_GET['action'])) {
                 if ($result['dataset'] = $administrador->readAll()) {
                     // Si hay registros, se actualiza el estado y mensaje.
                     $result['status'] = 1;
-                    $result['message'] = 'Existen ' . count($result['dataset']) . ' registros';
+                    $result['message'] = 'Existen ' . count($result['dataset']) . ' registro(s)';
                 } else {
                     // Si no hay registros, se registra un error.
                     $result['error'] = 'No existen administradores registrados';
@@ -85,7 +85,7 @@ if (isset($_GET['action'])) {
                 break;
             case 'readOne':
                 // Lectura de un administrador específico por su ID.
-                if (!$administrador->setId($_POST['id_empleado'])) {
+                if (!$administrador->setId($_POST['id_admin'])) {
                     // Si el ID es incorrecto, se registra un error.
                     $result['error'] = 'Administrador incorrecto';
                 } elseif ($result['dataset'] = $administrador->readOne()) {
@@ -96,14 +96,27 @@ if (isset($_GET['action'])) {
                     $result['error'] = 'Administrador inexistente';
                 }
                 break;
+            case 'readEmployed':
+                // Lectura de un empleado específico por su ID.
+                if (!$administrador->setId($_POST['id_admin'])) {
+                    // Si el ID es incorrecto, se registra un error.
+                    $result['error'] = 'Empleado incorrecto';
+                } elseif ($result['dataset'] = $administrador->readOne()) {
+                    // Si se encuentra el administrador, se actualiza el estado.
+                    $result['status'] = 1;
+                } else {
+                    // Si no se encuentra el administrador, se registra un error.
+                    $result['error'] = 'Empleado inexistente';
+                }
+                break;
             case 'updateRow':
                 // Actualización de datos de un administrador.
                 $_POST = Validator::validateForm($_POST);
                 if (
-                    !$administrador->setId($_POST['idAdministrador']) ||
-                    !$administrador->setCorreo($_POST['correo_admin']) ||
-                    !$administrador->setContraseña($_POST['contra_admin']) ||
-                    !$administrador->setNombre($_POST['nombre_admin'])
+                    !$administrador->setCorreo($_POST['correo_admin']) or
+                    !$administrador->setContraseña($_POST['contra_admin']) or
+                    !$administrador->setNombre($_POST['nombre_admin']) or
+                    !$administrador->setEmpleado($_POST['id_empleado'])
                 ) {
                     // Si los datos no son válidos, se registra un error.
                     $result['error'] = $administrador->getDataError();
@@ -118,13 +131,13 @@ if (isset($_GET['action'])) {
                 break;
             case 'deleteRow':
                 // Eliminación de un administrador por su ID.
-                if (!$administrador->setId($_POST['idAdministrador'])) {
+                if (!$administrador->setId($_POST['id_admin'])) {
                     // Si el ID es incorrecto, se registra un error.
                     $result['error'] = $administrador->getDataError();
                 } elseif ($administrador->deleteRow()) {
                     // Si se elimina correctamente, se actualiza el estado y mensaje.
                     $result['status'] = 1;
-                    $result['message'] = 'Adminitrador eliminado correctamente';
+                    $result['message'] = 'Administrador eliminado correctamente';
                 } else {
                     // Si hay un problema al eliminar, se registra un error.
                     $result['error'] = 'Ocurrió un problema al eliminar al administrador';
@@ -159,7 +172,7 @@ if (isset($_GET['action'])) {
         switch ($_GET['action']) {
             case 'readUsers':
                 // Lectura de todos los administradores (puede ser una acción pública).
-                if ($administrador->readAll()) {
+                if ($administrador->readUsers()) {
                     // Si hay administradores registrados, se devuelve un mensaje de autenticación requerida.
                     $result['status'] = 1;
                     $result['message'] = 'Debe autenticarse para ingresar';
@@ -215,8 +228,8 @@ if (isset($_GET['action'])) {
     header('Content-type: application/json; charset=utf-8');
 
     // Se imprime el resultado en formato JSON y se retorna al controlador.
-    print(json_encode($result));
+    print (json_encode($result));
 } else {
     // Si no hay acción definida, se imprime un mensaje indicando que el recurso no está disponible.
-    print(json_encode('Recurso no disponible'));
+    print (json_encode('Recurso no disponible'));
 }
