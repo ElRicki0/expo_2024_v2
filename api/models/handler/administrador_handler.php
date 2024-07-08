@@ -1,6 +1,6 @@
 <?php
 // Se incluye la clase para trabajar con la base de datos.
-require_once('../../helpers/database.php');
+require_once ('../../helpers/database.php');
 
 /*
  *  Clase para manejar el comportamiento de los datos de la tabla administrador.
@@ -41,7 +41,7 @@ class AdministradorHandler
             return false; // Si la contraseña no coincide, retorna falso.
         }
     }
-    
+
     // Método para verificar si la contraseña actual del administrador es correcta.
     public function checkPassword($password)
     {
@@ -69,6 +69,18 @@ class AdministradorHandler
         return Database::executeRow($sql, $params);
     }
 
+    // Método searchRows: busca empleados en la base de datos según un criterio de búsqueda.
+    public function searchRows()
+    {
+        $value = '%' . Validator::getSearchValue() . '%';
+        $sql = 'SELECT id_admin, nombre_admin, correo_admin
+                    FROM tb_admin
+                    WHERE nombre_admin LIKE ?
+                    ORDER BY nombre_admin';
+        $params = array($value);
+        return Database::getRows($sql, $params);
+    }
+
     // Método para leer el perfil del administrador actual.
     public function readProfile()
     {
@@ -94,9 +106,9 @@ class AdministradorHandler
     // Método para crear un nuevo administrador.
     public function createRow()
     {
-        $sql = 'INSERT INTO tb_admin(nombre_admin, contraseña_admin, correo_admin)
-                VALUES(?, ?, ?)';
-        $params = array($this->nombre, $this->contrasenia, $this->correo);
+        $sql = 'INSERT INTO tb_admin(nombre_admin, contraseña_admin, correo_admin, id_empleado)
+                VALUES(?, ?, ?, ?)';
+        $params = array($this->nombre, $this->contrasenia, $this->correo, $this->empleado);
         // Se ejecuta la consulta para insertar un nuevo registro de administrador.
         return Database::executeRow($sql, $params);
     }
@@ -109,5 +121,36 @@ class AdministradorHandler
                 ORDER BY nombre_admin';
         // Se obtienen todos los registros de administradores ordenados por nombre.
         return Database::getRows($sql);
+    }
+
+
+    // Método para leer un administrador.
+    public function readOne()
+    {
+        $sql = 'SELECT id_admin, nombre_admin, correo_admin
+                FROM tb_admin
+                WHERE id_admin = ?';
+        $params = array($this->id);
+        return Database::getRows($sql, $params);
+    }
+
+    // Método para leer un empleado.
+    public function readEmployed()
+    {
+        $sql = 'SELECT A.id_empleado, E.nombre_empleado
+                FROM tb_admin AS A
+                INNER JOIN tb_empleado AS E ON A.id_empleado = E.id_empleado
+                WHERE A.id_admin = ?';
+        $params = array($this->id);
+        return Database::getRows($sql, $params);
+    }
+
+    // Método deleteRow: elimina un empleado de la base de datos según su ID.
+    public function deleteRow()
+    {
+        $sql = 'DELETE FROM tb_admin
+                    WHERE id_admin = ?';
+        $params = array($this->id);
+        return Database::executeRow($sql, $params);
     }
 }

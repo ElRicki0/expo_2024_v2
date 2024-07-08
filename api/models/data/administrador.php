@@ -59,29 +59,26 @@ class AdministradorData extends AdministradorHandler
         }
     }
 
-    // Método setNivel: valida y asigna el nivel del administrador.
-    public function setNivel($value, $min = 2, $max = 250)
+    // Metodo setEmpleado: valida y asigna la relacion del empleado con el administrador 
+    public function setEmpleado($value)
     {
-        if (!Validator::validateAlphabetic($value)) {
-            $this->data_error = 'El formato del nivel es incorrecto';
-            return false;
-        } elseif (Validator::validateLength($value, $min, $max)) {
-            $this->nivel = $value;
+        if (Validator::validateNaturalNumber($value)) {
+            $this->empleado = $value;
             return true;
         } else {
-            $this->data_error = 'El nivel debe tener una longitud entre ' . $min . ' y ' . $max;
+            $this->data_error = 'El identificador del cliente es incorrecto';
             return false;
         }
     }
 
-    // Método setcontrasenia: valida y asigna la contraseña del administrador.
+    // Método setContrasenia: valida y asigna la contraseña del administrador.
     public function setcontraseña($value, $min = 8, $max = 250)
     {
         if (!Validator::validatePassword($value)) {
             $this->data_error = 'El formato de la contraseña es incorrecto';
             return false;
         } elseif (Validator::validateLength($value, $min, $max)) {
-            $this->nivel = $value;
+            $this->contrasenia = $value;
             return true;
         } else {
             $this->data_error = 'La contraseña es menor a 8 carácteres' . $min . ' y ' . $max;
