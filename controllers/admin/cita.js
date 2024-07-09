@@ -1,22 +1,23 @@
 // Constante para completar la ruta de la API.
 const CITA_API = 'services/admin/cita.php';
+const EMPLEADO_API = 'services/admin/empleado.php';
+const SERVICIO_API = 'services/admin/servicio.php';
+const CLIENTE_API = 'services/admin/cliente.php';
 // Constante para establecer el formulario de buscar.
 const SEARCH_FORM = document.getElementById('searchForm');
-// Constantes para establecer los elementos de la tabla.
+// Constantes para establecer el contenido de la tabla.
 const TABLE_BODY = document.getElementById('tableBody'),
     ROWS_FOUND = document.getElementById('rowsFound');
-    // Constantes para establecer los elementos del componente Modal.
-const SAVE_MODAL = new bootstrap.Modal('#modalCita'),
-MODAL_TITLE = document.getElementById('modalTitle');
+// Constantes para establecer los elementos del componente Modal.
+const SAVE_MODAL = new bootstrap.Modal('#saveModal'),
+    MODAL_TITLE = document.getElementById('modalTitle');
 // Constantes para establecer los elementos del formulario de guardar.
 const SAVE_FORM = document.getElementById('saveForm'),
-    ID_CITA = document.getElementById('id_cita'),
-    FECHA_CITA = document.getElementById('fecha_cita'),
-    ESTADO_CITA = document.getElementById('estado_cita'),
-    NUMERO_SECIONES = document.getElementById('numero_seciones')
-    ID_CLIENTE = document.getElementById('id_cliente'),
-    ID_SERVICIO = document.getElementById('id_servicio'),
-    ID_EMPLEADO = document.getElementById('id_empleado')
+    ID_CITA = document.getElementById('idCita'),
+    NOMBRE_CITA = document.getElementById('nombreCita'),
+    FECHA_CITA = document.getElementById('fechaCita'),
+    ESTADO_CITA = document.getElementById('estadoCita'),
+    NUMERO_SECIONES = document.getElementById('sesionesCita');
 
 // Método del evento para cuando el documento ha cargado.
 document.addEventListener('DOMContentLoaded', () => {
@@ -76,18 +77,16 @@ const fillTable = async (form = null) => {
     if (DATA.status) {
         // Se recorre el conjunto de registros fila por fila.
         DATA.dataset.forEach(row => {
-            // Se establece un icono para el estado del empleado.
-            (row.estado_cita) ? icon = 'bi bi-person-check-fill' : icon = 'bi bi-person-x-fill';
             // Se crean y concatenan las filas de la tabla con los datos de cada registro.
             TABLE_BODY.innerHTML += `
             <tr>
+                <td>${row.nombre_cita}</td>
                 <td>${row.fecha_cita}</td>
                 <td>${row.estado_cita}</td>
-                <td>${row.seciones_cita}</td>
-                <td>${row.id_cliente}</td>
-                <td>${row.id_servicio}</td>
-                <td>${row.id_empleado}</td>
-                <td><i class="${icon}"></i></td>
+                <td>${row.numero_seciones}</td>
+                <td>${row.nombre_cliente}</td>
+                <td>${row.tipo_servicio}</td>
+                <td>${row.nombre_empleado}</td>
                 <td>
                 <button class="btn btn-danger"><i class="bi bi-trash3-fill" onclick="openDelete(${row.id_cita})"></i></button>
                 <button class="btn btn-primary"><i class="bi bi-pen-fill" onclick="openUpdate(${row.id_cita})"></i></button>
@@ -113,6 +112,9 @@ const openCreate = () => {
     MODAL_TITLE.textContent = 'AGREGAR CITA';
     // Se prepara el formulario.
     SAVE_FORM.reset();
+    fillSelect(EMPLEADO_API, 'readAll', 'empleadoCita');
+    fillSelect(CLIENTE_API, 'readAll', 'clienteCita');
+    fillSelect(SERVICIO_API, 'readAll', 'servicioCita');
 }
 
 /*
@@ -123,9 +125,9 @@ const openCreate = () => {
 const openUpdate = async (id) => {
     // Se define un objeto con los datos del registro seleccionado.
     const FORM = new FormData();
-    FORM.append('id_cita', id);
+    FORM.append('idCita', id);
     // Petición para obtener los datos del registro solicitado.
-    const DATA = await fetchData(CLIENTE_API, 'readOne', FORM);
+    const DATA = await fetchData(CITA_API, 'readOne', FORM);
     // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
     if (DATA.status) {
         // Se muestra la caja de diálogo con su título.
@@ -135,12 +137,14 @@ const openUpdate = async (id) => {
         SAVE_FORM.reset();
         const ROW = DATA.dataset;
         ID_CITA.value = ROW.id_cita;
+        NOMBRE_CITA.value = ROW.nombre_cita;
         FECHA_CITA.checked = ROW.fecha_cita;
         ESTADO_CITA.checked = ROW.estado_cita;
         NUMERO_SECIONES.checked = ROW.numero_seciones;
-        ID_CLIENTE.checked = ROW.id_cliente;
-        ID_SERVICIO.checked = ROW.id_servicio;
-        ID_EMPLEADO.checked = ROW.id_empleado;
+        fillSelect(EMPLEADO_API, 'readAll', 'empleadoCita', ROW.id_empleado);
+        fillSelect(SERVICIO_API, 'readAll', 'servicioCita', ROW.id_servicio);
+        fillSelect(CLIENTE_API, 'readAll', 'clienteCita', ROW.id_cliente);
+
     } else {
         sweetAlert(2, DATA.error, false);
     }
@@ -159,7 +163,7 @@ const openDelete = async (id) => {
     if (RESPONSE) {
         // Se define una constante tipo objeto con los datos del registro seleccionado.
         const FORM = new FormData();
-        FORM.append('id_cita', id);
+        FORM.append('idCita', id);
         // Petición para eliminar el registro seleccionado.
         const DATA = await fetchData(CITA_API, 'deleteRow', FORM);
         // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.

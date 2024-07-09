@@ -2,15 +2,9 @@
 <html lang="es">
 
 <head>
-
-    <!-- Título del documento -->
-    <title>Quiropractica Especifica - Citas</title>
-
-    <!-- Metadatos de la página web -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <!-- Bootstrap CSS -->
+    <title>Quiropráctica Específica </title>
     <link rel="icon" href="../../resources/img/icons/icon.jpg">
     <link rel="stylesheet" href="../../resources/css/boostrap_css.css">
     <link rel="stylesheet" href="../../resources/css/general.css">
@@ -47,8 +41,8 @@
                                 <i class="bi bi-arrow-counterclockwise"></i>
                             </button>
                             <button type="button" class="btn btn-warning" onclick="openCreate()"><i
-                                class="bi bi-person-fill-add"></i>
-                        </button>
+                                    class="bi bi-person-fill-add"></i>
+                            </button>
                         </div>
                     </div>
                 </form>
@@ -65,15 +59,17 @@
                             <!-- Cabeza de la tabla para mostrar la cantidad de registros y los títulos de las columnas -->
                             <thead>
                                 <tr>
-                                    <p id="rowsFound" class="text-white fw-bold mt-3"></p>
+                                    <td colspan="8" class="text-white  fw-bold mt-3" id="rowsFound"></td>
                                 </tr>
                                 <tr>
+                                    <th scope="col">NOMBRE</th>
+                                    <th scope="col">FECHA</th>
+                                    <th scope="col">ESTADO</th>
+                                    <th scope="col">SESIONES</th>
                                     <th scope="col">CLIENTE</th>
                                     <th scope="col">SERVICIO</th>
-                                    <th scope="col">FECHA</th>
-                                    <th scope="col">SECIONES</th>
-                                    <th scope="col">ESTADO</th>
                                     <th scope="col">EMPLEADO</th>
+                                    <th scope="col">ACCIONES</th>
                                 </tr>
                             </thead>
 
@@ -84,91 +80,81 @@
                     </div>
                 </div>
             </div>
-            
+
         </div>
 
-        <!--MODAL-->
-        <div class="modal fade" id="modalCita" tabindex="-1" aria-labelledby="exampleModalLabel"
-                aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered modal-lg">
-                    <div class="modal-content">
-
-                        <!-- Formulario saveForm -->
-                        <form id="saveForm">
-                            <input type="number" class="d-none" id="id_empleado" name="id_empleado">
-
-                            <!-- Body del modal -->
-                            <div class="modal-body">
-                                <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                    aria-label="Close"></button>
-                                <h1 class="fs-4 fw-bold text-center mb-4" id="modalTitle"> </h1>
-
-                                <!-- Inputs -->
-                                <div class="row p-3">
-                                    <div class="col-12">
-                                        <div class="row">
-                                            <div class="col-6">
-                                                <label class="form-label">Cliente</label>
-                                                <input id="cliente_cita" name="cliente_cita" class="form-control"
-                                                    required>
-                                            </div>
-                                            <div class="col-6">
-                                                <label class="form-label">Servicio</label>
-                                                <input id="Servicio_cita" name="Servicio_cita"
-                                                    class="form-control" required>
-                                            </div>
-                                            <div class="col-6 mt-3">
-                                                    <label class="form-label">Fecha </label>
-                                                    <input id="fecha_cita" name="fecha_cita" type="date"
-                                                        class="form-control" required>
-                                                </div>
-                                        </div>
-
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-12">
-                                            <div class="row">
-                                                <div class="col-6 mt-3">
-                                                    <label class="form-label">Seciones</label>
-                                                    <input id="Seciones_cita" name="Seciones_cita" class="form-control"
-                                                        required>
-                                                </div>
-                                                
-                                            </div>
-                                            <div class="form-check form-switch form-check-reverse">
-                                                <input class="form-check-input" type="checkbox" id="estado_cita"
-                                                    name="estado_cita" checked>
-                                                <label class="form-check-label" for="estado_cita">Estado</label>
-                                            </div>
-                                            <div class="row mt-3">
-                                                <div class="col-6"></div>
-                                                <div class="col-6 text-end">
-                                                    <button type="submit" class="btn btn-primary ps-4 pe-4">
-                                                        <i class="bi bi-person-fill-add me-1"></i> Aceptar
-                                                    </button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    
-                                </div>
-                            </div>
-                        </form>
+        <!-- Componente Modal para guardar un registro -->
+        <div class="modal fade" id="saveModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+            aria-labelledby="modalTitle" aria-hidden="true">
+            <div class="modal-dialog modal-lg modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="modalTitle"></h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
+                    <!-- Formulario para crear o actualizar un registro -->
+                    <form id="saveForm">
+                        <div class="modal-body row g-3">
+                            <!-- Campo oculto para asignar el id del registro al momento de modificar -->
+                            <input type="number" class="d-none" id="idCita" name="idCita">
+                            <div class="col-sm-12 col-md-6">
+                                <label for="nombreCita" class="form-label">Nombre</label>
+                                <input id="nombreCita" type="text" name="nombreCita" class="form-control" required>
+                            </div>
+                            <div class="col-sm-12 col-md-6">
+                                <label for="fechaCita" class="form-label">Fecha</label>
+                                <input id="fechaCita" type="date" name="fechaCita" class="form-control" required>
+                            </div>
+                            <div class="col-sm-12 col-md-6">
+                                <label for="estadoCita" class="form-label">Estado</label>
+                                <select id="estadoCita" name="estadoCita" class="form-select" required>
+                                    <option selected>Seleccione un estado</option>
+                                    <option value="pendiente">pendiente</option>
+                                    <option value="proceso">proceso</option>
+                                    <option value="terminado">terminado</option>
+                                </select>
+                            </div>
+                            <div class="col-sm-12 col-md-6">
+                                <label for="sesionesCita" class="form-label">Cantidad sesiones</label>
+                                <input id="sesionesCita" type="number" name="sesionesCita" min="1" step="1"
+                                    class="form-control" required>
+                            </div>
+                            <div class="col-sm-12 col-md-6">
+                                <label for="clienteCita" class="form-label">Cliente</label>
+                                <select id="clienteCita" name="clienteCita" class="form-select" required>
+                                </select>
+                            </div>
+                            <div class="col-sm-12 col-md-6">
+                                <label for="servicioCita" class="form-label">Servicio</label>
+                                <select id="servicioCita" name="servicioCita" class="form-select" required>
+                                </select>
+                            </div>
+                            <div class="col-sm-12 col-md-6">
+                                <label for="empleadoCita" class="form-label">Empleado</label>
+                                <select id="empleadoCita" name="empleadoCita" class="form-select" required>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-primary">Guardar</button>
+                        </div>
+                    </form>
                 </div>
             </div>
+        </div>
     </main>
 
     <!-- Librerias -->
     <!-- Bootstrap -->
-    <script type="text/javascript" src="../../resources/js/bootstrap.bundle.min.js"> </script>
+    <script src="../../resources/js/bootstrap_js.js"></script>
+    <script src="../../resources/js/sweetalert.min.js"></script>
 
-    <!-- Js -->
-    <script type="text/javascript" src="../../controllers/utils/components.js"></script>
-    <script type="text/javascript" src="../../resources/js/sweetalert.min.js"></script>
-    <script type="text/javascript" src="../../controllers/admin/cita.js"></script>
-    <script type="text/javascript" src="../../controllers/utils/admin.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.2/dist/chart.umd.min.js"></script>
+    <!-- llamar al controntrolador del sitio privado-->
+    <script src="../../controllers/utils/components.js"></script>
+    <!-- llamar al controntrolador del los sitios-->
+    <script src="../../controllers/utils/admin.js"></script>
+    <!-- llamar al controntrolador de la pagina-->
+    <script src="../../controllers/admin/cita.js"></script>
 </body>
 
 </html>

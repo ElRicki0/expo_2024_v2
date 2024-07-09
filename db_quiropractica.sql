@@ -74,33 +74,34 @@ CREATE TABLE tb_preguntas(
     FOREIGN KEY (id_cliente) REFERENCES tb_clientes (id_cliente)
 );
 
-CREATE TABLE tb_citas(
-    id_cita INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
-    fecha_cita DATETIME NOT NULL,
-    estado_cita TINYINT(1) NOT NULL,
-    numero_seciones INT,
-    id_cliente INT,
-    FOREIGN KEY (id_cliente) REFERENCES tb_clientes (id_cliente),
-    id_servicio int,
-    FOREIGN KEY (id_servicio) REFERENCES tb_servicios (id_servicio),
-    id_empleado INT,
-    FOREIGN KEY (id_empleado) REFERENCES tb_empleados (id_empleado)
-);
+	CREATE TABLE tb_citas(
+		id_cita INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+		nombre_cita VARCHAR(100) DEFAULT 'cita predeterminada',
+		fecha_cita DATETIME NOT NULL,
+		estado_cita ENUM('pendiente', 'proceso', 'terminado') NOT NULL,
+		numero_seciones INT,
+		id_cliente INT,
+		FOREIGN KEY (id_cliente) REFERENCES tb_clientes (id_cliente),
+		id_servicio int,
+		FOREIGN KEY (id_servicio) REFERENCES tb_servicios (id_servicio),
+		id_empleado INT,
+		FOREIGN KEY (id_empleado) REFERENCES tb_empleados (id_empleado)
+	);
 
-CREATE TABLE tb_nombres_tratamientos (
-    id_tratamiento INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
-    nombre_tratamiento VARCHAR (75) NOT NULL,
-    notas_adicionales VARCHAR (250),
-    id_cita INT,
-    FOREIGN KEY (id_cita) REFERENCES tb_citas(id_cita)
-);
+	CREATE TABLE tb_nombres_tratamientos (
+		id_tratamiento INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+		nombre_tratamiento VARCHAR (75) NOT NULL,
+		notas_adicionales VARCHAR (250),
+		id_cita INT,
+		FOREIGN KEY (id_cita) REFERENCES tb_citas(id_cita)
+	);
 
-CREATE TABLE tb_comentarios(
-    id_comentario INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
-    contenido_comentario VARCHAR (250) NOT NULL,
-    id_cliente INT,
-    FOREIGN KEY (id_cliente) REFERENCES tb_clientes (id_cliente),
-    id_servicio INT,
-    FOREIGN KEY (id_servicio) REFERENCES tb_servicios (id_servicio),
-    estado_comentario tinyint(1) NOT NULL
-);
+	CREATE TABLE tb_comentarios(
+		id_comentario INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+		contenido_comentario VARCHAR (250) NOT NULL,
+		id_cliente INT,
+		FOREIGN KEY (id_cliente) REFERENCES tb_clientes (id_cliente),
+		id_servicio INT,
+		FOREIGN KEY (id_servicio) REFERENCES tb_servicios (id_servicio),
+		estado_comentario tinyint(1) NOT NULL
+	);
