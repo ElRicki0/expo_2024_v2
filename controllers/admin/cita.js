@@ -6,7 +6,7 @@ const SEARCH_FORM = document.getElementById('searchForm');
 const TABLE_BODY = document.getElementById('tableBody'),
     ROWS_FOUND = document.getElementById('rowsFound');
     // Constantes para establecer los elementos del componente Modal.
-const SAVE_MODAL = new bootstrap.Modal('#saveModal'),
+const SAVE_MODAL = new bootstrap.Modal('#modalCita'),
 MODAL_TITLE = document.getElementById('modalTitle');
 // Constantes para establecer los elementos del formulario de guardar.
 const SAVE_FORM = document.getElementById('saveForm'),
@@ -14,6 +14,9 @@ const SAVE_FORM = document.getElementById('saveForm'),
     FECHA_CITA = document.getElementById('fecha_cita'),
     ESTADO_CITA = document.getElementById('estado_cita'),
     NUMERO_SECIONES = document.getElementById('numero_seciones')
+    ID_CLIENTE = document.getElementById('id_cliente'),
+    ID_SERVICIO = document.getElementById('id_servicio'),
+    ID_EMPLEADO = document.getElementById('id_empleado')
 
 // Método del evento para cuando el documento ha cargado.
 document.addEventListener('DOMContentLoaded', () => {
@@ -81,6 +84,9 @@ const fillTable = async (form = null) => {
                 <td>${row.fecha_cita}</td>
                 <td>${row.estado_cita}</td>
                 <td>${row.seciones_cita}</td>
+                <td>${row.id_cliente}</td>
+                <td>${row.id_servicio}</td>
+                <td>${row.id_empleado}</td>
                 <td><i class="${icon}"></i></td>
                 <td>
                 <button class="btn btn-danger"><i class="bi bi-trash3-fill" onclick="openDelete(${row.id_cita})"></i></button>
@@ -94,6 +100,19 @@ const fillTable = async (form = null) => {
     } else {
         sweetAlert(4, DATA.error, true);
     }
+}
+
+/*
+*   Función para preparar el formulario al momento de insertar un registro.
+*   Parámetros: ninguno.
+*   Retorno: ninguno.
+*/
+const openCreate = () => {
+    // Se muestra la caja de diálogo con su título.
+    SAVE_MODAL.show();
+    MODAL_TITLE.textContent = 'AGREGAR CITA';
+    // Se prepara el formulario.
+    SAVE_FORM.reset();
 }
 
 /*
@@ -118,7 +137,10 @@ const openUpdate = async (id) => {
         ID_CITA.value = ROW.id_cita;
         FECHA_CITA.checked = ROW.fecha_cita;
         ESTADO_CITA.checked = ROW.estado_cita;
-        SECIONES_CITA.checked = ROW.seciones_cita;
+        NUMERO_SECIONES.checked = ROW.numero_seciones;
+        ID_CLIENTE.checked = ROW.id_cliente;
+        ID_SERVICIO.checked = ROW.id_servicio;
+        ID_EMPLEADO.checked = ROW.id_empleado;
     } else {
         sweetAlert(2, DATA.error, false);
     }

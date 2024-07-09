@@ -50,13 +50,55 @@ class CitaData extends CitaHandler{
          }
      }
      
-     public function setSecciones($value)
+     public function setSeciones($value)
      {
          if (Validator::validateNaturalNumber($value)) {
              $this->seciones = $value;
              return true;
          } else {
              $this->data_error = 'Seciones Incorrectas';
+             return false;
+         }
+     }
+
+     public function setIDcliente($value, $min = 2, $max = 50)
+     {
+         if (!Validator::validateAlphabetic($value)) {
+             $this->data_error = 'El nombre debe ser un valor alfabético';
+             return false;
+         } elseif (Validator::validateLength($value, $min, $max)) {
+             $this->nombre = $value;
+             return true;
+         } else {
+             $this->data_error = 'El nombre debe tener una longitud entre ' . $min . ' y ' . $max;
+             return false;
+         }
+     }
+
+     public function setIDservicio($value, $min = 2, $max = 50)
+     {
+         if (!Validator::validateAlphabetic($value)) {
+             $this->data_error = 'El servicio debe ser un valor alfabético';
+             return false;
+         } elseif (Validator::validateLength($value, $min, $max)) {
+             $this->nombre = $value;
+             return true;
+         } else {
+             $this->data_error = 'El servicio debe tener una longitud entre ' . $min . ' y ' . $max;
+             return false;
+         }
+     }
+
+     public function setIDempleado($value, $min = 2, $max = 50)
+     {
+         if (!Validator::validateAlphabetic($value)) {
+             $this->data_error = 'El empleado debe ser un valor alfabético';
+             return false;
+         } elseif (Validator::validateLength($value, $min, $max)) {
+             $this->nombre = $value;
+             return true;
+         } else {
+             $this->data_error = 'El empleado debe tener una longitud entre ' . $min . ' y ' . $max;
              return false;
          }
      }

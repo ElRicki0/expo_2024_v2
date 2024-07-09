@@ -25,13 +25,36 @@ if (isset($_GET['action'])) {
                     $result['error'] = 'No hay coincidencias';
                 }
                 break;
+                case 'createRow':
+                    $_POST = Validator::validateForm($_POST);
+                    if (
+                        !$cita->setId($_POST['id_cita']) or
+                        !$cita->setFecha($_POST['fecha_cita']) or
+                        !$cita->setEstado(isset($_POST['estado_cita']) ? 1 : 0)or
+                        !$cita->setSeciones($_POST['numero_seciones']) or
+                        !$cita->setIDcliente($_POST['id_cliente ']) or
+                        !$cita->setIDservicio($_POST['id_servicio']) or
+                        !$cita->setIDempleado($_POST['id_empleado'])
+                        
+                    ) {
+                        $result['error'] = $empleado->getDataError();
+                    } elseif ($empleado->createRow()) {
+                        $result['status'] = 1;
+                        $result['message'] = 'Empleado creado correctamente';
+                    } else {
+                        $result['error'] = 'Ocurrió un problema al crear al Empleado';
+                    }
+                    break;
                 case 'updateRow':
                     $_POST = Validator::validateForm($_POST);
                     if (
                         !$cita->setId($_POST['id_cita']) or
                         !$cita->setFecha($_POST['fecha_cita']) or
-                        !$cita->setEstado($_POST['estado_cita']) or
-                        !$cita->setSecciones($_POST['numero_seciones '])
+                        !$cita->setEstado(isset($_POST['estado_cita']) ? 1 : 0)or
+                        !$cita->setSeciones($_POST['numero_seciones']) or
+                        !$cita->setIDcliente($_POST['id_cliente ']) or
+                        !$cita->setIDservicio($_POST['id_servicio']) or
+                        !$cita->setIDempleado($_POST['id_empleado'])
                     ) {
                         $result['error'] = $cita->getDataError();
                     } elseif ($cita->updateRow()) {
@@ -58,6 +81,16 @@ if (isset($_GET['action'])) {
                                 $result['error'] = 'cita inexistente';
                             }
                             break;
+                            case 'deleteRow':
+                                if (!$cita->setId($_POST['id_cita'])) {
+                                    $result['error'] = $cita->getDataError();
+                                } elseif ($cita->deleteRow()) {
+                                    $result['status'] = 1;
+                                    $result['message'] = 'cita eliminada correctamente';
+                                } else {
+                                    $result['error'] = "Ocurrió un problema al eliminar la cita ";
+                                }
+                                break;
                             default:
                             $result['error'] = 'Acción no disponible dentro de la sesión';
                     }
