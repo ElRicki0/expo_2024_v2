@@ -15,6 +15,7 @@ TIPO_SEVICIO = document.getElementById('tipo_servicio'),
  DESCRIPCION_SERVICIO = document.getElementById('descripcion_servicio ')
 // Método del evento para cuando el documento ha cargado.
 document.addEventListener('DOMContentLoaded', () => {
+    loadTemplate();
     // Llamada a la función para llenar la tabla con los registros existentes.
     fillTable();
 });
