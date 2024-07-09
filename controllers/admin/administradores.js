@@ -15,8 +15,7 @@ const SAVE_FORM = document.getElementById('saveForm'),
     NOMBRE_ADMINISTRADOR = document.getElementById('nombre_admin'),
     CORREO_ADMINISTRADOR = document.getElementById('correo_admin'),
     CONTRASEÑA_ADMINISTRADOR = document.getElementById('contra_admin'),
-    CONTRASEÑA_TITLE = document.getElementById('TextPassword'),
-    NOMBRE_EMPLEADO = document.getElementById('nombre_empleado');
+    CONTRASEÑA_TITLE = document.getElementById('TextPassword');
 
 // Método del evento para cuando el documento ha cargado.
 document.addEventListener('DOMContentLoaded', () => {
@@ -98,7 +97,6 @@ const fillTable = async (form = null) => {
     }
 }
 
-
 /*
 *   Función para preparar el formulario al momento de insertar un registro.
 *   Parámetros: ninguno.
@@ -113,7 +111,6 @@ const openCreate = () => {
     CONTRASEÑA_TITLE.style.display = "block";
     CONTRASEÑA_ADMINISTRADOR.style.display = "block";
     CONTRASEÑA_ADMINISTRADOR.disabled = false;
-    fillSelect(EMPLEADO_API, 'readAll', 'nombre_empleado');
 }
 
 /*
