@@ -1,20 +1,21 @@
 const SERVICIO_API = 'services/admin/servicio.php';
 // Constante para establecer el formulario de buscar.
 const SEARCH_FORM = document.getElementById('searchForm');
-// Constantes para establecer los elementos de la tabla.
+// Constantes para establecer el contenido de la tabla.
 const TABLE_BODY = document.getElementById('tableBody'),
     ROWS_FOUND = document.getElementById('rowsFound');
 // Constantes para establecer los elementos del componente Modal.
-const SAVE_MODAL = new bootstrap.Modal('#modalServicio'),
+const SAVE_MODAL = new bootstrap.Modal('#saveModal'),
     MODAL_TITLE = document.getElementById('modalTitle');
 // Constantes para establecer los elementos del formulario de guardar.
 const SAVE_FORM = document.getElementById('saveForm'),
-ID_SERVICIO = document.getElementById('id_servicio '),
-ID_FOTO = document.getElementById('id_foto '),
-TIPO_SEVICIO = document.getElementById('tipo_servicio'),
- DESCRIPCION_SERVICIO = document.getElementById('descripcion_servicio ')
+    ID_SERVICIO = document.getElementById('idServicio'),       
+    TIPO_SERVICIO = document.getElementById('tipoServicio'),
+    DESCRIPCION_SERVICIO = document.getElementById('descripcionServicio')
 // Método del evento para cuando el documento ha cargado.
 document.addEventListener('DOMContentLoaded', () => {
+    // Llamada a la función para mostrar el encabezado y pie del documento.
+    loadTemplate();
     // Llamada a la función para llenar la tabla con los registros existentes.
     fillTable();
 });
@@ -69,11 +70,11 @@ const fillTable = async (form = null) => {
     if (DATA.status) {
         // Se recorre el conjunto de registros fila por fila.
         DATA.dataset.forEach(row => {
-           
+
             // Se crean y concatenan las filas de la tabla con los datos de cada registro.
             TABLE_BODY.innerHTML += `
             <tr>
-                <td>${row.id_foto}</td>
+                    <td><img src="${SERVER_URL}images/servicios/${row.imagen_servicio}" height="50"></td>
                 <td>${row.tipo_servicio}</td>
                 <td>${row.descripcion_servicio}</td>
                 <td>
@@ -111,7 +112,7 @@ const openCreate = () => {
 const openUpdate = async (id) => {
     // Se define una constante tipo objeto con los datos del registro seleccionado.
     const FORM = new FormData();
-    FORM.append('id_servicio', id);
+    FORM.append('idServicio', id);
     // Petición para obtener los datos del registro solicitado.
     const DATA = await fetchData(SERVICIO_API, 'readOne', FORM);
     // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
@@ -124,8 +125,7 @@ const openUpdate = async (id) => {
         // Se inicializan los campos con los datos.
         const ROW = DATA.dataset;
         ID_SERVICIO.value = ROW.id_servicio;
-        ID_FOTO.value = ROW.id_foto;
-        TIPO_SEVICIO.value = ROW.tipo_servicio;
+        TIPO_SERVICIO.value = ROW.tipo_servicio;
         DESCRIPCION_SERVICIO.value = ROW.descripcion_servicio;
     } else {
         sweetAlert(2, DATA.error, false);
@@ -145,7 +145,7 @@ const openDelete = async (id) => {
     if (RESPONSE) {
         // Se define una constante tipo objeto con los datos del registro seleccionado.
         const FORM = new FormData();
-        FORM.append('id_servicio', id);
+        FORM.append('idServicio', id);
         // Petición para eliminar el registro seleccionado.
         const DATA = await fetchData(SERVICIO_API, 'deleteRow', FORM);
         // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.

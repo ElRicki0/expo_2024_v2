@@ -26,10 +26,12 @@ class ServicioData extends ServicioHandler
         }
     }
 
-    // Método setImagen: valida y asigna la imagen del servicio.
     public function setImagen($file, $filename = null)
     {
-        if (Validator::getFileError()) {
+        if (Validator::validateImageFile($file, 1000)) {
+            $this->foto = Validator::getFileName();
+            return true;
+        } elseif (Validator::getFileError()) {
             $this->data_error = Validator::getFileError();
             return false;
         } elseif ($filename) {
@@ -79,10 +81,10 @@ class ServicioData extends ServicioHandler
     public function setFilename()
     {
         if ($data = $this->readFilename()) {
-            $this->filename = $data['imagen_categoria'];
+            $this->filename = $data['imagen_servicio'];
             return true;
         } else {
-            $this->data_error = 'Categoría inexistente';
+            $this->data_error = 'Servicio inexistente';
             return false;
         }
     }

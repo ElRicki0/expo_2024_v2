@@ -88,7 +88,7 @@ if (isset($_GET['action'])) {
                     // Se asigna el estado del archivo después de eliminar.
                     $result['fileStatus'] = Validator::deleteFile($imagen::RUTA_IMAGEN, $imagen->getFilename());
                 } else {
-                    $result['error'] = 'Ocurrió un problema al eliminar la imagen';
+                    $result['error'] = 'Ocurrió un problema al eliminar la imagen  ///  La imagen es usada en servicios';
                 }
                 break;
             default:

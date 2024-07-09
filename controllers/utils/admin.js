@@ -72,9 +72,6 @@ const loadTemplate = async () => {
                                 <a class="nav-link" href="administradores.html"><i class="bi bi-person-circle me-1"></i></i> Admin</a>
                             </li>
                             <li class="nav-item ms-4">
-                                <a class="nav-link" href="../../views/admin/imagenes.html"><i class="bi bi-images me-1"></i> Galeria</a>
-                            </li>
-                            <li class="nav-item ms-4">
                                 <a class="nav-link" href="#"><i class="bi bi-file-medical-fill me-1"></i> Servicios</a>
                             </li>
                             <li class="nav-item ms-4">
@@ -137,4 +134,9 @@ const loadTemplate = async () => {
 // esto solo es para el menu lateral
 {/* <li class="nav-item ms-4">
     <a class="nav-link" href="#"><i class="bi bi-fast-forward-btn-fill me-1"></i> Testimonios</a>
-</li> */}
+</li> 
+
+
+                            <li class="nav-item ms-4">
+                                <a class="nav-link" href="../../views/admin/imagenes.html"><i class="bi bi-images me-1"></i> Galeria</a>
+                            </li>*/}
