@@ -32,7 +32,8 @@ if (isset($_GET['action'])) {
                     !$empleado->setApelldo($_POST['apellido_empleado']) or
                     !$empleado->setCorreo($_POST['correo_empleado']) or
                     !$empleado->setDui($_POST['dui_empleado']) or
-                    !$empleado->setFecha($_POST['fecha_empleado'])                   
+                    !$empleado->setFecha($_POST['fecha_empleado']) or
+                    !$empleado->setEstado(isset($_POST['estadoEmpleado']) ? 1 : 0)
                 ) {
                     $result['error'] = $empleado->getDataError();
                 } elseif ($empleado->createRow()) {
@@ -67,7 +68,8 @@ if (isset($_GET['action'])) {
                     !$empleado->setApelldo($_POST['apellido_empleado']) or
                     !$empleado->setCorreo($_POST['correo_empleado']) or
                     !$empleado->setDui($_POST['dui_empleado']) or
-                    !$empleado->setFecha($_POST['fecha_empleado'])  
+                    !$empleado->setFecha($_POST['fecha_empleado'])  or
+                    !$empleado->setEstado(isset($_POST['estadoEmpleado']) ? 1 : 0)
                 ) {
                     $result['error'] = $empleado->getDataError();
                 } elseif ($empleado->updateRow()) {

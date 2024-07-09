@@ -62,41 +62,37 @@ const loadTemplate = async () => {
                                     Inicio</a>
                             </li>
                             <li class="nav-item ms-4">
-                                <a class="nav-link" href="administradores.html"><i class="bi bi-person-circle me-1"></i></i> Admin</a>
-                            </li>
-                            <li class="nav-item ms-4">
-                                <a class="nav-link" href="beneficios.html"><i class="bi bi-lungs-fill me-1"></i> Beneficios</a>
-                            </li>
-                            <li class="nav-item ms-4">
-                                <a class="nav-link" href="#"><i class="bi bi-bookmark-plus-fill me-1"></i> Citas</a>
-                            </li>
-                            <li class="nav-item ms-4">
                                 <a class="nav-link" href="clientes.html"><i class="bi bi-people-fill me-1"></i> Clientes</a>
                             </li>
-                            <li class="nav-item ms-4">
-                                <a class="nav-link" href="comentarios.html"><i class="bi bi-chat-left-text-fill me-1"></i>
-                                    Comentarios</a>
-                            </li>
+                            
                             <li class="nav-item ms-4">
                                 <a class="nav-link" href="empleados.html"><i class="bi bi-people"></i> Empleados</a>
+                            </li>
+                            <li class="nav-item ms-4">
+                                <a class="nav-link" href="administradores.html"><i class="bi bi-person-circle me-1"></i></i> Admin</a>
                             </li>
                             <li class="nav-item ms-4">
                                 <a class="nav-link" href="../../views/admin/imagenes.html"><i class="bi bi-images me-1"></i> Galeria</a>
                             </li>
                             <li class="nav-item ms-4">
-                                <a class="nav-link" href="tratamientos.html"><i class="bi bi-clipboard2-pulse-fill me-1"></i>
-                                    Tratamientos</a>
+                                <a class="nav-link" href="#"><i class="bi bi-file-medical-fill me-1"></i> Servicios</a>
+                            </li>
+                            <li class="nav-item ms-4">
+                                <a class="nav-link" href="beneficios.html"><i class="bi bi-lungs-fill me-1"></i> Beneficios</a>
                             </li>
                             <li class="nav-item ms-4">
                                 <a class="nav-link" href="preguntas.html"><i class="bi bi-question-lg me-1"></i> Preguntas</a>
                             </li>
                             <li class="nav-item ms-4">
-                                <a class="nav-link" href="#"><i class="bi bi-file-medical-fill me-1"></i> Servicios</a>
+                                <a class="nav-link" href="#"><i class="bi bi-bookmark-plus-fill me-1"></i> Citas</a>
                             </li>
                             <li class="nav-item ms-4">
-                                <a class="nav-link" href="#"><i class="bi bi-fast-forward-btn-fill me-1"></i>
-                                    Testimonios</a>
+                                <a class="nav-link" href="tratamientos.html"><i class="bi bi-clipboard2-pulse-fill me-1"></i>Tratamientos</a>
                             </li>
+                            <li class="nav-item ms-4">
+                                <a class="nav-link" href="comentarios.html"><i class="bi bi-chat-left-text-fill me-1"></i>Comentarios</a>
+                            </li>
+                            
                         </ul>
                     </div>
                 </div>
@@ -137,3 +133,8 @@ const loadTemplate = async () => {
         }
     }
 }
+
+// esto solo es para el menu lateral
+{/* <li class="nav-item ms-4">
+    <a class="nav-link" href="#"><i class="bi bi-fast-forward-btn-fill me-1"></i> Testimonios</a>
+</li> */}

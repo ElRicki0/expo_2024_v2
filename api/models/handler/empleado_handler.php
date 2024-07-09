@@ -6,7 +6,8 @@ require_once('../../helpers/database.php');
  *  Clase para manejar el comportamiento de los datos de la tabla empleados.
  */
 
-class EmpleadoHandler{
+class EmpleadoHandler
+{
 
     /*
      *  Declaración de atributos para el manejo de datos.
@@ -51,22 +52,23 @@ class EmpleadoHandler{
      */
 
     // Método searchRows: busca empleados en la base de datos según un criterio de búsqueda.
-    public function searchRows() {
+    public function searchRows()
+    {
         $value = '%' . Validator::getSearchValue() . '%';
-        $sql = 'SELECT id_empleado, nombre_empleado, dui_empleado, correo_empleado, telefono_empleado, nacimiento_empleado
+        $sql = 'SELECT *
                 FROM tb_empleado
-                WHERE nombre_empleado LIKE ?
+                WHERE nombre_empleado LIKE ? or dui_empleado like ? or correo_empleado  like ? or nacimiento_empleado like ?
                 ORDER BY nombre_empleado';
-        $params = array($value);
+        $params = array($value, $value, $value, $value);
         return Database::getRows($sql, $params);
     }
 
     // Método createRow: inserta un nuevo empleado en la base de datos.
     public function createRow()
     {
-        $sql = 'INSERT INTO tb_empleado(nombre_empleado, apellido_empleado, dui_empleado, correo_empleado, nacimiento_empleado)
+        $sql = 'INSERT INTO tb_empleado(nombre_empleado, apellido_empleado, dui_empleado, correo_empleado, nacimiento_empleado, estado_empleado)
                 VALUES(?, ?, ?, ?, ?)';
-        $params = array($this->nombre, $this->apellido, $this->dui, $this->correo, $this->fecha);
+        $params = array($this->nombre, $this->apellido, $this->dui, $this->correo, $this->fecha, $this->estado);
         return Database::executeRow($sql, $params);
     }
 
@@ -93,9 +95,9 @@ class EmpleadoHandler{
     public function updateRow()
     {
         $sql = 'UPDATE tb_empleado
-                SET nombre_empleado = ?, apellido_empleado = ?, dui_empleado = ?, correo_empleado = ?, nacimiento_empleado = ?
+                SET nombre_empleado = ?, apellido_empleado = ?, dui_empleado = ?, correo_empleado = ?, nacimiento_empleado = ?, estado_empleado=?
                 WHERE id_empleado = ?';
-        $params = array($this->nombre, $this->apellido, $this->dui, $this->correo, $this->fecha, $this->id);
+        $params = array($this->nombre, $this->apellido, $this->dui, $this->correo, $this->fecha, $this->id, $this->estado);
         return Database::executeRow($sql, $params);
     }
 

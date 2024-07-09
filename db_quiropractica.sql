@@ -16,14 +16,16 @@ nacimiento_cliente DATE NOT NULL,
 estado_cliente tinyint(1) NOT NULL
 ); 
 
-CREATE TABLE tb_testimonios(
-id_testimonio INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
-titulo_testimonio VARCHAR(50) NOT NULL,
-contenido_testimonio VARCHAR(200)NOT NULL,
-id_cliente INT ,
-estado_testimonio bool,
-FOREIGN KEY (id_cliente) REFERENCES tb_clientes (id_cliente)
-);
+-- proximamente
+
+-- CREATE TABLE tb_testimonios(
+-- id_testimonio INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+-- titulo_testimonio VARCHAR(50) NOT NULL,
+-- contenido_testimonio VARCHAR(200)NOT NULL,
+-- id_cliente INT ,
+-- estado_testimonio tinyint(1) NOT NULL,
+-- FOREIGN KEY (id_cliente) REFERENCES tb_clientes (id_cliente)
+-- );
 
 CREATE TABLE tb_empleado(
 id_empleado INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
@@ -34,7 +36,7 @@ correo_empleado VARCHAR (100) NOT NULL,
 nacimiento_empleado DATE NOT NULL,
 estado_empleado	TINYINT(1) NOT NULL
 );
- 
+
 CREATE TABLE tb_admin(
 id_admin INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
 nombre_admin VARCHAR(50) UNIQUE NOT NULL,
