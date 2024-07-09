@@ -26,7 +26,7 @@ class PreguntasHandler
         $value = '%' . Validator::getSearchValue() . '%';
         $sql = 'SELECT p.id_pregunta, p.imagen_pregunta, p.nombre_pregunta, p.contenido_pregunta, e.nombre_empleado
                     FROM tb_preguntas p
-                    JOIN tb_empleado e ON p.id_empleado = e.id_empleado
+                    JOIN tb_empleados e ON p.id_empleado = e.id_empleado
                 WHERE nombre_pregunta LIKE ? OR contenido_pregunta LIKE ? or nombre_empleado like ?
                 ORDER BY nombre_pregunta';
         $params = array($value, $value, $value);
@@ -35,7 +35,7 @@ class PreguntasHandler
 
     public function createRow()
     {
-        $sql = 'INSERT INTO tb_preguntas(imagen_pregunta, nombre_pregunta, contenido_pregunta, id_empleado)
+        $sql = 'INSERT INTO tb_preguntas    (imagen_pregunta, nombre_pregunta, contenido_pregunta, id_empleado)
                 VALUES(?, ?, ?, ?)';
         $params = array($this->imagen, $this->pregunta, $this->contenido, $this->empleado);
         return Database::executeRow($sql, $params);
@@ -45,7 +45,7 @@ class PreguntasHandler
     {
         $sql = 'SELECT p. id_pregunta, p.imagen_pregunta, p.nombre_pregunta, p.contenido_pregunta, e.nombre_empleado
                 FROM tb_preguntas p
-                JOIN tb_empleado e ON p.id_empleado = e.id_empleado ';
+                JOIN tb_empleados e ON p.id_empleado = e.id_empleado ';
         return Database::getRows($sql);
     }
 

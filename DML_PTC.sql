@@ -27,7 +27,7 @@ VALUES
 ('Opinión Positiva', 'Recomendaría esta empresa a cualquier persona.', 9, 1),
 ('Comentario Aclamado', '¡La mejor empresa con la que he trabajado!', 10, 1);
 
-INSERT INTO tb_empleado (nombre_empleado, apellido_empleado, dui_empleado, correo_empleado, nacimiento_empleado, estado_empleado) 
+INSERT INTO tb_empleados (nombre_empleado, apellido_empleado, dui_empleado, correo_empleado, nacimiento_empleado, estado_empleado) 
 VALUES 
 ('Juan', 'Perez', '0123456789', 'juan.perez@example.com', '1990-05-15', 1),
 ('Maria', 'Gonzalez', '9876543210', 'maria.gonzalez@example.com', '1985-09-20', 1),

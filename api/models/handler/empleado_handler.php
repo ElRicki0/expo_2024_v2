@@ -56,7 +56,7 @@ class EmpleadoHandler
     {
         $value = '%' . Validator::getSearchValue() . '%';
         $sql = 'SELECT *
-                FROM tb_empleado
+                FROM tb_empleados
                 WHERE nombre_empleado LIKE ? or dui_empleado like ? or correo_empleado  like ? or nacimiento_empleado like ?
                 ORDER BY nombre_empleado';
         $params = array($value, $value, $value, $value);
@@ -66,7 +66,7 @@ class EmpleadoHandler
     // Método createRow: inserta un nuevo empleado en la base de datos.
     public function createRow()
     {
-        $sql = 'INSERT INTO tb_empleado(nombre_empleado, apellido_empleado, dui_empleado, correo_empleado, nacimiento_empleado, estado_empleado)
+        $sql = 'INSERT INTO tb_empleados(nombre_empleado, apellido_empleado, dui_empleado, correo_empleado, nacimiento_empleado, estado_empleado)
                 VALUES(?, ?, ?, ?, ?, ?)';
         $params = array($this->nombre, $this->apellido, $this->dui, $this->correo, $this->fecha, $this->estado);
         return Database::executeRow($sql, $params);
@@ -76,7 +76,7 @@ class EmpleadoHandler
     public function readAll()
     {
         $sql = 'SELECT id_empleado, nombre_empleado, apellido_empleado, dui_empleado, correo_empleado, nacimiento_empleado, estado_empleado
-                FROM tb_empleado
+                FROM tb_empleados
                 ORDER BY nombre_empleado';
         return Database::getRows($sql);
     }
@@ -85,7 +85,7 @@ class EmpleadoHandler
     public function readOne()
     {
         $sql = 'SELECT id_empleado, nombre_empleado, apellido_empleado, dui_empleado, correo_empleado, nacimiento_empleado, estado_empleado
-                FROM tb_empleado
+                FROM tb_empleados
                 WHERE id_empleado = ?';
         $params = array($this->id);
         return Database::getRow($sql, $params);
@@ -94,7 +94,7 @@ class EmpleadoHandler
     // Método updateRow: actualiza los datos de un empleado en la base de datos.
     public function updateRow()
     {
-        $sql = 'UPDATE tb_empleado
+        $sql = 'UPDATE tb_empleados
                 SET nombre_empleado = ?, apellido_empleado = ?, dui_empleado = ?, correo_empleado = ?, nacimiento_empleado = ?, estado_empleado=?
                 WHERE id_empleado = ?';
         $params = array($this->nombre, $this->apellido, $this->dui, $this->correo, $this->fecha, $this->estado, $this->id);
@@ -104,7 +104,7 @@ class EmpleadoHandler
     // Método deleteRow: elimina un empleado de la base de datos según su ID.
     public function deleteRow()
     {
-        $sql = 'DELETE FROM tb_empleado
+        $sql = 'DELETE FROM tb_empleados
                 WHERE id_empleado = ?';
         $params = array($this->id);
         return Database::executeRow($sql, $params);

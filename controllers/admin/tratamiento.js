@@ -39,7 +39,7 @@ SAVE_FORM.addEventListener('submit', async (event) => {
     // Se evita recargar la página web después de enviar el formulario.
     event.preventDefault();
     // Se verifica la acción a realizar.
-    (ID_PRODUCTO.value) ? action = 'updateRow' : action = 'createRow';
+    (ID_TRATAMIENTO.value) ? action = 'updateRow' : action = 'createRow';
     // Constante tipo objeto con los datos del formulario.
     const FORM = new FormData(SAVE_FORM);
     // Petición para guardar los datos del formulario.
@@ -135,7 +135,7 @@ const openUpdate = async (id) => {
         const ROW = DATA.dataset;
         ID_TRATAMIENTO.value = ROW.id_tratamiento;
         NOMBRE_TRATAMIENTO.value = ROW.nombre_tratamiento;
-        NOTA_TRATAMIENTO.value = ROW.nombre_cita;
+        NOTA_TRATAMIENTO.value = ROW.notas_adicionales;
         fillSelect(SERVICIO_API, 'readAll', 'citaTratamiento', ROW.id_cita);
     } else {
         sweetAlert(2, DATA.error, false);

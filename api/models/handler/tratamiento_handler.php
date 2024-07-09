@@ -58,9 +58,9 @@ class TratamientoHandler
     public function updateRow()
     {
         $sql = 'UPDATE tb_nombres_tratamientos
-                SET nombre_tratamiento = ?, notas_adicionales = ?, id_cita = ?, precio_producto = ?, estado_producto = ?, id_categoria = ?
+                SET nombre_tratamiento = ?, notas_adicionales = ?, id_cita = ?
                 WHERE id_tratamiento = ?';
-        $params = array($this->nombre, $this->nota, $this->cita);
+        $params = array($this->nombre, $this->nota, $this->cita, $this->id);
         return Database::executeRow($sql, $params);
     }
 

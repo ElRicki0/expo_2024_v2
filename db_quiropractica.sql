@@ -25,7 +25,7 @@ CREATE TABLE tb_clientes(
 -- estado_testimonio tinyint(1) NOT NULL,
 -- FOREIGN KEY (id_cliente) REFERENCES tb_clientes (id_cliente)
 -- );
-CREATE TABLE tb_empleado(
+CREATE TABLE tb_empleados(
     id_empleado INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
     nombre_empleado VARCHAR (50) NOT NULL,
     apellido_empleado VARCHAR (50) NOT NULL,
@@ -41,7 +41,7 @@ CREATE TABLE tb_admin(
     correo_admin VARCHAR (100) NOT NULL,
     contraseña_admin VARCHAR(500) NOT NULL,
     id_empleado INT,
-    FOREIGN KEY (id_empleado) REFERENCES tb_empleado (id_empleado)
+    FOREIGN KEY (id_empleado) REFERENCES tb_empleados (id_empleado)
 );
 
 -- CREATE TABLE tb_fotos (
@@ -84,7 +84,7 @@ CREATE TABLE tb_citas(
     id_servicio int,
     FOREIGN KEY (id_servicio) REFERENCES tb_servicios (id_servicio),
     id_empleado INT,
-    FOREIGN KEY (id_empleado) REFERENCES tb_empleado (id_empleado)
+    FOREIGN KEY (id_empleado) REFERENCES tb_empleados (id_empleado)
 );
 
 CREATE TABLE tb_nombres_tratamientos (
