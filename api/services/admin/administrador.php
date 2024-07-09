@@ -96,19 +96,6 @@ if (isset($_GET['action'])) {
                     $result['error'] = 'Administrador inexistente';
                 }
                 break;
-            case 'readEmployed':
-                // Lectura de un empleado específico por su ID.
-                if (!$administrador->setId($_POST['id_admin'])) {
-                    // Si el ID es incorrecto, se registra un error.
-                    $result['error'] = 'Empleado incorrecto';
-                } elseif ($result['dataset'] = $administrador->readOne()) {
-                    // Si se encuentra el administrador, se actualiza el estado.
-                    $result['status'] = 1;
-                } else {
-                    // Si no se encuentra el administrador, se registra un error.
-                    $result['error'] = 'Empleado inexistente';
-                }
-                break;
             case 'updateRow':
                 // Actualización de datos de un administrador.
                 $_POST = Validator::validateForm($_POST);

@@ -24,14 +24,15 @@ require_once('../../helpers/database.php');
 
     public function readAll()
     {
-        $sql = 'SELECT id_cita, fecha_cita, estado_cita, numero_seciones from tb_citas
+        $sql = 'SELECT id_cita, fecha_cita, estado_cita, numero_seciones 
+                from tb_citas
                 ORDER BY fecha_cita';
         return Database::getRows($sql);
     }
 
     public function readOne()
     {
-        $sql = 'SELECT* 
+        $sql = 'SELECT id_cita, fecha_cita, estado_cita, numero_seciones
                 FROM tb_citas
                 WHERE id_cita = ?';
         $params = array($this->id);
@@ -41,9 +42,9 @@ require_once('../../helpers/database.php');
     public function updateRow()
     {
         $sql = 'UPDATE tb_citas
-                SET estado_cita = ?
+                SET fecha_cita = ?, estado_cita = ?, numero_seciones = ? 
                 WHERE id_cita = ?';
-        $params = array($this->estado, $this->id);
+        $params = array($this->fecha, $this->estado, $this->seciones, $this->id);
         return Database::executeRow($sql, $params);
     }
      // Método deleteRow: elimina un empleado de la base de datos según su ID.

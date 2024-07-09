@@ -14,9 +14,7 @@ class AdministradorHandler
     protected $nombre = null;
     protected $correo = null;
     protected $contrasenia = null;
-    protected $foto = null;
     protected $empleado = null;
-    protected $nivel = null;
 
     /*
      *  Métodos para gestionar la cuenta del administrador.
@@ -122,7 +120,7 @@ class AdministradorHandler
         $params = array($this->nombre, $this->correo, $this->id);
         return Database::executeRow($sql, $params);
     }
-    
+
     // Método para leer todos los administradores registrados.
     public function readAll()
     {
@@ -153,17 +151,6 @@ class AdministradorHandler
                 WHERE id_admin = ?';
         $params = array($this->id);
         return Database::getRow($sql, $params);
-    }
-
-    // Método para leer un empleado.
-    public function readEmployed()
-    {
-        $sql = 'SELECT A.id_empleado, E.nombre_empleado
-                FROM tb_admin AS A
-                INNER JOIN tb_empleado AS E ON A.id_empleado = E.id_empleado
-                WHERE A.id_admin = ?';
-        $params = array($this->id);
-        return Database::getRows($sql, $params);
     }
 
     // Método deleteRow: elimina un empleado de la base de datos según su ID.

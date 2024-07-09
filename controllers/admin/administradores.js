@@ -15,8 +15,7 @@ const SAVE_FORM = document.getElementById('saveForm'),
     NOMBRE_ADMINISTRADOR = document.getElementById('nombre_admin'),
     CORREO_ADMINISTRADOR = document.getElementById('correo_admin'),
     CONTRASEÑA_ADMINISTRADOR = document.getElementById('contra_admin'),
-    CONTRASEÑA_TITLE = document.getElementById('TextPassword'),
-    NOMBRE_EMPLEADO = document.getElementById('nombre_empleado');
+    CONTRASEÑA_TITLE = document.getElementById('TextPassword');
 
 // Método del evento para cuando el documento ha cargado.
 document.addEventListener('DOMContentLoaded', () => {
@@ -86,7 +85,6 @@ const fillTable = async (form = null) => {
                 <td>
                 <button class="btn btn-danger"><i class="bi bi-trash3-fill" onclick="openDelete(${row.id_admin})"></i></button>
                 <button class="btn btn-primary"><i class="bi bi-pen-fill" onclick="openUpdate(${row.id_admin})"></i></button>
-                <button class="btn btn-warning"><i class="bi bi-person-plus-fill" onclick="openEmployed(${row.id_admin})"></i></button>
             </td>
         </tr>
             `;
@@ -97,7 +95,6 @@ const fillTable = async (form = null) => {
         sweetAlert(4, DATA.error, true);
     }
 }
-
 
 /*
 *   Función para preparar el formulario al momento de insertar un registro.
@@ -113,7 +110,6 @@ const openCreate = () => {
     CONTRASEÑA_TITLE.style.display = "block";
     CONTRASEÑA_ADMINISTRADOR.style.display = "block";
     CONTRASEÑA_ADMINISTRADOR.disabled = false;
-    fillSelect(EMPLEADO_API, 'readAll', 'nombre_empleado');
 }
 
 /*
