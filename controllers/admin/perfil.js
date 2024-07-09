@@ -5,6 +5,10 @@ const CORREO_ADMINISTRADOR = document.getElementById('correo_admin');
 const PASSWORD_MODAL = new bootstrap.Modal('#passwordModal');
 // Constante para establecer el formulario de cambiar contraseña.
 const PASSWORD_FORM = document.getElementById('passwordForm');
+// Constante para establecer la modal de cambiar contraseña.
+const PERFIL_MODAL = new bootstrap.Modal('#PerfilModal');
+// Constante para establecer el formulario de cambiar contraseña.
+const PROFILE_FORM = document.getElementById('editForm');
 
 // Método del evento para cuando el documento ha cargado.
 document.addEventListener('DOMContentLoaded', async () => {
@@ -42,6 +46,25 @@ PASSWORD_FORM.addEventListener('submit', async (event) => {
     }
 });
 
+// Mètodo del evento para cuando se envía el formulario de cambiar contraseña.
+PROFILE_FORM.addEventListener('submit', async (event) => {
+    // Se evita recargar la página web después de enviar el formulario.
+    event.preventDefault();
+    // Constante tipo objeto con los datos del formulario.
+    const FORM = new FormData(PROFILE_FORM);
+    // Petición para actualizar la constraseña.
+    const DATA = await fetchData(USER_API, 'editProfile', FORM);
+    // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+    if (DATA.status) {
+        // Se cierra la caja de diálogo.
+        PERFIL_MODAL.hide();
+        // Se muestra un mensaje de éxito.
+        sweetAlert(1, DATA.message, true);
+    } else {
+        sweetAlert(2, DATA.error, false);
+    }
+});
+
 /*
 *   Función para preparar el formulario al momento de cambiar la constraseña.
 *   Parámetros: ninguno.
@@ -52,4 +75,16 @@ const openPassword = () => {
     PASSWORD_MODAL.show();
     // Se restauran los elementos del formulario.
     PASSWORD_FORM.reset();
+}
+
+/*
+*   Función para preparar el formulario al momento de cambiar la constraseña.
+*   Parámetros: ninguno.
+*   Retorno: ninguno.
+*/
+const openProfile = () => {
+    // Se abre la caja de diálogo que contiene el formulario.
+    PERFIL_MODAL.show();
+    // Se restauran los elementos del formulario.
+    PROFILE_FORM.reset();
 }
