@@ -46,6 +46,9 @@
                             <button type="reset" class="btn btn-secondary" onclick="fillTable()">
                                 <i class="bi bi-arrow-counterclockwise"></i>
                             </button>
+                            <button type="button" class="btn btn-warning" onclick="openCreate()"><i
+                                class="bi bi-person-fill-add"></i>
+                        </button>
                         </div>
                     </div>
                 </form>
@@ -65,9 +68,12 @@
                                     <p id="rowsFound" class="text-white fw-bold mt-3"></p>
                                 </tr>
                                 <tr>
+                                    <th scope="col">CLIENTE</th>
+                                    <th scope="col">SERVICIO</th>
                                     <th scope="col">FECHA</th>
                                     <th scope="col">SECIONES</th>
                                     <th scope="col">ESTADO</th>
+                                    <th scope="col">EMPLEADO</th>
                                 </tr>
                             </thead>
 
@@ -81,36 +87,76 @@
             
         </div>
 
-         <!-- Componente Modal para guardar un registro -->
-         <div class="modal fade" id="saveModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-         aria-labelledby="modalTitle" aria-hidden="true">
-         <div class="modal-dialog modal-sm modal-dialog-centered">
-             <div class="modal-content">
-                 <div class="modal-header">
-                     <h1 class="modal-title fs-5" id="modalTitle"></h1>
-                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                 </div>
-                 <!-- Formulario para crear o actualizar un registro -->
-                 <form id="saveForm">
-                     <div class="modal-body row g-3">
-                         <!-- Campo oculto para asignar el id del registro al momento de modificar -->
-                         <input type="number" class="d-none" id="id_cita" name="id_cita">
-                         <div class="d-flex justify-content-center">
-                             <div class="form-check form-switch form-check-reverse text-center">
-                                 <input class="form-check-input" type="checkbox" id="estadoCliente"
-                                     name="estadoCliente" checked>
-                                 <label class="form-check-label" for="estadoCliente">Estado</label>
-                             </div>
-                         </div>
+        <!--MODAL-->
+        <div class="modal fade" id="modalCita" tabindex="-1" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered modal-lg">
+                    <div class="modal-content">
 
-                     </div>
-                     <div class="modal-footer">
-                         <button type="submit" class="btn btn-primary">Guardar</button>
-                     </div>
-                 </form>
-             </div>
-         </div>
-     </div>
+                        <!-- Formulario saveForm -->
+                        <form id="saveForm">
+                            <input type="number" class="d-none" id="id_empleado" name="id_empleado">
+
+                            <!-- Body del modal -->
+                            <div class="modal-body">
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                                <h1 class="fs-4 fw-bold text-center mb-4" id="modalTitle"> </h1>
+
+                                <!-- Inputs -->
+                                <div class="row p-3">
+                                    <div class="col-12">
+                                        <div class="row">
+                                            <div class="col-6">
+                                                <label class="form-label">Cliente</label>
+                                                <input id="cliente_cita" name="cliente_cita" class="form-control"
+                                                    required>
+                                            </div>
+                                            <div class="col-6">
+                                                <label class="form-label">Servicio</label>
+                                                <input id="Servicio_cita" name="Servicio_cita"
+                                                    class="form-control" required>
+                                            </div>
+                                            <div class="col-6 mt-3">
+                                                    <label class="form-label">Fecha </label>
+                                                    <input id="fecha_cita" name="fecha_cita" type="date"
+                                                        class="form-control" required>
+                                                </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <div class="row">
+                                                <div class="col-6 mt-3">
+                                                    <label class="form-label">Seciones</label>
+                                                    <input id="Seciones_cita" name="Seciones_cita" class="form-control"
+                                                        required>
+                                                </div>
+                                                
+                                            </div>
+                                            <div class="form-check form-switch form-check-reverse">
+                                                <input class="form-check-input" type="checkbox" id="estado_cita"
+                                                    name="estado_cita" checked>
+                                                <label class="form-check-label" for="estado_cita">Estado</label>
+                                            </div>
+                                            <div class="row mt-3">
+                                                <div class="col-6"></div>
+                                                <div class="col-6 text-end">
+                                                    <button type="submit" class="btn btn-primary ps-4 pe-4">
+                                                        <i class="bi bi-person-fill-add me-1"></i> Aceptar
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
     </main>
 
     <!-- Librerias -->
