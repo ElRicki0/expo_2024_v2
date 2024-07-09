@@ -133,6 +133,17 @@ class AdministradorHandler
         return Database::getRows($sql);
     }
 
+    // Método para leer todos los administradores registrados.
+    // public function readAll()
+    // {
+    //     $sql = 'SELECT id_admin, nombre_admin, correo_admin
+    //             FROM tb_admin
+    //             WHERE id_admin <> ?
+    //             ORDER BY nombre_admin';
+    //     $params = array($_SESSION['idAdministrador']);
+    //     return Database::executeRow($sql, $params);
+    // }
+
 
     // Método para leer un administrador.
     public function readOne()

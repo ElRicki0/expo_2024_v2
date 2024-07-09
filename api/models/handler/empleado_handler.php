@@ -67,7 +67,7 @@ class EmpleadoHandler
     public function createRow()
     {
         $sql = 'INSERT INTO tb_empleado(nombre_empleado, apellido_empleado, dui_empleado, correo_empleado, nacimiento_empleado, estado_empleado)
-                VALUES(?, ?, ?, ?, ?)';
+                VALUES(?, ?, ?, ?, ?, ?)';
         $params = array($this->nombre, $this->apellido, $this->dui, $this->correo, $this->fecha, $this->estado);
         return Database::executeRow($sql, $params);
     }
@@ -75,7 +75,7 @@ class EmpleadoHandler
     // Método readAll: lee todos los empleados de la base de datos.
     public function readAll()
     {
-        $sql = 'SELECT id_empleado, nombre_empleado, apellido_empleado, dui_empleado, correo_empleado, nacimiento_empleado
+        $sql = 'SELECT id_empleado, nombre_empleado, apellido_empleado, dui_empleado, correo_empleado, nacimiento_empleado, estado_empleado
                 FROM tb_empleado
                 ORDER BY nombre_empleado';
         return Database::getRows($sql);
@@ -84,7 +84,7 @@ class EmpleadoHandler
     // Método readOne: lee un empleado específico de la base de datos según su ID.
     public function readOne()
     {
-        $sql = 'SELECT id_empleado, nombre_empleado, apellido_empleado, dui_empleado, correo_empleado, nacimiento_empleado
+        $sql = 'SELECT id_empleado, nombre_empleado, apellido_empleado, dui_empleado, correo_empleado, nacimiento_empleado, estado_empleado
                 FROM tb_empleado
                 WHERE id_empleado = ?';
         $params = array($this->id);
@@ -97,7 +97,7 @@ class EmpleadoHandler
         $sql = 'UPDATE tb_empleado
                 SET nombre_empleado = ?, apellido_empleado = ?, dui_empleado = ?, correo_empleado = ?, nacimiento_empleado = ?, estado_empleado=?
                 WHERE id_empleado = ?';
-        $params = array($this->nombre, $this->apellido, $this->dui, $this->correo, $this->fecha, $this->id, $this->estado);
+        $params = array($this->nombre, $this->apellido, $this->dui, $this->correo, $this->fecha, $this->estado, $this->id);
         return Database::executeRow($sql, $params);
     }
 

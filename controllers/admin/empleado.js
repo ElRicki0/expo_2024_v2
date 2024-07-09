@@ -16,7 +16,7 @@ const SAVE_FORM = document.getElementById('saveForm'),
     CORREO_EMPLEADO = document.getElementById('correo_empleado'),
     DUI_EMPLEADO = document.getElementById('dui_empleado'),
     FECHA_EMPLEADO = document.getElementById('fecha_empleado'),
-    ESTADO_EMPLEADO = document.getElementById('estado_empleado');
+    ESTADO_EMPLEADO = document.getElementById('estadoEmpleado');
 
 // Método del evento para cuando el documento ha cargado.
 document.addEventListener('DOMContentLoaded', () => {
@@ -77,7 +77,7 @@ const fillTable = async (form = null) => {
         // Se recorre el conjunto de registros fila por fila.
         DATA.dataset.forEach(row => {
             // Se establece un icono para el estado del empleado.
-            (row.estado_empleado) ? icon = 'bi bi-person-check-fill' : icon = 'bi bi-person-x-fill';
+            (row.estado_empleado) ? icon = 'bi bi-eye-fill' : icon = 'bi bi-eye-slash-fill';
             // Se crean y concatenan las filas de la tabla con los datos de cada registro.
             TABLE_BODY.innerHTML += `
             <tr>
