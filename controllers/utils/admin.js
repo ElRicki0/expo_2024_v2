@@ -49,7 +49,7 @@ const loadTemplate = async () => {
                                 </a>
                                 <hr>
                                 <ul class="dropdown-menu dropdown-menu-dark">
-                                    <li><a class="dropdown-item" href="perfil.html">Ver perfil</a></li>
+                                    <li><a class="dropdown-item" href="perfil.html"> Ver perfil </a></li>
                                     <li>
                                         <hr class="dropdown-divider">
                                     </li>
@@ -57,14 +57,11 @@ const loadTemplate = async () => {
                                 </ul>
                             </li>
                             <li class="nav-item ms-4">
-                                <a class="nav-link active" aria-current="page" href="#"><i
-                                        class="bi bi-house-fill me-1"></i>
-                                    Inicio</a>
+                                <a class="nav-link active" aria-current="page" href="inicio.html"><i class="bi bi-house-fill me-1"></i> Inicio</a>
                             </li>
                             <li class="nav-item ms-4">
                                 <a class="nav-link" href="clientes.html"><i class="bi bi-people-fill me-1"></i> Clientes</a>
                             </li>
-                            
                             <li class="nav-item ms-4">
                                 <a class="nav-link" href="empleados.html"><i class="bi bi-people"></i> Empleados</a>
                             </li>
@@ -81,7 +78,7 @@ const loadTemplate = async () => {
                                 <a class="nav-link" href="preguntas.html"><i class="bi bi-question-lg me-1"></i> Preguntas</a>
                             </li>
                             <li class="nav-item ms-4">
-                                <a class="nav-link" href="#"><i class="bi bi-bookmark-plus-fill me-1"></i> Citas</a>
+                                <a class="nav-link" href="citas.html"><i class="bi bi-bookmark-plus-fill me-1"></i> Citas</a>
                             </li>
                             <li class="nav-item ms-4">
                                 <a class="nav-link" href="tratamientos.html"><i class="bi bi-clipboard2-pulse-fill me-1"></i>Tratamientos</a>
@@ -89,7 +86,6 @@ const loadTemplate = async () => {
                             <li class="nav-item ms-4">
                                 <a class="nav-link" href="comentarios.html"><i class="bi bi-chat-left-text-fill me-1"></i>Comentarios</a>
                             </li>
-                            
                         </ul>
                     </div>
                 </div>

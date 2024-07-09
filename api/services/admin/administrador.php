@@ -135,6 +135,21 @@ if (isset($_GET['action'])) {
                     $result['error'] = 'Ocurrió un problema al leer el perfil';
                 }
                 break;
+            case 'editProfile':
+                $_POST = Validator::validateForm($_POST);
+                if (
+                    !$administrador->setNombre($_POST['nombre_admin_perfil']) or
+                    !$administrador->setCorreo($_POST['correo_admin_perfil']) 
+                ) {
+                    $result['error'] = $administrador->getDataError();
+                } elseif ($administrador->editProfile()) {
+                    $result['status'] = 1;
+                    $result['message'] = 'Perfil modificado correctamente';
+                    $_SESSION['nombre_admin'] = $_POST['nombre_admin_perfil'];
+                } else {
+                    $result['error'] = 'Ocurrió un problema al modificar el perfil';
+                }
+                break;
             case 'changePassword':
                 $_POST = Validator::validateForm($_POST);
                 if (!$administrador->checkPassword($_POST['contraseña_actual'])) {

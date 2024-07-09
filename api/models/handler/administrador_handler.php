@@ -94,9 +94,9 @@ class AdministradorHandler
     public function editProfile()
     {
         $sql = 'UPDATE tb_admin
-                SET nombre_admin = ?, foto_admin = ?, id_empleado = ?
+                SET nombre_admin = ?, correo_admin = ?
                 WHERE id_admin = ?';
-        $params = array($this->nombre, $this->foto, $this->empleado, $_SESSION['idAdministrador']);
+        $params = array($this->nombre, $this->correo, $_SESSION['idAdministrador']);
         // Se ejecuta la consulta para actualizar la información del perfil del administrador.
         return Database::executeRow($sql, $params);
     }
