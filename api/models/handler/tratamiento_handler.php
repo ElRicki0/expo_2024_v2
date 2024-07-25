@@ -20,7 +20,7 @@ class TratamientoHandler
     public function searchRows()
     {
         $value = '%' . Validator::getSearchValue() . '%';
-        $sql = 'SELECT nt.nombre_tratamiento, nt.notas_adicionales, c.nombre_cita
+        $sql = 'SELECT nt.id_tratamiento, nt.nombre_tratamiento, nt.notas_adicionales, c.nombre_cita
                 from tb_nombres_tratamientos nt 
                 join tb_citas c on nt.id_cita = c.id_cita
                 WHERE nombre_tratamiento LIKE ? OR notas_adicionales LIKE ? OR nombre_cita LIKE ?
