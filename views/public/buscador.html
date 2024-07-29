@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buscador</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="../../resources/css/boostrap_css.css">
+    <link rel="stylesheet" href="../../resources/css/general.css">
+    <link rel="stylesheet" href="../../resources/css/bootstrap-icons.min.css">
+
+</head>
+
+<body>
+
+    <main class="py-5">
+
+        <div class="mt-5 justify-content-center">
+            <!-- titulo principal -->
+            <div class="container-fluid text-center">
+                <div class="row justify-content-center py-5">
+                    <h3 class="fw-bold text-white">Buscador</h3>
+                </div>
+            </div>
+
+            <div class="container mb-3 justify-content-center">
+
+                <!-- Formulario de búsqueda -->
+                <form class="col-sm-12 col-md-12" id="searchForm">
+                    <div class="row">
+                        <div class="col-4">
+                            <input type="search" class="form-control" id="search" name="search" placeholder="Buscar"
+                                required>
+                        </div>
+                        <div class="col-6">
+                            <button type="submit" class="btn btn-success">
+                                <i class="bi bi-search"></i>
+                            </button>
+                            <button type="reset" class="btn btn-secondary" onclick="fillTable()">
+                                <i class="bi bi-arrow-counterclockwise"></i>
+                            </button>
+                            <button type="button" class="btn btn-warning" onclick="openCreate()"><i
+                                    class="bi bi-person-fill-add"></i>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+
+                <!-- Tabla de empleado con opciones -->
+                <div class="table-responsive">
+
+                    <!-- Tabla -->
+                    <div class="table-responsive">
+
+                        <!-- Tabla para mostrar los registros existentes -->
+                        <table class="table table-hover table-dark">
+
+                            <!-- Cabeza de la tabla para mostrar la cantidad de registros y los títulos de las columnas -->
+                            <thead>
+                                <tr>
+                                    <td colspan="6" id="rowsFound"></td>
+                                </tr>
+                                <tr>
+                                    <th scope="col">IMAGEN</th>
+                                    <th scope="col">SERVICIO</th>
+                                    <th scope="col">DESCRIPCION</th>
+                                </tr>
+                            </thead>
+
+                            <!-- Filas -->
+                            <tbody id="tableBody">
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Componente Modal para guardar un registro -->
+            <div class="modal fade" id="saveModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+                aria-labelledby="modalTitle" aria-hidden="true">
+                <div class="modal-dialog modal-lg modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="modalTitle"></h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <!-- Formulario para crear o actualizar un registro -->
+                        <form id="saveForm">
+                            <div class="modal-body row g-3">
+                                <!-- Campo oculto para asignar el id del registro al momento de modificar -->
+                                <input type="number" class="d-none" id="idServicio" name="idServicio">
+                                <div class="col-12">
+                                    <label for="imagenServicio" class="form-label">Imagen</label>
+                                    <input id="imagenServicio" type="file" name="imagenServicio" class="form-control"
+                                        accept=".png, .jpg">
+                                </div>
+                                <div class="col-12">
+                                    <label class="form-label">Servicio</label>
+                                    <input id="tipoServicio" name="tipoServicio" class="form-control" required>
+                                </div>
+                                <div class="col-sm-12 mt-3">
+                                    <label class="form-label">Descripcion</label>
+                                    <textarea id="descripcionServicio" name="descripcionServicio" class="form-control"
+                                        placeholder="Ingrese una descripción" required></textarea>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="submit" class="btn btn-primary">Guardar</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </main>
+
+    <!-- Bootstrap -->
+    <script src="../../resources/js/bootstrap_js.js"></script>
+    <script src="../../resources/js/sweetalert.min.js"></script>
+    <!-- controladores del sitio privado -->
+    <script src="../../controllers/utils/components.js"></script>
+    <script src="../../controllers/utils/admin.js"></script>
+    <script type="text/javascript" src="../../controllers//public/buscador.js"></script>
+
+</body>
+
+</html>
