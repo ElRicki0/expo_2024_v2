@@ -61,7 +61,7 @@ if (isset($_GET['action'])) {
                 if ($result['dataset'] = $administrador->readAll()) {
                     // Si hay registros, se actualiza el estado y mensaje.
                     $result['status'] = 1;
-                    $result['message'] = 'Existen ' . count($result['dataset']) . ' registro(s)';
+                    $result['message'] = 'Registros encontrados';
                 } else {
                     // Si no hay registros, se registra un error.
                     $result['error'] = 'No existen administradores registrados';

@@ -1,6 +1,6 @@
 <?php
 // Se incluye la clase para trabajar con la base de datos.
-require_once ('../../helpers/database.php');
+require_once('../../helpers/database.php');
 
 /*
  *  Clase para manejar el comportamiento de los datos de la tabla administrador.
@@ -71,11 +71,12 @@ class AdministradorHandler
     public function searchRows()
     {
         $value = '%' . Validator::getSearchValue() . '%';
-        $sql = 'SELECT id_admin, nombre_admin, correo_admin
-                    FROM tb_admin
-                    WHERE nombre_admin LIKE ?
-                    ORDER BY nombre_admin';
-        $params = array($value);
+            $sql = 'SELECT id_admin, nombre_admin, correo_admin
+                        FROM tb_admin
+                        WHERE nombre_admin LIKE ?
+                        AND id_admin <> ?
+                        ORDER BY nombre_admin';
+        $params = array($value, $_SESSION['idAdministrador']);
         return Database::getRows($sql, $params);
     }
 
@@ -126,9 +127,10 @@ class AdministradorHandler
     {
         $sql = 'SELECT id_admin, nombre_admin, correo_admin
                 FROM tb_admin
-                ORDER BY nombre_admin';
-        // Se obtienen todos los registros de administradores ordenados por nombre.
-        return Database::getRows($sql);
+                WHERE id_admin <> ?';
+        $params = array($_SESSION['idAdministrador']);
+        // Se ejecuta la consulta para actualizar la información del perfil del administrador.
+        return Database::executeRow($sql, $params);
     }
 
     // Método para leer todos los administradores registrados.
