@@ -33,7 +33,8 @@ function formatPhoneNumber(input) {
     if (phoneNumber.length >= 9) {
         input.value = phoneNumber.slice(0, 9);
         input.setAttribute("maxlength", "9");
-
+    }
+    
     else {
         input.removeAttribute("maxlength");
     }

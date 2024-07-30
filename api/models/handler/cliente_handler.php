@@ -5,8 +5,8 @@ require_once('../../helpers/database.php');
 /*
  *  Clase para manejar el comportamiento de los datos de la tabla servicios.
  */
-class ClienteHandler{
-
+class ClienteHandler
+{
     protected $id = null;
     protected $nombre = null;
     protected $apellido = null;
@@ -17,7 +17,8 @@ class ClienteHandler{
     protected $nacimiento = null;
     protected $estado = null;
 
-    public function searchRows() {
+    public function searchRows()
+    {
         $value = '%' . Validator::getSearchValue() . '%';
         $sql = 'SELECT*from tb_clientes where 
         nombre_cliente like ? or apellido_cliente like ? or dui_cliente like ? or correo_cliente like ? or telefono_cliente like ? 
@@ -52,4 +53,35 @@ class ClienteHandler{
         return Database::executeRow($sql, $params);
     }
 
+    // Método para verificar las credenciales del cliente al iniciar sesión
+    public function checkUser($email, $contraseña)
+    {
+        $sql = 'SELECT id_cliente, correo_cliente, contrasenia_cliente, estado_cliente
+                    FROM tb_clientes
+                    WHERE correo_cliente = ?';
+        $params = array($email);
+        $data = Database::getRow($sql, $params);
+
+        // Verifica si la contraseña coincide con el hash almacenado y establece los datos del cliente si es válido
+        if (password_verify($contraseña, $data['contra_cliente'])) {
+            $this->id = $data['id_cliente'];
+            $this->correo = $data['correo_cliente'];
+            $this->estado = $data['estado_cliente'];
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    // Método para verificar y establecer el estado activo del cliente
+    public function checkStatus()
+    {
+        if ($this->estado) {
+            $_SESSION['idCliente'] = $this->id;
+            $_SESSION['correo_cliente'] = $this->correo;
+            return true;
+        } else {
+            return false;
+        }
+    }
 }
