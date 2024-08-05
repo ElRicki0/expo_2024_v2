@@ -63,7 +63,7 @@ class ClienteHandler
         $data = Database::getRow($sql, $params);
 
         // Verifica si la contraseña coincide con el hash almacenado y establece los datos del cliente si es válido
-        if (password_verify($contraseña, $data['contra_cliente'])) {
+        if (password_verify($contraseña, $data['contrasenia_cliente'])) {
             $this->id = $data['id_cliente'];
             $this->correo = $data['correo_cliente'];
             $this->estado = $data['estado_cliente'];
@@ -83,5 +83,14 @@ class ClienteHandler
         } else {
             return false;
         }
+    }
+
+    // Método para crear un nuevo registro de cliente
+    public function createRow()
+    {
+        $sql = 'INSERT INTO tb_clientes(nombre_cliente, apellido_cliente, dui_cliente, telefono_cliente, correo_cliente, contrasenia_cliente, nacimiento_cliente)
+                    VALUES(?, ?, ?, ?, ?, ?, ?)';
+        $params = array($this->nombre, $this->apellido, $this->dui, $this->telefono, $this->correo, $this->contrasenia, $this->nacimiento);
+        return Database::executeRow($sql, $params);
     }
 }

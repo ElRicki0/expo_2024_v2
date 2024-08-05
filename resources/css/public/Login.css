@@ -6,8 +6,21 @@
     border-radius: 50px;
 }
 
-@media (max-width: 576px) { /* Ocultar la imagen en dispositivos móviles */
+@media (max-width: 576px) {
+
+    /* Ocultar la imagen en dispositivos móviles */
     .d-none.d-sm-block {
         display: none;
     }
+}
+
+.bg-dark {
+    position: relative;
+}
+
+.bi-arrow-90deg-left {
+    position: absolute;
+    top: 0;
+    left: 0;
+    font-size: 24px;
 }

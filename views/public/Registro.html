@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ingresar</title>
+    <!-- Se enlaza Bootstrap para estilos adicionales -->
+    <link rel="stylesheet" href="../../resources/css/boostrap_css.css">
+    <link rel="stylesheet" href="../../resources/css/public/Login.css">
+    <link rel="stylesheet" href="../../resources/css/bootstrap-icons.min.css">
+</head>
+
+<body>
+    <main>
+        <div class="container position-absolute top-50 start-50 translate-middle">
+            <div class="row">
+                <div class="col-lg-5 col-md-7 col-sm-6 d-none d-sm-block">
+                    <img src="../../resources/img/public/Fondo.png" alt="Imagen" width="530px">
+                </div>
+                <div class="col-lg-7 col-md-5 col-sm-6 bg-dark text-center">
+                    <a href="login.html">
+                        <i class="bi bi-arrow-90deg-left text-white ms-3 mt-3"></i>
+                    </a>
+                    <h3 class="font-weight-bold font-monospace text-white mt-5 mb-4">REGISTRO DE USUARIO</h3>
+                    <form id="signupForm">
+                        <input type="number" class="d-none" id="id_cliente" name="id_cliente">
+                        <div class="form-group mt-5 d-flex justify-content-center">
+                            <div class="col-4">
+                                <input type="text" class="form-control" placeholder="Nombre(s)..." id="nombre_cliente"
+                                    name="nombre_cliente" oninput="formatAlphabetic(this)"
+                                    aria-describedby="addon-wrapping">
+                            </div>
+                            <div class="col-4 ms-2">
+                                <input type="text" class="form-control" placeholder="Apellido(s)..."
+                                    id="apellido_cliente" name="apellido_cliente" oninput="formatAlphabetic(this)"
+                                    aria-describedby="addon-wrapping">
+                            </div>
+                        </div>
+                        <div class="form-group mt-4 d-flex justify-content-center">
+                            <div class="col-4">
+                                <input type="email" class="form-control" placeholder="Correo electronico..."
+                                    id="correo_cliente" name="correo_cliente" oninput="formatEmail(this)"
+                                    aria-describedby="addon-wrapping">
+                            </div>
+                            <div class="col-4 ms-2">
+                                <input type="text" class="form-control" placeholder="Documento de identidad..."
+                                    id="dui_cliente" name="dui_cliente" oninput="formatDui(this)"
+                                    aria-describedby="addon-wrapping">
+                            </div>
+                        </div>
+                        <div class="form-group mt-4 d-flex justify-content-center">
+                            <div class="col-4">
+                                <input type="text" class="form-control" placeholder="Telefono..." id="telefono_cliente"
+                                    name="telefono_cliente" oninput="formatPhoneNumber(this)"
+                                    aria-describedby="addon-wrapping">
+                            </div>
+                            <div class="col-4 ms-2">
+                                <input type="date" class="form-control" placeholder="Fecha de nacimiento..."
+                                    id="nacimiento_cliente" name="nacimiento_cliente" oninput="validarFecha(this)"
+                                    aria-describedby="addon-wrapping">
+                            </div>
+                        </div>
+                        <div class="form-group mt-4 d-flex justify-content-center">
+                            <div class="col-8">
+                                <input type="password" class="form-control" placeholder="Contraseña..."
+                                    id="contra_cliente" name="contra_cliente" oninput="formatPassword(this)"
+                                    aria-describedby="addon-wrapping">
+                            </div>
+                        </div>
+                        <div class="form-group mt-4 d-flex justify-content-center">
+                            <div class="col-8">
+                                <input type="password" class="form-control" placeholder="Confirmar contraseña..."
+                                    id="confirmar_cliente" name="confirmar_cliente" oninput="formatPassword(this)"
+                                    aria-describedby="addon-wrapping">
+                            </div>
+                        </div>
+                        <div class="form-group mt-4 d-flex justify-content-center">
+                            <div class="col-8">
+                                <button type="submit" class="btn btn-light text-primary fw-bold pe-4 ps-4 mb-5">Crear
+                                    cuenta</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Librerias -->
+    <!-- Bootstrap -->
+    <script type="text/javascript" src="../../resources/js/bootstrap.bundle.min.js"> </script>
+
+    <!-- Js -->
+    <script type="text/javascript" src="../../controllers/utils/components.js"></script>
+    <script type="text/javascript" src="../../resources/js/sweetalert.min.js"></script>
+    <script type="text/javascript" src="../../controllers/utils/Validaciones.js"></script>
+    <script type="text/javascript" src="../../controllers/public/Registro.js"></script>
+</body>
+
+</html>

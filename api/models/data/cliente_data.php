@@ -6,7 +6,8 @@ require_once('../../models/handler/cliente_handler.php');
 /*
  *	Clase para manejar el encapsulamiento de los datos de la tabla PRODUCTO.
  */
-class ClienteData extends ClienteHandler{
+class ClienteData extends ClienteHandler
+{
 
     /*
      *  Atributos adicionales.
@@ -67,6 +68,17 @@ class ClienteData extends ClienteHandler{
         }
     }
 
+    public function setNacimiento($value)
+    {
+        if (Validator::validateDate($value)) {
+            $this->nacimiento = $value;
+            return true;
+        } else {
+            $this->data_error = 'La fecha de nacimiento es incorrecta';
+            return false;
+        }
+    }
+
     public function setCorreo($value, $min = 8, $max = 100)
     {
         if (!Validator::validateEmail($value)) {
@@ -92,6 +104,17 @@ class ClienteData extends ClienteHandler{
         }
     }
 
+    public function setConfirmar($value)
+    {
+        if (Validator::validatePassword($value)) {
+            $this->contrasenia = password_hash($value, PASSWORD_DEFAULT);
+            return true;
+        } else {
+            $this->data_error = Validator::getPasswordError();
+            return false;
+        }
+    }
+
     public function setTelefono($value)
     {
         if (Validator::validatePhone($value)) {
@@ -101,7 +124,7 @@ class ClienteData extends ClienteHandler{
             $this->data_error = 'El teléfono debe tener el formato (2, 6, 7)###-####';
             return false;
         }
-    }    
+    }
 
     public function setEstado($value)
     {

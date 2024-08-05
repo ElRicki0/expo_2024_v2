@@ -13,7 +13,7 @@ CREATE TABLE tb_clientes(
     contrasenia_cliente VARCHAR(200) not null,
     telefono_cliente VARCHAR (9) NOT NULL,
     nacimiento_cliente DATE NOT NULL,
-    estado_cliente tinyint(1) NOT NULL
+    estado_cliente tinyint(1) NOT NULL DEFAULT 1
 );
 
 -- proximamente
