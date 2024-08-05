@@ -9,14 +9,33 @@ const SAVE_MODAL = new bootstrap.Modal('#saveModal'),
     MODAL_TITLE = document.getElementById('modalTitle');
 // Constantes para establecer los elementos del formulario de guardar.
 const SAVE_FORM = document.getElementById('saveForm'),
-    ID_SERVICIO = document.getElementById('idServicio'),       
+    ID_SERVICIO = document.getElementById('idServicio'),
     TIPO_SERVICIO = document.getElementById('tipoServicio'),
-    DESCRIPCION_SERVICIO = document.getElementById('descripcionServicio')
+    DESCRIPCION_SERVICIO = document.getElementById('descripcionServicio');
+
+// componentes del segundo buscador
+const BENEFICIO_API = 'services/admin/beneficio.php';
+// Constante para establecer el formulario de buscar.
+const SEARCH_FORM2 = document.getElementById('searchForm2');
+// Constantes para establecer el contenido de la tabla.
+const TABLE_BODY2 = document.getElementById('tableBody2'),
+    ROWS_FOUND2 = document.getElementById('rowsFound2');
+// Constantes para establecer los elementos del componente Modal.
+const SAVE_MODAL2 = new bootstrap.Modal('#saveModal2'),
+    MODAL_TITLE2 = document.getElementById('modalTitle2');
+// Constantes para establecer los elementos del formulario de guardar.
+const SAVE_FORM2 = document.getElementById('saveForm2'),
+    ID_BENEFICIO = document.getElementById('idBeneficio'),
+    TITULO_BENEFICIO = document.getElementById('tituloBeneficio'),
+    CONTENIDO_BENEFICIO = document.getElementById('contenidoBeneficio'),
+    SERVICIO_BENEFICIO = document.getElementById('servicioBeneficio');
+
 // Método del evento para cuando el documento ha cargado.
 document.addEventListener('DOMContentLoaded', () => {
     loadTemplate();
     // Llamada a la función para llenar la tabla con los registros existentes.
     fillTable();
+    fillTable2();
 });
 
 // Método del evento para cuando se envía el formulario de buscar.
@@ -29,27 +48,14 @@ SEARCH_FORM.addEventListener('submit', (event) => {
     fillTable(FORM);
 });
 
-// Método del evento para cuando se envía el formulario de guardar.
-SAVE_FORM.addEventListener('submit', async (event) => {
+// Método del evento para cuando se envía el segundo formulario de buscar.
+SEARCH_FORM.addEventListener('submit', (event) => {
     // Se evita recargar la página web después de enviar el formulario.
     event.preventDefault();
-    // Se verifica la acción a realizar.
-    (ID_SERVICIO.value) ? action = 'updateRow' : action = 'createRow';
     // Constante tipo objeto con los datos del formulario.
-    const FORM = new FormData(SAVE_FORM);
-    // Petición para guardar los datos del formulario.
-    const DATA = await fetchData(SERVICIO_API, action, FORM);
-    // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
-    if (DATA.status) {
-        // Se cierra la caja de diálogo.
-        SAVE_MODAL.hide();
-        // Se muestra un mensaje de éxito.
-        sweetAlert(1, DATA.message, true);
-        // Se carga nuevamente la tabla para visualizar los cambios.
-        fillTable();
-    } else {
-        sweetAlert(2, DATA.error, false);
-    }
+    const FORM = new FormData(SEARCH_FORM2);
+    // Llamada a la función para llenar la tabla con los resultados de la búsqueda.
+    fillTable2(FORM);
 });
 
 /*
@@ -77,7 +83,6 @@ const fillTable = async (form = null) => {
                 <td>${row.tipo_servicio}</td>
                 <td>${row.descripcion_servicio}</td>
                 <td>
-                <button class="btn btn-danger"><i class="bi bi-trash3-fill" onclick="openDelete(${row.id_servicio})"></i></button>
                 <button class="btn btn-primary"><i class="bi bi-pen-fill" onclick="openUpdate(${row.id_servicio})"></i></button>
             </td>
         </tr>
@@ -90,18 +95,47 @@ const fillTable = async (form = null) => {
     }
 }
 
+
 /*
-*   Función para preparar el formulario al momento de insertar un registro.
-*   Parámetros: ninguno.
+*   Función asíncrona para llenar la tabla con los registros disponibles.
+*   Parámetros: form (objeto opcional con los datos de búsqueda).
 *   Retorno: ninguno.
 */
-const openCreate = () => {
-    // Se muestra la caja de diálogo con su título.
-    SAVE_MODAL.show();
-    MODAL_TITLE.textContent = 'AGREGAR SERVICIO';
-    // Se prepara el formulario.
-    SAVE_FORM.reset();
+const fillTable2 = async (form = null) => {
+    // Se inicializa el contenido de la tabla.
+    ROWS_FOUND2.textContent = '';
+    TABLE_BODY2.innerHTML = '';
+    // Se verifica la acción a realizar.
+    (form) ? action = 'searchRows' : action = 'readAll';
+    // Petición para obtener los registros disponibles.
+    const DATA = await fetchData(BENEFICIO_API, action, form);
+    // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+    if (DATA.status) {
+        // Se recorre el conjunto de registros (dataset) fila por fila a través del objeto row.
+        DATA.dataset.forEach(row => {
+
+            // Se crean y concatenan las filas de la tabla con los datos de cada registro.
+            TABLE_BODY2.innerHTML += `
+                <tr>
+                    <td>${row.titulo_beneficio}</td>
+                    <td>${row.contenido_beneficio}</td>
+                    <td>${row.tipo_servicio}</td>
+                    <td>
+                        <button type="button" class="btn btn-info" onclick="openUpdate2(${row.id_beneficio})">
+                            <i class="bi bi-pencil-fill"></i>
+                        </button>
+                    </td>
+                </tr>
+            `;
+        });
+        // Se muestra un mensaje de acuerdo con el resultado.
+        ROWS_FOUND2.textContent = DATA.message;
+    } else {
+        sweetAlert(4, DATA.error, true);
+    }
 }
+
+
 
 /*
 *   Función asíncrona para preparar el formulario al momento de actualizar un registro.
@@ -126,6 +160,31 @@ const openUpdate = async (id) => {
         ID_SERVICIO.value = ROW.id_servicio;
         TIPO_SERVICIO.value = ROW.tipo_servicio;
         DESCRIPCION_SERVICIO.value = ROW.descripcion_servicio;
+    } else {
+        sweetAlert(2, DATA.error, false);
+    }
+}
+
+const openUpdate2 = async (id) => {
+    // Se define un objeto con los datos del registro seleccionado.
+    const FORM = new FormData();
+    FORM.append('idBeneficio', id);
+    // Petición para obtener los datos del registro solicitado.
+    const DATA = await fetchData(BENEFICIO_API, 'readOne', FORM);
+    // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+    if (DATA.status) {
+        // Se muestra la caja de diálogo con su título.
+        // Se muestra la caja de diálogo con su título.
+        SAVE_MODAL2.show();
+        MODAL_TITLE2.textContent = 'Actualizar beneficio';
+        // Se prepara el formulario.
+        SAVE_FORM2.reset();
+        // Se inicializan los campos con los datos.
+        const ROW2 = DATA.dataset;
+        ID_BENEFICIO.value = ROW2.id_beneficio;
+        TITULO_BENEFICIO.value = ROW2.titulo_beneficio;
+        CONTENIDO_BENEFICIO.value = ROW2.contenido_beneficio;
+        fillSelect(SERVICIO_API, 'readAll', 'servicioBeneficio', ROW2.id_servicio);
     } else {
         sweetAlert(2, DATA.error, false);
     }
