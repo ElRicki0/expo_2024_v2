@@ -126,6 +126,16 @@ class AdministradorHandler
     public function readAll()
     {
         $sql = 'SELECT id_admin, nombre_admin, correo_admin
+                FROM tb_admin';
+        // Se ejecuta la consulta para actualizar la información del perfil del administrador.
+        return Database::getRows($sql);
+    }
+
+
+    // Método para leer todos los administradores registrados menos el de la sesión iniciada.
+    public function readAllOne()
+    {
+        $sql = 'SELECT id_admin, nombre_admin, correo_admin
                 FROM tb_admin
                 WHERE id_admin <> ?';
         $params = array($_SESSION['idAdministrador']);

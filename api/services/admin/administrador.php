@@ -1,6 +1,6 @@
 <?php
 // Se incluye la clase del modelo.
-require_once ('../../models/data/administrador_data.php');
+require_once('../../models/data/administrador_data.php');
 
 // Se comprueba si existe una acción a realizar, de lo contrario se finaliza el script con un mensaje de error.
 if (isset($_GET['action'])) {
@@ -57,6 +57,14 @@ if (isset($_GET['action'])) {
                 }
                 break;
             case 'readAll':
+                if ($result['dataset'] = $beneficio->readAll()) {
+                    $result['status'] = 1;
+                    $result['message'] = 'Existen ' . count($result['dataset']) . ' registros';
+                } else {
+                    $result['error'] = 'No existen beneficios registrados';
+                }
+                break;
+            case 'readAllOne':
                 // Lectura de todos los administradores registrados.
                 if ($result['dataset'] = $administrador->readAll()) {
                     // Si hay registros, se actualiza el estado y mensaje.
@@ -139,7 +147,7 @@ if (isset($_GET['action'])) {
                 $_POST = Validator::validateForm($_POST);
                 if (
                     !$administrador->setNombre($_POST['nombre_admin_perfil']) or
-                    !$administrador->setCorreo($_POST['correo_admin_perfil']) 
+                    !$administrador->setCorreo($_POST['correo_admin_perfil'])
                 ) {
                     $result['error'] = $administrador->getDataError();
                 } elseif ($administrador->editProfile()) {
@@ -228,8 +236,8 @@ if (isset($_GET['action'])) {
     header('Content-type: application/json; charset=utf-8');
 
     // Se imprime el resultado en formato JSON y se retorna al controlador.
-    print (json_encode($result));
+    print(json_encode($result));
 } else {
     // Si no hay acción definida, se imprime un mensaje indicando que el recurso no está disponible.
-    print (json_encode('Recurso no disponible'));
+    print(json_encode('Recurso no disponible'));
 }

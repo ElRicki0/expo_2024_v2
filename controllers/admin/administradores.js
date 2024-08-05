@@ -68,7 +68,7 @@ const fillTable = async (form = null) => {
     ROWS_FOUND.textContent = '';
     TABLE_BODY.innerHTML = '';
     // Se verifica la acción a realizar.
-    (form) ? action = 'searchRows' : action = 'readAll';
+    (form) ? action = 'searchRows' : action = 'readAllOne';
     // Petición para obtener los registros disponibles.
     const DATA = await fetchData(ADMINISTRADOR_API, action, form);
     // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.

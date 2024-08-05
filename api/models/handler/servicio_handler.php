@@ -31,6 +31,16 @@ class ServicioHandler
         return Database::getRows($sql, $params);
     }
     
+    public function searchPublicRows()
+    {
+        $value = '%' . Validator::getSearchValue() . '%';
+        $sql = 'SELECT *
+                FROM tb_servicios
+                WHERE tipo_servicio LIKE ? OR descripcion_servicio like ? 
+                ORDER BY tipo_servicio';
+        $params = array($value, $value);
+        return Database::getRows($sql, $params);
+    }
 
     public function createRow()
     {
