@@ -8,7 +8,8 @@
 .card {
     background-color: #14d22e;
     border: #45a049;
-    border: 200px;
+
+    margin: 20px;
     margin-bottom: 20px;
 }
 .card-header, .card-body {
