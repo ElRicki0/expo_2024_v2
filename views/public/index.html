@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiropráctica Específica</title>
+    <link rel="stylesheet" href="../../resources/css/public/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/owl.carousel.min.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <h1>Clínica Quiropráctica</h1>
+            <ul>
+                <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#servicios">Servicios</a></li>
+                <li><a href="#beneficios">Beneficios</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section id="inicio">
+            <div id="carousel" class="owl-carousel">
+                <div class="item"><img src="../../resources/img/public/quiro1.png" alt="Imagen 1"></div>
+                <div class="item"><img src="../../resources/img/public/quiro2.png" alt="Imagen 2"></div>
+            </div>
+            <h2>Bienvenido a Nuestra Clínica</h2>
+            <p>Ofrecemos los mejores servicios de quiropráctica para tu salud y bienestar.</p>
+        </section>
+        <section id="servicios">
+            <h2>Nuestros Servicios</h2>
+            <div class="service">
+                <i class="fas fa-spine"></i>
+                <h3>Ajustes Quiroprácticos</h3>
+                <p>Mejora tu postura y alivia el dolor con nuestros ajustes quiroprácticos.</p>
+            </div>
+            <div class="service">
+                <i class="fas fa-hand-holding-heart"></i>
+                <h3>Masajes Terapéuticos</h3>
+                <p>Relájate y recupera tu salud con nuestros masajes terapéuticos.</p>
+            </div>
+            <div class="service">
+                <i class="fas fa-leaf"></i>
+                <h3>Terapia Natural</h3>
+                <p>Tratamientos naturales para tu bienestar físico y mental.</p>
+            </div>
+        </section>
+        <section id="beneficios">
+            <h2>Beneficios de la Quiropráctica</h2>
+            <div class="benefit">
+                <img src="../../resources/img/public/quiro4.png" alt="Beneficio 1">
+                <h3>Mejora la Postura</h3>
+                <p>La quiropráctica ayuda a corregir problemas de postura y alineación.</p>
+            </div>
+            <div class="benefit">
+                <img src="../../resources/img/public/quiro5.png" alt="Beneficio 2">
+                <h3>Alivia el Dolor</h3>
+                <p>Reduce el dolor en la espalda, cuello y otras partes del cuerpo.</p>
+            </div>
+            <div class="benefit">
+                <img src="../../resources/img/public/quiro6.png" alt="Beneficio 3">
+                <h3>Aumenta la Flexibilidad</h3>
+                <p>Mejora la flexibilidad y el rango de movimiento.</p>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2024 Clínica Quiropráctica. Todos los derechos reservados.</p>
+    </footer>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/owl.carousel.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $("#carousel").owlCarousel({
+                autoPlay: 3000,
+                items: 1,
+                loop: true,
+                navigation: true,
+                navigationText: ["prev", "next"],
+                pagination: true
+            });
+        });
+    </script>
+</body>
+</html>
