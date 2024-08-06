@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ingresar</title>
+    <!-- Se enlaza Bootstrap para estilos adicionales -->
+    <link rel="stylesheet" href="../../resources/css/boostrap_css.css">
+    <link rel="stylesheet" href="../../resources/css/public/Login.css">
+</head>
+
+<body>
+    <main>
+        <div class="container position-absolute top-50 start-50 translate-middle">
+            <div class="row">
+                <div class="col-lg-4 col-md-7 col-sm-6 d-none d-sm-block">
+                    <img src="../../resources/img/public/bonita.png" alt="Imagen" width="418px">
+                </div>
+                <div class="col-1 row bg-dark justify-content-start">
+                    <button type="button" class="btn btn-link"><img
+                            src="../../resources/img/public/regresarLogin.png" alt=""
+                            style="width: 50px; height: 50px;"></button>
+                </div>
+                <div class="col-lg-6 col-md-5 col-sm-6 bg-dark text-center">
+                    <h3 class="font-weight-bold font-monospace text-white mt-5 mb-4">Recuperación de cuenta</h3>
+                    <img src="../../resources/img/public/profile.png" alt="Imagen" class="img-fluid" width="150px">
+                    <form id="saveForm">
+                        <div class="form-group mt-5 d-flex justify-content-center">
+                            <div class="col-8">
+                                <input type="email" class="form-control" placeholder="Codigo de recuperación"
+                                    id="correo_cliente" name="correo_cliente" aria-label="Username" oninput="(this)"
+                                    aria-describedby="addon-wrapping">
+                            </div>
+                        </div>
+                        <div class="form-group mt-2 d-flex justify-content-start">
+                            <div class="col-6">
+                                <a href="registro.html" class="text-white ms-5 fw-bold"><em>No tienes una
+                                        cuenta?</em></a>
+                            </div>
+                        </div>
+                        <div class="form-group mt-5">
+                            <div class="col-5 mb-5">
+                                <button type="submit"
+                                    class="btn btn-light text-primary fw-bold pe-4 ps-4 ms-5">Ingresar</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Librerias -->
+    <!-- Bootstrap -->
+    <script type="text/javascript" src="../../resources/js/bootstrap.bundle.min.js"> </script>
+
+    <!-- Js -->
+    <script type="text/javascript" src="../../controllers/utils/components.js"></script>
+    <script type="text/javascript" src="../../resources/js/sweetalert.min.js"></script>
+    <script type="text/javascript" src="../../controllers/utils/Validaciones.js"></script>
+    <script type="text/javascript" src="../../controllers/public/Login.js"></script>
+</body>
+
+</html>
