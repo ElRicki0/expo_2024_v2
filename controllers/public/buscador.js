@@ -1,4 +1,4 @@
-const SERVICIO_API = 'services/admin/servicio.php';
+const SERVICIO_API = 'services/public/servicio.php';
 // Constante para establecer el formulario de buscar.
 const SEARCH_FORM = document.getElementById('searchForm');
 // Constantes para establecer el contenido de la tabla.
@@ -14,7 +14,7 @@ const SAVE_FORM = document.getElementById('saveForm'),
     DESCRIPCION_SERVICIO = document.getElementById('descripcionServicio');
 
 // componentes del segundo buscador
-const BENEFICIO_API = 'services/admin/beneficio.php';
+const BENEFICIO_API = 'services/public/beneficio.php';
 // Constante para establecer el formulario de buscar.
 const SEARCH_FORM2 = document.getElementById('searchForm2');
 // Constantes para establecer el contenido de la tabla.
@@ -49,7 +49,7 @@ SEARCH_FORM.addEventListener('submit', (event) => {
 });
 
 // Método del evento para cuando se envía el segundo formulario de buscar.
-SEARCH_FORM.addEventListener('submit', (event) => {
+SEARCH_FORM2.addEventListener('submit', (event) => {
     // Se evita recargar la página web después de enviar el formulario.
     event.preventDefault();
     // Constante tipo objeto con los datos del formulario.
