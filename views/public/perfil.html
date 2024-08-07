@@ -32,50 +32,45 @@
                         <div class="form-group mt-5 d-flex justify-content-center">
                             <div class="col-4">
                                 <h5 class="font-weight-bold font-monospace text-white text-start">Nombre(s):</h5>
-                                <input type="text" class="form-control" placeholder="Nombre(s)..." id="nombre_cliente"
-                                    name="nombre_cliente" oninput="formatAlphabetic(this)"
+                                <input type="text" class="form-control" id="nombre_cliente" name="nombre_cliente"
                                     aria-describedby="addon-wrapping" readonly>
                             </div>
                             <div class="col-4 ms-2">
                                 <h5 class="font-weight-bold font-monospace text-white text-start">Apellido(s):</h5>
-                                <input type="text" class="form-control" placeholder="Apellido(s)..."
-                                    id="apellido_cliente" name="apellido_cliente" oninput="formatAlphabetic(this)"
+                                <input type="text" class="form-control" id="apellido_cliente" name="apellido_cliente"
                                     aria-describedby="addon-wrapping" readonly>
                             </div>
                         </div>
                         <div class="form-group mt-4 d-flex justify-content-center">
                             <div class="col-4">
                                 <h5 class="font-weight-bold font-monospace text-white text-start">Correo:</h5>
-                                <input type="email" class="form-control" placeholder="Correo electronico..."
-                                    id="correo_cliente" name="correo_cliente" oninput="formatEmail(this)"
+                                <input type="email" class="form-control" id="correo_cliente" name="correo_cliente"
                                     aria-describedby="addon-wrapping" readonly>
                             </div>
                             <div class="col-4 ms-2">
                                 <h5 class="font-weight-bold font-monospace text-white text-start">Dui:</h5>
-                                <input type="text" class="form-control" placeholder="Documento de identidad..."
-                                    id="dui_cliente" name="dui_cliente" oninput="formatDui(this)"
+                                <input type="text" class="form-control" id="dui_cliente" name="dui_cliente"
                                     aria-describedby="addon-wrapping" readonly>
                             </div>
                         </div>
                         <div class="form-group mt-4 d-flex justify-content-center">
                             <div class="col-4">
                                 <h5 class="font-weight-bold font-monospace text-white text-start">Telefono:</h5>
-                                <input type="text" class="form-control" placeholder="Telefono..." id="telefono_cliente"
-                                    name="telefono_cliente" oninput="formatPhoneNumber(this)"
+                                <input type="text" class="form-control" id="telefono_cliente" name="telefono_cliente"
                                     aria-describedby="addon-wrapping" readonly>
                             </div>
                             <div class="col-4 ms-2">
                                 <h5 class="font-weight-bold font-monospace text-white text-start">Cumpleaños:</h5>
-                                <input type="date" class="form-control" placeholder="Fecha de nacimiento..."
-                                    id="nacimiento_cliente" name="nacimiento_cliente" oninput="validarFecha(this)"
-                                    aria-describedby="addon-wrapping" readonly>
+                                <input type="date" class="form-control" id="nacimiento_cliente"
+                                    name="nacimiento_cliente" aria-describedby="addon-wrapping" readonly>
                             </div>
                         </div>
                         <div class="form-group mt-4 d-flex justify-content-center">
                             <div class="col-lg-8 col-md-8 col-sm-8 mb-5">
                                 <button type="submit" class="btn btn-light text-primary fw-bold pe-4 ps-4">Hacer
                                     cambios<i class="bi bi-pen-fill ms-2"></i></button>
-                                <button type="submit" class="btn btn-light text-danger fw-bold pe-4 ps-4">Cerrar
+                                <button type="submit" class="btn btn-light text-danger fw-bold pe-4 ps-4"
+                                    onclick="logOut()">Cerrar
                                     sesión<i class="bi bi-person-fill-down ms-2"></i></button>
                             </div>
                         </div>
