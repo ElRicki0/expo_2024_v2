@@ -1,0 +1,24 @@
+.form-control {
+    border-radius: 50px;
+}
+
+.btn-light {
+    border-radius: 50px;
+}
+
+@media (max-width: 576px) {
+
+    /* Ocultar la imagen en dispositivos móviles */
+    .d-none.d-sm-block {
+        display: none;
+    }
+}
+
+.bg-dark {
+    position: relative;
+}
+
+.bi-arrow-bar-down {
+
+    font-size: 20px;
+}
