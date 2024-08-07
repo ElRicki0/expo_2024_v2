@@ -8,6 +8,15 @@ body {
     border-color: #28930D;
 }
 
+.quirpracticos
+{
+    width: 18rem;
+    height: auto;
+    border: #28930D;
+    border: 20px;
+    border-color: #28930D;
+}
+
 .textopacienteprivado {
     height: 288px;
     max-height: 288px;
