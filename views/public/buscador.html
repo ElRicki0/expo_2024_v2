@@ -15,6 +15,8 @@
 <body>
 
     <main class="py-5">
+        <!-- Título del contenido principal -->
+        <h4 id="mainTitle"></h4>
 
         <div class="mt-5 justify-content-center">
             <!-- titulo principal -->
@@ -166,7 +168,7 @@
 
             <!-- componente modal para visualizar un registro de beneficios -->
             <div class="modal fade" id="saveModal2" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-                aria-labelledby="modalTitle2 aria-hidden="true">
+                aria-labelledby="modalTitle2 aria-hidden=" true">
                 <div class="modal-dialog modal-lg modal-dialog-centered">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -190,8 +192,8 @@
                                 </div>
                                 <div class="col-sm-12 col-md-6">
                                     <label for="servicioBeneficio" class="form-label">Servicio</label>
-                                    <select id="servicioBeneficio" name="servicioBeneficio" class="form-select"
-                                        required disabled>
+                                    <select id="servicioBeneficio" name="servicioBeneficio" class="form-select" required
+                                        disabled>
                                     </select>
                                 </div>
                             </div>
@@ -210,7 +212,7 @@
     <script src="../../resources/js/sweetalert.min.js"></script>
     <!-- controladores del sitio privado -->
     <script src="../../controllers/utils/components.js"></script>
-    <script src="../../controllers/utils/admin.js"></script>
+    <script src="../../controllers/utils/public.js"></script>
     <script src="../../controllers/public/buscador.js"></script>
 
 </body>

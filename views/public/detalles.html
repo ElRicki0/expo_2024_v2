@@ -20,6 +20,33 @@
         <!-- Título del contenido principal -->
         <h4 id="mainTitle"></h4>
 
+        <!-- Componente Horizontal Card para mostrar el detalle de un Servicio -->
+        <div class="card mb-3" id="detalle">
+            <div class="row">
+                <div class="col-md-4">
+                    <!-- Se muestra la imagen del Servicio -->
+                    <img id="imagenServicio" class="img-fluid rounded-start" alt="Error en cargar imagen">
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <h5 class="card-title" id="tipoServicio" alt="Error en cargar imagen"></h5>
+                        <p class="card-text" id="descripcionServicio" alt="Error en cargar"></p>
+                        <p class="card-text">Precio por servicio (US$) <b id="precioServicio" alt="Error en cargar"></b></p>
+                        <!-- Formulario para agregar el Servicio al carrito de compras -->
+                        <form class="row" id="shoppingForm">
+                            <!-- Campo oculto para asignar el id del Servicio -->
+                            <input type="number" class="d-none" id="idServicio" name="idServicio">
+                            <div class="col-12 align-self-end">
+                                <button type="submit" class="btn btn-primary">
+                                    <i class="bi bi-cart-plus-fill"></i> Hacer cita
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </main>
 
     <!-- Bootstrap -->
