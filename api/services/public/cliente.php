@@ -15,16 +15,14 @@ if (isset($_GET['action'])) {
         $result['session'] = 1;
         // Se compara la acción a realizar cuando un cliente ha iniciado sesión.
         switch ($_GET['action']) {
-            /*case 'getUser':
-                if (isset($_SESSION['correoCliente'])) {
+            case 'getUser':
+                if (isset($_SESSION['correo_cliente'])) {
                     $result['status'] = 1;
-                    $result['username'] = $_SESSION['correoCliente'];
-                    $result['name'] = $cliente->readOneCorreo($_SESSION['correoCliente']);
+                    $result['username'] = $_SESSION['correo_cliente'];
                 } else {
                     $result['error'] = 'Correo de usuario indefinido';
-                    $result['name'] = 'No se pudo obtener el usuario';
                 }
-                break;
+                break;/*
             case 'logOut':
                 if (session_destroy()) {
                     $result['status'] = 1;
