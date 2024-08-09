@@ -7,9 +7,10 @@ require_once('../../models/handler/beneficio_handler.php');
 /*
  *	Clase para manejar el encapsulamiento de los datos de la tabla PRODUCTO.
  */
-class BeneficioData extends BeneficioHandler{
+class BeneficioData extends BeneficioHandler
+{
 
-      /*
+    /*
      *  Atributos adicionales.
      */
     private $data_error = null;
@@ -64,12 +65,12 @@ class BeneficioData extends BeneficioHandler{
             $this->servicio = $value;
             return true;
         } else {
-            $this->data_error = 'El identificador del servicio es incorrecto';
+            $this->data_error = 'El identificador del beneficio es incorrecto';
             return false;
         }
     }
 
-     /*
+    /*
      *  Métodos para obtener el valor de los atributos adicionales.
      */
     public function getDataError()
@@ -81,5 +82,4 @@ class BeneficioData extends BeneficioHandler{
     {
         return $this->filename;
     }
-
 }
