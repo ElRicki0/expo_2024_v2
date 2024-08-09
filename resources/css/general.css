@@ -33,29 +33,108 @@ body {
     background-color: rgb(49, 49, 49);
 }
 
-
 /*tarjetas de comentarios*/
 
 .carousel-item {
     display: flex;
+    justify-content: space-around; /* Asegura que las tarjetas estén distribuidas horizontalmente */
 }
+
 .card-custom {
     border: 1px solid #ccc;
     border-radius: 10px;
     padding: 15px;
     margin: 10px;
     flex: 1;
+    background-color: #000000;
 }
+
 .card-custom .card-title {
     font-size: 1.25rem;
     font-weight: bold;
 }
+
 .card-custom .card-text {
     font-size: 1rem;
-    color: #555;
+    color: #aaaaaa;
 }
-.carousel-item {
+
+.NServiocio {
+    font-size: 1rem;
+    color: #6CB559;
+}
+
+
+.linea-verde {
+    border: none;
+    border-top: 3px solid green; /* Cambia el color y el grosor aquí */
+    width: 100%; /* Ajusta el ancho de la línea */
+}
+.comentariosseccion
+{   
+    background-color: #6CB559;
+}
+
+.BTNCom {
+    font-size: 1rem;
+}
+
+.tarjetaSer{
+    font-size: 1rem;
+    background-color: #ffffff !important;
+    border: #ffffff !important;
+    color: #000000;
+}
+
+.fotoServIndex-wrapper {
+    position: relative;
+    display: inline-block;
+}
+
+
+.conteinerInicio {
     display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.card-custom {
+    margin: 15px 0;
+}
+
+/* Estilo personalizado para las imágenes dentro de las tarjetas */
+.fotoServIndex {
+    border-top: 3px solid green;
+    border-bottom: 3px solid green;
+}
+
+/* Asegura que las imágenes del carrusel ocupen el 100% del contenedor */
+.carousel-inner img {
+    width: 100%;
+    height: auto;
+}
+
+.inicioIndex{
+    background-color: rgb(50, 50, 50);
+    border: #303231;
+}
+
+/* Ajuste para los contenedores flex */
+.d-flex {
+    flex-wrap: wrap;
+}
+
+.linea-verde {
+    border-color: green;
+    margin: auto;
+}
+.fotoServIndex {
+    display: block;
+    width: 100%;
+    border-top: 5px solid green; /* Borde superior */
+    border-bottom: 5px solid green; /* Borde inferior */
+    border-left: none; /* Sin borde en los lados */
+    border-right: none; /* Sin borde en los lados */
 }
 /*finaliza*/
 
