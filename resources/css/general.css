@@ -3,18 +3,80 @@ body {
 }
 
 .cartaPacientePrivado {
-    width: 18rem;
+   
     height: auto;
     border-color: #28930D;
 }
 
 .quirpracticos
 {
-    width: 18rem;
     height: auto;
     border: #28930D;
-    border: 20px;
+    border: 20px !important;
+    border-color: #28930D !important;
+    background-color: black !important;
+    width: 18rem !important;
+    background-color: black !important;
+    color: rgb(255, 255, 255) !important;
+}
+
+.cardservicio
+{
+    width: 23rem;
+    height: auto;
+    border: #28930D;
     border-color: #28930D;
+}
+
+.conteinerInicio
+{
+    background-color: rgb(49, 49, 49);
+}
+
+
+/*tarjetas de comentarios*/
+
+.carousel-item {
+    display: flex;
+}
+.card-custom {
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 15px;
+    margin: 10px;
+    flex: 1;
+}
+.card-custom .card-title {
+    font-size: 1.25rem;
+    font-weight: bold;
+}
+.card-custom .card-text {
+    font-size: 1rem;
+    color: #555;
+}
+.carousel-item {
+    display: flex;
+}
+/*finaliza*/
+
+.card-img-wrapper {
+    border: 10px solid #6CB559; /* Borde verde alrededor de la imagen */
+    padding: 10px; /* Espacio entre la imagen y el borde */
+    background-color: #6CB559;/* Fondo blanco para el padding */
+    border-width: 0;
+    border-left: 0;
+    margin-top: 20px;
+}
+.card-img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
+
+.tarjetaCobtene
+{
+    margin: 20px;
+    margin-inline-end: 20px;
 }
 
 .textopacienteprivado {
