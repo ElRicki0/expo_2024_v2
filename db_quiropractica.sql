@@ -77,14 +77,15 @@ CREATE TABLE tb_preguntas(
 CREATE TABLE tb_citas(
     id_cita INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
     nombre_cita VARCHAR(100) DEFAULT 'cita predeterminada',
-    fecha_cita DATETIME NOT NULL,
-    estado_cita ENUM('pendiente', 'proceso', 'terminado') NOT NULL,
+    fecha_creacion_cita DATETIME NOT NULL DEFAULT current_timestamp(),
+    fecha_asignacion_cita DATETIME NOT NULL,
+    estado_cita ENUM('pendiente', 'proceso', 'terminado') NOT NULL DEFAULT 'pendiente',
     numero_seciones INT,
     id_cliente INT,
     FOREIGN KEY (id_cliente) REFERENCES tb_clientes (id_cliente),
-    id_servicio int,
+    id_servicio INT,
     FOREIGN KEY (id_servicio) REFERENCES tb_servicios (id_servicio),
-    id_empleado INT,
+    id_empleado INT NULL,
     FOREIGN KEY (id_empleado) REFERENCES tb_empleados (id_empleado)
 );
 

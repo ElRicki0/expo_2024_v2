@@ -45,6 +45,16 @@ class BeneficioHandler
         return Database::getRows($sql);
     }
 
+    public function readAllOne()
+    {
+        $sql = 'SELECT b. id_beneficio, b.titulo_beneficio, b.contenido_beneficio, s.tipo_servicio 
+                    FROM tb_beneficios b
+                    join  tb_servicios s ON b.id_servicio = s.id_servicio 
+                    where b.id_servicio = ?';
+                    $params =array($this->servicio);
+        return Database::getRows($sql, $params);
+    }
+
     public function readOne()
     {
         $sql = 'SELECT*FROM tb_beneficios 

@@ -10,12 +10,16 @@ class Citahandler
 {
     protected $id = null;
     protected $nombre = null;
-    protected $fecha = null;
+    protected $fechar = null;
+    protected $fechac = null;
     protected $estado = null;
     protected $sesiones = null;
     protected $cliente = null;
     protected $servicio = null;
     protected $empleado = null;
+
+    protected $fechaC = null;
+    protected $fechaA = null;
 
 
     public function searchRows()
@@ -34,12 +38,11 @@ class Citahandler
 
     public function readAll()
     {
-        $sql = 'SELECT ct.id_cita,  ct.nombre_cita, ct.fecha_cita, ct.estado_cita, ct.numero_seciones, c.nombre_cliente, s.tipo_servicio, e.nombre_empleado
+        $sql = 'SELECT ct.id_cita,  ct.nombre_cita, ct.fecha_creacion_cita, ct.fecha_asignacion_cita, ct.estado_cita, ct.numero_seciones, c.nombre_cliente, s.tipo_servicio
                 from tb_citas ct
-                join tb_clientes c on ct.id_cliente = c.id_cliente
-                join tb_empleados e on ct.id_empleado = e.id_empleado
-                join tb_servicios s on ct.id_servicio = s.id_servicio
-                ORDER BY fecha_cita';
+                inner join tb_clientes c on ct.id_cliente = c.id_cliente
+                inner join tb_servicios s on ct.id_servicio = s.id_servicio
+                ORDER BY fecha_creacion_cita;';
         return Database::getRows($sql);
     }
 
@@ -57,6 +60,14 @@ class Citahandler
         $sql = 'INSERT INTO tb_citas(nombre_cita, fecha_cita, estado_cita, numero_seciones, id_cliente, id_servicio, id_empleado)
                 VALUES(?, ?, ?, ?, ?, ?, ?)';
         $params = array($this->nombre, $this->fecha, $this->estado, $this->sesiones, $this->cliente, $this->servicio, $this->empleado);
+        return Database::executeRow($sql, $params);
+    }
+
+    public function createRowCliente()
+    {
+        $sql = 'INSERT INTO tb_citas ( id_cliente, id_servicio) 
+                VALUES (?, ?)';
+        $params = array($_SESSION['id_cliente'], $this->servicio);
         return Database::executeRow($sql, $params);
     }
 

@@ -30,6 +30,15 @@ if (isset($_GET['action'])) {
                 $result['error'] = 'No existen beneficios registrados';
             }
             break;
+        case 'readAllOne':
+            if(!$beneficio->setServicio($_POST['idServicio'])){
+                $result['error'] = $beneficio->getDataError();
+            } elseif ($result['dataset'] = $beneficio->readAllOne()) {
+                $result['status'] = 1;
+            } else {
+                $result['error'] = 'Beneficios inexistente del servicio';
+            }
+            break;
         case 'readOne':
             if (!$beneficio->setId($_POST['idBeneficio'])) {
                 $result['error'] = $beneficio->getDataError();

@@ -81,12 +81,12 @@ const fillTable = async (form = null) => {
             TABLE_BODY.innerHTML += `
             <tr>
                 <td>${row.nombre_cita}</td>
-                <td>${row.fecha_cita}</td>
+                <td>${row.fecha_creacion_cita}</td>
+                <td>${row.fecha_asignacion_cita}</td>
                 <td>${row.estado_cita}</td>
                 <td>${row.numero_seciones}</td>
                 <td>${row.nombre_cliente}</td>
                 <td>${row.tipo_servicio}</td>
-                <td>${row.nombre_empleado}</td>
                 <td>
                 <button class="btn btn-danger"><i class="bi bi-trash3-fill" onclick="openDelete(${row.id_cita})"></i></button>
                 <button class="btn btn-primary"><i class="bi bi-pen-fill" onclick="openUpdate(${row.id_cita})"></i></button>
