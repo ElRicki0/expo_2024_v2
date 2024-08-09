@@ -3,18 +3,159 @@ body {
 }
 
 .cartaPacientePrivado {
-    width: 18rem;
+   
     height: auto;
     border-color: #28930D;
 }
 
 .quirpracticos
 {
-    width: 18rem;
     height: auto;
     border: #28930D;
-    border: 20px;
+    border: 20px !important;
+    border-color: #28930D !important;
+    background-color: black !important;
+    width: 18rem !important;
+    background-color: black !important;
+    color: rgb(255, 255, 255) !important;
+}
+
+.cardservicio
+{
+    width: 23rem;
+    height: auto;
+    border: #28930D;
     border-color: #28930D;
+}
+
+.conteinerInicio
+{
+    background-color: rgb(49, 49, 49);
+}
+
+/*tarjetas de comentarios*/
+
+.carousel-item {
+    display: flex;
+    justify-content: space-around; /* Asegura que las tarjetas estén distribuidas horizontalmente */
+}
+
+.card-custom {
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 15px;
+    margin: 10px;
+    flex: 1;
+    background-color: #000000;
+}
+
+.card-custom .card-title {
+    font-size: 1.25rem;
+    font-weight: bold;
+}
+
+.card-custom .card-text {
+    font-size: 1rem;
+    color: #aaaaaa;
+}
+
+.NServiocio {
+    font-size: 1rem;
+    color: #6CB559;
+}
+
+
+.linea-verde {
+    border: none;
+    border-top: 3px solid green; /* Cambia el color y el grosor aquí */
+    width: 100%; /* Ajusta el ancho de la línea */
+}
+.comentariosseccion
+{   
+    background-color: #6CB559;
+}
+
+.BTNCom {
+    font-size: 1rem;
+}
+
+.tarjetaSer{
+    font-size: 1rem;
+    background-color: #ffffff !important;
+    border: #ffffff !important;
+    color: #000000;
+}
+
+.fotoServIndex-wrapper {
+    position: relative;
+    display: inline-block;
+}
+
+
+.conteinerInicio {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.card-custom {
+    margin: 15px 0;
+}
+
+/* Estilo personalizado para las imágenes dentro de las tarjetas */
+.fotoServIndex {
+    border-top: 3px solid green;
+    border-bottom: 3px solid green;
+}
+
+/* Asegura que las imágenes del carrusel ocupen el 100% del contenedor */
+.carousel-inner img {
+    width: 100%;
+    height: auto;
+}
+
+.inicioIndex{
+    background-color: rgb(50, 50, 50);
+    border: #303231;
+}
+
+/* Ajuste para los contenedores flex */
+.d-flex {
+    flex-wrap: wrap;
+}
+
+.linea-verde {
+    border-color: green;
+    margin: auto;
+}
+.fotoServIndex {
+    display: block;
+    width: 100%;
+    border-top: 5px solid green; /* Borde superior */
+    border-bottom: 5px solid green; /* Borde inferior */
+    border-left: none; /* Sin borde en los lados */
+    border-right: none; /* Sin borde en los lados */
+}
+/*finaliza*/
+
+.card-img-wrapper {
+    border: 10px solid #6CB559; /* Borde verde alrededor de la imagen */
+    padding: 10px; /* Espacio entre la imagen y el borde */
+    background-color: #6CB559;/* Fondo blanco para el padding */
+    border-width: 0;
+    border-left: 0;
+    margin-top: 20px;
+}
+.card-img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
+
+.tarjetaCobtene
+{
+    margin: 20px;
+    margin-inline-end: 20px;
 }
 
 .textopacienteprivado {
