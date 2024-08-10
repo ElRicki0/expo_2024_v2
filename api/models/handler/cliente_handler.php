@@ -93,4 +93,14 @@ class ClienteHandler
         $params = array($this->nombre, $this->apellido, $this->dui, $this->telefono, $this->correo, $this->contrasenia, $this->nacimiento);
         return Database::executeRow($sql, $params);
     }
+
+    // Metodo para leer el perfil del cliente movil
+    public function readOneCorreo($correo)
+    {
+        $sql = 'SELECT id_cliente, nombre_cliente, apellido_cliente, dui_cliente, telefono_cliente, correo_cliente, nacimiento_cliente
+                    FROM tb_clientes
+                    WHERE correo_cliente = ?';
+        $params = array($correo);
+        return Database::getRow($sql, $params);
+    }
 }

@@ -22,7 +22,17 @@ if (isset($_GET['action'])) {
                 } else {
                     $result['error'] = 'Correo de usuario indefinido';
                 }
-                break;/*
+                break;
+            case 'getUserMobile':
+                if (isset($_SESSION['correo_cliente'])) {
+                    $result['status'] = 1;
+                    $result['username'] = $_SESSION['correo_cliente'];
+                    $result['name'] = $cliente->readOneCorreo($_SESSION['correo_cliente']);
+                } else {
+                    $result['error'] = 'Correo de usuario indefinido';
+                    $result['name'] = 'No se pudo obtener el usuario';
+                }
+                break;
             case 'logOut':
                 if (session_destroy()) {
                     $result['status'] = 1;
@@ -30,7 +40,7 @@ if (isset($_GET['action'])) {
                 } else {
                     $result['error'] = 'Ocurrió un problema al cerrar la sesión';
                 }
-                break;
+                break;/*
             case 'readProfile':
                 if ($result['dataset'] = $cliente->readProfile()) {
                     $result['status'] = 1;
