@@ -46,13 +46,15 @@ class CitaData extends CitaHandler
 
     public function setFecha($value)
     {
-        if (Validator::validateDate($value)) {
-            $this->fecha = $value;
-            return true;
-        } else {
-            $this->data_error = 'La fecha de la cita es incorrecta';
-            return false;
-        }
+        // if (Validator::validateAlphanumeric($value)) {
+        //     $this->fechaC = $value;
+        //     return true;
+        // } else {
+        //     $this->data_error = 'La fecha de la cita es incorrecta';
+        //     return false;
+        // }
+        $this->fechaC = $value;
+        return true;
     }
 
     public function setEstado($value)

@@ -60,6 +60,13 @@ SAVE_FORM.addEventListener('submit', async (event) => {
     }
 });
 
+// Obtener la fecha y hora actual en formato ISO sin segundos
+const fechaActual = new Date().toISOString().slice(0, 16);
+
+// Establecer el atributo "min" en el input para que solo acepte fechas y horas futuras
+FECHA_CITA.setAttribute('min', fechaActual);
+
+
 /*
 *   Función asíncrona para llenar la tabla con los registros disponibles.
 *   Parámetros: form (objeto opcional con los datos de búsqueda).
@@ -138,9 +145,9 @@ const openUpdate = async (id) => {
         const ROW = DATA.dataset;
         ID_CITA.value = ROW.id_cita;
         NOMBRE_CITA.value = ROW.nombre_cita;
-        FECHA_CITA.checked = ROW.fecha_cita;
-        ESTADO_CITA.checked = ROW.estado_cita;
-        NUMERO_SECIONES.checked = ROW.numero_seciones;
+        FECHA_CITA.value = ROW.fecha_asignacion_cita;
+        ESTADO_CITA.value = ROW.estado_cita;
+        NUMERO_SECIONES.value = ROW.numero_seciones;
         fillSelect(EMPLEADO_API, 'readAll', 'empleadoCita', ROW.id_empleado);
         fillSelect(SERVICIO_API, 'readAll', 'servicioCita', ROW.id_servicio);
         fillSelect(CLIENTE_API, 'readAll', 'clienteCita', ROW.id_cliente);

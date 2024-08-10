@@ -286,3 +286,7 @@ main{
 {
     color: white;
 }
+
+#search::placeholder {
+    color: white;
+}
