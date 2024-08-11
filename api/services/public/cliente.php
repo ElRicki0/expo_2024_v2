@@ -16,18 +16,18 @@ if (isset($_GET['action'])) {
         // Se compara la acción a realizar cuando un cliente ha iniciado sesión.
         switch ($_GET['action']) {
             case 'getUser':
-                if (isset($_SESSION['correo_cliente'])) {
+                if (isset($_SESSION['correoCliente'])) {
                     $result['status'] = 1;
-                    $result['username'] = $_SESSION['correo_cliente'];
+                    $result['username'] = $_SESSION['correoCliente'];
                 } else {
                     $result['error'] = 'Correo de usuario indefinido';
                 }
                 break;
             case 'getUserMobile':
-                if (isset($_SESSION['correo_cliente'])) {
+                if (isset($_SESSION['correoCliente'])) {
                     $result['status'] = 1;
-                    $result['username'] = $_SESSION['correo_cliente'];
-                    $result['name'] = $cliente->readOneCorreo($_SESSION['correo_cliente']);
+                    $result['username'] = $_SESSION['correoCliente'];
+                    $result['name'] = $cliente->readOneCorreo($_SESSION['correoCliente']);
                 } else {
                     $result['error'] = 'Correo de usuario indefinido';
                     $result['name'] = 'No se pudo obtener el usuario';
@@ -40,14 +40,14 @@ if (isset($_GET['action'])) {
                 } else {
                     $result['error'] = 'Ocurrió un problema al cerrar la sesión';
                 }
-                break;/*
+                break;
             case 'readProfile':
                 if ($result['dataset'] = $cliente->readProfile()) {
                     $result['status'] = 1;
                 } else {
                     $result['error'] = 'Ocurrió un problema al leer el perfil';
                 }
-                break;
+                break;/*
             case 'editProfile':
                 $_POST = Validator::validateForm($_POST);
                 if (

@@ -17,6 +17,49 @@ class ClienteHandler
     protected $nacimiento = null;
     protected $estado = null;
 
+    /*
+    *   Métodos para gestionar la cuenta del cliente.
+    */
+    // Método para verificar las credenciales del cliente al iniciar sesión
+    public function checkUser($email, $contraseña)
+    {
+        $sql = 'SELECT id_cliente, correo_cliente, contrasenia_cliente, estado_cliente
+                FROM tb_clientes
+                WHERE correo_cliente = ?';
+        $params = array($email);
+        $data = Database::getRow($sql, $params);
+
+        // Verifica si la contraseña coincide con el hash almacenado y establece los datos del cliente si es válido
+        if (password_verify($contraseña, $data['contrasenia_cliente'])) {
+            $this->id = $data['id_cliente'];
+            $this->correo = $data['correo_cliente'];
+            $this->estado = $data['estado_cliente'];
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    // Método para verificar y establecer el estado activo del cliente
+    public function checkStatus()
+    {
+        if ($this->estado) {
+            $_SESSION['idCliente'] = $this->id;
+            $_SESSION['correoCliente'] = $this->correo;
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function readProfile()
+    {
+        $sql = 'SELECT nombre_cliente, apellido_cliente, dui_cliente, correo_cliente, telefono_cliente, nacimiento_cliente 
+                from tb_clientes where id_cliente = ?;';
+        $params = array($_SESSION['idCliente']);
+        return Database::getRow($sql, $params);
+    }
+
     public function searchRows()
     {
         $value = '%' . Validator::getSearchValue() . '%';
@@ -51,38 +94,6 @@ class ClienteHandler
                 WHERE id_cliente = ?';
         $params = array($this->estado, $this->id);
         return Database::executeRow($sql, $params);
-    }
-
-    // Método para verificar las credenciales del cliente al iniciar sesión
-    public function checkUser($email, $contraseña)
-    {
-        $sql = 'SELECT id_cliente, correo_cliente, contrasenia_cliente, estado_cliente
-                    FROM tb_clientes
-                    WHERE correo_cliente = ?';
-        $params = array($email);
-        $data = Database::getRow($sql, $params);
-
-        // Verifica si la contraseña coincide con el hash almacenado y establece los datos del cliente si es válido
-        if (password_verify($contraseña, $data['contrasenia_cliente'])) {
-            $this->id = $data['id_cliente'];
-            $this->correo = $data['correo_cliente'];
-            $this->estado = $data['estado_cliente'];
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    // Método para verificar y establecer el estado activo del cliente
-    public function checkStatus()
-    {
-        if ($this->estado) {
-            $_SESSION['idCliente'] = $this->id;
-            $_SESSION['correo_cliente'] = $this->correo;
-            return true;
-        } else {
-            return false;
-        }
     }
 
     // Método para crear un nuevo registro de cliente
