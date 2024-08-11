@@ -106,73 +106,28 @@ const loadTemplate = async () => {
         MAIN.insertAdjacentHTML('beforebegin',
             `
             <header>
-                <nav class="navbar navbar-dark border-bottom border-secondary fixed-top">
-                    <div class="container-fluid">
+            <nav class="navbar navbar-dark border-bottom border-secondary fixed-top">
+                <div class="row container-fluid">
+                    <div class="col-10">
+                        <!-- boton del logo en la izquierda -->
                         <a class="navbar-brand fw-bold d-flex align-items-center" href="inicio.html">
                             <img src="../../resources/img/icons/icon.jpg" alt="" height="50px"
                                 class="d-inline-block align-text-top">
                             Quiropractica Especifica
                         </a>
-                        <button class="navbar-toggler rounded-5" type="button" data-bs-toggle="offcanvas"
-                            data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
-                            <span class="navbar-toggler-icon"></span>
-                        </button>
-                        <div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1" id="offcanvasNavbar"
-                            aria-labelledby="offcanvasNavbarLabel">
-                            <div class="offcanvas-header">
-                                <a type="button" class="btn-close" data-bs-dismiss="offcanvas"></i></a>
-                            </div>
-                            <div class="offcanvas-body">
-                                <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
-                                    <li class="nav-item dropdown text-center">
-                                        <a class="nav-link" href="#" data-bs-toggle="dropdown" aria-expanded="false">
-                                            <i class="bi bi-gear-fill"></i> <b>${DATA.username}</b>
-                                        </a>
-                                        <hr>
-                                        <ul class="dropdown-menu dropdown-menu-dark">
-                                            <li><a class="dropdown-item" href="perfil.html"> Ver perfil </a></li>
-                                            <li>
-                                                <hr class="dropdown-divider">
-                                            </li>
-                                            <li><a class="dropdown-item" href="#" onclick="logOut()"> Cerrar sesion </a></li>
-                                        </ul>
-                                    </li>
-                                    <li class="nav-item ms-4">
-                                        <a class="nav-link active" aria-current="page" href="inicio.html"><i class="bi bi-house-fill me-1"></i> Inicio</a>
-                                    </li>
-                                    <li class="nav-item ms-4">
-                                        <a class="nav-link" href="clientes.html"><i class="bi bi-people-fill me-1"></i> Clientes</a>
-                                    </li>
-                                    <li class="nav-item ms-4">
-                                        <a class="nav-link" href="empleados.html"><i class="bi bi-people"></i> Empleados</a>
-                                    </li>
-                                    <li class="nav-item ms-4">
-                                        <a class="nav-link" href="administradores.html"><i class="bi bi-person-circle me-1"></i></i> Admin</a>
-                                    </li>
-                                    <li class="nav-item ms-4">
-                                        <a class="nav-link" href="../../views/admin/servicios.html"><i class="bi bi-file-medical-fill me-1"></i> Servicios</a>
-                                    </li>
-                                    <li class="nav-item ms-4">
-                                        <a class="nav-link" href="beneficios.html"><i class="bi bi-lungs-fill me-1"></i> Beneficios</a>
-                                    </li>
-                                    <li class="nav-item ms-4">
-                                        <a class="nav-link" href="preguntas.html"><i class="bi bi-question-lg me-1"></i> Preguntas</a>
-                                    </li>
-                                    <li class="nav-item ms-4">
-                                        <a class="nav-link" href="citas.html"><i class="bi bi-bookmark-plus-fill me-1"></i> Citas</a>
-                                    </li>
-                                    <li class="nav-item ms-4">
-                                        <a class="nav-link" href="tratamientos.html"><i class="bi bi-clipboard2-pulse-fill me-1"></i>Tratamientos</a>
-                                    </li>
-                                    <li class="nav-item ms-4">
-                                        <a class="nav-link" href="comentarios.html"><i class="bi bi-chat-left-text-fill me-1"></i>Comentarios</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
                     </div>
-                </nav>
-            </header>
+                    <div class="col-2 justify-content-end">
+                        <!-- boton del logo de acciones en la derecha -->
+                        <a class="sinLink" href="buscador.html">
+                            <button type="button" class="btn btn-outline-info">
+                                <i class="bi bi-search"></i>
+                            </button>
+                        </a>
+                        <button type="button" class="btn btn-outline-light" ><a class="sinLink textoClaro" href="login.html">Iniciar sesión</a></button>
+                    </div>
+                </div>
+            </nav>
+        </header>
             `);
     }
     // Se agrega el pie de la página web después del contenido principal.

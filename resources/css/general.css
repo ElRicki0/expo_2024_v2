@@ -116,7 +116,7 @@ body {
 
 .inicioIndex{
     background-color: rgb(50, 50, 50);
-    border: #303231;
+    border: grey;
 }
 
 /* Ajuste para los contenedores flex */
@@ -289,4 +289,24 @@ main{
 
 #search::placeholder {
     color: white;
+}
+
+.separadorClaro {
+    border-top: 1px solid white; /* Establece el color del borde superior del hr en blanco */
+}
+
+
+.sinLink{
+    text-decoration: none; /* Quitar el subrayado */
+        transition: color 0.3s; /* Agregar transición para suavizar el cambio de color */
+}
+
+.btn:hover a {
+    color: black; /* Cambiar el color al invertido al pasar el cursor sobre el botón */
+}
+
+header {
+    background-color: black;
+    color: white; /* Opcional: Cambia el color del texto a blanco para que sea visible sobre el fondo negro */
+    padding: 10px; /* Opcional: Agrega un poco de espacio alrededor del contenido del header */
 }
