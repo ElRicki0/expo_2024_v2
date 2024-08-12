@@ -25,7 +25,7 @@ class BeneficioHandler
                     join  tb_servicios s ON b.id_servicio = s.id_servicio
                 WHERE titulo_beneficio LIKE ? OR contenido_beneficio LIKE ? or tipo_servicio like ?
                 ORDER BY titulo_beneficio';
-        $params = array($value, $value, $value);
+        $params = array($value, $value, $value, $value);
         return Database::getRows($sql, $params);
     }
 
@@ -51,7 +51,7 @@ class BeneficioHandler
                     FROM tb_beneficios b
                     join  tb_servicios s ON b.id_servicio = s.id_servicio 
                     where b.id_servicio = ?';
-                    $params =array($this->servicio);
+        $params = array($this->servicio);
         return Database::getRows($sql, $params);
     }
 
@@ -70,7 +70,7 @@ class BeneficioHandler
         $params = array($this->titulo, $this->contenido, $this->servicio, $this->id);
         return Database::executeRow($sql, $params);
     }
-    
+
     public function deleteRow()
     {
         $sql = 'DELETE FROM tb_beneficios

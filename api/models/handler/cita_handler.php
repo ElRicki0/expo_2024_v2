@@ -27,17 +27,16 @@ class Citahandler
                 join tb_servicios s on ct.id_servicio = s.id_servicio
                 WHERE nombre_cita LIKE ? OR estado_cita LIKE ? OR numero_seciones LIKE ? OR nombre_cliente LIKE ? OR fecha_asignacion_cita LIKE ?
                 ORDER BY fecha_asignacion_cita';
-        
+        $params = array($value, $value, $value, $value, $value);
+        return Database::getRows($sql, $params);
     }
 
     public function readAll()
     {
-        $sql = 'SELECT ct.id_cita,  ct.nombre_cita, ct.fecha_creacion_cita, ct.fecha_asignacion_cita, ct.estado_cita, ct.numero_seciones, c.nombre_cliente, s.tipo_servicio
+        $sql = 'SELECT ct.id_cita, ct.nombre_cita, ct.fecha_asignacion_cita, ct.estado_cita, ct.numero_seciones, c.nombre_cliente, s.tipo_servicio
                 from tb_citas ct
-                inner join tb_clientes c on ct.id_cliente = c.id_cliente
-                inner join tb_servicios s$params = array($value, $value, $value, $value, $value);
-        return Database::getRows($sql, $params); on ct.id_servicio = s.id_servicio
-                ORDER BY fecha_creacion_cita;';
+                join tb_clientes c on ct.id_cliente = c.id_cliente
+                join tb_servicios s on ct.id_servicio = s.id_servicio';
         return Database::getRows($sql);
     }
 
@@ -47,7 +46,7 @@ class Citahandler
                 from tb_citas ct
                 inner join tb_clientes c on ct.id_cliente = c.id_cliente
                 inner join tb_servicios s on ct.id_servicio = s.id_servicio
-                where ct.id_cliente = ?;';
+                where ct.id_cliente = ? AND ct.estado_cita = "pendiente"';
         $params = array($_SESSION['idCliente']);
         return Database::getRows($sql, $params);
     }

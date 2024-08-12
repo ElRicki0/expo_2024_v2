@@ -57,13 +57,16 @@ class CitaData extends CitaHandler
         return true;
     }
 
-    public function setEstado($value)
+    public function setEstado($value, $min = 2, $max = 50)
     {
-        if (Validator::validateBoolean($value)) {
+        if (!Validator::validateAlphanumeric($value)) {
+            $this->data_error = 'error al estado';
+            return false;
+        } elseif (Validator::validateLength($value, $min, $max)) {
             $this->estado = $value;
             return true;
         } else {
-            $this->data_error = 'Estado incorrecto';
+            $this->data_error = 'El estado debe tener una longitud entre ' . $min . ' y ' . $max;
             return false;
         }
     }
