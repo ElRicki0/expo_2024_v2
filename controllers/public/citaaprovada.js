@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 */
 const fillTable = async (form = null) => {
     CITA_BODY.innerHTML = '';
-    const DATA = await fetchData(CITA_API, 'readAllCliente', form);
+    const DATA = await fetchData(CITA_API, 'readAllClienteAprobado', form);
     if (DATA.status) {
         DATA.dataset.forEach(row => {
             const fecha = row.fecha_asignacion_cita ? row.fecha_asignacion_cita : 'Fecha no asignada';
@@ -41,11 +41,11 @@ const fillTable = async (form = null) => {
                             </div>
                             <div class="col-3">
                                 <h2 class="mb-5">Estado de cita</h2>
-                                <h4 class="card-text text-warning">${row.estado_cita}</h4>
+                                <h4 class="card-text text-success">${row.estado_cita}</h4>
                             </div>
                             <div class="col-3">
                                 <h2 class="mb-5">Fecha de cita</h2>
-                                <h4 class="card-text text-info-emphasis">${fecha}</h4>
+                                <h4 class="card-text text-warning">${fecha}</h4>
                             </div>
                         </div>
 

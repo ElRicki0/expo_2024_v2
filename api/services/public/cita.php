@@ -28,13 +28,20 @@ if (isset($_GET['action'])) {
                     $result['error'] = 'Ocurrió un problema al crear la cita';
                 }
                 break;
-
             case 'readAllCliente':
                 if ($result['dataset'] = $cita->readAllCliente()) {
                     $result['status'] = 1;
                     $result['message'] = 'Existen ' . count($result['dataset']) . ' cita(s)';
                 } else {
                     $result['error'] = 'No existen citas registradas';
+                }
+                break;
+            case 'readAllClienteAprobado':
+                if ($result['dataset'] = $cita->readAllClienteAprobado()) {
+                    $result['status'] = 1;
+                    $result['message'] = 'Existen ' . count($result['dataset']) . ' cita(s)';
+                } else {
+                    $result['error'] = 'No existen citas aprobadas';
                 }
                 break;
             default:

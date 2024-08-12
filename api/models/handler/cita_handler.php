@@ -51,6 +51,19 @@ class Citahandler
         return Database::getRows($sql, $params);
     }
 
+    public function readAllClienteAprobado()
+    {
+        $sql = 'SELECT ct.id_cita, ct.fecha_creacion_cita, ct.fecha_creacion_cita, ct.numero_seciones, ct.fecha_asignacion_cita, ct.estado_cita, ct.numero_seciones, s.tipo_servicio, ep.nombre_empleado
+                from tb_citas ct
+                inner join tb_clientes c on ct.id_cliente = c.id_cliente
+                inner join tb_servicios s on ct.id_servicio = s.id_servicio
+                inner join tb_empleados ep on ct.id_empleado = ep.id_empleado
+
+                where ct.id_cliente = ? AND ct.estado_cita <> "pendiente"';
+        $params = array($_SESSION['idCliente']);
+        return Database::getRows($sql, $params);
+    }
+
     public function readOne()
     {
         $sql = 'SELECT *
