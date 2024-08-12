@@ -27,8 +27,7 @@ class Citahandler
                 join tb_servicios s on ct.id_servicio = s.id_servicio
                 WHERE nombre_cita LIKE ? OR estado_cita LIKE ? OR numero_seciones LIKE ? OR nombre_cliente LIKE ? OR fecha_asignacion_cita LIKE ?
                 ORDER BY fecha_asignacion_cita';
-        $params = array($value, $value, $value, $value, $value);
-        return Database::getRows($sql, $params);
+        
     }
 
     public function readAll()
@@ -36,9 +35,21 @@ class Citahandler
         $sql = 'SELECT ct.id_cita,  ct.nombre_cita, ct.fecha_creacion_cita, ct.fecha_asignacion_cita, ct.estado_cita, ct.numero_seciones, c.nombre_cliente, s.tipo_servicio
                 from tb_citas ct
                 inner join tb_clientes c on ct.id_cliente = c.id_cliente
-                inner join tb_servicios s on ct.id_servicio = s.id_servicio
+                inner join tb_servicios s$params = array($value, $value, $value, $value, $value);
+        return Database::getRows($sql, $params); on ct.id_servicio = s.id_servicio
                 ORDER BY fecha_creacion_cita;';
         return Database::getRows($sql);
+    }
+
+    public function readAllCliente()
+    {
+        $sql = 'SELECT ct.id_cita, ct.fecha_creacion_cita, ct.fecha_asignacion_cita, ct.estado_cita, ct.numero_seciones, s.tipo_servicio
+                from tb_citas ct
+                inner join tb_clientes c on ct.id_cliente = c.id_cliente
+                inner join tb_servicios s on ct.id_servicio = s.id_servicio
+                where ct.id_cliente = ?;';
+        $params = array($_SESSION['idCliente']);
+        return Database::getRows($sql, $params);
     }
 
     public function readOne()
@@ -62,7 +73,7 @@ class Citahandler
     {
         $sql = 'INSERT INTO tb_citas ( id_cliente, id_servicio) 
                 VALUES (?, ?)';
-        $params = array($_SESSION['id_cliente'], $this->servicio);
+        $params = array($_SESSION['idCliente'], $this->servicio);
         return Database::executeRow($sql, $params);
     }
 

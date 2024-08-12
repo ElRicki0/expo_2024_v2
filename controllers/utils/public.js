@@ -30,7 +30,7 @@ const loadTemplate = async () => {
             // Se agrega el encabezado de la página web antes del contenido principal.
             MAIN.insertAdjacentHTML('beforebegin', `
                 <header>
-                <nav class="navbar navbar-dark border-bottom border-secondary fixed-top">
+                <nav class="navbar navbar-dark border-bottom border-secondary">
                     <div class="container-fluid">
                         <a class="navbar-brand fw-bold d-flex align-items-center" href="inicio.html">
                             <img src="../../resources/img/icons/icon.jpg" alt="" height="50px"
@@ -106,7 +106,7 @@ const loadTemplate = async () => {
         MAIN.insertAdjacentHTML('beforebegin',
             `
             <header>
-            <nav class="navbar navbar-dark border-bottom border-secondary fixed-top">
+            <nav class="navbar navbar-dark border-bottom border-secondary">
                 <div class="row container-fluid">
                     <div class="col-10">
                         <!-- boton del logo en la izquierda -->
