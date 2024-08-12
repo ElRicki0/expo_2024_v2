@@ -60,6 +60,30 @@ class ClienteHandler
         return Database::getRow($sql, $params);
     }
 
+    public function checkPassword($password)
+    {
+        $sql = 'SELECT contrasenia_cliente
+                FROM tb_clientes
+                WHERE id_cliente = ?';
+        $params = array($_SESSION['idCliente']);
+        if (!($data = Database::getRow($sql, $params))) {
+            return false;
+        } elseif (password_verify($password, $data['contrasenia_cliente'])) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function changePassword()
+    {
+        $sql = 'UPDATE tb_clientes
+                SET contrasenia_cliente = ?
+                WHERE id_cliente = ?';
+        $params = array($this->contrasenia, $_SESSION['idCliente']);
+        return Database::executeRow($sql, $params);
+    }
+
     public function searchRows()
     {
         $value = '%' . Validator::getSearchValue() . '%';

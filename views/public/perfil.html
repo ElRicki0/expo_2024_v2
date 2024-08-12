@@ -23,7 +23,7 @@
                             aria-expanded="false"><i class="bi bi-unlock-fill"></i>
                         </button>
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <li><a class="dropdown-item" href="#">Editar contraseña</a></li>
+                            <li><a class="dropdown-item" href="#" onclick="openPassword()">Editar contraseña</a></li>
                         </ul>
                     </div>
                     <h3 class="font-weight-bold font-monospace text-white mb-4">DATOS DEL USUARIO
@@ -70,13 +70,53 @@
                         <div class="form-group mt-4 d-flex justify-content-center">
                             <div class="col-lg-8 col-md-8 col-sm-8 mb-5">
 
-                                <button type="submit" class="btn btn-light text-primary fw-bold pe-4 ps-4">Hacer
-                                    cambios<i class="bi bi-pen-fill ms-2"></i></button>
+                                <button type="submit" class="btn btn-light text-primary fw-bold pe-4 ps-4">
+                                    Hacer cambios<i class="bi bi-pen-fill ms-2"></i></button>
 
                                 <button type="submit" class="btn btn-light text-danger fw-bold pe-4 ps-4"
                                     onclick="logOut()">Cerrar
                                     sesión<i class="bi bi-person-fill-down ms-2"></i></button>
                             </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Componente Modal para mostrar el formulario de cambio de contraseña -->
+        <div class="modal fade" id="passwordModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+            aria-labelledby="modalTitle" aria-hidden="true">
+            <div class="modal-dialog modal-lg modal-dialog-centered">
+                <!-- Contenido del componente Modal -->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="modalTitle">Cambiar contraseña</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <!-- Formulario para actualizar contraseña -->
+                    <form id="passwordForm">
+                        <div class="modal-body row g-3">
+                            <div class="col-sm-12 col-md-6 offset-md-3">
+                                <label for="claveActual" class="form-label">Contraseña actual</label>
+                                <input id="claveActual" type="password" name="claveActual" class="form-control"
+                                    required>
+                            </div>
+                            <div class="col-12 text-center">
+                                <span>CONTRASEÑA NUEVA</span>
+                            </div>
+                            <div class="col-sm-12 col-md-6">
+                                <label for="claveNueva" class="form-label">Contraseña</label>
+                                <input id="claveNueva" type="password" name="claveNueva" class="form-control" required>
+                            </div>
+                            <div class="col-sm-12 col-md-6">
+                                <label for="confirmarClave" class="form-label">Confirmar contraseña</label>
+                                <input id="confirmarClave" type="password" name="confirmarClave" class="form-control"
+                                    required>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="reset" class="btn btn-secondary">Cancelar</button>
+                            <button type="submit" class="btn btn-primary">Guardar</button>
                         </div>
                     </form>
                 </div>

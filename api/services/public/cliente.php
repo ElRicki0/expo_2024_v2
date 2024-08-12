@@ -65,14 +65,14 @@ if (isset($_GET['action'])) {
                 } else {
                     $result['error'] = 'Ocurrió un problema al modificar el perfil';
                 }
-                break;/*
+                break;
             case 'changePassword':
                 $_POST = Validator::validateForm($_POST);
                 if (!$cliente->checkPassword($_POST['claveActual'])) {
                     $result['error'] = 'Contraseña actual incorrecta';
                 } elseif ($_POST['claveNueva'] != $_POST['confirmarClave']) {
                     $result['error'] = 'Confirmación de contraseña diferente';
-                } elseif (!$cliente->setContraseña($_POST['claveNueva'])) {
+                } elseif (!$cliente->setContrasenia($_POST['claveNueva'])) {
                     $result['error'] = $cliente->getDataError();
                 } elseif ($cliente->changePassword()) {
                     $result['status'] = 1;
@@ -82,7 +82,7 @@ if (isset($_GET['action'])) {
                 }
                 break;
             default:
-                $result['error'] = 'Ya existe una sesion iniciada.';*/
+                $result['error'] = 'Acción no disponible dentro de la sesión.';
         }
     } else {
         // Se compara la acción a realizar cuando el cliente no ha iniciado sesión.
@@ -121,7 +121,7 @@ if (isset($_GET['action'])) {
                 }
                 break;
             default:
-                $result['message'] = 'Debes iniciar sesion en una cuenta primero.';
+                $result['message'] = 'Acción no disponible dentro de la sesión.';
         }
     }
     // Se obtiene la excepción del servidor de base de datos por si ocurrió un problema.
