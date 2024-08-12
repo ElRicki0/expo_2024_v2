@@ -105,6 +105,15 @@ class ClienteHandler
         return Database::executeRow($sql, $params);
     }
 
+    public function editProfile()
+    {
+        $sql = 'UPDATE tb_clientes
+                SET nombre_cliente = ?, apellido_cliente = ?, dui_cliente = ?, correo_cliente = ?, telefono_cliente = ?, nacimiento_cliente = ?
+                WHERE id_cliente = ?';
+        $params = array($this->nombre, $this->apellido, $this->dui, $this->correo, $this->telefono, $this->nacimiento, $_SESSION['idCliente']);
+        return Database::executeRow($sql, $params);
+    }
+
     // Metodo para leer el perfil del cliente movil
     public function readOneCorreo($correo)
     {

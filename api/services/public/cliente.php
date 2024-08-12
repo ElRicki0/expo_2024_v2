@@ -47,16 +47,16 @@ if (isset($_GET['action'])) {
                 } else {
                     $result['error'] = 'Ocurrió un problema al leer el perfil';
                 }
-                break;/*
+                break;
             case 'editProfile':
                 $_POST = Validator::validateForm($_POST);
                 if (
-                    !$cliente->setNombre($_POST['nombreClientePerfil']) or
-                    !$cliente->setApellido($_POST['apellidoClientePerfil']) or
-                    !$cliente->setCorreo($_POST['correoClientePerfil']) or
-                    !$cliente->setDui($_POST['duiClientePerfil']) or
-                    !$cliente->setGenero($_POST['generoClientePerfil']) or
-                    !$cliente->setTelefono($_POST['telefonoClientePerfil'])
+                    !$cliente->setNombre($_POST['nombreCliente']) or
+                    !$cliente->setApellido($_POST['apellidoCliente']) or
+                    !$cliente->setCorreo($_POST['correoCliente']) or
+                    !$cliente->setDui($_POST['duiCliente']) or
+                    !$cliente->setNacimiento($_POST['nacimientoCliente']) or
+                    !$cliente->setTelefono($_POST['telefonoCliente'])
                 ) {
                     $result['error'] = $cliente->getDataError();
                 } elseif ($cliente->editProfile()) {
@@ -65,7 +65,7 @@ if (isset($_GET['action'])) {
                 } else {
                     $result['error'] = 'Ocurrió un problema al modificar el perfil';
                 }
-                break;
+                break;/*
             case 'changePassword':
                 $_POST = Validator::validateForm($_POST);
                 if (!$cliente->checkPassword($_POST['claveActual'])) {
