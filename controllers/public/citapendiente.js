@@ -48,7 +48,9 @@ const fillTable = async (form = null) => {
                                 <h4 class="card-text text-info-emphasis">${fecha}</h4>
                             </div>
                         </div>
-
+                        <button type="button" onclick="openDelete(${row.id_cita})" class=" col-2 mb-1 btn btn-danger">
+                            <i class="bi bi-cart-dash"></i>
+                        </button>
                         <a href="#" class="btn btn-primary col-2">Go somewhere</a>
                     </div>
                 </div>
@@ -57,5 +59,27 @@ const fillTable = async (form = null) => {
         });
     } else {
         sweetAlert(4, DATA.error, true);
+    }
+}
+
+
+async function openDelete(id) {
+    // Llamada a la función para mostrar un mensaje de confirmación, capturando la respuesta en una constante.
+    const RESPONSE = await confirmAction('¿Está seguro de remover la petición de cita?');
+    // Se verifica la respuesta del mensaje.
+    if (RESPONSE) {
+        // Se define un objeto con los datos del producto seleccionado.
+        const FORM = new FormData();
+        FORM.append('idCita', id);
+        // Petición para eliminar un producto del carrito de compras.
+        const DATA = await fetchData(CITA_API, 'deleteRow', FORM);
+        // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+        if (DATA.status) {
+            await sweetAlert(1, DATA.message, true);
+            // Se carga nuevamente la tabla para visualizar los cambios.
+            fillTable();
+        } else {
+            sweetAlert(2, DATA.error, false);
+        }
     }
 }

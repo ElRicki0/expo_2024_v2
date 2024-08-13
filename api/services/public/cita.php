@@ -44,6 +44,18 @@ if (isset($_GET['action'])) {
                     $result['error'] = 'No existen citas aprobadas';
                 }
                 break;
+            case 'deleteRow':
+                if (
+                    !$cita->setId($_POST['idCita'])
+                ) {
+                    $result['error'] = $cita->getDataError();
+                } elseif ($cita->deleteRow()) {
+                    $result['status'] = 1;
+                    $result['message'] = 'Cita eliminado correctamente';
+                } else {
+                    $result['error'] = 'Ocurrió un problema al eliminar la cita   ////   la cita esta siendo usada por tratamientos ';
+                }
+                break;
             default:
                 $result['error'] = 'Acción no disponible dentro de la sesión';
         }

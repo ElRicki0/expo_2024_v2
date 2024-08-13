@@ -2,7 +2,7 @@ use db_quiropractica;
 
 INSERT INTO tb_clientes (nombre_cliente, apellido_cliente, dui_cliente, correo_cliente, contrasenia_cliente, telefono_cliente, nacimiento_cliente, estado_cliente) 
 VALUES 
-('Alice', 'Johnson', '1234567890', 'alice.johnson@example.com', 'pass123', '123456789', '1990-05-15', 1),
+('jhonny', 'Melara', '1234567890', 'cliente@example.com', '$2y$10$OrPBIgS7IFzMJPFVzw0v1.siV7i3dVhk4fNpwxmHZ31cXWxNxxaca', '6666-6666', '1990-05-15', 1),
 ('Bob', 'Smith', '2345678901', 'bob.smith@example.com', 'password456', '234567890', '1985-08-20', 1),
 ('Charlie', 'Williams', '3456789012', 'charlie.williams@example.com', 'abc123', '345678901', '1988-11-25', 1),
 ('David', 'Brown', '4567890123', 'david.brown@example.com', 'securepwd', '456789012', '1992-02-10', 1),
@@ -40,6 +40,10 @@ VALUES
 ('Jorge', 'Ramirez', '8901234567', 'jorge.ramirez@example.com', '1993-06-08', 1),
 ('Elena', 'Torres', '0987654321', 'elena.torres@example.com', '1994-04-17', 1);
 
+
+INSERT INTO `tb_admin` (`id_admin`, `nombre_admin`, `correo_admin`, `contraseña_admin`, `id_empleado`) 
+VALUES (NULL, 'nombre ejemplo', 'correo@gmail.com', '$2y$10$OrPBIgS7IFzMJPFVzw0v1.siV7i3dVhk4fNpwxmHZ31cXWxNxxaca', '1');
+ 
 INSERT INTO tb_servicios (tipo_servicio, descripcion_servicio, imagen_servicio) 
 VALUES 
 ('Quiropráctica General', 'Servicio de quiropráctica para el cuidado de la salud de la columna vertebral', 'imagen1.jpg'),
@@ -69,10 +73,10 @@ VALUES
 INSERT INTO tb_citas (id_cliente, id_servicio) 
 VALUES 
     (1, 2),
-    (2, 1),
-    (3, 3),
-    (4, 1),
-    (5, 2);
+    (1, 1),
+    (1, 3),
+    (1, 1),
+    (1, 2);
 
 INSERT INTO tb_nombres_tratamientos (nombre_tratamiento, notas_adicionales, id_cita) 
 VALUES 
