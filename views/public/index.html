@@ -5,8 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quiropráctica Específica</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="../../resources/css/general.css"> 
+    <link href="../../resources/css/boostrap_css.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../resources/css/general.css">
     <link type="text/css" rel="stylesheet" href="../../resources/css/bootstrap-icons.min.css">
 </head>
 
@@ -34,67 +34,97 @@
         </div>
 
         <!-- acordeón de servicios -->
-        <section id="servicios" class="py-5">
+        <section id="servicios" class="py-5 mt-3">
             <div class="col-12 text-center justify-content-center">
                 <h3 class="textoClaro">SERVICIOS</h3>
                 <hr class="separadorClaro">
 
                 <!-- inicio acordeón -->
-                <div class="accordion accordion-flush" id="accordionFlushExample">
-                    <div class="accordion-item inicioIndex">
+                <div class="accordion accordion-flush container" id="accordionFlushExample">
+
+
+                    <div class="accordion-item inicioIndex" id="servicios">
                         <h2 class="accordion-header">
                             <button class="accordion-button collapsed inicioIndex textoClaro" type="button"
                                 data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false"
                                 aria-controls="flush-collapseOne">
-                                Accordion Item #1
+                                Nombre de Servicio
                             </button>
                         </h2>
                         <div id="flush-collapseOne" class="accordion-collapse collapse"
                             data-bs-parent="#accordionFlushExample">
-                            <div class="accordion-body textoClaro">Placeholder content for this accordion, which is
-                                intended to
-                                demonstrate the <code>.accordion-flush</code> class. This is the first item's accordion
-                                body.</div>
+                            <div class="accordion-body textoClaro">
+                                <div class="row">
+                                    <div class="col-2">
+                                        <img src="../../resources/img/public/quiro5.png" width="150px" class="card"
+                                            alt="">
+                                    </div>
+                                    <div class="col-10">
+
+                                        <h1 class="mb-3 title-card">titulo de Servicio</h1>
+                                        <p>texto de ejemplo</p>
+                                        <button type="button" class="btn btn-primary">Solicitar cita</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="accordion-item inicioIndex">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed inicioIndex textoClaro" type="button"
+                                    data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false"
+                                    aria-controls="flush-collapseTwo">
+                                    Nombre de Servicio
+                                </button>
+                            </h2>
+                            <div id="flush-collapseTwo" class="accordion-collapse collapse"
+                                data-bs-parent="#accordionFlushExample">
+                                <div class="accordion-body textoClaro">
+                                    <div class="row">
+                                        <div class="col-2">
+                                            <img src="../../resources/img/public/quiro5.png" width="150px" class="card"
+                                                alt="">
+                                        </div>
+                                        <div class="col-10">
+
+                                            <h1 class="mb-3 title-card">titulo de Servicio</h1>
+                                            <p>texto de ejemplo</p>
+                                            <button type="button" class="btn btn-primary">Solicitar cita</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item inicioIndex">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed inicioIndex textoClaro" type="button"
+                                    data-bs-toggle="collapse" data-bs-target="#flush-collapseThree"
+                                    aria-expanded="false" aria-controls="flush-collapseThree">
+                                    Nombre de Servicio
+                                </button>
+                            </h2>
+                            <div id="flush-collapseThree" class="accordion-collapse collapse"
+                                data-bs-parent="#accordionFlushExample">
+                                <div class="accordion-body textoClaro">
+                                    <div class="row">
+                                        <div class="col-2">
+                                            <img src="../../resources/img/public/quiro5.png" width="150px" class="card"
+                                                alt="">
+                                        </div>
+                                        <div class="col-10">
+
+                                            <h1 class="mb-3 title-card">titulo de Servicio</h1>
+                                            <p>texto de ejemplo</p>
+                                            <button type="button" class="btn btn-primary">Solicitar cita</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div class="accordion-item inicioIndex">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button collapsed inicioIndex textoClaro" type="button"
-                                data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false"
-                                aria-controls="flush-collapseTwo">
-                                Accordion Item #2
-                            </button>
-                        </h2>
-                        <div id="flush-collapseTwo" class="accordion-collapse collapse"
-                            data-bs-parent="#accordionFlushExample">
-                            <div class="accordion-body textoClaro">Placeholder content for this accordion, which is
-                                intended to
-                                demonstrate the <code>.accordion-flush</code> class. This is the second item's accordion
-                                body. Let's imagine this being filled with some actual content.</div>
-                        </div>
-                    </div>
-                    <div class="accordion-item inicioIndex">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button collapsed inicioIndex textoClaro" type="button"
-                                data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false"
-                                aria-controls="flush-collapseThree">
-                                Accordion Item #3
-                            </button>
-                        </h2>
-                        <div id="flush-collapseThree" class="accordion-collapse collapse"
-                            data-bs-parent="#accordionFlushExample">
-                            <div class="accordion-body textoClaro">Placeholder content for this accordion, which is
-                                intended to
-                                demonstrate the <code>.accordion-flush</code> class. This is the third item's accordion
-                                body. Nothing more exciting happening here in terms of content, but just filling up the
-                                space to make it look, at least at first glance, a bit more representative of how this
-                                would look in a real-world application.</div>
-                        </div>
-                    </div>
+
+
                 </div>
-
-
-            </div>
         </section>
 
         <section id="comentarios" class="py-5">
@@ -106,8 +136,8 @@
 
         </section>
 
-        <div id="carouselExampleControls" class="carousel slide">
-            <div class="carousel-inner">
+        <div id="caruselComentarios" class="carousel slide">
+            <div class="carousel-inner" id="comentariosServicios">
                 <!-- Slide 1 -->
                 <div class="carousel-item active">
                     <div class="container">
@@ -146,33 +176,7 @@
                 <div class="carousel-item">
                     <div class="container">
                         <div class="row">
-                            <div class="col-md-4">
-                                <div class="card">
-                                    <img src="https://via.placeholder.com/150" class="card-img-top" alt="...">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Card Title 4</h5>
-                                        <p class="card-text">Some quick example text to build on the card title.</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="card">
-                                    <img src="https://via.placeholder.com/150" class="card-img-top" alt="...">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Card Title 5</h5>
-                                        <p class="card-text">Some quick example text to build on the card title.</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="card">
-                                    <img src="https://via.placeholder.com/150" class="card-img-top" alt="...">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Card Title 6</h5>
-                                        <p class="card-text">Some quick example text to build on the card title.</p>
-                                    </div>
-                                </div>
-                            </div>
+
                         </div>
                     </div>
                 </div>
@@ -189,34 +193,16 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-4">
-                                <div class="card">
-                                    <img src="https://via.placeholder.com/150" class="card-img-top" alt="...">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Card Title 8</h5>
-                                        <p class="card-text">Some quick example text to build on the card title.</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="card">
-                                    <img src="https://via.placeholder.com/150" class="card-img-top" alt="...">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Card Title 9</h5>
-                                        <p class="card-text">Some quick example text to build on the card title.</p>
-                                    </div>
-                                </div>
-                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls"
+            <button class="carousel-control-prev" type="button" data-bs-target="#caruselComentarios"
                 data-bs-slide="prev">
                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                 <span class="visually-hidden">Previous</span>
             </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls"
+            <button class="carousel-control-next" type="button" data-bs-target="#caruselComentarios"
                 data-bs-slide="next">
                 <span class="carousel-control-next-icon" aria-hidden="true"></span>
                 <span class="visually-hidden">Next</span>
@@ -287,10 +273,10 @@
     <script src="../../resources/js/sweetalert.min.js"></script>
 
     <!-- llamar al controntrolador del sitio privado-->
-    <!-- <script src="../../controllers/utils/components.js"></script> -->
+    <script src="../../controllers/utils/components.js"></script>
     <!-- llamar al controntrolador del los sitios-->
-    <!-- <script src="../../controllers/utils/public.js"></script>
-    <script src="../../controllers/public/index.js"></script> -->
+    <script src="../../controllers/utils/public.js"></script>
+    <script src="../../controllers/public/index.js"></script>
 
 </body>
 
