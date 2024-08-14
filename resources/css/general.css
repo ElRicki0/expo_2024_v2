@@ -35,10 +35,7 @@ body {
 
 /*tarjetas de comentarios*/
 
-.carousel-item {
-    display: flex;
-    justify-content: space-around; /* Asegura que las tarjetas estén distribuidas horizontalmente */
-}
+
 
 .card-custom {
     border: 1px solid #ccc;
@@ -106,12 +103,6 @@ body {
 .fotoServIndex {
     border-top: 3px solid green;
     border-bottom: 3px solid green;
-}
-
-/* Asegura que las imágenes del carrusel ocupen el 100% del contenedor */
-.carousel-inner img {
-    width: 100%;
-    height: auto;
 }
 
 .inicioIndex{
