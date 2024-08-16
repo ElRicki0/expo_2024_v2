@@ -40,9 +40,6 @@ VALUES
 ('Jorge', 'Ramirez', '8901234567', 'jorge.ramirez@example.com', '1993-06-08', 1),
 ('Elena', 'Torres', '0987654321', 'elena.torres@example.com', '1994-04-17', 1);
 
-
-INSERT INTO `tb_admin` (`id_admin`, `nombre_admin`, `correo_admin`, `contraseña_admin`, `id_empleado`) 
-VALUES (NULL, 'nombre ejemplo', 'correo@gmail.com', '$2y$10$OrPBIgS7IFzMJPFVzw0v1.siV7i3dVhk4fNpwxmHZ31cXWxNxxaca', '1');
  
 INSERT INTO tb_servicios (tipo_servicio, descripcion_servicio, imagen_servicio) 
 VALUES 

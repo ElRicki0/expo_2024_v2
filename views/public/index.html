@@ -37,47 +37,23 @@
         <section id="servicios" class="py-5 mt-3">
             <div class="col-12 text-center justify-content-center">
                 <h3 class="textoClaro">SERVICIOS</h3>
-                <hr class="separadorClaro">
+                <hr class="linea-verde">
 
                 <!-- inicio acordeón -->
                 <div class="accordion accordion-flush container" id="accordionFlushExample">
 
+                    <div id="servicio">
 
-                    <div class="accordion-item inicioIndex" id="servicios">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button collapsed inicioIndex textoClaro" type="button"
-                                data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false"
-                                aria-controls="flush-collapseOne">
-                                Nombre de Servicio
-                            </button>
-                        </h2>
-                        <div id="flush-collapseOne" class="accordion-collapse collapse"
-                            data-bs-parent="#accordionFlushExample">
-                            <div class="accordion-body textoClaro">
-                                <div class="row">
-                                    <div class="col-2">
-                                        <img src="../../resources/img/public/quiro5.png" width="150px" class="card"
-                                            alt="">
-                                    </div>
-                                    <div class="col-10">
-
-                                        <h1 class="mb-3 title-card">titulo de Servicio</h1>
-                                        <p>texto de ejemplo</p>
-                                        <button type="button" class="btn btn-primary">Solicitar cita</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
+                        <!-- cards de acordeón -->
                         <div class="accordion-item inicioIndex">
                             <h2 class="accordion-header">
                                 <button class="accordion-button collapsed inicioIndex textoClaro" type="button"
-                                    data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false"
-                                    aria-controls="flush-collapseTwo">
+                                    data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false"
+                                    aria-controls="flush-collapseOne">
                                     Nombre de Servicio
                                 </button>
                             </h2>
-                            <div id="flush-collapseTwo" class="accordion-collapse collapse"
+                            <div id="flush-collapseOne" class="accordion-collapse collapse"
                                 data-bs-parent="#accordionFlushExample">
                                 <div class="accordion-body textoClaro">
                                     <div class="row">
@@ -89,59 +65,35 @@
 
                                             <h1 class="mb-3 title-card">titulo de Servicio</h1>
                                             <p>texto de ejemplo</p>
-                                            <button type="button" class="btn btn-primary">Solicitar cita</button>
+                                            <button type="button" class="btn btn-primary">
+                                                <a href="#holamundo" class="sinLink textoClaro">hacer cita</a>
+                                            </button>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="accordion-item inicioIndex">
-                            <h2 class="accordion-header">
-                                <button class="accordion-button collapsed inicioIndex textoClaro" type="button"
-                                    data-bs-toggle="collapse" data-bs-target="#flush-collapseThree"
-                                    aria-expanded="false" aria-controls="flush-collapseThree">
-                                    Nombre de Servicio
-                                </button>
-                            </h2>
-                            <div id="flush-collapseThree" class="accordion-collapse collapse"
-                                data-bs-parent="#accordionFlushExample">
-                                <div class="accordion-body textoClaro">
-                                    <div class="row">
-                                        <div class="col-2">
-                                            <img src="../../resources/img/public/quiro5.png" width="150px" class="card"
-                                                alt="">
-                                        </div>
-                                        <div class="col-10">
 
-                                            <h1 class="mb-3 title-card">titulo de Servicio</h1>
-                                            <p>texto de ejemplo</p>
-                                            <button type="button" class="btn btn-primary">Solicitar cita</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
                     </div>
-
 
                 </div>
         </section>
 
         <section id="comentarios" class="py-5">
             <div class="col-12 text-center">
-                <h3>COMENTARIOS DE SERVICIOS</h3>
+                <h3 class="textoClaro">COMENTARIOS DE SERVICIOS</h3>
                 <hr class="linea-verde col-2">
 
             </div>
 
         </section>
 
-        <div id="caruselComentarios" class="carousel slide">
+        <div id="caruselComentarios" class="carousel slide" data-bs-ride="true">
             <div class="carousel-inner" id="comentariosServicios">
                 <!-- Slide 1 -->
                 <div class="carousel-item active">
-                    <div class="container">
-                        <div class="row">
+                    <div class="container" >
+                        <div class="row" id="comentarios1">
                             <div class="col-md-4">
                                 <div class="card">
                                     <img src="https://via.placeholder.com/150" class="card-img-top" alt="...">
@@ -175,7 +127,7 @@
                 <!-- Slide 2 -->
                 <div class="carousel-item">
                     <div class="container">
-                        <div class="row">
+                        <div class="row" id="comentarios2">
 
                         </div>
                     </div>
@@ -183,7 +135,7 @@
                 <!-- Slide 3 -->
                 <div class="carousel-item">
                     <div class="container">
-                        <div class="row">
+                        <div class="row" id="comentarios3">
                             <div class="col-md-4">
                                 <div class="card">
                                     <img src="https://via.placeholder.com/150" class="card-img-top" alt="...">
@@ -269,7 +221,7 @@
     </main>
 
     <!-- librerías para poder trabajar con bootstrap y sweeteners -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../../resources/js/bootstrap_js.js"></script>
     <script src="../../resources/js/sweetalert.min.js"></script>
 
     <!-- llamar al controntrolador del sitio privado-->

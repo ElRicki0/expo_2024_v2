@@ -39,6 +39,14 @@ if (isset($_GET['action'])) {
                 $result['error'] = 'No existen Servicios registrados';
             }
             break;
+            case 'readAll8':
+                if ($result['dataset'] = $servicio->readAll8()) {
+                    $result['status'] = 1;
+                    $result['message'] = 'Existen ' . count($result['dataset']) . ' registros';
+                } else {
+                    $result['error'] = 'No existen Servicios registrados';
+                }
+                break;
         case 'readOne':
             if (!$servicio->setId($_POST['idServicio'])) {
                 $result['error'] = $servicio->getDataError();

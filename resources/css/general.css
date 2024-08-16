@@ -64,7 +64,7 @@ body {
 
 .linea-verde {
     border: none;
-    border-top: 3px solid green; /* Cambia el color y el grosor aquí */
+    border-top: 3px solid rgb(131, 239, 131); /* Cambia el color y el grosor aquí */
     width: 100%; /* Ajusta el ancho de la línea */
 }
 .comentariosseccion
@@ -115,10 +115,6 @@ body {
     flex-wrap: wrap;
 }
 
-.linea-verde {
-    border-color: green;
-    margin: auto;
-}
 .fotoServIndex {
     display: block;
     width: 100%;

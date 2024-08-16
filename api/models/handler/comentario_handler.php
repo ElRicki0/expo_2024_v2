@@ -13,7 +13,8 @@ class ComentarioHandler
     protected $servicio = null;
     protected $estado = null;
 
-    public function searchRows() {
+    public function searchRows()
+    {
         $value = '%' . Validator::getSearchValue() . '%';
         $sql = 'SELECT c.id_comentario, c.contenido_comentario, cl.nombre_cliente, s.tipo_servicio
                     from tb_comentarios c
@@ -35,6 +36,18 @@ class ComentarioHandler
         return Database::getRows($sql);
     }
 
+    public function readIndex()
+    {
+        $sql = 'SELECT cm.id_comentario, cm.contenido_comentario, cm.estado_comentario, cl.nombre_cliente, cl.apellido_cliente, sv.tipo_servicio, sv.imagen_servicio
+                FROM tb_comentarios cm
+                INNER JOIN tb_clientes cl ON cl.id_cliente = cm.id_cliente
+                INNER JOIN tb_servicios sv ON cm.id_servicio = cm.id_servicio 
+                ORDER by RAND()
+                limit 3
+        ';
+        return Database::getRows($sql);
+    }
+
     public function readOne()
     {
         $sql = 'SELECT* 
@@ -52,5 +65,4 @@ class ComentarioHandler
         $params = array($this->estado, $this->id);
         return Database::executeRow($sql, $params);
     }
-
 }

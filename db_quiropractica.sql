@@ -104,5 +104,5 @@ CREATE TABLE tb_comentarios(
     FOREIGN KEY (id_cliente) REFERENCES tb_clientes (id_cliente),
     id_servicio INT,
     FOREIGN KEY (id_servicio) REFERENCES tb_servicios (id_servicio),
-    estado_comentario tinyint(1) NOT NULL
+    estado_comentario tinyint(1) NOT NULL DEFAULT 0
 );

@@ -58,6 +58,15 @@ class ServicioHandler
         return Database::getRows($sql);
     }
 
+    public function readAll8()
+    {
+        $sql = 'SELECT *
+                FROM tb_servicios
+                ORDER BY tipo_servicio
+                limit 8';
+        return Database::getRows($sql);
+    }
+
     public function readOne()
     {
         $sql = 'SELECT *
