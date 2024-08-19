@@ -7,7 +7,7 @@ USE db_quiropractica;
 CREATE TABLE tb_clientes(
     id_cliente INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
     nombre_cliente VARCHAR (50) NOT NULL unique,
-    apellido_cliente VARCHAR (50) NOT NULL unique,
+    apellido_cliente VARCHAR (50) NOT NULL UNIQUE,
     dui_cliente VARCHAR (10) unique,
     correo_cliente VARCHAR (100) NOT NULL,
     contrasenia_cliente VARCHAR(200) not null,
@@ -29,10 +29,12 @@ CREATE TABLE tb_empleados(
     id_empleado INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
     nombre_empleado VARCHAR (50) NOT NULL unique,
     apellido_empleado VARCHAR (50) NOT NULL unique,
+	 especialidad_empleado VARCHAR (50) DEFAULT 'especialidad no especificada',
     dui_empleado VARCHAR (10) NOT NULL unique,
     correo_empleado VARCHAR (100) NOT NULL unique,
     nacimiento_empleado DATE NOT NULL,
-    estado_empleado TINYINT(1) NOT NULL
+    estado_empleado TINYINT(1) NOT NULL,
+    imagen_empleado VARCHAR(500) DEFAULT 'empleado.jpg'
 );
 
 CREATE TABLE tb_admin(
@@ -53,7 +55,8 @@ CREATE TABLE tb_servicios(
     id_servicio INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
     tipo_servicio VARCHAR (45) NOT NULL unique,
     descripcion_servicio VARCHAR (250) NOT NULL,
-    imagen_servicio varchar(300) -- id_foto INT ,
+    imagen_servicio varchar(300) DEFAULT 'servicio.jpg' 
+	 -- id_foto INT , 
     -- FOREIGN KEY (id_foto) REFERENCES tb_fotos (id_foto)
 );
 

@@ -81,6 +81,15 @@ class EmpleadoHandler
         return Database::getRows($sql);
     }
 
+    // Método readAll: lee todos los empleados de la base de datos.
+    public function readIndex()
+    {
+        $sql = 'SELECT * FROM tb_empleados
+                ORDER BY RAND()
+                LIMIT 3';
+        return Database::getRows($sql);
+    }
+
     // Método readOne: lee un empleado específico de la base de datos según su ID.
     public function readOne()
     {

@@ -88,7 +88,7 @@ if (isset($_GET['action'])) {
                     $result['status'] = 1;
                     $result['username'] = $_SESSION['correo_admin'];
                 } else {
-                    $result['error'] = 'Alias de administrador indefinido';
+                    $result['error'] = 'Administrador no encontrado';
                 }
                 break;
             case 'readOne':
