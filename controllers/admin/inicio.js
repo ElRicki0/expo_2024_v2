@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
 */
 const graficoBarras = async () => {
     // Petición para obtener los datos del gráfico.
-    const DATA = await fetchData(   CITA_API, 'readCantidadCliente');
+    const DATA = await fetchData(   CITA_API, 'readCantidadClientePendiente');
     // Se comprueba si la respuesta es satisfactoria, de lo contrario se remueve la etiqueta canvas.
     if (DATA.status) {
         // Se declaran los arreglos para guardar los datos a graficar.
@@ -31,7 +31,7 @@ const graficoBarras = async () => {
             citas.push(row.cantidad_citas);
         });
         // Llamada a la función para generar y mostrar un gráfico de barras. Se encuentra en el archivo components.js
-        barGraph('chart1', empleado, citas, 'citas realizadas', 'empleados con mas citas');
+        barGraph('chart1', empleado, citas, 'citas pendientes', 'empleados con citas pendientes');
     } else {
         document.getElementById('chart1').remove();
         console.log(DATA.error);

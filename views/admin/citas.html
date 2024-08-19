@@ -24,14 +24,22 @@
                 </div>
             </div>
 
+            <!-- Contenedor de gráficos -->
+            <div class="row align-items-center">
+                <div class="card col-5 mx-auto inicioIndex my-5">
+                    <!-- Se muestra un gráfico con la cantidad de productos por categoría -->
+                    <canvas id="chart1"></canvas>
+                </div>
+            </div>
+
             <div class="container mb-3 justify-content-center">
 
                 <!-- Formulario de búsqueda -->
                 <form class="col-sm-12 col-md-12" id="searchForm">
                     <div class="row">
                         <div class="col-4">
-                            <input type="search" class="form-control custom-input border-2 textoClaro" id="search" name="search"
-                                placeholder="Buscar" required>
+                            <input type="search" class="form-control custom-input border-2 textoClaro" id="search"
+                                name="search" placeholder="Buscar" required>
                         </div>
                         <div class="col-6">
                             <button type="submit" class="btn btn-success">
@@ -103,7 +111,8 @@
                             </div>
                             <div class="col-sm-12 col-md-6">
                                 <label for="fechaCita" class="form-label">Fecha cita</label>
-                                <input id="fechaCita" type="datetime-local" name="fechaCita" class="form-control" required>
+                                <input id="fechaCita" type="datetime-local" name="fechaCita" class="form-control"
+                                    required>
                             </div>
                             <div class="col-sm-12 col-md-6">
                                 <label for="estadoCita" class="form-label">Estado</label>
@@ -148,7 +157,7 @@
     <!-- Bootstrap -->
     <script src="../../resources/js/bootstrap_js.js"></script>
     <script src="../../resources/js/sweetalert.min.js"></script>
-
+    <script src="../../resources/js/chart.umd.min.js"></script>
     <!-- llamar al controntrolador del sitio privado-->
     <script src="../../controllers/utils/components.js"></script>
     <!-- llamar al controntrolador del los sitios-->

@@ -126,4 +126,38 @@ class Citahandler
                 LIMIT 5';
         return Database::getRows($sql);
     }
+
+    public function readCantidadClientePendiente()
+    {
+        $sql = 'SELECT
+                    c.nombre_cliente,
+                    COUNT(ct.id_cita) AS cantidad_citas
+                FROM
+                    tb_citas ct
+                JOIN
+                    tb_clientes c ON ct.id_cliente = c.id_cliente
+                WHERE
+                    ct.estado_cita LIKE "pendiente"
+                GROUP BY
+                    c.id_cliente
+                ORDER BY
+                    cantidad_citas DESC
+                    limit 5';
+        return Database::getRows($sql);
+    }
+
+    public function readCantidadClienteEstado()
+    {
+        $sql = 'SELECT
+                    estado_cita,
+                    COUNT(*) AS cantidad_citas
+                FROM
+                    tb_citas
+                WHERE
+                    estado_cita IN ("pendiente", "proceso", "terminado")
+                GROUP BY
+                    estado_cita;
+';
+        return Database::getRows($sql);
+    }
 }

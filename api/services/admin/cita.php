@@ -100,6 +100,20 @@ if (isset($_GET['action'])) {
                     $result['error'] = 'No hay datos disponibles';
                 }
                 break;
+            case 'readCantidadClientePendiente':
+                if ($result['dataset'] = $cita->readCantidadClientePendiente()) {
+                    $result['status'] = 1;
+                } else {
+                    $result['error'] = 'No hay datos disponibles';
+                }
+                break;
+            case 'readCantidadClienteEstado':
+                if ($result['dataset'] = $cita->readCantidadClienteEstado()) {
+                    $result['status'] = 1;
+                } else {
+                    $result['error'] = 'No hay datos disponibles';
+                }
+                break;
             default:
                 $result['error'] = 'Acción no disponible dentro de la sesión';
         }

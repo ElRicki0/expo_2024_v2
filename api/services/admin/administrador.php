@@ -66,7 +66,7 @@ if (isset($_GET['action'])) {
                 break;
             case 'readAllOne':
                 // Lectura de todos los administradores registrados.
-                if ($result['dataset'] = $administrador->readAll()) {
+                if ($result['dataset'] = $administrador->readAllOne()) {
                     // Si hay registros, se actualiza el estado y mensaje.
                     $result['status'] = 1;
                     $result['message'] = 'Registros encontrados';

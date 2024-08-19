@@ -1,4 +1,5 @@
 // Constantes para completar las rutas de la API.
+const CITA_API = 'services/admin/cita.php';
 const CLIENTE_API = 'services/admin/cliente.php';
 // Constante para establecer el formulario de buscar.
 const SEARCH_FORM = document.getElementById('searchForm');
@@ -17,6 +18,7 @@ ESTADO_CLIENTE = document.getElementById('estadoCliente');
 document.addEventListener('DOMContentLoaded', () => {
     // Llamada a la función para mostrar el encabezado y pie del documento.
     loadTemplate();
+    graficoBarras();
     // Llamada a la función para llenar la tabla con los registros existentes.
     fillTable();
 });
@@ -121,5 +123,32 @@ const openUpdate = async (id) => {
         ESTADO_CLIENTE.checked = ROW.estado_cliente;
     } else {
         sweetAlert(2, DATA.error, false);
+    }
+}
+
+/*
+*   Función asíncrona para mostrar un gráfico de barras con la cantidad de productos por categoría.
+*   Parámetros: ninguno.
+*   Retorno: ninguno.
+*/
+const graficoBarras = async () => {
+    // Petición para obtener los datos del gráfico.
+    const DATA = await fetchData(   CITA_API, 'readCantidadCliente');
+    // Se comprueba si la respuesta es satisfactoria, de lo contrario se remueve la etiqueta canvas.
+    if (DATA.status) {
+        // Se declaran los arreglos para guardar los datos a graficar.
+        let empleado = [];
+        let citas = [];
+        // Se recorre el conjunto de registros fila por fila a través del objeto row.
+        DATA.dataset.forEach(row => {
+            // Se agregan los datos a los arreglos.
+            empleado.push(row.nombre_cliente);
+            citas.push(row.cantidad_citas);
+        });
+        // Llamada a la función para generar y mostrar un gráfico de barras. Se encuentra en el archivo components.js
+        barGraph('chart1', empleado, citas, 'citas realizadas', 'empleados con mas citas');
+    } else {
+        document.getElementById('chart1').remove();
+        console.log(DATA.error);
     }
 }
