@@ -16,50 +16,16 @@
 <body>
     <main class="container">
 
-        <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="true">
-            <div class="carousel-indicators">
-                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active"
-                    aria-current="true" aria-label="Slide 1"></button>
-                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1"
-                    aria-label="Slide 2"></button>
-                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2"
-                    aria-label="Slide 3"></button>
+        <!-- Contenedor de gráficos -->
+        <div class="row align-items-center">
+            <div class="col-sm-12 col-md-6 col-lg-5 card inicioIndex mx-2">
+                <!-- Se muestra un gráfico con la cantidad de productos por categoría -->
+                <canvas id="chart1"></canvas>
             </div>
-            <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <img src="../../resources/img/admin/iniciopriv.jpeg" class="d-block w-100" alt="..." height="10px">
-                    <div class="carousel-caption d-none d-md-block">
-                        <h5>Sistema administrativo</h5>
-                        <p>Administrar citas de clientes</p>
-                    </div>
-                </div>
-                <div class="carousel-item">
-                    <img src="../../resources/img/admin/privada2inicio.jpg" class="d-block w-100" alt="..."
-                        height="550px">
-                    <div class="carousel-caption d-none d-md-block">
-                        <h5>posibilidad de imaginación</h5>
-                        <p>crear nuevos servicios al gusto del creador con lujo de detalle</p>
-                    </div>
-                </div>
-                <div class="carousel-item">
-                    <img src="../../resources/img/admin/quiropracticasegundoinicio.jpg" class="d-block w-100" alt="..."
-                        height="10px">
-                    <div class="carousel-caption d-none d-md-block">
-                        <h5>administrar empleados</h5>
-                        <p>asignar a los empleados los pacientes con sus capacidad</p>
-                    </div>
-                </div>
+            <div class="col-sm-12 col-md-6 col-lg-5 card inicioIndex mx-2">
+                <!-- Se muestra un gráfico con el porcentaje de productos por categoría -->
+                <canvas id="chart2"></canvas>
             </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade"
-                data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Previous</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade"
-                data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Next</span>
-            </button>
         </div>
         <hr>
         <br>
@@ -111,15 +77,12 @@
         </div>
     </main>
 
-
-
     <footer>
-
     </footer>
 
     <script src="../../resources/js/bootstrap_js.js"></script>
     <script type="text/javascript" src="../../resources/js/sweetalert.min.js"></script>
-
+    <script src="../../resources/js/chart.umd.min.js"></script>
     <!-- llamar al controntrolador del sitio privado-->
     <script src="../../controllers/utils/components.js"></script>
     <!-- llamar al controntrolador del los sitios-->

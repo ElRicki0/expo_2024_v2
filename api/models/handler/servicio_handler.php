@@ -30,7 +30,7 @@ class ServicioHandler
         $params = array($value, $value);
         return Database::getRows($sql, $params);
     }
-    
+
     public function searchPublicRows()
     {
         $value = '%' . Validator::getSearchValue() . '%';
@@ -101,4 +101,44 @@ class ServicioHandler
         $params = array($this->id);
         return Database::executeRow($sql, $params);
     }
+
+    /*
+    *   Métodos para generar gráficos.
+    */
+    public function readCantidadCitas()
+    {
+        $sql = 'SELECT
+                    s.id_servicio,
+                    s.tipo_servicio,
+                    COUNT(c.id_cita) AS cantidad_citas
+                FROM
+                    tb_servicios s
+                LEFT JOIN
+                    tb_citas c ON s.id_servicio = c.id_servicio
+                GROUP BY
+                    s.id_servicio, s.tipo_servicio
+                	LIMIT 5;';
+        return Database::getRows($sql);
+    }
+
+    public function readCantidadBeneficios()
+    {
+        $sql = 'SELECT
+                    s.id_servicio,
+                    s.tipo_servicio,
+                    s.descripcion_servicio,
+                    s.imagen_servicio,
+                    COUNT(b.id_beneficio) AS cantidad_beneficios
+                FROM
+                    tb_servicios s
+                LEFT JOIN
+                    tb_beneficios b ON s.id_servicio = b.id_servicio
+                GROUP BY
+                    s.id_servicio, s.tipo_servicio, s.descripcion_servicio, s.imagen_servicio
+                ORDER BY
+                    cantidad_beneficios DESC;';
+        return Database::getRows($sql);
+    }
+
+    
 }

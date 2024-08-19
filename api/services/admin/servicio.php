@@ -85,6 +85,13 @@ if (isset($_GET['action'])) {
                     $result['error'] = 'Ocurrió un problema al eliminar al Servicio';
                 }
                 break;
+            case 'readCantidadCitas':
+                if ($result['dataset'] = $servicio->readCantidadCitas()) {
+                    $result['status'] = 1;
+                } else {
+                    $result['error'] = 'No hay datos disponibles';
+                }
+                break;
             default:
                 $result['error'] = 'Acción no disponible dentro de la sesión';
         }

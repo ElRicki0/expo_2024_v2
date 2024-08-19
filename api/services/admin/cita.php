@@ -50,7 +50,7 @@ if (isset($_GET['action'])) {
                     !$cita->setId($_POST['idCita']) or
                     !$cita->setNombre($_POST['nombreCita']) or
                     !$cita->setFecha($_POST['fechaCita']) or
-                    !$cita->setEstado($_POST['estadoCita'])or
+                    !$cita->setEstado($_POST['estadoCita']) or
                     !$cita->setSeciones($_POST['sesionesCita']) or
                     !$cita->setCliente($_POST['clienteCita']) or
                     !$cita->setServicio($_POST['servicioCita']) or
@@ -91,6 +91,13 @@ if (isset($_GET['action'])) {
                     $result['message'] = 'Cita eliminado correctamente';
                 } else {
                     $result['error'] = 'Ocurrió un problema al eliminar la cita   //// la cita esta siendo usada por tratamientos ';
+                }
+                break;
+            case 'readCantidadCliente':
+                if ($result['dataset'] = $cita->readCantidadCliente()) {
+                    $result['status'] = 1;
+                } else {
+                    $result['error'] = 'No hay datos disponibles';
                 }
                 break;
             default:

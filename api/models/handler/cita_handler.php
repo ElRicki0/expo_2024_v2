@@ -106,4 +106,24 @@ class Citahandler
         $params = array($this->id);
         return Database::executeRow($sql, $params);
     }
+
+    /*
+    *   Métodos para generar gráficos.
+    */
+    public function readCantidadCliente()
+    {
+        $sql = 'SELECT
+                    c.nombre_cliente,
+                    COUNT(ct.id_cita) AS cantidad_citas
+                FROM
+                    tb_citas ct
+                JOIN
+                    tb_clientes c ON ct.id_cliente = c.id_cliente
+                GROUP BY
+                    c.id_cliente
+                ORDER BY
+                    cantidad_citas DESC
+                LIMIT 5';
+        return Database::getRows($sql);
+    }
 }
