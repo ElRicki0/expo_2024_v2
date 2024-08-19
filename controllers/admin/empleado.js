@@ -22,6 +22,7 @@ const SAVE_FORM = document.getElementById('saveForm'),
 document.addEventListener('DOMContentLoaded', () => {
     // Llamada a la función para mostrar el encabezado y pie del documento.
     loadTemplate();
+    graficoDona();
     // Llamada a la función para llenar la tabla con los registros existentes.
     fillTable();
 });
@@ -34,6 +35,7 @@ SEARCH_FORM.addEventListener('submit', (event) => {
     const FORM = new FormData(SEARCH_FORM);
     // Llamada a la función para llenar la tabla con los resultados de la búsqueda.
     fillTable(FORM);
+    donaGraph();
 });
 
 // Método del evento para cuando se envía el formulario de guardar.
@@ -54,6 +56,7 @@ SAVE_FORM.addEventListener('submit', async (event) => {
         sweetAlert(1, DATA.message, true);
         // Se carga nuevamente la tabla para visualizar los cambios.
         fillTable();
+        graficoDona();
     } else {
         sweetAlert(2, DATA.error, false);
     }
@@ -111,7 +114,7 @@ const openCreate = () => {
     MODAL_TITLE.textContent = 'AGREGAR EMPLEADO';
     // Se prepara el formulario.
     SAVE_FORM.reset();
-}
+    }
 
 /*
 *   Función asíncrona para preparar el formulario al momento de actualizar un registro.
@@ -170,5 +173,32 @@ const openDelete = async (id) => {
         } else {
             sweetAlert(2, DATA.error, false);
         }
+    }
+}
+
+/*
+*   Función asíncrona para mostrar un gráfico de pastel con el porcentaje de productos por categoría.
+*   Parámetros: ninguno.
+*   Retorno: ninguno.
+*/
+const graficoDona = async () => {
+    // Petición para obtener los datos del gráfico.
+    const DATA = await fetchData(   EMPLEADO_API, 'readEstadoEmpleado');
+    // Se comprueba si la respuesta es satisfactoria, de lo contrario se remueve la etiqueta canvas.
+    if (DATA.status) {
+        // Se declaran los arreglos para guardar los datos a graficar.
+        let cantidad = [];
+        let estado = [];
+        // Se recorre el conjunto de registros fila por fila a través del objeto row.
+        DATA.dataset.forEach(row => {
+            // Se agregan los datos a los arreglos.
+            cantidad.push(row.cantidad);
+            estado.push(row.estado);
+        });
+        // Llamada a la función para generar y mostrar un gráfico de pastel. Se encuentra en el archivo components.js
+        donaGraph('chart1', estado, cantidad, 'citas realizadas', 'Servicios con mas citas realizadas');
+    } else {
+        document.getElementById('chart1').remove();
+        console.log(DATA.error);
     }
 }

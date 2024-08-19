@@ -118,4 +118,22 @@ class EmpleadoHandler
         $params = array($this->id);
         return Database::executeRow($sql, $params);
     }
+
+    /*
+    *   Métodos para generar gráficos.
+    */
+    public function readEstadoEmpleado()
+    {
+        $sql = 'SELECT 
+                    CASE 
+                        WHEN estado_empleado = 0 THEN "Inactivo"
+                        WHEN estado_empleado = 1 THEN "Activo"
+                    END AS estado,
+                    COUNT(*) AS cantidad
+                FROM 
+                    tb_empleados
+                GROUP BY 
+                    estado_empleado;';
+        return Database::getRows($sql);
+    }
 }

@@ -88,6 +88,13 @@ if (isset($_GET['action'])) {
                     $result['error'] = "Ocurrió un problema al eliminar al Empleado /// Existen citas o administradores con este empleado";
                 }
                 break;
+            case 'readEstadoEmpleado':
+                if ($result['dataset'] = $empleado->readEstadoEmpleado()) {
+                    $result['status'] = 1;
+                } else {
+                    $result['error'] = 'No existen datos registrados';
+                }
+                break;
             default:
                 $result['error'] = 'Acción no disponible dentro de la sesión';
         }
