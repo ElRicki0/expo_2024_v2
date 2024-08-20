@@ -53,6 +53,7 @@ class Report extends FPDF
     *   Se sobrescribe el método de la librería para establecer la plantilla del encabezado de los reportes.
     *   Se llama automáticamente en el método addPage()
     */
+    // Aqui va empezar el header
     public function header()
     {
         // Se establece el logo.
