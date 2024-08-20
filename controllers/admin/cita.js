@@ -97,8 +97,8 @@ const fillTable = async (form = null) => {
                 <td>${row.nombre_cliente}</td>
                 <td>${row.tipo_servicio}</td>
                 <td>
-                <button class="btn btn-danger" onclick="openDelete(${row.id_cita})"><i class="bi bi-trash3-fill" ></i></button>
-                <button class="btn btn-primary" onclick="openUpdate(${row.id_cita})"><i class="bi bi-pen-fill" ></i></button>
+                <button class="btn btn-danger"><i class="bi bi-trash3-fill" onclick="openDelete(${row.id_cita})"></i></button>
+                <button class="btn btn-primary"><i class="bi bi-pen-fill" onclick="openUpdate(${row.id_cita})"></i></button>
             </td>
         </tr>
             `;
@@ -229,7 +229,7 @@ const graficoBarrasPrediccionCitas = async () => {
             servicio.push(row.tipo_servicio);
         });
         // Llamada a la función para generar y mostrar un gráfico de barras. Se encuentra en el archivo components.js
-        barGraph('chartP2', servicio, citas, 'Prediccion de citas proxima semana', 'Prediccion de servicios cotizados por semana futura');
+        lineGraph('chartP2', servicio, citas, 'Prediccion de citas proxima semana', 'Prediccion de servicios cotizados por semana futura');
     } else {
         document.getElementById('chartP2').remove();
         console.log(DATA.error);

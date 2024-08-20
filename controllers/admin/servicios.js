@@ -159,7 +159,26 @@ const openDelete = async (id) => {
     }
 }
 
+const graficaPrediccionDeServicio = async () => {
+    // Petición para obtener los datos del gráfico.
+    const DATA = await fetchData(CITA_API, 'graficaPrediccionDeServicio');
+    // Se comprueba si la respuesta es satisfactoria, de lo contrario se remueve la etiqueta canvas.
+    if (DATA.status) {
+        // Se declaran los arreglos para guardar los datos a graficar.
+        let citas = [];
+        // Se recorre el conjunto de registros fila por fila a través del objeto row.
+        DATA.dataset.forEach(row => {
+            // Se agregan los datos a los arreglos.
+            citas.push(row.prediccion_servicio_futuras_citas);
+        });
+        // Llamada a la función para generar y mostrar un gráfico de barras. Se encuentra en el archivo components.js
+        barGraph('ChartP', citas, 'Posibles futuras citas');
+    } else {
+        document.getElementById('ChartP').remove();
+        console.log(DATA.error);
+    }
 
+}
 
 /* Obtener el input de carga de imagen y la imagen
 var imageUpload = document.getElementById("id_foto");

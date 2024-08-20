@@ -220,6 +220,48 @@ const pieGraph = (canvas, legends, values, title) => {
     });
 }
 
+const lineGraph = (canvas, values, yAxis, legend, title) => {
+    // Se declara un arreglo para guardar códigos de colores en formato hexadecimal.
+    let colors = [];
+    // Se generan códigos hexadecimales de 6 cifras de acuerdo con el número de datos a mostrar y se agregan al arreglo.
+    values.forEach(() => {
+        colors.push('#' + (Math.random().toString(16)).substring(2, 8));
+    });
+    // Se crea una instancia para generar el gráfico con los datos recibidos.
+    new Chart(document.getElementById(canvas), {
+        type: 'line',
+        data: {
+            labels: values,
+            datasets: [{
+                label: legend,
+                data: yAxis,
+                borderColor: colors,
+                fill: false // no rellenar el area bajo la linea
+            }]
+        },
+        options: {
+            plugins: {
+                title: {
+                    display: true,
+                    text: title,
+                    color: 'white' // Cambia el color del texto del título a blanco
+                    
+                },
+                legend: {
+                    labels: {
+                        color: 'white' // Cambia el color del texto de las leyendas a blanco
+                    }
+                }
+            },
+            // Ajustar el color del texto en la parte del gráfico (si es necesario)
+            elements: {
+                arc: {
+                    borderColor: 'black' // Cambia el color del borde de los arcos (opcional)
+                }
+            }
+        }
+    });
+}
 /*
 *   Función para generar un gráfico de dona.
 *   Requiere la librería chart.js para funcionar.

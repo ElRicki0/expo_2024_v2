@@ -141,4 +141,24 @@ class ServicioHandler
     }
 
     
+    public function graficaPrediccionDeServicio()
+    {
+        $sql = 'SELECT
+                    s.id_servicio,
+                    s.tipo_servicio,
+                    s.descripcion_servicio,
+                    s.imagen_servicio,
+                    COUNT(b.id_beneficio) AS cantidad_beneficios
+                FROM
+                    tb_servicios s
+                LEFT JOIN
+                    tb_beneficios b ON s.id_servicio = b.id_servicio
+                GROUP BY
+                    s.id_servicio, s.tipo_servicio, s.descripcion_servicio, s.imagen_servicio
+                ORDER BY
+                    cantidad_beneficios DESC;';
+        return Database::getRows($sql);
+    }
+
+    
 }
