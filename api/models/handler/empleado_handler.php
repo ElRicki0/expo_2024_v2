@@ -75,7 +75,7 @@ class EmpleadoHandler
     // Método readAll: lee todos los empleados de la base de datos.
     public function readAll()
     {
-        $sql = 'SELECT id_empleado, nombre_empleado, apellido_empleado, dui_empleado, correo_empleado, nacimiento_empleado, estado_empleado
+        $sql = 'SELECT id_empleado, nombre_empleado, apellido_empleado, dui_empleado, correo_empleado, nacimiento_empleado, estado_empleado, especialidad_empleado
                 FROM tb_empleados
                 ORDER BY nombre_empleado';
         return Database::getRows($sql);
