@@ -1,7 +1,7 @@
 <?php
 // Se incluye la clase para generar archivos PDF.
 require_once('../../libraries/fpdf185/fpdf.php');
-
+ 
 /*
  *   Clase para definir las plantillas de los reportes del sitio privado.
  *   Para más información http://www.fpdf.org/
@@ -12,7 +12,7 @@ class Report extends FPDF
     const CLIENT_URL = 'http://localhost/expo_2024_v2/views/admin/';
     // Propiedad para guardar el título del reporte.
     private $title = null;
-
+ 
     /*
      *   Método para iniciar el reporte con el encabezado del documento.
      *   Parámetros: $title (título del reporte).
@@ -36,7 +36,7 @@ class Report extends FPDF
             header('location:' . self::CLIENT_URL);
         }
     }
-
+ 
     /*
      *   Método para codificar una cadena de alfabeto español a UTF-8.
      *   Parámetros: $string (cadena).
@@ -46,7 +46,7 @@ class Report extends FPDF
     {
         return mb_convert_encoding($string, 'ISO-8859-1', 'utf-8');
     }
-
+ 
     /*
      *   Se sobrescribe el método de la librería para establecer la plantilla del encabezado de los reportes.
      *   Se llama automáticamente en el método addPage()
@@ -55,17 +55,32 @@ class Report extends FPDF
     public function header()
     {
         // Se establece el header.
-        $this->image('../../images/ReporteHeader.png', 0, 0, 218);
-        // Se ubica el título.
-        $this->cell(20);
-        $this->setFont('Arial', 'B', 15);
-        $this->cell(166, 10, $this->encodeString($this->title), 0, 1, 'C');
-        // Se ubica la fecha y hora del servidor.
-        $this->cell(20);
+        $this->image('../../images/Reporte.png', 0, 0, 216);
+   
+        // Salto de línea para separar el encabezado de la imagen.
+        $this->ln(24); // Ajuste el espacio entre la imagen y el texto del encabezado
+   
+        // Configurar el texto "Asunto" en negrita y alineado a la izquierda.
+        $this->setFont('Arial', 'B', 10);
+        $this->cell(18, 10, 'Asunto: ', 0, 0, 'L'); // Alineado a la izquierda
+   
+        // Configurar el título alineado a la izquierda.
         $this->setFont('Arial', '', 10);
-        $this->cell(166, 50, 'Fecha/Hora: ' . date('d-m-Y H:i:s'), 0, 1, 'C');
+        // Ajustar el ancho de la celda para que ocupe el resto del ancho de la página.
+        $this->cell(0, 10, $this->encodeString($this->title), 0, 1, 'L');
+   
+        // Configurar el texto "Fecha/Hora" en negrita y alineado a la izquierda.
+        $this->setFont('Arial', 'B', 10); // Negrita
+        $this->cell(18, 5, 'Fecha: ', 0, 0, 'L'); // Alineado a la izquierda
+       
+        // Configurar la fecha y hora en texto normal.
+        $this->setFont('Arial', '', 10);
+        $this->cell(0, 5, date('d-m-Y H:i:s'), 0, 1, 'L'); // Alineado a la izquierda
+   
+        // Asegurarse de que haya suficiente espacio antes de comenzar con el contenido.
+        $this->ln(5); // Ajuste el espacio después del encabezado
     }
-
+   
     /*
      *   Se sobrescribe el método de la librería para establecer la plantilla del pie de los reportes.
      *   Se llama automáticamente en el método output()
@@ -73,9 +88,9 @@ class Report extends FPDF
     public function footer()
     {
         // Se establece la posición para el número de página (a 15 milímetros del final).
-        $this->setY(-15);
+        $this->setY(-20);
         // Se establece la fuente para el número de página.
-        $this->setFont('Arial', 'I', 8);
+        $this->setFont('Arial', 'I', 9);
         // Se imprime una celda con el número de página.
         $this->cell(0, 10, $this->encodeString('Página ') . $this->pageNo() . '/{nb}', 0, 0, 'C');
     }
