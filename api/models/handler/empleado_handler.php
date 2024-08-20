@@ -136,4 +136,27 @@ class EmpleadoHandler
                     estado_empleado;';
         return Database::getRows($sql);
     }
+
+    public function readCantidadServiciosEmpleado()
+    {
+        $sql = 'SELECT 
+                    e.id_empleado,
+                    e.nombre_empleado,
+                    s.tipo_servicio,
+                    COUNT(*) AS cantidad_servicios
+                FROM 
+                    tb_citas c
+                JOIN 
+                    tb_servicios s ON c.id_servicio = s.id_servicio
+                JOIN 
+                    tb_empleados e ON c.id_empleado = e.id_empleado
+                WHERE 
+                    c.id_empleado = ?
+                GROUP BY 
+                    e.id_empleado, s.tipo_servicio
+                ORDER BY 
+                    e.id_empleado, s.tipo_servicio;';
+        $params = array($this->id);
+        return Database::getRows($sql, $params);
+    }
 }
