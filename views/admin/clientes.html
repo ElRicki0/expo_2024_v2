@@ -92,13 +92,13 @@
             aria-labelledby="modalTitle" aria-hidden="true">
             <div class="modal-dialog modal-sm modal-dialog-centered">
                 <div class="modal-content">
-                    <div class="modal-header">
+                    <div class="modal-header inicioIndex">
                         <h1 class="modal-title fs-5" id="modalTitle"></h1>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <!-- Formulario para crear o actualizar un registro -->
                     <form id="saveForm">
-                        <div class="modal-body row g-3">
+                        <div class="modal-body row g-3 inicioIndex">
                             <!-- Campo oculto para asignar el id del registro al momento de modificar -->
                             <input type="number" class="d-none" id="idCliente" name="idCliente">
                             <div class="d-flex justify-content-center">
@@ -110,10 +110,27 @@
                             </div>
 
                         </div>
-                        <div class="modal-footer">
+                        <div class="modal-footer inicioIndex">
                             <button type="submit" class="btn btn-primary">Guardar</button>
                         </div>
                     </form>
+                </div>
+            </div>
+        </div>
+        <!-- Componente Modal para mostrar un gráfico -->
+        <div class="modal fade" id="chartModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+            aria-labelledby="chartTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header inicioIndex">
+                        <h3 class="modal-title textoClaro " id="chartTitle">Gráfico de la categoría</h3>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <!-- Contenedor para mostrar el gráfico -->
+                    <div class="modal-body inicioIndex" id="chartContainer"></div>
+                    <div class="modal-footer inicioIndex">
+                        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Aceptar</button>
+                    </div>
                 </div>
             </div>
         </div>

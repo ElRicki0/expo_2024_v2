@@ -8,7 +8,8 @@ const TABLE_BODY = document.getElementById('tableBody'),
     ROWS_FOUND = document.getElementById('rowsFound');
 // Constantes para establecer los elementos del componente Modal.
 const SAVE_MODAL = new bootstrap.Modal('#saveModal'),
-    MODAL_TITLE = document.getElementById('modalTitle');
+    MODAL_TITLE = document.getElementById('modalTitle'),
+    CHART_MODAL = new bootstrap.Modal('#chartModal');
     // Constantes para establecer los elementos del formulario de guardar.
 const SAVE_FORM = document.getElementById('saveForm'),
 ID_CLIENTE = document.getElementById('idCliente'),
@@ -88,6 +89,8 @@ const fillTable = async (form = null) => {
                         <button type="button" class="btn btn-info" onclick="openUpdate(${row.id_cliente})">
                             <i class="bi bi-pencil-fill"></i>
                         </button>
+                        <button type="button" class="btn btn-warning" onclick="openChart(${row.id_cliente})"><i class="bi bi-bar-chart-line-fill"></i></button>
+
                     </td>
                 </tr>
             `;
@@ -150,5 +153,38 @@ const graficoBarras = async () => {
     } else {
         document.getElementById('chart1').remove();
         console.log(DATA.error);
+    }
+}
+
+/*
+*   Función asíncrona para mostrar un gráfico parametrizado.
+*   Parámetros: id (identificador del registro seleccionado).
+*   Retorno: ninguno.
+*/
+const openChart = async (id) => {
+    // Se define una constante tipo objeto con los datos del registro seleccionado.
+    const FORM = new FormData();
+    FORM.append('idCliente', id);
+    // Petición para obtener los datos del registro solicitado.
+    const DATA = await fetchData(CLIENTE_API, 'readClienteCitas', FORM);
+    // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con el error.
+    if (DATA.status) {
+        // Se muestra la caja de diálogo con su título.
+        CHART_MODAL.show();
+        // Se declaran los arreglos para guardar los datos a graficar.
+        let servicios = [];
+        let citas = [];
+        // Se recorre el conjunto de registros fila por fila a través del objeto row.
+        DATA.dataset.forEach(row => {
+            // Se agregan los datos a los arreglos.
+            servicios.push(row.tipo_servicio);
+            citas.push(row.cantidad_citas);
+        });
+        // Se agrega la etiqueta canvas al contenedor de la modal.
+        document.getElementById('chartContainer').innerHTML = `<canvas id="chart"></canvas>`;
+        // Llamada a la función para generar y mostrar un gráfico de barras. Se encuentra en el archivo components.js
+        barGraph('chart', servicios, citas, 'Cantidad de citas', 'citas realizadas por cliente');
+    } else {
+        sweetAlert(4, DATA.error, true);
     }
 }

@@ -147,4 +147,18 @@ class ClienteHandler
         $params = array($correo);
         return Database::getRow($sql, $params);
     }
+    // métodos paa generar gráficas
+    public function readClienteCitas()
+    {
+        $sql = 'SELECT s.tipo_servicio, 
+                COUNT(c.id_cita) AS cantidad_citas,
+                cl.nombre_cliente
+                FROM tb_citas c
+                JOIN tb_servicios s ON c.id_servicio = s.id_servicio 
+                JOIN tb_clientes cl ON c.id_cliente = cl.id_cliente
+                WHERE c.id_cliente = ?
+                GROUP BY s.tipo_servicio';
+        $params = array($this->id);
+        return Database::getRows($sql, $params);
+    }
 }

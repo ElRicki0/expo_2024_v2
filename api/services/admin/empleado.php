@@ -104,6 +104,7 @@ if (isset($_GET['action'])) {
                         $result['error'] = 'No existen servicios asignados por el momento';
                     }
                     break;
+                    
             default:
                 $result['error'] = 'Acción no disponible dentro de la sesión';
         }
