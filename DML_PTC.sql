@@ -90,3 +90,17 @@ VALUES
 ('El personal fue muy amable.', 3, 3, 1),
 ('Recomendaría este lugar a mis amigos.', 4, 4, 1),
 ('Gran experiencia en general.', 5, 5, 1);
+
+
+INSERT INTO tb_citas (id_cliente, id_servicio, fecha_asignacion_cita, estado_cita, numero_seciones) 
+VALUES 
+    (1, 1, '2024-08-21 10:00:00', 'pendiente', 2),  -- Quiropráctica General
+    (2, 2, '2024-08-22 11:00:00', 'pendiente', 1),  -- Masaje Terapéutico
+    (3, 3, '2024-08-23 14:00:00', 'pendiente', 3),  -- Yoga y Meditación
+    (4, 4, '2024-08-24 15:00:00', 'pendiente', 1),  -- Rehabilitación Física
+    (5, 5, '2024-08-25 16:00:00', 'pendiente', 2),  -- Nutrición Personalizada
+    (1, 2, '2024-08-26 09:00:00', 'pendiente', 1),  -- Masaje Terapéutico
+    (2, 3, '2024-08-27 10:30:00', 'pendiente', 2),  -- Yoga y Meditación
+    (3, 4, '2024-08-28 12:00:00', 'pendiente', 3),  -- Rehabilitación Física
+    (4, 5, '2024-08-29 13:00:00', 'pendiente', 2),  -- Nutrición Personalizada
+    (5, 1, '2024-08-30 14:30:00', 'pendiente', 1);  -- Quiropráctica General
