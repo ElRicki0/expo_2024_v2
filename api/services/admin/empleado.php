@@ -95,6 +95,15 @@ if (isset($_GET['action'])) {
                     $result['error'] = 'No existen datos registrados';
                 }
                 break;
+                case 'readCantidadServiciosEmpleado':
+                    if (!$empleado->setId($_POST['id_empleado'])) {
+                        $result['error'] = $empleado->getDataError();
+                    } elseif ($result['dataset'] = $empleado->readCantidadServiciosEmpleado()) {
+                        $result['status'] = 1;
+                    } else {
+                        $result['error'] = 'No existen servicios asignados por el momento';
+                    }
+                    break;
             default:
                 $result['error'] = 'Acción no disponible dentro de la sesión';
         }
