@@ -7,7 +7,8 @@ const TABLE_BODY = document.getElementById('tableBody'),
     ROWS_FOUND = document.getElementById('rowsFound');
 // Constantes para establecer los elementos del componente Modal.
 const SAVE_MODAL = new bootstrap.Modal('#modalEmpleado'),
-    MODAL_TITLE = document.getElementById('modalTitle');
+    MODAL_TITLE = document.getElementById('modalTitle'),
+    CHART_MODAL = new bootstrap.Modal('#chartModal');
 // Constantes para establecer los elementos del formulario de guardar.
 const SAVE_FORM = document.getElementById('saveForm'),
     ID_EMPLEADO = document.getElementById('id_empleado'),
@@ -56,7 +57,8 @@ SAVE_FORM.addEventListener('submit', async (event) => {
         sweetAlert(1, DATA.message, true);
         // Se carga nuevamente la tabla para visualizar los cambios.
         fillTable();
-        graficoDona();
+        // Este código recarga la página
+        // window.location.reload();
     } else {
         sweetAlert(2, DATA.error, false);
     }
@@ -91,6 +93,9 @@ const fillTable = async (form = null) => {
                 <td><i class="${icon}"></i></td>
                 <td>
                 <button class="btn btn-danger"><i class="bi bi-trash3-fill" onclick="openDelete(${row.id_empleado})"></i></button>
+                <button type="button" class="btn btn-warning" onclick="openChart(${row.id_empleado})">
+                            <i class="bi bi-bar-chart-line-fill"></i>
+                        </button>
                 <button class="btn btn-primary"><i class="bi bi-pen-fill" onclick="openUpdate(${row.id_empleado})"></i></button>
             </td>
         </tr>
@@ -114,7 +119,7 @@ const openCreate = () => {
     MODAL_TITLE.textContent = 'AGREGAR EMPLEADO';
     // Se prepara el formulario.
     SAVE_FORM.reset();
-    }
+}
 
 /*
 *   Función asíncrona para preparar el formulario al momento de actualizar un registro.
@@ -183,7 +188,7 @@ const openDelete = async (id) => {
 */
 const graficoDona = async () => {
     // Petición para obtener los datos del gráfico.
-    const DATA = await fetchData(   EMPLEADO_API, 'readEstadoEmpleado');
+    const DATA = await fetchData(EMPLEADO_API, 'readEstadoEmpleado');
     // Se comprueba si la respuesta es satisfactoria, de lo contrario se remueve la etiqueta canvas.
     if (DATA.status) {
         // Se declaran los arreglos para guardar los datos a graficar.
@@ -201,4 +206,49 @@ const graficoDona = async () => {
         document.getElementById('chart1').remove();
         console.log(DATA.error);
     }
+}
+
+/*
+*   Función asíncrona para mostrar un gráfico parametrizado.
+*   Parámetros: id (identificador del registro seleccionado).
+*   Retorno: ninguno.
+*/
+const openChart = async (id) => {
+    // Se define una constante tipo objeto con los datos del registro seleccionado.
+    const FORM = new FormData();
+    FORM.append('id_empleado', id);
+    // Petición para obtener los datos del registro solicitado.
+    const DATA = await fetchData(EMPLEADO_API, 'readCantidadServiciosEmpleado', FORM);
+    // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con el error.
+    if (DATA.status) {
+        // Se muestra la caja de diálogo con su título.
+        CHART_MODAL.show();
+        // Se declaran los arreglos para guardar los datos a graficar.
+        let servicios = [];
+        let citas = [];
+        // Se recorre el conjunto de registros fila por fila a través del objeto row.
+        DATA.dataset.forEach(row => {
+            // Se agregan los datos a los arreglos.
+            servicios.push(row.tipo_servicio);
+            citas.push(row.cantidad_servicios);
+        });
+        // Se agrega la etiqueta canvas al contenedor de la modal.
+        document.getElementById('chartContainer').innerHTML = `<canvas id="chart"></canvas>`;
+        // Llamada a la función para generar y mostrar un gráfico de barras. Se encuentra en el archivo components.js
+        barGraph('chart', servicios, citas, 'Cantidad de citas', 'citas asignadas al empleado');
+    } else {
+        sweetAlert(4, DATA.error, true);
+    }
+}
+
+/*
+*   Función para abrir un reporte automático de productos por categoría.
+*   Parámetros: ninguno.
+*   Retorno: ninguno.
+*/
+const openReport = () => {
+    // Se declara una constante tipo objeto con la ruta específica del reporte en el servidor.
+    const PATH = new URL(`${SERVER_URL}reports/admin/empleados.php`);
+    // Se abre el reporte en una nueva pestaña.
+    window.open(PATH.href);
 }

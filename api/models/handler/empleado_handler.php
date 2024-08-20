@@ -75,7 +75,7 @@ class EmpleadoHandler
     // Método readAll: lee todos los empleados de la base de datos.
     public function readAll()
     {
-        $sql = 'SELECT id_empleado, nombre_empleado, apellido_empleado, dui_empleado, correo_empleado, nacimiento_empleado, estado_empleado
+        $sql = 'SELECT id_empleado, nombre_empleado, apellido_empleado, dui_empleado, correo_empleado, nacimiento_empleado, estado_empleado, especialidad_empleado
                 FROM tb_empleados
                 ORDER BY nombre_empleado';
         return Database::getRows($sql);
@@ -135,5 +135,28 @@ class EmpleadoHandler
                 GROUP BY 
                     estado_empleado;';
         return Database::getRows($sql);
+    }
+
+    public function readCantidadServiciosEmpleado()
+    {
+        $sql = 'SELECT 
+                    e.id_empleado,
+                    e.nombre_empleado,
+                    s.tipo_servicio,
+                    COUNT(*) AS cantidad_servicios
+                FROM 
+                    tb_citas c
+                JOIN 
+                    tb_servicios s ON c.id_servicio = s.id_servicio
+                JOIN 
+                    tb_empleados e ON c.id_empleado = e.id_empleado
+                WHERE 
+                    c.id_empleado = ?
+                GROUP BY 
+                    e.id_empleado, s.tipo_servicio
+                ORDER BY 
+                    e.id_empleado, s.tipo_servicio;';
+        $params = array($this->id);
+        return Database::getRows($sql, $params);
     }
 }
