@@ -23,6 +23,7 @@ const SAVE_FORM = document.getElementById('saveForm'),
 document.addEventListener('DOMContentLoaded', () => {
     // Llamada a la función para mostrar el encabezado y pie del documento.
     loadTemplate();
+    graficoBarrasPrediccionCitas();
     graficoBarras();
     // Llamada a la función para llenar la tabla con los registros existentes.
     fillTable();
@@ -212,29 +213,28 @@ const graficoBarras = async () => {
         console.log(DATA.error);
     }
 }
-    
+
 const graficoBarrasPrediccionCitas = async () => {
     // Petición para obtener los datos del gráfico.
-    const DATA = await fetchData(CITA_API, 'predicCitaRealizar');
+    const DATA = await fetchData(CITA_API, 'graficoBarrasPrediccionCitas');
     // Se comprueba si la respuesta es satisfactoria, de lo contrario se remueve la etiqueta canvas.
     if (DATA.status) {
         // Se declaran los arreglos para guardar los datos a graficar.
-        let cita = [];
-        let cantidad_citas = [];
+        let citas = [];
+        let servicio = [];
         // Se recorre el conjunto de registros fila por fila a través del objeto row.
         DATA.dataset.forEach(row => {
             // Se agregan los datos a los arreglos.
-            cita.push(row.nombre_cita);
-            cantidad_citas.push(row.cantidad_citas);
+            citas.push(row.prediccion_proxima_semana);
+            servicio.push(row.tipo_servicio);
         });
         // Llamada a la función para generar y mostrar un gráfico de barras. Se encuentra en el archivo components.js
-        barGraph('chartP1', cita, cantidad_citas, 'Cantidades de citas', 'Prediccion de citas semanales');
+        barGraph('chartP2', servicio, citas, 'Prediccion de citas proxima semana', 'Prediccion de servicios cotizados por semana futura');
     } else {
-        document.getElementById('chartPZ1').remove();
+        document.getElementById('chartP2').remove();
         console.log(DATA.error);
     }
 
-    
 }
 
 

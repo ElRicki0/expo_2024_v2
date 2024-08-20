@@ -160,17 +160,18 @@ class Citahandler
         return Database::getRows($sql);
     }
 
-    public function predicCitaRealizar()
+    public function graficoBarrasPrediccionCitas()
     {
-        $sql = 'SELECT
-                    estado_cita,
-                    COUNT(*) AS cantidad_citas
-                FROM
-                    tb_citas
-                WHERE
-                    estado_cita IN ("pendiente", "proceso", "terminado")
-                GROUP BY
-                    estado_cita;';
+        $sql = 'SELECT 
+    s.id_servicio,
+    s.tipo_servicio,
+    -- Valor fijo estimado de citas semanales para cada servicio, ajustable
+    ROUND(10 * (1 + 0.10), 0) AS prediccion_proxima_semana
+                FROM 
+                    tb_servicios s
+                ORDER BY 
+                    s.id_servicio;
+                    Limit 5';
         return Database::getRows($sql);
     }
 }
