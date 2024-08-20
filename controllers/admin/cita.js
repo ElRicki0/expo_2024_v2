@@ -212,3 +212,29 @@ const graficoBarras = async () => {
         console.log(DATA.error);
     }
 }
+    
+const graficoBarrasPrediccionCitas = async () => {
+    // Petición para obtener los datos del gráfico.
+    const DATA = await fetchData(CITA_API, 'predicCitaRealizar');
+    // Se comprueba si la respuesta es satisfactoria, de lo contrario se remueve la etiqueta canvas.
+    if (DATA.status) {
+        // Se declaran los arreglos para guardar los datos a graficar.
+        let cita = [];
+        let cantidad_citas = [];
+        // Se recorre el conjunto de registros fila por fila a través del objeto row.
+        DATA.dataset.forEach(row => {
+            // Se agregan los datos a los arreglos.
+            cita.push(row.nombre_cita);
+            cantidad_citas.push(row.cantidad_citas);
+        });
+        // Llamada a la función para generar y mostrar un gráfico de barras. Se encuentra en el archivo components.js
+        barGraph('chartP1', cita, cantidad_citas, 'Cantidades de citas', 'Prediccion de citas semanales');
+    } else {
+        document.getElementById('chartPZ1').remove();
+        console.log(DATA.error);
+    }
+
+    
+}
+
+

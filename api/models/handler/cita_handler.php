@@ -156,8 +156,21 @@ class Citahandler
                 WHERE
                     estado_cita IN ("pendiente", "proceso", "terminado")
                 GROUP BY
-                    estado_cita;
-';
+                    estado_cita;';
+        return Database::getRows($sql);
+    }
+
+    public function predicCitaRealizar()
+    {
+        $sql = 'SELECT
+                    estado_cita,
+                    COUNT(*) AS cantidad_citas
+                FROM
+                    tb_citas
+                WHERE
+                    estado_cita IN ("pendiente", "proceso", "terminado")
+                GROUP BY
+                    estado_cita;';
         return Database::getRows($sql);
     }
 }
