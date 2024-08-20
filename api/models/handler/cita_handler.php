@@ -162,16 +162,35 @@ class Citahandler
 
     public function graficoBarrasPrediccionCitas()
     {
-        $sql = 'SELECT 
-    s.id_servicio,
-    s.tipo_servicio,
-    -- Valor fijo estimado de citas semanales para cada servicio, ajustable
-    ROUND(10 * (1 + 0.10), 0) AS prediccion_proxima_semana
+        $sql = 'WITH CitasSemanales AS (
+                SELECT 
+                    id_servicio,
+                COUNT(*) AS citas_esta_semana
                 FROM 
+                    tb_citas
+                WHERE 
+                    YEARWEEK(fecha_asignacion_cita, 1) = YEARWEEK(NOW(), 1)
+                GROUP BY 
+                    id_servicio
+                    )
+                SELECT 
+                    s.id_servicio,
+                    s.tipo_servicio,
+                ROUND(
+                    CASE 
+                WHEN COALESCE(cs.citas_esta_semana, 0) = 0 THEN 5
+                ELSE COALESCE(cs.citas_esta_semana, 0) * 1.05
+                    END, 
+                    0
+                    ) AS prediccion_proxima_semana
+                    FROM 
                     tb_servicios s
+                LEFT JOIN 
+                        CitasSemanales cs ON s.id_servicio = cs.id_servicio
                 ORDER BY 
                     s.id_servicio;
-                    Limit 5';
+                    limit 5;';
         return Database::getRows($sql);
+
     }
 }
