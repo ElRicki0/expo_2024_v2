@@ -156,8 +156,22 @@ class Citahandler
                 WHERE
                     estado_cita IN ("pendiente", "proceso", "terminado")
                 GROUP BY
-                    estado_cita;
-';
+                    estado_cita;';
+        return Database::getRows($sql);
+    }
+
+    public function graficoBarrasPrediccionCitas()
+    {
+        $sql = 'SELECT 
+    s.id_servicio,
+    s.tipo_servicio,
+    -- Valor fijo estimado de citas semanales para cada servicio, ajustable
+    ROUND(10 * (1 + 0.10), 0) AS prediccion_proxima_semana
+                FROM 
+                    tb_servicios s
+                ORDER BY 
+                    s.id_servicio;
+                    Limit 5';
         return Database::getRows($sql);
     }
 }

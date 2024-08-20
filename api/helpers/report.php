@@ -3,9 +3,9 @@
 require_once('../../libraries/fpdf185/fpdf.php');
 
 /*
-*   Clase para definir las plantillas de los reportes del sitio privado.
-*   Para más información http://www.fpdf.org/
-*/
+ *   Clase para definir las plantillas de los reportes del sitio privado.
+ *   Para más información http://www.fpdf.org/
+ */
 class Report extends FPDF
 {
     // Constante para definir la ruta de las vistas del sitio privado.
@@ -14,10 +14,10 @@ class Report extends FPDF
     private $title = null;
 
     /*
-    *   Método para iniciar el reporte con el encabezado del documento.
-    *   Parámetros: $title (título del reporte).
-    *   Retorno: ninguno.
-    */
+     *   Método para iniciar el reporte con el encabezado del documento.
+     *   Parámetros: $title (título del reporte).
+     *   Retorno: ninguno.
+     */
     public function startReport($title)
     {
         // Se crea una sesión o se reanuda la actual para poder utilizar variables de sesión en los reportes.
@@ -26,8 +26,6 @@ class Report extends FPDF
         if (isset($_SESSION['idAdministrador'])) {
             // Se asigna el título del documento a la propiedad de la clase.
             $this->title = $title;
-            // Se establece el título del documento (true = utf-8).
-            $this->setTitle('Quiropractica Especifica - Reporte', true);
             // Se establecen los margenes del documento (izquierdo, superior y derecho).
             $this->setMargins(15, 15, 15);
             // Se añade una nueva página al documento con orientación vertical y formato carta, llamando implícitamente al método header()
@@ -40,24 +38,24 @@ class Report extends FPDF
     }
 
     /*
-    *   Método para codificar una cadena de alfabeto español a UTF-8.
-    *   Parámetros: $string (cadena).
-    *   Retorno: cadena convertida.
-    */
+     *   Método para codificar una cadena de alfabeto español a UTF-8.
+     *   Parámetros: $string (cadena).
+     *   Retorno: cadena convertida.
+     */
     public function encodeString($string)
     {
         return mb_convert_encoding($string, 'ISO-8859-1', 'utf-8');
     }
 
     /*
-    *   Se sobrescribe el método de la librería para establecer la plantilla del encabezado de los reportes.
-    *   Se llama automáticamente en el método addPage()
-    */
+     *   Se sobrescribe el método de la librería para establecer la plantilla del encabezado de los reportes.
+     *   Se llama automáticamente en el método addPage()
+     */
     // Aqui va empezar el header
     public function header()
     {
-        // Se establece el logo.
-        $this->image('../../images/Plantilla reporte.png', 15, 0, 20);
+        // Se establece el header.
+        $this->image('../../images/ReporteHeader.png', 0, 0, 218);
         // Se ubica el título.
         $this->cell(20);
         $this->setFont('Arial', 'B', 15);
@@ -65,15 +63,13 @@ class Report extends FPDF
         // Se ubica la fecha y hora del servidor.
         $this->cell(20);
         $this->setFont('Arial', '', 10);
-        $this->cell(166, 10, 'Fecha/Hora: ' . date('d-m-Y H:i:s'), 0, 1, 'C');
-        // Se agrega un salto de línea para mostrar el contenido principal del documento.
-        $this->ln(10);
+        $this->cell(166, 50, 'Fecha/Hora: ' . date('d-m-Y H:i:s'), 0, 1, 'C');
     }
 
     /*
-    *   Se sobrescribe el método de la librería para establecer la plantilla del pie de los reportes.
-    *   Se llama automáticamente en el método output()
-    */
+     *   Se sobrescribe el método de la librería para establecer la plantilla del pie de los reportes.
+     *   Se llama automáticamente en el método output()
+     */
     public function footer()
     {
         // Se establece la posición para el número de página (a 15 milímetros del final).
