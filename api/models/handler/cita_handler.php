@@ -193,4 +193,5 @@ class Citahandler
         return Database::getRows($sql);
 
     }
+
 }

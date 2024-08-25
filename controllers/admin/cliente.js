@@ -136,7 +136,7 @@ const openUpdate = async (id) => {
 */
 const graficoBarras = async () => {
     // Petición para obtener los datos del gráfico.
-    const DATA = await fetchData(   CITA_API, 'readCantidadCliente');
+    const DATA = await fetchData(CITA_API, 'readCantidadCliente');
     // Se comprueba si la respuesta es satisfactoria, de lo contrario se remueve la etiqueta canvas.
     if (DATA.status) {
         // Se declaran los arreglos para guardar los datos a graficar.

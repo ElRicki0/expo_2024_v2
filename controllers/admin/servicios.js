@@ -79,6 +79,7 @@ const fillTable = async (form = null) => {
                 <td>
                 <button class="btn btn-danger"><i class="bi bi-trash3-fill" onclick="openDelete(${row.id_servicio})"></i></button>
                 <button class="btn btn-primary"><i class="bi bi-pen-fill" onclick="openUpdate(${row.id_servicio})"></i></button>
+                <button type="button" class="btn btn-warning" onclick="openChart(${row.id_servicio})"><i class="bi bi-bar-chart-line-fill"></i></button>
             </td>
         </tr>
             `;
@@ -159,26 +160,29 @@ const openDelete = async (id) => {
     }
 }
 
-const graficaPrediccionDeServicio = async () => {
+const graficoPastelServicio = async () => {
     // Petición para obtener los datos del gráfico.
-    const DATA = await fetchData(CITA_API, 'graficaPrediccionDeServicio');
+    const DATA = await fetchData(CITA_API, 'graficoPastelServicio');
     // Se comprueba si la respuesta es satisfactoria, de lo contrario se remueve la etiqueta canvas.
     if (DATA.status) {
         // Se declaran los arreglos para guardar los datos a graficar.
-        let citas = [];
+        let servicios = [];
+        let predicciones = [];
         // Se recorre el conjunto de registros fila por fila a través del objeto row.
         DATA.dataset.forEach(row => {
             // Se agregan los datos a los arreglos.
-            citas.push(row.prediccion_servicio_futuras_citas);
+            servicios.push(row.tipo_servicio);
+            predicciones.push(row.prediccion_citas_siguiente_semana);
         });
-        // Llamada a la función para generar y mostrar un gráfico de barras. Se encuentra en el archivo components.js
-        barGraph('ChartP', citas, 'Posibles futuras citas');
+        // Llamada a la función para generar y mostrar un gráfico de barras.
+        // Asegúrate de que la función barGraph esté definida en components.js
+        barGraph('ChartP2S', servicios, predicciones, 'Citas Predichas', 'Servicios');
     } else {
-        document.getElementById('ChartP').remove();
+        document.getElementById('ChartP2S').remove();
         console.log(DATA.error);
     }
+};
 
-}
 
 /* Obtener el input de carga de imagen y la imagen
 var imageUpload = document.getElementById("id_foto");
