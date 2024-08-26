@@ -75,8 +75,6 @@ const fillTable = async (form = null) => {
     if (DATA.status) {
         // Se recorre el conjunto de registros fila por fila.
         DATA.dataset.forEach(row => {
-            // Se crea una variable para almacenar el valor de id_empleado o el mensaje personalizado.
-            const idEmpleado = (row.nombre_empleado !== undefined && row.nombre_empleado !== '') ? row.nombre_empleado : '<i class="bi bi-person-x-fill"></i>';
             // Se crean y concatenan las filas de la tabla con los datos de cada registro.
             TABLE_BODY.innerHTML += `
             <tr>
@@ -84,7 +82,6 @@ const fillTable = async (form = null) => {
                 <td>${row.correo_admin}</td>
                 <td>
                 <button class="btn btn-danger"><i class="bi bi-trash3-fill" onclick="openDelete(${row.id_admin})"></i></button>
-                <button class="btn btn-primary"><i class="bi bi-pen-fill" onclick="openUpdate(${row.id_admin})"></i></button>
             </td>
         </tr>
             `;
@@ -110,6 +107,8 @@ const openCreate = () => {
     CONTRASEÑA_TITLE.style.display = "block";
     CONTRASEÑA_ADMINISTRADOR.style.display = "block";
     CONTRASEÑA_ADMINISTRADOR.disabled = false;
+    fillSelect(EMPLEADO_API, 'readAll', 'empleadoAdmin');
+
 }
 
 /*

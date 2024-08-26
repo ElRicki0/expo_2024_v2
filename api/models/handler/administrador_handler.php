@@ -140,7 +140,7 @@ class AdministradorHandler
                 WHERE id_admin <> ?';
         $params = array($_SESSION['idAdministrador']);
         // Se ejecuta la consulta para actualizar la información del perfil del administrador.
-        return Database::executeRow($sql, $params);
+        return Database::getRows($sql, $params);
     }
 
     // Método para leer todos los administradores registrados.

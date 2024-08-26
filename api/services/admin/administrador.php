@@ -53,7 +53,7 @@ if (isset($_GET['action'])) {
                     $result['message'] = 'Administrador agregado correctamente';
                 } else {
                     // Si hay un problema al crear, se registra un error.
-                    $result['error'] = 'Ocurrió un problema al crear al Administrador';
+                    $result['error'] = 'el nombre del administrador ya existe ';
                 }
                 break;
             case 'readAll':

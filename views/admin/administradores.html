@@ -88,8 +88,8 @@
             <!-- Modal agregar Admninistrador -->
             <div class="modal fade" id="modalAdministrador" tabindex="-1" aria-labelledby="exampleModalLabel"
                 aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered modal-lg">
-                    <div class="modal-content">
+                <div class="modal-dialog modal-dialog-centered modal-lg ">
+                    <div class="modal-content inicioIndex">
 
                         <!-- Formulario saveForm -->
                         <form id="saveForm">
@@ -100,19 +100,19 @@
                             <div class="modal-body">
                                 <button type="button" class="btn-close" data-bs-dismiss="modal"
                                     aria-label="Close"></button>
-                                <h1 class="fs-4 fw-bold text-center mb-4" id="modalTitle"> </h1>
+                                <h1 class="fs-4 fw-bold text-center mb-4 textoClaro" id="modalTitle"> </h1>
 
                                 <!-- Inputs -->
                                 <div class="row p-3">
                                     <div class="col-12">
                                         <div class="row">
                                             <div class="col-6">
-                                                <label class="form-label">Nombre(s)</label>
+                                                <label class="textoClaro form-label">Nombre(s)</label>
                                                 <input type="text" id="nombre_admin" name="nombre_admin"
                                                     class="form-control" required>
                                             </div>
                                             <div class="col-6">
-                                                <label class="form-label">Correo electronico</label>
+                                                <label class="textoClaro form-label">Correo electronico</label>
                                                 <input type="email" id="correo_admin" name="correo_admin"
                                                     class="form-control" required>
                                             </div>
@@ -121,9 +121,15 @@
                                     <div class="col-12">
                                         <div class="row">
                                             <div class="col-6 mt-3">
-                                                <label class="form-label" id="TextPassword">Contraseña</label>
+                                                <label class="textoClaro form-label" id="TextPassword">Contraseña</label>
                                                 <input type="password" id="contra_admin" name="contra_admin"
                                                     class="form-control" required>
+                                            </div>
+                                            <div class="col-6 mt-3">
+                                                <label for="empleadoAdmin" class=" textoClaro form-label">Servicio</label>
+                                                <select id="empleadoAdmin" name="empleadoAdmin"
+                                                    class="form-select" required>
+                                                </select>
                                             </div>
                                         </div>
                                     </div>
@@ -136,6 +142,7 @@
                                             </div>
                                         </div>
                                     </div>
+
                                 </div>
                             </div>
                         </form>
