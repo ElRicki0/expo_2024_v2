@@ -140,24 +140,43 @@ class ServicioHandler
         return Database::getRows($sql);
     }
 
-    
-    public function graficaPrediccionDeServicio()
+       // métodos paa generar gráficas
+    public function graficoPastelServicio()
     {
-        $sql = 'SELECT
+        $sql = 'WITH citas_por_semana AS (
+                SELECT 
                     s.id_servicio,
                     s.tipo_servicio,
-                    s.descripcion_servicio,
-                    s.imagen_servicio,
-                    COUNT(b.id_beneficio) AS cantidad_beneficios
-                FROM
-                    tb_servicios s
-                LEFT JOIN
-                    tb_beneficios b ON s.id_servicio = b.id_servicio
-                GROUP BY
-                    s.id_servicio, s.tipo_servicio, s.descripcion_servicio, s.imagen_servicio
-                ORDER BY
-                    cantidad_beneficios DESC;';
-        return Database::getRows($sql);
+                    YEARWEEK(c.fecha_asignacion_cita, 1) AS semana,
+                COUNT(c.id_cita) AS num_citas
+                FROM 
+                    tb_citas c
+                JOIN 
+                    tb_servicios s ON c.id_servicio = s.id_servicio
+                WHERE 
+                     c.fecha_asignacion_cita IS NOT NULL
+                GROUP BY 
+                    s.id_servicio, s.tipo_servicio, YEARWEEK(c.fecha_asignacion_cita, 1)
+                    ),
+
+                    citas_agrupadas AS (
+                SELECT 
+                    id_servicio,
+                    tipo_servicio,
+                    AVG(num_citas) AS promedio_citas,
+                    COUNT(DISTINCT semana) AS semanas
+                FROM 
+                    citas_por_semana
+                GROUP BY 
+                    id_servicio, tipo_servicio)
+
+                SELECT 
+                    id_servicio,
+                    tipo_servicio,
+                ROUND(promedio_citas) AS prediccion_citas_siguiente_semana
+                FROM 
+                    citas_agrupadas;';
+            return Database::getRows($sql);
     }
 
     

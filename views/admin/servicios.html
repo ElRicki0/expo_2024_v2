@@ -29,7 +29,7 @@
                         <div class="card-body">
                             <!-- Se muestra un gráfico con el porcentaje de productos por categoría -->
                             <div class="chart-container">
-                                <canvas id="ChartP"></canvas>
+                                <canvas id="ChartP2S"></canvas>
                             </div>
                         </div>
                     </div>
@@ -89,6 +89,24 @@
                     </div>
                 </div>
             </div>
+             <!-- Componente Modal para mostrar un gráfico -->
+        <div class="modal fade" id="chartModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="chartTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header inicioIndex">
+                    <h3 class="modal-title textoClaro " id="chartTitle">Gráfico de la categoría</h3>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <!-- Contenedor para mostrar el gráfico -->
+                <div class="modal-body inicioIndex" id="chartContainer"></div>
+                <div class="modal-footer inicioIndex">
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Aceptar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
 
             <!-- Componente Modal para guardar un registro -->
             <div class="modal fade" id="saveModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
@@ -134,6 +152,7 @@
     <!-- Bootstrap -->
     <script src="../../resources/js/bootstrap_js.js"></script>
     <script src="../../resources/js/sweetalert.min.js"></script>
+    <script src="../../resources/js/chart.umd.min.js"></script>
     <!-- controladores del sitio privado -->
     <script src="../../controllers/utils/components.js"></script>
     <script src="../../controllers/utils/admin.js"></script>

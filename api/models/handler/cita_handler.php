@@ -210,4 +210,5 @@ class Citahandler
         $params = array($this->fechaI, $this->fechaF);
         return Database::executeRow($sql, $params);
     }
+
 }
