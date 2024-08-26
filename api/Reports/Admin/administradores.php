@@ -34,9 +34,9 @@ if ($dataAdministrador = $administrador->readAll()) {
         $pdf->cell(62, 10, $administradorRow['correo_admin'], 'TB', 1, 'C');
     }
 } else {
-    // Si no hay empleados para mostrar
-    $pdf->cell(0, 10, $pdf->encodeString('No hay empleados para mostrar'), 1, 1, 'C');
+    // Si no hay administradores para mostrar
+    $pdf->cell(0, 10, $pdf->encodeString('No hay administradores para mostrar'), 1, 1, 'C');
 }
 
 // Se llama implícitamente al método footer() y se envía el documento al navegador web.
-$pdf->output('I', 'Empleados.pdf');
+$pdf->output('I', 'Administradores.pdf');
