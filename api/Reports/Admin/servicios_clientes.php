@@ -41,13 +41,13 @@ if (isset($_GET['idServicio'])) {
                 $pdf->cell(0, 10, $pdf->encodeString('No hay clientes para el servicio'), 1, 1);
             }
             // Se llama implícitamente al método footer() y se envía el documento al navegador web.
-            $pdf->output('I', 'servicio.pdf');
+            $pdf->output('I', 'Servicio.pdf');
         } else {
-            print('servicio inexistente');
+            print ('Servicio inexistente');
         }
     } else {
-        print('servicio incorrecta');
+        print ('Servicio incorrecto');
     }
 } else {
-    print('Debe seleccionar un servicio');
+    print ('Debe seleccionar un servicio');
 }
