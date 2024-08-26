@@ -10,10 +10,10 @@ const TABLE_BODY = document.getElementById('tableBody'),
 const SAVE_MODAL = new bootstrap.Modal('#saveModal'),
     MODAL_TITLE = document.getElementById('modalTitle'),
     CHART_MODAL = new bootstrap.Modal('#chartModal');
-    // Constantes para establecer los elementos del formulario de guardar.
+// Constantes para establecer los elementos del formulario de guardar.
 const SAVE_FORM = document.getElementById('saveForm'),
-ID_CLIENTE = document.getElementById('idCliente'),
-ESTADO_CLIENTE = document.getElementById('estadoCliente');
+    ID_CLIENTE = document.getElementById('idCliente'),
+    ESTADO_CLIENTE = document.getElementById('estadoCliente');
 
 // Método del evento para cuando el documento ha cargado.
 document.addEventListener('DOMContentLoaded', () => {
@@ -90,7 +90,9 @@ const fillTable = async (form = null) => {
                             <i class="bi bi-pencil-fill"></i>
                         </button>
                         <button type="button" class="btn btn-warning" onclick="openChart(${row.id_cliente})"><i class="bi bi-bar-chart-line-fill"></i></button>
-
+                        <button type="button" class="btn btn-info" onclick="openClienteReport(${row.id_cliente})">
+                            <i class="bi bi-file-earmark-pdf-fill"></i>
+                        </button>
                     </td>
                 </tr>
             `;
@@ -197,6 +199,17 @@ const openChart = async (id) => {
 const openReport = () => {
     // Se declara una constante tipo objeto con la ruta específica del reporte en el servidor.
     const PATH = new URL(`${SERVER_URL}reports/admin/clientes.php`);
+    // Se abre el reporte en una nueva pestaña.
+    window.open(PATH.href);
+}
+
+// reporte parametrizado
+
+const openClienteReport = (id) => {
+    // Se declara una constante tipo objeto con la ruta específica del reporte en el servidor.
+    const PATH = new URL(`${SERVER_URL}reports/admin/cliente_servicio.php`);
+    // Se agrega un parámetro a la ruta con el valor del registro seleccionado.
+    PATH.searchParams.append('idCliente', id);
     // Se abre el reporte en una nueva pestaña.
     window.open(PATH.href);
 }

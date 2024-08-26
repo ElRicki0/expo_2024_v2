@@ -190,4 +190,22 @@ class ClienteHandler
                     
         return Database::getRows($sql);
     }
+
+    public function clienteServicios()
+    {
+        $sql = 'SELECT DISTINCT 
+                    s.id_servicio,
+                    s.tipo_servicio,
+                    s.descripcion_servicio
+                FROM 
+                    tb_clientes cl
+                JOIN 
+                    tb_citas c ON cl.id_cliente = c.id_cliente
+                JOIN 
+                    tb_servicios s ON c.id_servicio = s.id_servicio
+                WHERE 
+                    cl.id_cliente = ?';
+        $params = array($this->id);
+        return Database::getRows($sql, $params);
+    }
 }
