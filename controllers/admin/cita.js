@@ -136,6 +136,7 @@ const fillTable = async (form = null) => {
                 <td>
                 <button class="btn btn-danger"><i class="bi bi-trash3-fill" onclick="openDelete(${row.id_cita})"></i></button>
                 <button class="btn btn-primary"><i class="bi bi-pen-fill" onclick="openUpdate(${row.id_cita})"></i></button>
+                <button class="btn btn-info"><i class="bi bi-calendar-week-fill" onclick="openReport(${row.id_cliente})"></i></button>
             </td>
         </tr>
             `;
@@ -337,4 +338,18 @@ const openChart = async () => {
     } else {
         sweetAlert(4, DATA.error, true);
     }
+}
+
+/*
+*   Función para abrir un reporte parametrizado de cita general por cliente.
+*   Parámetros: nombre_cliente (nombre del cliente en la tabla de citas).
+*   Retorno: ninguno.
+*/
+const openReport = (id) => {
+    // Se declara una constante tipo objeto con la ruta específica del reporte en el servidor.
+    const PATH = new URL(`${SERVER_URL}reports/admin/citas_clientes.php`);
+    // Se agrega un parámetro a la ruta con el valor del registro seleccionado.
+    PATH.searchParams.append('id_cliente', id);
+    // Se abre el reporte en una nueva pestaña.
+    window.open(PATH.href);
 }
