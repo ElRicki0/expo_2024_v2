@@ -17,7 +17,8 @@ class Citahandler
     protected $cliente = null;
     protected $servicio = null;
     protected $empleado = null;
-
+    protected $fechaI = null;
+    protected $fechaF = null;
     public function searchRows()
     {
         $value = '%' . Validator::getSearchValue() . '%';
@@ -191,6 +192,22 @@ class Citahandler
                     s.id_servicio;
                     limit 5;';
         return Database::getRows($sql);
+    }
 
+    public function graficoEntreFechas()
+    {
+        $sql = 'SELECT 
+            s.tipo_servicio, 
+            COUNT(c.id_cita) AS cantidad_veces_realizado
+        FROM 
+            tb_citas c
+        JOIN 
+            tb_servicios s ON c.id_servicio = s.id_servicio
+        WHERE c.fecha_asignacion_cita BETWEEN ? AND ?
+        GROUP BY 
+            s.tipo_servicio
+        ';
+        $params = array($this->fechaI, $this->fechaF);
+        return Database::executeRow($sql, $params);
     }
 }

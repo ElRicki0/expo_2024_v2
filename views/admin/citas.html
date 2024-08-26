@@ -14,7 +14,7 @@
 <body>
 
     <!-- Contenedor principal -->
-    <main class="py-5">
+    <main>
 
         <!-- Títulos -->
         <div class="mt-5 justify-content-center">
@@ -24,33 +24,33 @@
                 </div>
             </div>
 
-          <!-- Contenedor de gráficos -->
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-12 col-md-6 col-lg-5 my-3">
-                <div class="card inicioIndex">
-                    <div class="card-body">
-                        <!-- Se muestra un gráfico con la cantidad de productos por categoría -->
-                        <div class="chart-container">
-                            <canvas id="chart1"></canvas>
+            <!-- Contenedor de gráficos -->
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-12 col-md-6 col-lg-5 my-3">
+                        <div class="card inicioIndex">
+                            <div class="card-body">
+                                <!-- Se muestra un gráfico con la cantidad de productos por categoría -->
+                                <div class="chart-container">
+                                    <canvas id="chart1"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-6 col-lg-5 my-3">
+                        <div class="card inicioIndex">
+                            <div class="card-body">
+                                <!-- Se muestra un gráfico con el porcentaje de productos por categoría -->
+                                <div class="chart-container">
+                                    <canvas id="chartP2"></canvas>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col-12 col-md-6 col-lg-5 my-3">
-                <div class="card inicioIndex">
-                    <div class="card-body">
-                        <!-- Se muestra un gráfico con el porcentaje de productos por categoría -->
-                        <div class="chart-container">
-                            <canvas id="chartP2"></canvas>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <br>
-    <br>
+            <br>
+            <br>
 
 
             <div class="container mb-3 justify-content-center">
@@ -69,8 +69,11 @@
                             <button type="reset" class="btn btn-secondary" onclick="fillTable()">
                                 <i class="bi bi-arrow-counterclockwise"></i>
                             </button>
-                            <button type="button" class="btn btn-warning" onclick="openCreate()"><i
-                                    class="bi bi-person-fill-add"></i>
+                            <button type="button" class="btn btn-warning" onclick="openCreate()">
+                                <i class="bi bi-person-fill-add"></i>
+                            </button>
+                            <button type="button" class="btn btn-info" onclick="openGraf()">
+                                <i class="bi bi-bar-chart-line"></i>
                             </button>
                         </div>
                     </div>
@@ -172,6 +175,54 @@
                 </div>
             </div>
         </div>
+
+        <!-- Componente Modal para gráfica parametrizada -->
+        <div class="modal fade" id="modalGrafic" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+            aria-labelledby="modalTitle" aria-hidden="true">
+            <div class="modal-dialog modal-lg modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header inicioIndex">
+                        <h1 class="modal-title fs-5 textoClaro" id="modalGraficTitle"></h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <!-- Formulario para crear o actualizar un registro -->
+                    <form id="saveDate" class="inicioIndex">
+                        <div class="modal-body row g-3">
+                            <div class="col-6 mt-3">
+                                <label class="textoClaro form-label">Fecha inicio</label>
+                                <input id="fechaInicio" name="fechaInicio" type="date" class="form-control" required>
+                            </div>
+                            <div class="col-6 mt-3">
+                                <label class="textoClaro form-label">Fecha final</label>
+                                <input id="fechaFinal" name="fechaFinal" type="date" class="form-control" required>
+                            </div>
+                        </div>
+                        <div class="modal-footer inicioIndex">
+                            <button type="submit" class="btn btn-primary">Buscar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Componente Modal para mostrar un gráfico -->
+        <div class="modal fade" id="chartModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+            aria-labelledby="chartTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header inicioIndex">
+                        <h3 class="modal-title textoClaro " id="chartTitle">Gráfico por fechas</h3>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <!-- Contenedor para mostrar el gráfico -->
+                    <div class="modal-body inicioIndex" id="chartContainer"></div>
+                    <div class="modal-footer inicioIndex">
+                        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Aceptar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </main>
 
     <!-- Librerias -->
@@ -180,6 +231,7 @@
     <script src="../../resources/js/sweetalert.min.js"></script>
     <script src="../../resources/js/chart.umd.min.js"></script>
     <!-- llamar al controntrolador del sitio privado-->
+    <script src="../../controllers/utils/Validaciones.js"></script>
     <script src="../../controllers/utils/components.js"></script>
     <!-- llamar al controntrolador del los sitios-->
     <script src="../../controllers/utils/admin.js"></script>

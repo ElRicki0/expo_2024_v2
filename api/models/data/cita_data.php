@@ -57,6 +57,32 @@ class CitaData extends CitaHandler
         return true;
     }
 
+    public function setFechaInicio($value)
+    {
+        // if (Validator::validateAlphanumeric($value)) {
+        //     $this->fechaC = $value;
+        //     return true;
+        // } else {
+        //     $this->data_error = 'La fecha de la cita es incorrecta';
+        //     return false;
+        // }
+        $this->fechaC = $value;
+        return true;
+    }
+
+    public function setFechaFinal($value)
+    {
+        // if (Validator::validateAlphanumeric($value)) {
+        //     $this->fechaC = $value;
+        //     return true;
+        // } else {
+        //     $this->data_error = 'La fecha de la cita es incorrecta';
+        //     return false;
+        // }
+        $this->fechaC = $value;
+        return true;
+    }
+
     public function setEstado($value, $min = 2, $max = 50)
     {
         if (!Validator::validateAlphanumeric($value)) {

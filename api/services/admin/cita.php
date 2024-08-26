@@ -121,6 +121,20 @@ if (isset($_GET['action'])) {
                     $result['error'] = 'No hay datos disponibles';
                 }
                 break;
+            case 'graficoCitasfechas':
+                $_POST = Validator::validateForm($_POST);
+                if (
+                    !$cita->setFechaInicio($_POST['fechaInicio']) or
+                    !$cita->setFechaFinal($_POST['fechaFinal'])
+                ) {
+                    $result['error'] = $cita->getDataError();
+                } elseif ($cita->graficoEntreFechas()) {
+                    $result['status'] = 1;
+                    $result['message'] = 'gráfico creado correctamente';
+                } else {
+                    $result['error'] = 'Ocurrió un problema al crear la gráfica';
+                }
+                break;
             default:
                 $result['error'] = 'Acción no disponible dentro de la sesión';
         }

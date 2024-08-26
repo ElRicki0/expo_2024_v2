@@ -3,6 +3,7 @@ const CITA_API = 'services/admin/cita.php';
 const EMPLEADO_API = 'services/admin/empleado.php';
 const SERVICIO_API = 'services/admin/servicio.php';
 const CLIENTE_API = 'services/admin/cliente.php';
+
 // Constante para establecer el formulario de buscar.
 const SEARCH_FORM = document.getElementById('searchForm');
 // Constantes para establecer el contenido de la tabla.
@@ -11,6 +12,21 @@ const TABLE_BODY = document.getElementById('tableBody'),
 // Constantes para establecer los elementos del componente Modal.
 const SAVE_MODAL = new bootstrap.Modal('#saveModal'),
     MODAL_TITLE = document.getElementById('modalTitle');
+
+
+// constantes para mostrar datos de citas durante un periodo de tiempo
+const MODAL_GRAFIC = new bootstrap.Modal('#modalGrafic'),
+    MODAL_G_TITLE = document.getElementById('modalGraficTitle');
+
+// constantes para mostrar datos de citas durante un periodo de tiempo
+const CHART_MODAL = new bootstrap.Modal('#chartModal');
+
+
+// constantes para mostrar un dato en especifico
+const DATE_FORM = document.getElementById('saveDate'),
+    FECHA_INICIO = document.getElementById('fechaInicio'),
+    FECHA_FINAL = document.getElementById('fechaFinal');
+
 // Constantes para establecer los elementos del formulario de guardar.
 const SAVE_FORM = document.getElementById('saveForm'),
     ID_CITA = document.getElementById('idCita'),
@@ -59,6 +75,27 @@ SAVE_FORM.addEventListener('submit', async (event) => {
         fillTable();
     } else {
         sweetAlert(2, DATA.error, false);
+    }
+});
+
+DATE_FORM.addEventListener('submit', async (event) => {
+    // Se evita recargar la página web después de enviar el formulario.
+    event.preventDefault();
+    // Constante tipo objeto con los datos del formulario.
+    const FORM = new FormData(DATE_FORM);
+    // Petición para guardar los datos del formulario.
+    const DATA = await fetchData(CITA_API, 'graficoCitasfechas', FORM);
+    // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+    if (DATA.status) {
+        // Se cierra la caja de diálogo.
+        MODAL_GRAFIC.hide();
+        CHART_MODAL.show()
+        console.log('salida1');
+        // Se carga nuevamente la tabla para visualizar los cambios.
+        fillTable();
+    } else {
+        sweetAlert(2, DATA.error, false);
+        console.log('salida2');
     }
 });
 
@@ -124,6 +161,15 @@ const openCreate = () => {
     fillSelect(EMPLEADO_API, 'readAll', 'empleadoCita');
     fillSelect(CLIENTE_API, 'readAll', 'clienteCita');
     fillSelect(SERVICIO_API, 'readAll', 'servicioCita');
+}
+
+// método para mostrar gráfica entre dos fechas futuras
+
+
+const openGraf = () => {
+    MODAL_GRAFIC.show();
+    MODAL_G_TITLE.textContent = 'CREAR GRÁFICA ENTRE FECHAS';
+
 }
 
 /*
@@ -238,3 +284,57 @@ const graficoBarrasPrediccionCitas = async () => {
 }
 
 
+// Establecer la fecha máxima en los inputs a la fecha actual
+const today = new Date().toISOString().split('T')[0];
+document.getElementById('fechaInicio').setAttribute('max', today);
+document.getElementById('fechaFinal').setAttribute('max', today);
+
+// Validar que la fecha final no sea menor que la fecha de inicio
+const fechaInicioInput = document.getElementById('fechaInicio');
+const fechaFinalInput = document.getElementById('fechaFinal');
+
+fechaInicioInput.addEventListener('change', validarFechas);
+fechaFinalInput.addEventListener('change', validarFechas);
+
+function validarFechas() {
+    const fechaInicio = new Date(fechaInicioInput.value);
+    const fechaFinal = new Date(fechaFinalInput.value);
+
+    if (fechaFinal < fechaInicio) {
+        alert('La fecha final no puede ser anterior a la fecha de inicio.');
+        fechaFinalInput.value = ''; // Limpia la fecha final si no es válida
+    }
+}
+
+/*
+*   Función asíncrona para mostrar un gráfico parametrizado.
+*   Parámetros: id (identificador del registro seleccionado).
+*   Retorno: ninguno.
+*/
+const openChart = async () => {
+    // Se define una constante tipo objeto con los datos del registro seleccionado.
+    const FORM = new FormData();
+    FORM.append(FECHA_INICIO, fechaFinal);
+    // Petición para obtener los datos del registro solicitado.
+    const DATA = await fetchData(CITA_API, 'graficoCitasfechas', FORM);
+    // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con el error.
+    if (DATA.status) {
+        // Se muestra la caja de diálogo con su título.
+        CHART_MODAL.show();
+        // Se declaran los arreglos para guardar los datos a graficar.
+        let servicios = [];
+        let citas = [];
+        // Se recorre el conjunto de registros fila por fila a través del objeto row.
+        DATA.dataset.forEach(row => {
+            // Se agregan los datos a los arreglos.
+            servicios.push(row.tipo_servicio);
+            citas.push(row.cantidad_citas);
+        });
+        // Se agrega la etiqueta canvas al contenedor de la modal.
+        document.getElementById('chartContainer').innerHTML = `<canvas id="chart"></canvas>`;
+        // Llamada a la función para generar y mostrar un gráfico de barras. Se encuentra en el archivo components.js
+        barGraph('chart', servicios, citas, 'Cantidad de citas', 'citas realizadas por cliente');
+    } else {
+        sweetAlert(4, DATA.error, true);
+    }
+}
