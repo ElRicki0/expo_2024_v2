@@ -65,6 +65,15 @@ if (isset($_GET['action'])) {
                     $result['error'] = 'No existen registros por el; momento';
                 }
                 break;
+                case 'reporteCitasMesActual':
+                    if (!$cliente->setId($_POST['idCliente'])) {
+                        $result['error'] = $cliente->getDataError();
+                    } elseif ($result['dataset'] = $cliente->reporteCitasMesActual()) {
+                        $result['status'] = 1;
+                    } else {
+                        $result['error'] = 'No existen registros por el; momento';
+                    }
+                    break;
             default:
                 $result['error'] = 'Acción no disponible dentro de la sesión';
         }
