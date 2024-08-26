@@ -21,6 +21,7 @@ const SAVE_FORM = document.getElementById('saveForm'),
 // Método del evento para cuando el documento ha cargado.
 document.addEventListener('DOMContentLoaded', () => {
     loadTemplate();
+    graficoPastelServicio();
     // Llamada a la función para llenar la tabla con los registros existentes.
     fillTable();
 });
@@ -182,7 +183,7 @@ const graficoPastelServicio = async () => {
         });
         // Llamada a la función para generar y mostrar un gráfico de barras.
         // Asegúrate de que la función barGraph esté definida en components.js
-        barGraph('ChartP2S', servicios, predicciones, 'Citas Predichas', 'Servicios');
+        donaGraph('ChartP2S', servicios, predicciones, 'Citas Predichas', 'Servicios');
     } else {
         document.getElementById('ChartP2S').remove();
         console.log(DATA.error);
