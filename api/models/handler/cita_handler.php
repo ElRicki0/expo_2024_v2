@@ -234,4 +234,33 @@ class Citahandler
         return Database::getRows($sql, $params);
     }
 
+
+    public function reporteCitasMesActual()
+    {
+        $sql = 'SELECT 
+                    c.id_cita,
+                    c.nombre_cita,
+                    c.fecha_creacion_cita,
+                    c.fecha_asignacion_cita,
+                    c.estado_cita,
+                    c.numero_seciones,
+                    cl.nombre_cliente,
+                    cl.apellido_cliente,
+                    s.tipo_servicio,
+                    e.nombre_empleado,
+                    e.apellido_empleado
+                FROM 
+                    tb_citas c
+                INNER JOIN 
+                    tb_clientes cl ON c.id_cliente = cl.id_cliente
+                INNER JOIN 
+                    tb_servicios s ON c.id_servicio = s.id_servicio
+                LEFT JOIN 
+                    tb_empleados e ON c.id_empleado = e.id_empleado
+                WHERE 
+                    YEAR(c.fecha_creacion_cita) = YEAR(CURDATE()) AND 
+                    MONTH(c.fecha_creacion_cita) = MONTH(CURDATE());';
+                    
+        return Database::getRows($sql);
+    }
 }
