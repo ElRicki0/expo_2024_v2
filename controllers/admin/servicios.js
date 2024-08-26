@@ -219,10 +219,22 @@ const openChart = async (id) => {
         // Se agrega la etiqueta canvas al contenedor de la modal.
         document.getElementById('chartContainer').innerHTML = `<canvas id="chart"></canvas>`;
         // Llamada a la función para generar y mostrar un gráfico de barras. Se encuentra en el archivo components.js
-        barGraph('chart', Clientes, Citas, 'Cantidad de citas', 'citas realizadas por clientes');
+        pieGraph('chart', Clientes, Citas, 'Cantidad de citas', 'citas realizadas por clientes');
     } else {
         sweetAlert(4, DATA.error, true);
     }
+}
+
+/*
+*   Función para abrir un reporte automático de productos por categoría.
+*   Parámetros: ninguno.
+*   Retorno: ninguno.
+*/
+const openReport = () => {
+    // Se declara una constante tipo objeto con la ruta específica del reporte en el servidor.
+    const PATH = new URL(`${SERVER_URL}reports/admin/empleados.php`);
+    // Se abre el reporte en una nueva pestaña.
+    window.open(PATH.href);
 }
 
 /* Obtener el input de carga de imagen y la imagen
