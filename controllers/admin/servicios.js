@@ -162,7 +162,7 @@ const openDelete = async (id) => {
 
 const graficoPastelServicio = async () => {
     // Petición para obtener los datos del gráfico.
-    const DATA = await fetchData(CITA_API, 'graficoPastelServicio');
+    const DATA = await fetchData(SERVICIO_API, 'graficoPastelServicio');
     // Se comprueba si la respuesta es satisfactoria, de lo contrario se remueve la etiqueta canvas.
     if (DATA.status) {
         // Se declaran los arreglos para guardar los datos a graficar.
