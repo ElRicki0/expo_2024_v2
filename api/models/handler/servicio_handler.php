@@ -179,5 +179,25 @@ class ServicioHandler
             return Database::getRows($sql);
     }
 
+    /*
+    *   Métodos para generar reportes.
+    */
+    public function servicioCliente()
+    {
+        $sql = 'SELECT DISTINCT
+                    cl.id_cliente,
+                    cl.nombre_cliente,
+                    cl.apellido_cliente
+                FROM 
+                    tb_clientes cl
+                JOIN 
+                    tb_citas c ON cl.id_cliente = c.id_cliente
+                JOIN 
+                    tb_servicios s ON c.id_servicio = s.id_servicio
+                WHERE 
+                    c.id_servicio = ?';
+        $params = array($this->id);
+        return Database::getRows($sql, $params);
+    }
     
 }

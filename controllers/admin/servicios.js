@@ -87,6 +87,9 @@ const fillTable = async (form = null) => {
                 <button class="btn btn-danger"><i class="bi bi-trash3-fill" onclick="openDelete(${row.id_servicio})"></i></button>
                 <button class="btn btn-primary"><i class="bi bi-pen-fill" onclick="openUpdate(${row.id_servicio})"></i></button>
                 <button type="button" class="btn btn-warning" onclick="openChart(${row.id_servicio})"><i class="bi bi-bar-chart-line-fill"></i></button>
+                <button type="button" class="btn btn-info" onclick="openReportCliente(${row.id_servicio})">
+                            <i class="bi bi-file-earmark-pdf-fill"></i>
+                        </button>
             </td>
         </tr>
             `;
@@ -233,6 +236,20 @@ const openChart = async (id) => {
 const openReport = () => {
     // Se declara una constante tipo objeto con la ruta específica del reporte en el servidor.
     const PATH = new URL(`${SERVER_URL}Reports/Admin/servicios.php`);
+    // Se abre el reporte en una nueva pestaña.
+    window.open(PATH.href);
+}
+
+/*
+*   Función para abrir un reporte parametrizado.
+*   Parámetros: id (identificador del registro seleccionado).
+*   Retorno: ninguno.
+*/
+const openReportCliente = (id) => {
+    // Se declara una constante tipo objeto con la ruta específica del reporte en el servidor.
+    const PATH = new URL(`${SERVER_URL}reports/admin/servicios_clientes.php`);
+    // Se agrega un parámetro a la ruta con el valor del registro seleccionado.
+    PATH.searchParams.append('idServicio', id);
     // Se abre el reporte en una nueva pestaña.
     window.open(PATH.href);
 }
