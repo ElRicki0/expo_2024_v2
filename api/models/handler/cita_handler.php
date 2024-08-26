@@ -211,4 +211,27 @@ class Citahandler
         return Database::executeRow($sql, $params);
     }
 
+    // métodos paa generar gráficas
+    public function readClientesServicio()
+    {
+        $sql = 'SELECT 
+                    cl.nombre_cliente, 
+                    s.tipo_servicio,
+                    COUNT(c.id_cita) AS cantidad_veces_solicitado
+                FROM 
+                    tb_citas c
+                JOIN 
+                    tb_clientes cl ON c.id_cliente = cl.id_cliente
+                JOIN 
+                    tb_servicios s ON c.id_servicio = s.id_servicio
+                WHERE 
+                    s.id_servicio = ?
+                GROUP BY 
+                    cl.nombre_cliente, s.tipo_servicio
+                ORDER BY 
+                    cantidad_veces_solicitado DESC;';
+        $params = array($this->servicio);
+        return Database::getRows($sql, $params);
+    }
+
 }

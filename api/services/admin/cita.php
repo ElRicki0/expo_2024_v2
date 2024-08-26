@@ -135,6 +135,15 @@ if (isset($_GET['action'])) {
                     $result['error'] = 'Ocurrió un problema al crear la gráfica';
                 }
                 break;
+            case 'readClientesServicio':
+                if (!$cita->setServicio($_POST['idServicio'])) {
+                    $result['error'] = $cita->getDataError();
+                } elseif ($result['dataset'] = $cita->readClientesServicio()) {
+                    $result['status'] = 1;
+                } else {
+                    $result['error'] = 'No existen registros por el; momento';
+                }
+                break;
             default:
                 $result['error'] = 'Acción no disponible dentro de la sesión';
         }

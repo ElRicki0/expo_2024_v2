@@ -314,7 +314,7 @@ function validarFechas() {
 const openChart = async () => {
     // Se define una constante tipo objeto con los datos del registro seleccionado.
     const FORM = new FormData();
-    FORM.append(FECHA_INICIO, fechaFinal);
+    FORM.append(FECHA_INICIO, FECHA_FINAL);
     // Petición para obtener los datos del registro solicitado.
     const DATA = await fetchData(CITA_API, 'graficoCitasfechas', FORM);
     // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con el error.
@@ -328,7 +328,7 @@ const openChart = async () => {
         DATA.dataset.forEach(row => {
             // Se agregan los datos a los arreglos.
             servicios.push(row.tipo_servicio);
-            citas.push(row.cantidad_citas);
+            citas.push(row.cantidad_veces_realizado);
         });
         // Se agrega la etiqueta canvas al contenedor de la modal.
         document.getElementById('chartContainer').innerHTML = `<canvas id="chart"></canvas>`;

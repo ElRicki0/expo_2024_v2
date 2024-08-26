@@ -1,4 +1,5 @@
 const SERVICIO_API = 'services/admin/servicio.php';
+const CITA_API = 'services/admin/cita.php';
 // Constante para establecer el formulario de buscar.
 const SEARCH_FORM = document.getElementById('searchForm');
 // Constantes para establecer el contenido de la tabla.
@@ -6,12 +7,17 @@ const TABLE_BODY = document.getElementById('tableBody'),
     ROWS_FOUND = document.getElementById('rowsFound');
 // Constantes para establecer los elementos del componente Modal.
 const SAVE_MODAL = new bootstrap.Modal('#saveModal'),
-    MODAL_TITLE = document.getElementById('modalTitle');
+    MODAL_TITLE = document.getElementById('modalTitle'),
+    CHART_MODAL = new bootstrap.Modal('#chartModal');
+
 // Constantes para establecer los elementos del formulario de guardar.
 const SAVE_FORM = document.getElementById('saveForm'),
-    ID_SERVICIO = document.getElementById('idServicio'),       
+    ID_SERVICIO = document.getElementById('idServicio'),
     TIPO_SERVICIO = document.getElementById('tipoServicio'),
-    DESCRIPCION_SERVICIO = document.getElementById('descripcionServicio')
+    DESCRIPCION_SERVICIO = document.getElementById('descripcionServicio');
+
+
+
 // Método del evento para cuando el documento ha cargado.
 document.addEventListener('DOMContentLoaded', () => {
     loadTemplate();
@@ -181,32 +187,38 @@ const graficoPastelServicio = async () => {
         document.getElementById('ChartP2S').remove();
         console.log(DATA.error);
     }
-    
+
 };
 
+
+/*
+*   Función asíncrona para mostrar un gráfico parametrizado.
+*   Parámetros: id (identificador del registro seleccionado).
+*   Retorno: ninguno.
+*/
 const openChart = async (id) => {
     // Se define una constante tipo objeto con los datos del registro seleccionado.
     const FORM = new FormData();
     FORM.append('idServicio', id);
     // Petición para obtener los datos del registro solicitado.
-    const DATA = await fetchData(SERVICIO_API, 'graficoPastelServicio', FORM);
+    const DATA = await fetchData(CITA_API, 'readClientesServicio', FORM);
     // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con el error.
     if (DATA.status) {
         // Se muestra la caja de diálogo con su título.
         CHART_MODAL.show();
         // Se declaran los arreglos para guardar los datos a graficar.
-        let servicios = [];
-        let predicciones = [];
+        let Clientes = [];
+        let Citas = [];
         // Se recorre el conjunto de registros fila por fila a través del objeto row.
         DATA.dataset.forEach(row => {
             // Se agregan los datos a los arreglos.
-            servicios.push(row.tipo_servicio);
-            citas.push(row.prediccion_citas_siguiente_semana);
+            Clientes.push(row.nombre_cliente);
+            Citas.push(row.cantidad_veces_solicitado);
         });
         // Se agrega la etiqueta canvas al contenedor de la modal.
         document.getElementById('chartContainer').innerHTML = `<canvas id="chart"></canvas>`;
         // Llamada a la función para generar y mostrar un gráfico de barras. Se encuentra en el archivo components.js
-        barGraph('ChartP2S', servicios, predicciones, 'Citas Predichas', 'Servicios');
+        barGraph('chart', Clientes, Citas, 'Cantidad de citas', 'citas realizadas por clientes');
     } else {
         sweetAlert(4, DATA.error, true);
     }
