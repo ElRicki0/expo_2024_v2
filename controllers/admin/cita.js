@@ -353,3 +353,12 @@ const openReport = (id) => {
     // Se abre el reporte en una nueva pestaña.
     window.open(PATH.href);
 }
+
+const reporteCitasMesActual = (id) => {
+    // Se declara una constante tipo objeto con la ruta específica del reporte en el servidor.
+    const PATH = new URL(`${SERVER_URL}reports/admin/citas_general_clientes.php`);
+    // Se agrega un parámetro a la ruta con el valor del registro seleccionado.
+    PATH.searchParams.append('idCita', id); // Asegúrate de que 'idCita' es el nombre correcto aquí.
+    // Se abre el reporte en una nueva pestaña.
+    window.open(PATH.href);
+}

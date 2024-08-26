@@ -18,8 +18,8 @@ if ($CitaData = $cita->readAll()) {
     // Establecer la fuente para los encabezados.
     $pdf->setFont('Arial', 'B', 11);
     // Imprimir las celdas con los encabezados.
-    $pdf->cell(85, 10, 'Nombre Cita', 1, 0, 'C', 1);
-    $pdf->cell(30, 10, 'Número de Secciones', 1, 0, 'C', 1);
+    $pdf->cell(70, 10, 'Nombre Cita', 1, 0, 'C', 1);
+    $pdf->cell(45, 10, $pdf->encodeString('Número de Secciones'), 1, 0, 'C', 1);
     $pdf->cell(40, 10, 'Estado', 1, 0, 'C', 1);
     $pdf->cell(40, 10, 'Servicio', 1, 1, 'C', 1);
 
@@ -31,10 +31,10 @@ if ($CitaData = $cita->readAll()) {
 
         // Imprimir nombrem correo y identificador
         $pdf->SetTextColor(10, 10, 10);
-        $pdf->cell(85, 10, $pdf->encodeString($citasRow['nombre_cita']), 1, 0, 'C');
-        $pdf->cell(30, 10, $citasRow['numero_seciones'], 1, 0, 'C');
+        $pdf->cell(70, 10, $pdf->encodeString($citasRow['nombre_cita']), 1, 0, 'C');
+        $pdf->cell(45, 10, $citasRow['numero_seciones'], 1, 0, 'C');
         $pdf->cell(40, 10, $citasRow['estado_cita'], 1, 0, 'C');
-        $pdf->cell(40, 10, $citasRow['tipo_servicio'], 1, 1, 'C');
+        $pdf->cell(40, 10, $pdf->encodeString($citasRow['tipo_servicio']), 1, 1, 'C');
     }
 } else {
     // Si no hay administradores para mostrar
