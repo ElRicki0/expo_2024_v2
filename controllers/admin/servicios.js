@@ -181,8 +181,36 @@ const graficoPastelServicio = async () => {
         document.getElementById('ChartP2S').remove();
         console.log(DATA.error);
     }
+    
 };
 
+const openChart = async (id) => {
+    // Se define una constante tipo objeto con los datos del registro seleccionado.
+    const FORM = new FormData();
+    FORM.append('idServicio', id);
+    // Petición para obtener los datos del registro solicitado.
+    const DATA = await fetchData(SERVICIO_API, 'graficoPastelServicio', FORM);
+    // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con el error.
+    if (DATA.status) {
+        // Se muestra la caja de diálogo con su título.
+        CHART_MODAL.show();
+        // Se declaran los arreglos para guardar los datos a graficar.
+        let servicios = [];
+        let predicciones = [];
+        // Se recorre el conjunto de registros fila por fila a través del objeto row.
+        DATA.dataset.forEach(row => {
+            // Se agregan los datos a los arreglos.
+            servicios.push(row.tipo_servicio);
+            citas.push(row.prediccion_citas_siguiente_semana);
+        });
+        // Se agrega la etiqueta canvas al contenedor de la modal.
+        document.getElementById('chartContainer').innerHTML = `<canvas id="chart"></canvas>`;
+        // Llamada a la función para generar y mostrar un gráfico de barras. Se encuentra en el archivo components.js
+        barGraph('ChartP2S', servicios, predicciones, 'Citas Predichas', 'Servicios');
+    } else {
+        sweetAlert(4, DATA.error, true);
+    }
+}
 
 /* Obtener el input de carga de imagen y la imagen
 var imageUpload = document.getElementById("id_foto");
