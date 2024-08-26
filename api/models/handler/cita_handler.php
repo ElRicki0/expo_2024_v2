@@ -34,11 +34,22 @@ class Citahandler
 
     public function readAll()
     {
-        $sql = 'SELECT ct.id_cita, ct.nombre_cita, ct.fecha_asignacion_cita, ct.estado_cita, ct.numero_seciones, c.nombre_cliente, s.tipo_servicio
+        $sql = 'SELECT ct.id_cita, ct.nombre_cita, ct.fecha_asignacion_cita, ct.estado_cita, ct.numero_seciones, c.nombre_cliente, ct.id_cliente, s.tipo_servicio
                 from tb_citas ct
                 join tb_clientes c on ct.id_cliente = c.id_cliente
                 join tb_servicios s on ct.id_servicio = s.id_servicio';
         return Database::getRows($sql);
+    }
+
+    public function citasPorCliente()
+    {
+        $sql = 'SELECT ct.nombre_cita, ct.fecha_asignacion_cita, ct.fecha_creacion_cita, ct.estado_cita, ct.numero_seciones, c.nombre_cliente, ct.id_cliente, s.tipo_servicio
+                from tb_citas ct
+                join tb_clientes c on ct.id_cliente = c.id_cliente
+                join tb_servicios s on ct.id_servicio = s.id_servicio
+                WHERE ct.id_cliente = ?';
+        $params = array($this->cliente);
+        return Database::getRows($sql, $params);
     }
 
     public function readAllCliente()
