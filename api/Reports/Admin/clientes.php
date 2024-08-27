@@ -40,7 +40,7 @@ if ($dataClientes = $cliente->readAll()) {
         $pdf->cell(40, 10, $rowClientes['dui_cliente'], 'TB', 0, 'C');
         $pdf->cell(40, 10, $rowClientes['correo_cliente'], 'TB', 0, 'C');
         $pdf->cell(40, 10, $rowClientes['telefono_cliente'], 'TB', 0, 'C');
-        $pdf->cell(40, 10, $rowClientes['nacimiento_cliente'], 'TB', 0, 'C');
+        $pdf->cell(40, 10, $rowClientes['nacimiento_cliente'], 'TB', 1, 'C');
  
        
         // Restablecer la posición de la celda después de MultiCell
