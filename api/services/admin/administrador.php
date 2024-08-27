@@ -189,6 +189,17 @@ if (isset($_GET['action'])) {
                     $result['error'] = 'Debe crear un administrador para comenzar';
                 }
                 break;
+            case 'readEmployee':
+                // Lectura de todos los administradores (puede ser una acción pública).
+                if ($administrador->readAllEmployee()) {
+                    // Si hay administradores registrados, se devuelve un mensaje de autenticación requerida.
+                    $result['status'] = 1;
+                    $result['message'] = 'Debe autenticarse para ingresar';
+                } else {
+                    // Si no hay administradores registrados, se muestra un mensaje de creación requerida.
+                    $result['error'] = 'Debe crear un empleado para comenzar';
+                }
+                break;
             case 'signUp':
                 // Registro de un nuevo administrador (puede ser una acción pública).
                 $_POST = Validator::validateForm($_POST);
@@ -202,7 +213,7 @@ if (isset($_GET['action'])) {
                 } elseif ($_POST['contra_admin2'] != $_POST['confirmar_admin2']) {
                     // Si las contraseñas no coinciden, se registra un error.
                     $result['error'] = 'Contraseñas diferentes';
-                } elseif ($administrador->createRow()) {
+                } elseif ($administrador->createNewRow()) {
                     // Si se crea correctamente, se actualiza el estado y mensaje.
                     $result['status'] = 1;
                     $result['message'] = 'Administrador registrado correctamente';

@@ -95,28 +95,62 @@ if (isset($_GET['action'])) {
                     $result['error'] = 'No existen datos registrados';
                 }
                 break;
-                case 'readCantidadServiciosEmpleado':
-                    if (!$empleado->setId($_POST['id_empleado'])) {
-                        $result['error'] = $empleado->getDataError();
-                    } elseif ($result['dataset'] = $empleado->readCantidadServiciosEmpleado()) {
-                        $result['status'] = 1;
-                    } else {
-                        $result['error'] = 'No existen servicios asignados por el momento';
-                    }
-                    break;
-                    
+            case 'readCantidadServiciosEmpleado':
+                if (!$empleado->setId($_POST['id_empleado'])) {
+                    $result['error'] = $empleado->getDataError();
+                } elseif ($result['dataset'] = $empleado->readCantidadServiciosEmpleado()) {
+                    $result['status'] = 1;
+                } else {
+                    $result['error'] = 'No existen servicios asignados por el momento';
+                }
+                break;
+
             default:
                 $result['error'] = 'Acción no disponible dentro de la sesión';
         }
-        // Se obtiene la excepción del servidor de base de datos por si ocurrió un problema.
-        $result['exception'] = Database::getException();
-        // Se indica el tipo de contenido a mostrar y su respectivo conjunto de caracteres.
-        header('Content-type: application/json; charset=utf-8');
-        // Se imprime el resultado en formato JSON y se retorna al controlador.
-        print(json_encode($result));
     } else {
-        print(json_encode('Acceso denegado'));
+        switch ($_GET['action']) {
+                case 'signUp':
+                    $_POST = Validator::validateForm($_POST);
+                    if (
+                        !$empleado->setNombre($_POST['nombreEmpleado']) or
+                        !$empleado->setApelldo($_POST['apellidoEmpleado']) or
+                        !$empleado->setCorreo($_POST['correoEmpleado']) or
+                        !$empleado->setDui($_POST['duiEmpleado']) or
+                        !$empleado->setFecha($_POST['fechaEmpleado'])
+                    ) {
+                        $result['error'] = $empleado->getDataError();
+                    } elseif ($empleado->createNewRow()) {
+                        $result['status'] = 1;
+                        $result['message'] = 'Empleado creado correctamente';
+                    } else {
+                        $result['error'] = 'Ocurrió un problema al crear al Empleado';
+                    }
+                    break;
+            case 'readEmployee':
+                // Lectura de todos los administradores (puede ser una acción pública).
+                if ($empleado->readAll()) {
+                    // Si hay administradores registrados, se devuelve un mensaje de autenticación requerida.
+                    $result['status'] = 1;
+                    $result['message'] = 'Debe autenticarse para ingresar';
+                } else {
+                    // Si no hay administradores registrados, se muestra un mensaje de creación requerida.
+                    $result['error'] = 'Debe crear un empleado para comenzar';
+                }
+                break;
+            default:
+                $result['error'] = 'Acción no disponible dentro de la sesión';
+        }
     }
+    // Se obtiene la excepción del servidor de base de datos por si ocurrió un problema.
+    $result['exception'] = Database::getException();
+
+    // Se indica el tipo de contenido a mostrar y su respectivo conjunto de caracteres.
+    header('Content-type: application/json; charset=utf-8');
+
+    // Se imprime el resultado en formato JSON y se retorna al controlador.
+    print(json_encode($result));
 } else {
+    // Si no hay acción definida, se imprime un mensaje indicando que el recurso no está disponible.
     print(json_encode('Recurso no disponible'));
 }

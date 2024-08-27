@@ -112,6 +112,16 @@ class AdministradorHandler
         return Database::executeRow($sql, $params);
     }
 
+    // Método para crear un nuevo administrador.
+    public function createNewRow()
+    {
+        $sql = 'INSERT INTO tb_admin(nombre_admin, contraseña_admin, correo_admin, id_empleado)
+                VALUES(?, ?, ?, 1)';
+        $params = array($this->nombre, $this->contrasenia, $this->correo);
+        // Se ejecuta la consulta para insertar un nuevo registro de administrador.
+        return Database::executeRow($sql, $params);
+    }
+
     // Método updateRow: actualiza los datos de un empleado en la base de datos.
     public function updateRow()
     {
@@ -127,6 +137,15 @@ class AdministradorHandler
     {
         $sql = 'SELECT id_admin, nombre_admin, correo_admin
                 FROM tb_admin';
+        // Se ejecuta la consulta para actualizar la información del perfil del administrador.
+        return Database::getRows($sql);
+    }
+
+    // Método para leer todos los empleados registrados.
+    public function readAllEmployee()
+    {
+        $sql = 'SELECT *
+                FROM tb_empleados ';
         // Se ejecuta la consulta para actualizar la información del perfil del administrador.
         return Database::getRows($sql);
     }

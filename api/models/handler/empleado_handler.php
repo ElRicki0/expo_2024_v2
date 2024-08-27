@@ -72,6 +72,15 @@ class EmpleadoHandler
         return Database::executeRow($sql, $params);
     }
 
+    // Método createRow: inserta un nuevo empleado en la base de datos.
+    public function createNewRow()
+    {
+        $sql = 'INSERT INTO tb_empleados(nombre_empleado, apellido_empleado, dui_empleado, correo_empleado, nacimiento_empleado, estado_empleado)
+                VALUES(?, ?, ?, ?, ?, 1)';
+        $params = array($this->nombre, $this->apellido, $this->dui, $this->correo, $this->fecha);
+        return Database::executeRow($sql, $params);
+    }
+
     // Método readAll: lee todos los empleados de la base de datos.
     public function readAll()
     {
