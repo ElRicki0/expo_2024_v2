@@ -20,7 +20,7 @@ if ($dataEmpleados = $empleado->readAll()) {
     // Imprimir las celdas con los encabezados.
     $pdf->cell(60, 10, 'Nombre completo', 'TB', 0, 'C', 1);
     $pdf->cell(40, 10, 'Contacto', 'TB', 0, 'C', 1);
-    $pdf->cell(40, 10, $pdf->encodeString('Cumpleaños'), 'TB', 0, 'C', 1);
+    $pdf->cell(40, 10, $pdf->encodeString('Nacimiento'), 'TB', 0, 'C', 1);
     $pdf->cell(50, 10, 'Especialidad', 'TB', 1, 'C', 1);
 
     // Establecer la fuente para los datos de los administradores.
