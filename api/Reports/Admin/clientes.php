@@ -19,10 +19,10 @@ if ($dataClientes = $cliente->readAll()) {
     $pdf->setFont('Arial', 'B', 11);
     // Imprimir las celdas con los encabezados.
     $pdf->cell(40, 10, 'Nombre completo', 'TB', 0, 'C', 1);
-    $pdf->cell(40, 10, 'dui', 'TB', 0, 'C', 1);
-    $pdf->cell(40, 10, 'correo', 'TB', 0, 'C', 1);
-    $pdf->cell(40, 10, 'telefono', 'TB', 0, 'C', 1);
-    $pdf->cell(40, 10, $pdf->encodeString('Cumpleaños'), 'TB', 1, 'C', 1);
+    $pdf->cell(40, 10, 'DUI', 'TB', 0, 'C', 1);
+    $pdf->cell(40, 10, 'Correo', 'TB', 0, 'C', 1);
+    $pdf->cell(40, 10, 'Telefono', 'TB', 0, 'C', 1);
+    $pdf->cell(40, 10, $pdf->encodeString('Nacimiento'), 'TB', 1, 'C', 1);
     
  
     // Establecer la fuente para los datos de los administradores.
