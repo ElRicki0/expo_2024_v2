@@ -85,17 +85,27 @@ DATE_FORM.addEventListener('submit', async (event) => {
     const FORM = new FormData(DATE_FORM);
     // Petición para guardar los datos del formulario.
     const DATA = await fetchData(CITA_API, 'graficoCitasfechas', FORM);
+    console.log(DATA)
     // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
     if (DATA.status) {
+        // Se declaran los arreglos para guardar los datos a graficar.
+        let servicios = [];
+        let citas = [];
+        // Se recorre el conjunto de registros fila por fila a través del objeto row.
+        DATA.dataset.forEach(row => {
+            // Se agregan los datos a los arreglos.
+            servicios.push(row.tipo_servicio);
+            citas.push(row.cantidad_veces_realizado);
+        });
+        // Se agrega la etiqueta canvas al contenedor de la modal.
+        document.getElementById('chartContainer').innerHTML = `<canvas id="chart"></canvas>`;
+        // Llamada a la función para generar y mostrar un gráfico de barras. Se encuentra en el archivo components.js
+        barGraph('chart', servicios, citas, 'Cantidad de citas', 'citas realizadas por cliente');
         // Se cierra la caja de diálogo.
         MODAL_GRAFIC.hide();
-        CHART_MODAL.show()
-        console.log('salida1');
-        // Se carga nuevamente la tabla para visualizar los cambios.
-        fillTable();
+        CHART_MODAL.show();
     } else {
         sweetAlert(2, DATA.error, false);
-        console.log('salida2');
     }
 });
 
@@ -307,38 +317,6 @@ function validarFechas() {
     }
 }
 
-/*
-*   Función asíncrona para mostrar un gráfico parametrizado.
-*   Parámetros: id (identificador del registro seleccionado).
-*   Retorno: ninguno.
-*/
-const openChart = async () => {
-    // Se define una constante tipo objeto con los datos del registro seleccionado.
-    const FORM = new FormData();
-    FORM.append(FECHA_INICIO, FECHA_FINAL);
-    // Petición para obtener los datos del registro solicitado.
-    const DATA = await fetchData(CITA_API, 'graficoCitasfechas', FORM);
-    // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con el error.
-    if (DATA.status) {
-        // Se muestra la caja de diálogo con su título.
-        CHART_MODAL.show();
-        // Se declaran los arreglos para guardar los datos a graficar.
-        let servicios = [];
-        let citas = [];
-        // Se recorre el conjunto de registros fila por fila a través del objeto row.
-        DATA.dataset.forEach(row => {
-            // Se agregan los datos a los arreglos.
-            servicios.push(row.tipo_servicio);
-            citas.push(row.cantidad_veces_realizado);
-        });
-        // Se agrega la etiqueta canvas al contenedor de la modal.
-        document.getElementById('chartContainer').innerHTML = `<canvas id="chart"></canvas>`;
-        // Llamada a la función para generar y mostrar un gráfico de barras. Se encuentra en el archivo components.js
-        barGraph('chart', servicios, citas, 'Cantidad de citas', 'citas realizadas por cliente');
-    } else {
-        sweetAlert(4, DATA.error, true);
-    }
-}
 
 /*
 *   Función para abrir un reporte parametrizado de cita general por cliente.

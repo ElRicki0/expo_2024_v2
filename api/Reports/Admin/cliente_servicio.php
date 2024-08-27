@@ -27,7 +27,7 @@ if (isset($_GET['idCliente'])) {
                 // Se imprimen las celdas con los encabezados.
                 $pdf->cell(30, 10, 'ID servicio', 1, 0, 'C', 1);
                 $pdf->cell(40, 10, 'Nombre servicio', 1, 0, 'C', 1);
-                $pdf->cell(120, 10, 'Descripción servicio', 1, 1, 'C', 1);
+                $pdf->cell(120, 10,  $pdf->encodeString('Descripción servicio'), 1, 1, 'C', 1);
                 // Se establece la fuente para los datos de los productos.
                 $pdf->setFont('Arial', '', 11);
                 // Se recorren los registros fila por fila.

@@ -208,18 +208,18 @@ class Citahandler
     public function graficoEntreFechas()
     {
         $sql = 'SELECT 
-            s.tipo_servicio, 
-            COUNT(c.id_cita) AS cantidad_veces_realizado
-        FROM 
-            tb_citas c
-        JOIN 
-            tb_servicios s ON c.id_servicio = s.id_servicio
-        WHERE c.fecha_asignacion_cita BETWEEN ? AND ?
-        GROUP BY 
-            s.tipo_servicio
-        ';
+                    s.tipo_servicio, 
+                    COUNT(c.id_cita) AS cantidad_veces_realizado
+                FROM 
+                    tb_citas c
+                INNER JOIN 
+                    tb_servicios s ON c.id_servicio = s.id_servicio
+                WHERE 
+                    c.fecha_creacion_cita BETWEEN ? AND ?
+                GROUP BY 
+                    s.tipo_servicio';
         $params = array($this->fechaI, $this->fechaF);
-        return Database::executeRow($sql, $params);
+        return Database::getRows($sql, $params);
     }
 
     // métodos paa generar gráficas

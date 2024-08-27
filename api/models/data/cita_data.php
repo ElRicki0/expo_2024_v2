@@ -66,7 +66,7 @@ class CitaData extends CitaHandler
         //     $this->data_error = 'La fecha de la cita es incorrecta';
         //     return false;
         // }
-        $this->fechaC = $value;
+        $this->fechaI = $value;
         return true;
     }
 
@@ -79,7 +79,7 @@ class CitaData extends CitaHandler
         //     $this->data_error = 'La fecha de la cita es incorrecta';
         //     return false;
         // }
-        $this->fechaC = $value;
+        $this->fechaF = $value;
         return true;
     }
 

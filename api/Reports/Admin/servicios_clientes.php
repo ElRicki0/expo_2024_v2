@@ -25,17 +25,17 @@ if (isset($_GET['idServicio'])) {
                 // Se establece la fuente para los encabezados.
                 $pdf->setFont('Arial', 'B', 11);
                 // Se imprimen las celdas con los encabezados.
-                $pdf->cell(126, 10, 'ID cliente', 1, 0, 'C', 1);
-                $pdf->cell(30, 10, 'Nombre cliente', 1, 0, 'C', 1);
-                $pdf->cell(30, 10, 'Nombre apellido', 1, 1, 'C', 1);
+                $pdf->cell(30, 10, 'ID cliente', 1, 0, 'C', 1);
+                $pdf->cell(50, 10, 'Nombre cliente', 1, 0, 'C', 1);
+                $pdf->cell(50, 10, 'Nombre apellido', 1, 1, 'C', 1);
                 // Se establece la fuente para los datos de los productos.
                 $pdf->setFont('Arial', '', 11);
                 // Se recorren los registros fila por fila.
                 foreach ($dataServicio as $rowServicio) {
                     // Se imprimen las celdas con los datos de los productos.
-                    $pdf->cell(126, 10, $pdf->encodeString($rowServicio['id_cliente']), 1, 0);
-                    $pdf->cell(30, 10, $pdf->encodeString($rowServicio['nombre_cliente']), 1, 0);
-                    $pdf->cell(30, 10, $pdf->encodeString($rowServicio['apellido_cliente']), 1, 1);
+                    $pdf->cell(30, 10, $pdf->encodeString($rowServicio['id_cliente']), 1, 0);
+                    $pdf->cell(50, 10, $pdf->encodeString($rowServicio['nombre_cliente']), 1, 0);
+                    $pdf->cell(50, 10, $pdf->encodeString($rowServicio['apellido_cliente']), 1, 1);
                 }
             } else {
                 $pdf->cell(0, 10, $pdf->encodeString('No hay clientes para el servicio'), 1, 1);
