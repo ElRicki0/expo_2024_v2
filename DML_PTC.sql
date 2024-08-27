@@ -59,7 +59,7 @@ VALUES
 ('Programas de Bienestar', 'Descubre nuestros programas de bienestar integral para una vida saludable', 5);
 
 
-INSERT INTO tb_preguntas (nombre_pregunta, contenido_pregunta, imagen_pregunta, id_cliente) 
+INSERT INTO tb_preguntas (nombre_pregunta, contenido_pregunta, imagen_pregunta, id_empleado) 
 VALUES 
 ('Pregunta 1', 'Contenido de la Pregunta 1', 'imagen1.jpg', 1),
 ('Pregunta 2', 'Contenido de la Pregunta 2', 'imagen2.jpg', 2),

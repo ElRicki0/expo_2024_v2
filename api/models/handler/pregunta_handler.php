@@ -35,7 +35,7 @@ class PreguntasHandler
 
     public function createRow()
     {
-        $sql = 'INSERT INTO tb_preguntas    (imagen_pregunta, nombre_pregunta, contenido_pregunta, id_empleado)
+        $sql = 'INSERT INTO tb_preguntas(imagen_pregunta, nombre_pregunta, contenido_pregunta, id_empleado)
                 VALUES(?, ?, ?, ?)';
         $params = array($this->imagen, $this->pregunta, $this->contenido, $this->empleado);
         return Database::executeRow($sql, $params);
