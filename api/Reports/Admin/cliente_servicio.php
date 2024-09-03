@@ -52,10 +52,13 @@ if (isset($_GET['idCliente'])) {
 
                 // Se recorren los registros fila por fila.
                 foreach ($dataCliente as $rowCliente) {
+
                     // Se imprimen las celdas con los datos de los productos.
-                    $pdf->cell(30, 10, $pdf->encodeString($rowCliente['id_servicio']), 'TB', 0, 'C');
-                    $pdf->cell(40, 10, $pdf->encodeString($rowCliente['tipo_servicio']), 'TB', 0, 'C');
-                    $pdf->cell(120, 10, $pdf->encodeString($rowCliente['descripcion_servicio']), 'TB', 1, 'C');
+                    $pdf->Cell(30, 10, $pdf->encodeString($rowCliente['id_servicio']), 'T', 0, 'C');
+                    $pdf->Cell(40, 10, $pdf->encodeString($rowCliente['tipo_servicio']), 'T', 0, 'C');
+
+                    // Imprimir la descripción del servicio usando MultiCell
+                    $pdf->MultiCell(120, 10, $pdf->encodeString($rowCliente['descripcion_servicio']), 'T', 'C');
                 }
             } else {
                 $pdf->cell(0, 10, $pdf->encodeString('No hay servicios para el cliente'), 1, 1);
