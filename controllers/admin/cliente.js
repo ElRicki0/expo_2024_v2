@@ -1,18 +1,27 @@
 // Constantes para completar las rutas de la API.
 const CITA_API = 'services/admin/cita.php';
 const CLIENTE_API = 'services/admin/cliente.php';
+
 // Constante para establecer el formulario de buscar.
 const SEARCH_FORM = document.getElementById('searchForm');
 // Constantes para establecer el contenido de la tabla.
 const TABLE_BODY = document.getElementById('tableBody'),
     ROWS_FOUND = document.getElementById('rowsFound');
+
+// Constantes para establecer los elementos del componente Modal.
+/*const CLIENTE_MODAL = new bootstrap.Modal('#SaveModal'),
+    MODAL_TITLE_CLIENTE = document.getElementById('modalTitle');
+// Constantes para establecer los elementos del formulario de guardar.
+const CLIENTE_FORM = document.getElementById('SaveForm'),
+    ID_CLIENTE = document.getElementById('id_cliente');*/
+
 // Constantes para establecer los elementos del componente Modal.
 const ESTADO_MODAL = new bootstrap.Modal('#EstadoCliente'),
-    MODAL_TITLE = document.getElementById('modalTitle'),
+    MODAL_TITLE = document.getElementById('modalTitleState'),
     CHART_MODAL = new bootstrap.Modal('#chartModal');
 // Constantes para establecer los elementos del formulario de guardar.
 const ESTADO_FORM = document.getElementById('EstadoCliente'),
-    ID_CLIENTE = document.getElementById('idCliente'),
+    ID_CLIENTE_ESTADO = document.getElementById('id_cliente_state'),
     ESTADO_CLIENTE = document.getElementById('estadoCliente');
 
 // Método del evento para cuando el documento ha cargado.
@@ -86,14 +95,21 @@ const fillTable = async (form = null) => {
                     <td>${row.nacimiento_cliente}</td>
                     <td><i class="${icon}"></i></td>
                     <td>
-                        <button class="btn btn-danger"><i class="bi bi-trash3-fill" onclick="openDelete(${row.id_cliente})"></i></button>
-                        <button type="button" class="btn btn-warning" onclick="openChart(${row.id_cliente})">
-                            <i class="bi bi-bar-chart-line-fill"></i>
-                        </button>
-                        <button class="btn btn-primary"><i class="bi bi-pen-fill" onclick="openUpdate(${row.id_cliente})"></i></button>
-                        <button type="button" class="btn btn-info" onclick="openClienteReport(${row.id_cliente})">
-                            <i class="bi bi-file-earmark-code-fill"></i>
-                        </button>
+                    <button class="btn btn-danger" onclick="openDelete(${row.id_cliente})">
+                        <i class="bi bi-trash3-fill"></i>
+                    </button>
+                    <button class="btn btn-primary" onclick="openUpdate(${row.id_cliente})">
+                        <i class="bi bi-pen-fill"></i>
+                    </button>
+                    <button class="btn btn-secondary" onclick="openState(${row.id_cliente})">
+                        <i class="bi bi-eye-fill"></i>
+                    </button>
+                    <button type="button" class="btn btn-warning" onclick="openChart(${row.id_cliente})">
+                        <i class="bi bi-bar-chart-line-fill"></i>
+                    </button>
+                    <button type="button" class="btn btn-info" onclick="openClienteReport(${row.id_cliente})">
+                        <i class="bi bi-file-earmark-code-fill"></i>
+                    </button>
                     </td>
                 </tr>
             `;
@@ -114,18 +130,18 @@ const fillTable = async (form = null) => {
 const openUpdate = async (id) => {
     // Se define un objeto con los datos del registro seleccionado.
     const FORM = new FormData();
-    FORM.append('idCliente', id);
+    FORM.append('id_cliente_state', id);
     // Petición para obtener los datos del registro solicitado.
     const DATA = await fetchData(CLIENTE_API, 'readOne', FORM);
     // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
     if (DATA.status) {
         // Se muestra la caja de diálogo con su título.
         ESTADO_MODAL.show();
-        MODAL_TITLE.textContent = 'Actualizar cliente';
+        MODAL_TITLE.textContent = 'ACTUALIZAR CLIENTE';
         // Se prepara el formulario.
         ESTADO_FORM.reset();
         const ROW = DATA.dataset;
-        ID_CLIENTE.value = ROW.id_cliente;
+        ID_CLIENTE_ESTADO.value = ROW.id_cliente;
         ESTADO_CLIENTE.checked = ROW.estado_cliente;
     } else {
         sweetAlert(2, DATA.error, false);
@@ -171,6 +187,19 @@ const openDelete = async (id) => {
             sweetAlert(2, DATA.error, false);
         }
     }
+}
+
+/*
+*   Función para preparar el formulario al momento de insertar un registro.
+*   Parámetros: ninguno.
+*   Retorno: ninguno.
+*/
+const openState = () => {
+    // Se muestra la caja de diálogo con su título.
+    ESTADO_MODAL.show();
+    MODAL_TITLE.textContent = 'ESTADO DEL CLIENTE';
+    // Se prepara el formulario.
+    ESTADO_FORM.reset();
 }
 
 /*
@@ -227,7 +256,7 @@ const openChart = async (id) => {
         // Se agrega la etiqueta canvas al contenedor de la modal.
         document.getElementById('chartContainer').innerHTML = `<canvas id="chart"></canvas>`;
         // Llamada a la función para generar y mostrar un gráfico de barras. Se encuentra en el archivo components.js
-        barGraph('chart', servicios, citas, 'Cantidad de citas', 'citas realizadas por cliente');
+        barGraph('chart', servicios, citas, 'Cantidad de citas', 'CITAS REALIZADAS POR EL CLIENTE');
     } else {
         sweetAlert(4, DATA.error, true);
     }
