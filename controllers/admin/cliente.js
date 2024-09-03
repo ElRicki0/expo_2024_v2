@@ -9,20 +9,7 @@ const TABLE_BODY = document.getElementById('tableBody'),
     ROWS_FOUND = document.getElementById('rowsFound');
 
 // Constantes para establecer los elementos del componente Modal.
-/*const CLIENTE_MODAL = new bootstrap.Modal('#SaveModal'),
-    MODAL_TITLE_CLIENTE = document.getElementById('modalTitle');
-// Constantes para establecer los elementos del formulario de guardar.
-const CLIENTE_FORM = document.getElementById('SaveForm'),
-    ID_CLIENTE = document.getElementById('id_cliente');*/
-
-// Constantes para establecer los elementos del componente Modal.
-const ESTADO_MODAL = new bootstrap.Modal('#EstadoCliente'),
-    MODAL_TITLE = document.getElementById('modalTitleState'),
-    CHART_MODAL = new bootstrap.Modal('#chartModal');
-// Constantes para establecer los elementos del formulario de guardar.
-const ESTADO_FORM = document.getElementById('EstadoCliente'),
-    ID_CLIENTE_ESTADO = document.getElementById('id_cliente_state'),
-    ESTADO_CLIENTE = document.getElementById('estadoCliente');
+const CHART_MODAL = new bootstrap.Modal('#chartModal');
 
 // Método del evento para cuando el documento ha cargado.
 document.addEventListener('DOMContentLoaded', () => {
@@ -42,27 +29,6 @@ SEARCH_FORM.addEventListener('submit', (event) => {
     const FORM = new FormData(SEARCH_FORM);
     // Llamada a la función para llenar la tabla con los resultados de la búsqueda.
     fillTable(FORM);
-});
-
-// Método del evento para cuando se envía el formulario de guardar.
-ESTADO_FORM.addEventListener('submit', async (event) => {
-    // Se evita recargar la página web después de enviar el formulario.
-    event.preventDefault();
-    // Constante tipo objeto con los datos del formulario.
-    const FORM = new FormData(ESTADO_FORM);
-    // Petición para guardar los datos del formulario.
-    const DATA = await fetchData(CLIENTE_API, 'updateRowEstado', FORM);
-    // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
-    if (DATA.status) {
-        // Se cierra la caja de diálogo.
-        ESTADO_MODAL.hide();
-        // Se muestra un mensaje de éxito.
-        sweetAlert(1, DATA.message, true);
-        // Se carga nuevamente la tabla para visualizar los cambios.
-        fillTable();
-    } else {
-        sweetAlert(2, DATA.error, false);
-    }
 });
 
 /*
@@ -98,11 +64,8 @@ const fillTable = async (form = null) => {
                     <button class="btn btn-danger" onclick="openDelete(${row.id_cliente})">
                         <i class="bi bi-trash3-fill"></i>
                     </button>
-                    <button class="btn btn-primary" onclick="openUpdate(${row.id_cliente})">
-                        <i class="bi bi-pen-fill"></i>
-                    </button>
-                    <button class="btn btn-secondary" onclick="openState(${row.id_cliente})">
-                        <i class="bi bi-eye-fill"></i>
+                    <button class="btn btn-primary" onclick="openState(${row.id_cliente})">
+                        <i class="bi bi-exclamation-octagon"></i>
                     </button>
                     <button type="button" class="btn btn-warning" onclick="openChart(${row.id_cliente})">
                         <i class="bi bi-bar-chart-line-fill"></i>
@@ -127,38 +90,26 @@ const fillTable = async (form = null) => {
 *   Parámetros: id (identificador del registro seleccionado).
 *   Retorno: ninguno.
 */
-const openUpdate = async (id) => {
-    // Se define un objeto con los datos del registro seleccionado.
-    const FORM = new FormData();
-    FORM.append('id_cliente_state', id);
-    // Petición para obtener los datos del registro solicitado.
-    const DATA = await fetchData(CLIENTE_API, 'readOne', FORM);
-    // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
-    if (DATA.status) {
-        // Se muestra la caja de diálogo con su título.
-        ESTADO_MODAL.show();
-        MODAL_TITLE.textContent = 'ACTUALIZAR CLIENTE';
-        // Se prepara el formulario.
-        ESTADO_FORM.reset();
-        const ROW = DATA.dataset;
-        ID_CLIENTE_ESTADO.value = ROW.id_cliente;
-        ESTADO_CLIENTE.checked = ROW.estado_cliente;
-    } else {
-        sweetAlert(2, DATA.error, false);
-    }
-}
+const openState = async (id) => {
+    // Se muestra un mensaje de confirmación y se captura la respuesta en una constante.
+    const RESPONSE = await confirmAction('¿Está seguro de cambiar el estado del usuario?');
+    // Se verifica la respuesta del mensaje.
+    if (RESPONSE) {
+        // Se define un objeto con los datos del registro seleccionado.
+        const FORM = new FormData();
+        FORM.append('id_cliente', id);
 
-/*
-*   Función para preparar el formulario al momento de insertar un registro.
-*   Parámetros: ninguno.
-*   Retorno: ninguno.
-*/
-const openCreate = () => {
-    // Se muestra la caja de diálogo con su título.
-    ESTADO_MODAL.show();
-    MODAL_TITLE.textContent = 'AGREGAR CLIENTE';
-    // Se prepara el formulario.
-    ESTADO_FORM.reset();
+        // Petición para cambiar el estado del cliente
+        const DATA = await fetchData(CLIENTE_API, 'updateRowEstado', FORM);
+
+        // Se comprueba si la respuesta es satisfactoria
+        if (DATA.status) {
+            sweetAlert(1, DATA.message, true); // Mensaje de éxito
+            fillTable(); // Recargar la tabla para visualizar los cambios
+        } else {
+            sweetAlert(2, DATA.error, false); // Mensaje de error
+        }
+    }
 }
 
 /*
@@ -187,19 +138,6 @@ const openDelete = async (id) => {
             sweetAlert(2, DATA.error, false);
         }
     }
-}
-
-/*
-*   Función para preparar el formulario al momento de insertar un registro.
-*   Parámetros: ninguno.
-*   Retorno: ninguno.
-*/
-const openState = () => {
-    // Se muestra la caja de diálogo con su título.
-    ESTADO_MODAL.show();
-    MODAL_TITLE.textContent = 'ESTADO DEL CLIENTE';
-    // Se prepara el formulario.
-    ESTADO_FORM.reset();
 }
 
 /*

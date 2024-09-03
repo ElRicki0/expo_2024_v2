@@ -114,9 +114,11 @@ class ClienteHandler
     public function updateRowEstado()
     {
         $sql = 'UPDATE tb_clientes
-                SET estado_cliente = ?
+                SET estado_cliente = CASE 
+                WHEN estado_cliente = 0 THEN 1 
+                ELSE 0 END
                 WHERE id_cliente = ?';
-        $params = array($this->estado, $this->id);
+        $params = array($this->id);
         return Database::executeRow($sql, $params);
     }
 

@@ -19,9 +19,13 @@
     <main class="container">
 
         <!-- titulo principal -->
-        <div class="container-fluid text-center">
-            <div class="row justify-content-center py-5">
-                <h3 class="fw-bold text-white">Administrar Clientes</h3>
+        <div class="container-fluid">
+            <div class="row py-4">
+                <h3 class="fw-bold text-white"> / <i class="bi bi-people-fill"></i> Administrar Clientes</h3>
+                <h6 class="fw-medium text-secondary">Bienvenido a la sección de gestión de usuarios. Aquí puedes manejar
+                    todos los usuarios registrados en tu página web. <br>
+                    La tabla te permite eliminar, dar de baja y ver
+                    reportes generales y específicos de actividad.</h6>
             </div>
         </div>
 
@@ -39,9 +43,6 @@
                         </button>
                         <button type="reset" class="btn btn-secondary" onclick="fillTable()">
                             <i class="bi bi-arrow-counterclockwise"></i>
-                        </button>
-                        <button type="button" class="btn btn-warning" onclick="openCreate()">
-                            <i class="bi bi-person-fill-add"></i>
                         </button>
                         <button type="button" class="btn btn-primary" onclick="openReport()">
                             <i class="bi bi-filetype-pdf"></i>
@@ -88,39 +89,6 @@
         <div class="row align-items-center">
             <div class="card col-lg-8 col-md-6 col-sm-8 mx-auto inicioIndex my-3">
                 <canvas id="chart1"></canvas>
-            </div>
-        </div>
-
-        <!-- Componente Modal para editar el estado del cliente-->
-        <div class="modal fade" id="EstadoCliente" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-            aria-labelledby="modalTitle" aria-hidden="true">
-            <div class="modal-dialog modal-sm modal-dialog-centered">
-                <div class="modal-content bg-dark text-white"> <!-- Clases para modo oscuro -->
-                    <div class="modal-header">
-                        <h1 class="modal-title fs-5 fw-bold" id="modalTitleState"></h1>
-                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
-                            aria-label="Close"></button> <!-- Cambiar color del botón de cerrar -->
-                    </div>
-
-                    <!-- Formulario para crear o actualizar un estado -->
-                    <form id="EstadoCliente">
-                        <div class="modal-body row g-3">
-
-                            <!-- Campo oculto para asignar el id del cliente al momento de modificar el estado -->
-                            <input type="number" class="d-none" id="id_cliente_state" name="id_cliente_state">
-                            <div class="d-flex justify-content-center">
-                                <div class="form-check form-switch form-check-reverse text-center">
-                                    <input class="form-check-input" type="checkbox" id="estadoCliente"
-                                        name="estadoCliente" checked>
-                                    <label class="form-check-label" for="estadoCliente">Inactivo / Activo</label>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="submit" class="btn btn-primary">Guardar</button>
-                        </div>
-                    </form>
-                </div>
             </div>
         </div>
 
