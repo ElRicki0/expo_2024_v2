@@ -7,11 +7,11 @@ const SEARCH_FORM = document.getElementById('searchForm');
 const TABLE_BODY = document.getElementById('tableBody'),
     ROWS_FOUND = document.getElementById('rowsFound');
 // Constantes para establecer los elementos del componente Modal.
-const SAVE_MODAL = new bootstrap.Modal('#saveModal'),
+const ESTADO_MODAL = new bootstrap.Modal('#EstadoCliente'),
     MODAL_TITLE = document.getElementById('modalTitle'),
     CHART_MODAL = new bootstrap.Modal('#chartModal');
 // Constantes para establecer los elementos del formulario de guardar.
-const SAVE_FORM = document.getElementById('saveForm'),
+const ESTADO_FORM = document.getElementById('EstadoCliente'),
     ID_CLIENTE = document.getElementById('idCliente'),
     ESTADO_CLIENTE = document.getElementById('estadoCliente');
 
@@ -36,17 +36,17 @@ SEARCH_FORM.addEventListener('submit', (event) => {
 });
 
 // Método del evento para cuando se envía el formulario de guardar.
-SAVE_FORM.addEventListener('submit', async (event) => {
+ESTADO_FORM.addEventListener('submit', async (event) => {
     // Se evita recargar la página web después de enviar el formulario.
     event.preventDefault();
     // Constante tipo objeto con los datos del formulario.
-    const FORM = new FormData(SAVE_FORM);
+    const FORM = new FormData(ESTADO_FORM);
     // Petición para guardar los datos del formulario.
     const DATA = await fetchData(CLIENTE_API, 'updateRowEstado', FORM);
     // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
     if (DATA.status) {
         // Se cierra la caja de diálogo.
-        SAVE_MODAL.hide();
+        ESTADO_MODAL.hide();
         // Se muestra un mensaje de éxito.
         sweetAlert(1, DATA.message, true);
         // Se carga nuevamente la tabla para visualizar los cambios.
@@ -86,12 +86,13 @@ const fillTable = async (form = null) => {
                     <td>${row.nacimiento_cliente}</td>
                     <td><i class="${icon}"></i></td>
                     <td>
-                        <button type="button" class="btn btn-info" onclick="openUpdate(${row.id_cliente})">
-                            <i class="bi bi-pencil-fill"></i>
+                        <button class="btn btn-danger"><i class="bi bi-trash3-fill" onclick="openDelete(${row.id_cliente})"></i></button>
+                        <button type="button" class="btn btn-warning" onclick="openChart(${row.id_cliente})">
+                            <i class="bi bi-bar-chart-line-fill"></i>
                         </button>
-                        <button type="button" class="btn btn-warning" onclick="openChart(${row.id_cliente})"><i class="bi bi-bar-chart-line-fill"></i></button>
+                        <button class="btn btn-primary"><i class="bi bi-pen-fill" onclick="openUpdate(${row.id_cliente})"></i></button>
                         <button type="button" class="btn btn-info" onclick="openClienteReport(${row.id_cliente})">
-                            <i class="bi bi-file-earmark-pdf-fill"></i>
+                            <i class="bi bi-file-earmark-code-fill"></i>
                         </button>
                     </td>
                 </tr>
@@ -119,15 +120,56 @@ const openUpdate = async (id) => {
     // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
     if (DATA.status) {
         // Se muestra la caja de diálogo con su título.
-        SAVE_MODAL.show();
+        ESTADO_MODAL.show();
         MODAL_TITLE.textContent = 'Actualizar cliente';
         // Se prepara el formulario.
-        SAVE_FORM.reset();
+        ESTADO_FORM.reset();
         const ROW = DATA.dataset;
         ID_CLIENTE.value = ROW.id_cliente;
         ESTADO_CLIENTE.checked = ROW.estado_cliente;
     } else {
         sweetAlert(2, DATA.error, false);
+    }
+}
+
+/*
+*   Función para preparar el formulario al momento de insertar un registro.
+*   Parámetros: ninguno.
+*   Retorno: ninguno.
+*/
+const openCreate = () => {
+    // Se muestra la caja de diálogo con su título.
+    ESTADO_MODAL.show();
+    MODAL_TITLE.textContent = 'AGREGAR CLIENTE';
+    // Se prepara el formulario.
+    ESTADO_FORM.reset();
+}
+
+/*
+*   Función asíncrona para eliminar un registro.
+*   Parámetros: id (identificador del registro seleccionado).
+*   Retorno: ninguno.
+*/
+
+const openDelete = async (id) => {
+    // Llamada a la función para mostrar un mensaje de confirmación, capturando la respuesta en una constante.
+    const RESPONSE = await confirmAction('¿Desea eliminar al cliente de forma permanente?');
+    // Se verifica la respuesta del mensaje.
+    if (RESPONSE) {
+        // Se define una constante tipo objeto con los datos del registro seleccionado.
+        const FORM = new FormData();
+        FORM.append('id_cliente', id);
+        // Petición para eliminar el registro seleccionado.
+        const DATA = await fetchData(CLIENTE_API, 'deleteRow', FORM);
+        // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+        if (DATA.status) {
+            // Se muestra un mensaje de éxito.
+            await sweetAlert(1, DATA.message, true);
+            // Se carga nuevamente la tabla para visualizar los cambios.
+            fillTable();
+        } else {
+            sweetAlert(2, DATA.error, false);
+        }
     }
 }
 
@@ -151,7 +193,7 @@ const graficoBarras = async () => {
             citas.push(row.cantidad_citas);
         });
         // Llamada a la función para generar y mostrar un gráfico de barras. Se encuentra en el archivo components.js
-        barGraph('chart1', empleado, citas, 'citas realizadas', 'empleados con mas citas');
+        barGraph('chart1', empleado, citas, 'Mayor cantidad', 'CLIENTES CON MAS CITAS');
     } else {
         document.getElementById('chart1').remove();
         console.log(DATA.error);

@@ -8,6 +8,12 @@ body {
     border-color: #28930D;
 }
 
+#ContenedorTable {
+    max-height: 450px;
+    overflow-y: auto; 
+    display: block;
+}
+
 .quirpracticos
 {
     height: auto;

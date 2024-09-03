@@ -2,107 +2,111 @@
 <html lang="es">
 
 <head>
+    <!-- Metadatos de la pagina -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quiropráctica Específica </title>
     <link rel="icon" href="../../resources/img/icons/icon.jpg">
     <link rel="stylesheet" href="../../resources/css/boostrap_css.css">
-    <link rel="stylesheet" href="../../resources/css/general.css">
     <link rel="stylesheet" href="../../resources/css/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="../../resources/css/general.css">
+    <link rel="stylesheet" href="../../resources/css/barrahorizontal.css">
+    <title>Quiropráctica Específica </title>
 </head>
 
 <body>
-    <header>
 
-    </header>
-
+    <!-- Contenedor principal -->
     <main class="container">
+
         <!-- titulo principal -->
         <div class="container-fluid text-center">
             <div class="row justify-content-center py-5">
                 <h3 class="fw-bold text-white">Administrar Clientes</h3>
             </div>
         </div>
-        <div class="row align-items-center">
-            <div class="card col-6 mx-auto inicioIndex my-3">
-                <!-- Se muestra un gráfico con la cantidad de productos por categoría -->
-                <canvas id="chart1"></canvas>
-            </div>
-        </div>
+
+        <!-- Formulario de búsqueda -->
         <div class="row">
-            <!-- Formulario de búsqueda -->
-            <form class="col-sm-12 col-md-6" id="searchForm">
+            <form class="col-sm-12 col-md-12" id="searchForm">
                 <div class="row">
-                    <div class="col-6">
-                        <input type="search" class="form-control" name="search" placeholder="Buscar" required>
+                    <div class="col-4">
+                        <input type="search" class="form-control custom-input border-2" id="search" name="search"
+                            placeholder="Buscar" required>
                     </div>
                     <div class="col-6">
                         <button type="submit" class="btn btn-success">
                             <i class="bi bi-search"></i>
                         </button>
                         <button type="reset" class="btn btn-secondary" onclick="fillTable()">
-                            <i class="bi bi-x-square-fill"></i>
+                            <i class="bi bi-arrow-counterclockwise"></i>
                         </button>
-                        <button type="button" class="btn btn-info" onclick="openReport()">
-                            <i class="bi bi-file-earmark-pdf-fill"></i>
+                        <button type="button" class="btn btn-warning" onclick="openCreate()">
+                            <i class="bi bi-person-fill-add"></i>
+                        </button>
+                        <button type="button" class="btn btn-primary" onclick="openReport()">
+                            <i class="bi bi-filetype-pdf"></i>
                         </button>
                     </div>
                 </div>
             </form>
         </div>
 
-        <!-- Tabla para mostrar los registros existentes -->
-        <table class="table table-hover table-dark">
-            <!-- Cabeza de la tabla para mostrar la cantidad de registros y los títulos de las columnas -->
-            <thead>
-                <tr>
-                    <td colspan="8" class="text-white  fw-bold mt-3" id="rowsFound"></td>
-                </tr>
-                <tr>
-                    <th>NOMBRE</th>
-                    <th>APELLIDO</th>
-                    <th>DUI</th>
-                    <th>CORREO</th>
-                    <th>TELÉFONO</th>
-                    <th>NACIMIENTO</th>
-                    <th>ESTADO</th>
-                    <th>ACCIONES</th>
-                </tr>
-            </thead>
-            <!-- Cuerpo de la tabla para mostrar un registro por fila -->
-            <tbody id="tableBody" class="table-group-divider"></tbody>
-        </table>
+        <!-- Contenedor para la tabla con scroll -->
+        <div id="ContenedorTable" class="mt-2">
+            <!-- Tabla para mostrar los registros existentes -->
+            <table class="table table-hover table-dark">
+                <!-- Cabeza de la tabla para mostrar la cantidad de registros y los títulos de las columnas -->
+                <thead>
+                    <tr>
+                        <p id="rowsFound" class="text-white fw-bold mt-3"></p>
+                    </tr>
+                    <tr>
+                        <th>NOMBRE</th>
+                        <th>APELLIDO</th>
+                        <th>DUI</th>
+                        <th>CORREO</th>
+                        <th>TELÉFONO</th>
+                        <th>NACIMIENTO</th>
+                        <th>ESTADO</th>
+                        <th>ACCIONES</th>
+                    </tr>
+                </thead>
+                <!-- Cuerpo de la tabla para mostrar un registro por fila -->
+                <tbody id="tableBody" class="table-group-divider"></tbody>
+            </table>
+        </div>
 
-
-        <!-- este es un futuro disenio de las cards del comentarios -->
-
-        <!--Comentarios de servicios-->
-        <!-- 
-        <div class="my-5" id="Comentarios">
-            <div class="card my-4">
-                <div class="card-body">
-                    <h5 class="card-title">Tratamiento de escoliosis</h5>
-                    <p class="card-text">El tratamiento fue increíblemente efectivo. Sentí una mejora notable en mi
-                        postura y reducción del dolor en poco tiempo. El equipo médico fue profesional y atento durante
-                        todo el proceso.</p>
-                    <a href="#" data-bs-toggle="modal" data-bs-target="#ModalInterrogante" class="texto_verde">Eliminar
-                        Comentario</a>
-                </div>
+        <!-- titulo principal -->
+        <div class="container-fluid text-center">
+            <div class="row justify-content-center mt-4">
+                <h6 class="fw-medium text-secondary">Clientes con más citas: Esta gráfica muestra los usuarios más
+                    activos de
+                    nuestra página web, destacando aquellos que han agendado la mayor cantidad de citas.</h6>
             </div>
-        </div> -->
-        <!-- Componente Modal para guardar un registro -->
-        <div class="modal fade" id="saveModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        </div>
+
+        <!-- Se muestra un gráfico con la cantidad de citas por cliente-->
+        <div class="row align-items-center">
+            <div class="card col-lg-+ col-md-6 col-sm-8 mx-auto inicioIndex my-3">
+                <canvas id="chart1"></canvas>
+            </div>
+        </div>
+
+        <!-- Componente Modal para editar el estado del cliente-->
+        <div class="modal fade" id="EstadoCliente" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
             aria-labelledby="modalTitle" aria-hidden="true">
             <div class="modal-dialog modal-sm modal-dialog-centered">
                 <div class="modal-content">
-                    <div class="modal-header inicioIndex">
+                    <div class="modal-header">
                         <h1 class="modal-title fs-5" id="modalTitle"></h1>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                    <!-- Formulario para crear o actualizar un registro -->
-                    <form id="saveForm">
-                        <div class="modal-body row g-3 inicioIndex">
-                            <!-- Campo oculto para asignar el id del registro al momento de modificar -->
+
+                    <!-- Formulario para crear o actualizar un estado -->
+                    <form id="EstadoCliente">
+                        <div class="modal-body row g-3">
+
+                            <!-- Campo oculto para asignar el id del cliente al momento de modificar el estado -->
                             <input type="number" class="d-none" id="idCliente" name="idCliente">
                             <div class="d-flex justify-content-center">
                                 <div class="form-check form-switch form-check-reverse text-center">
@@ -111,15 +115,15 @@
                                     <label class="form-check-label" for="estadoCliente">Estado</label>
                                 </div>
                             </div>
-
                         </div>
-                        <div class="modal-footer inicioIndex">
+                        <div class="modal-footer">
                             <button type="submit" class="btn btn-primary">Guardar</button>
                         </div>
                     </form>
                 </div>
             </div>
         </div>
+
         <!-- Componente Modal para mostrar un gráfico -->
         <div class="modal fade" id="chartModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
             aria-labelledby="chartTitle" aria-hidden="true">
@@ -129,6 +133,7 @@
                         <h3 class="modal-title textoClaro " id="chartTitle">Gráfico de la categoría</h3>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
+
                     <!-- Contenedor para mostrar el gráfico -->
                     <div class="modal-body inicioIndex" id="chartContainer"></div>
                     <div class="modal-footer inicioIndex">
@@ -139,20 +144,13 @@
         </div>
     </main>
 
-    <footer>
-
-    </footer>
-
-    <script src="../../resources/js/bootstrap_js.js"></script>
-    <script type="text/javascript" src="../../resources/js/sweetalert.min.js"></script>
-    <script src="../../resources/js/chart.umd.min.js"></script>
-
-    <!-- llamar al controntrolador del sitio privado-->
+    <!-- Importaciones -->
     <script src="../../controllers/utils/components.js"></script>
-    <!-- llamar al controntrolador del los sitios-->
+    <script src="../../resources/js/sweetalert.min.js"></script>
+    <script src="../../resources/js/bootstrap_js.js"></script>
     <script src="../../controllers/utils/admin.js"></script>
-    <!-- llamar al controntrolador de la pagina-->
     <script src="../../controllers/admin/cliente.js"></script>
+    <script src="../../resources/js/chart.umd.min.js"></script>
 </body>
 
 </html>
