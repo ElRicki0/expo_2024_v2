@@ -9,16 +9,7 @@ if (isset($_GET['action'])) {
     // Se instancia la clase correspondiente para manejar los datos del administrador.
     $administrador = new AdministradorData;
     // Se declara e inicializa un arreglo para guardar el resultado que retorna la API.
-    $result = array(
-        'status' => 0,
-        'session' => 0,
-        'message' => null,
-        'dataset' => null,
-        'error' => null,
-        'exception' => null,
-        'username' => null
-    );
-
+    $result = array('status' => 0, 'message' => null, 'dataset' => null, 'error' => null, 'exception' => null, 'fileStatus' => null);
     // Se verifica si existe una sesión iniciada como administrador, de lo contrario se finaliza el script con un mensaje de error.
     if (isset($_SESSION['idAdministrador'])) {
         $result['session'] = 1; // Indica que hay una sesión activa.
@@ -59,9 +50,9 @@ if (isset($_GET['action'])) {
             case 'readAll':
                 if ($result['dataset'] = $administrador->readAll()) {
                     $result['status'] = 1;
-                    $result['message'] = 'Existen ' . count($result['dataset']) . ' registros';
+                    $result['message'] = 'Existen ' . count($result['dataset']) . ' registro(s)';
                 } else {
-                    $result['error'] = 'No existen beneficios registrados';
+                    $result['error'] = 'No existen administradores registrados';
                 }
                 break;
             case 'readAllOne':
@@ -102,6 +93,19 @@ if (isset($_GET['action'])) {
                 } else {
                     // Si no se encuentra el administrador, se registra un error.
                     $result['error'] = 'Administrador inexistente';
+                }
+                break;
+            case 'readEmployed':
+                // Lectura de un empleado específico por su ID.
+                if (!$administrador->setId($_POST['id_admin'])) {
+                    // Si el ID es incorrecto, se registra un error.
+                    $result['error'] = 'Empleado incorrecto';
+                } elseif ($result['dataset'] = $administrador->readEmployed()) {
+                    // Si se encuentra el empleado, se actualiza el estado.
+                    $result['status'] = 1;
+                } else {
+                    // Si no se encuentra el empleado, se registra un error.
+                    $result['error'] = 'Empleado inexistente';
                 }
                 break;
             case 'updateRow':
@@ -247,8 +251,8 @@ if (isset($_GET['action'])) {
     header('Content-type: application/json; charset=utf-8');
 
     // Se imprime el resultado en formato JSON y se retorna al controlador.
-    print(json_encode($result));
+    print (json_encode($result));
 } else {
     // Si no hay acción definida, se imprime un mensaje indicando que el recurso no está disponible.
-    print(json_encode('Recurso no disponible'));
+    print (json_encode('Recurso no disponible'));
 }

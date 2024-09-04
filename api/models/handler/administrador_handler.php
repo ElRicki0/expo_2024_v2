@@ -162,27 +162,28 @@ class AdministradorHandler
         return Database::getRows($sql, $params);
     }
 
-    // Método para leer todos los administradores registrados.
-    // public function readAll()
-    // {
-    //     $sql = 'SELECT id_admin, nombre_admin, correo_admin
-    //             FROM tb_admin
-    //             WHERE id_admin <> ?
-    //             ORDER BY nombre_admin';
-    //     $params = array($_SESSION['idAdministrador']);
-    //     return Database::executeRow($sql, $params);
-    // }
-
-
     // Método para leer un administrador.
     public function readOne()
     {
-        $sql = 'SELECT id_admin, nombre_admin, correo_admin
-                FROM tb_admin
-                WHERE id_admin = ?';
+        $sql = 'SELECT A.id_admin, A.nombre_admin, A.correo_admin, E.id_empleado, E.nombre_empleado
+                FROM tb_admin A
+                INNER JOIN tb_empleados E ON A.id_empleado = E.id_empleado
+                WHERE A.id_admin = ?';
         $params = array($this->id);
         return Database::getRow($sql, $params);
     }
+
+        // Método para leer un empleado del administrador.
+        public function readEmployed()
+        {
+            $sql = 'SELECT E.id_empleado, E.nombre_empleado
+                    FROM tb_empleados E
+                    INNER JOIN tb_admin A ON E.id_empleado = A.id_empleado
+                    WHERE A.id_admin = ?';
+            $params = array($this->id);
+            return Database::getRow($sql, $params);
+        }
+    
 
     // Método deleteRow: elimina un empleado de la base de datos según su ID.
     public function deleteRow()

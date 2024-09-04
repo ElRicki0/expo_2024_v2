@@ -11,96 +11,94 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- Bootstrap CSS -->
-    <link rel="icon" href="../../resources/img/icons/icon.jpg">
     <link rel="stylesheet" href="../../resources/css/boostrap_css.css">
     <link rel="stylesheet" href="../../resources/css/general.css">
     <link rel="stylesheet" href="../../resources/css/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="../../resources/css/barrahorizontal.css">
 </head>
 
 <body>
 
     <!-- Contenedor principal -->
-    <main class="py-5">
+    <main class="container">
 
-        <!-- Titulos -->
-        <div class="mt-5 justify-content-center">
-            <div class="container-fluid text-center">
-                <div class="row justify-content-center py-5">
-                    <h3 class="fw-bold text-white">Administrar Administradores</h3>
-                </div>
+        <!-- titulo principal -->
+        <div class="container-fluid">
+            <div class="row py-4">
+                <h3 class="fw-bold text-white"> <i class="bi bi-shield-lock-fill"></i> Administrar Administradores</h3>
+                <h6 class="fw-medium text-secondary">Bienvenido a la sección de gestión de administradores. Aquí puedes
+                    manejar todas las personas administradoras registrados en tu página web. <br>
+                    La tabla te permite eliminar, dar de baja, editar, ver graficas y
+                    reportes generales de actividad.</h6>
             </div>
+        </div>
 
-            <div class="container mb-3 justify-content-center">
-
-                <!-- Formulario de búsqueda -->
-                <form class="col-sm-12 col-md-12" id="searchForm">
-                    <div class="row">
-                        <div class="col-4">
-                            <input type="search" class="form-control custom-input border-2" id="search" name="search"
-                                placeholder="Buscar" required>
-                        </div>
-                        <div class="col-6">
-                            <button type="submit" class="btn btn-success">
-                                <i class="bi bi-search"></i>
-                            </button>
-                            <button type="reset" class="btn btn-secondary" onclick="fillTable()">
-                                <i class="bi bi-arrow-counterclockwise"></i>
-                            </button>
-                            <button type="button" class="btn btn-warning" onclick="openCreate()"><i
-                                    class="bi bi-person-fill-add"></i>
-                            </button>
-                            <button type="button" class="btn btn-primary" onclick="openReport()"><i
-                                    class="bi bi-file-earmark-pdf-fill"></i>
-                            </button>
-                        </div>
+        <!-- Formulario de búsqueda -->
+        <div class="row">
+            <form class="col-sm-12 col-md-12 col-lg-10" id="searchForm">
+                <div class="row">
+                    <div class="col-6">
+                        <input type="search" class="form-control custom-input border-2" id="search" name="search"
+                            placeholder="Nombre o Apellido" required>
                     </div>
-                </form>
-
-                <!-- Tabla de empleado con opciones -->
-                <div class="table-responsive">
-
-                    <!-- Tabla -->
-                    <div class="table-responsive">
-
-                        <!-- Tabla para mostrar los registros existentes -->
-                        <table class="table table-dark table-hover">
-
-                            <!-- Cabeza de la tabla para mostrar la cantidad de registros y los títulos de las columnas -->
-                            <thead>
-                                <tr>
-                                    <p id="rowsFound" class="text-white fw-bold mt-3"></p>
-                                </tr>
-                                <tr>
-                                    <th scope="col">NOMBRE</th>
-                                    <th scope="col">CORREO</th>
-                                    <th scope="col">ACCIONES</th>
-                                </tr>
-                            </thead>
-
-                            <!-- Filas -->
-                            <tbody id="tableBody" class="table-group-divider">
-                            </tbody>
-                        </table>
+                    <div class="col-6">
+                        <button type="submit" class="btn btn-success">
+                            <i class="bi bi-search"></i>
+                        </button>
+                        <button type="reset" class="btn btn-secondary" onclick="fillTable()">
+                            <i class="bi bi-arrow-counterclockwise"></i>
+                        </button>
+                        <button type="button" class="btn btn-warning" onclick="openCreate()">
+                            <i class="bi bi-person-fill-add"></i>
+                        </button>
+                        <button type="button" class="btn btn-primary" onclick="openReport()">
+                            <i class="bi bi-filetype-pdf"></i>
+                        </button>
                     </div>
                 </div>
-            </div>
+            </form>
+        </div>
 
-            <!-- Modal agregar Admninistrador -->
-            <div class="modal fade" id="modalAdministrador" tabindex="-1" aria-labelledby="exampleModalLabel"
-                aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered modal-lg ">
-                    <div class="modal-content inicioIndex">
+        <p id="rowsFound" class="text-white fw-bold mt-3"></p>
 
-                        <!-- Formulario saveForm -->
-                        <form id="saveForm">
-                            <!-- Campo oculto para asignar el id del registro al momento de modificar -->
-                            <input type="number" class="d-none" id="id_admin" name="id_admin">
+        <!-- Contenedor para la tabla con scroll -->
+        <div id="ContenedorTable">
+
+            <!-- Tabla para mostrar los registros existentes -->
+            <table class="table table-hover table-dark">
+
+                <!-- Cabeza de la tabla para mostrar la cantidad de registros y los títulos de las columnas -->
+                <thead>
+                    <tr>
+                        <th scope="col">NOMBRE</th>
+                        <th scope="col">CORREO</th>
+                        <th scope="col">ACCIONES</th>
+                    </tr>
+                </thead>
+
+                <!-- Cuerpo de la tabla para mostrar un registro por fila -->
+                <tbody id="tableBody" class="table-group-divider"></tbody>
+            </table>
+        </div>
+
+        <!-- Modal agregar Admninistrador -->
+        <div class="modal fade" id="modalAdministrador" tabindex="-1" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-lg ">
+                <div class="modal-content bg-dark text-white">
+
+                    <!-- Formulario saveForm -->
+                    <form id="saveForm">
+
+                        <!-- Campo oculto para asignar el id del registro al momento de modificar -->
+                        <input type="number" class="d-none" id="id_admin" name="id_admin">
+                        <form class="needs-validation">
 
                             <!-- Body del modal -->
                             <div class="modal-body">
-                                <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                    aria-label="Close"></button>
-                                <h1 class="fs-4 fw-bold text-center mb-4 textoClaro" id="modalTitle"> </h1>
+                                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                                    aria-label="Close"></button> <!-- Cambiar color del botón de cerrar -->
+                                <h1 class="fs-4 fw-bold text-center mb-4" id="modalTitle"> </h1>
 
                                 <!-- Inputs -->
                                 <div class="row p-3">
@@ -121,14 +119,16 @@
                                     <div class="col-12">
                                         <div class="row">
                                             <div class="col-6 mt-3">
-                                                <label class="textoClaro form-label" id="TextPassword">Contraseña</label>
+                                                <label class="textoClaro form-label"
+                                                    id="TextPassword">Contraseña</label>
                                                 <input type="password" id="contra_admin" name="contra_admin"
                                                     class="form-control" required>
                                             </div>
                                             <div class="col-6 mt-3">
-                                                <label for="empleadoAdmin" class=" textoClaro form-label">Servicio</label>
-                                                <select id="empleadoAdmin" name="empleadoAdmin"
-                                                    class="form-select" required>
+                                                <label for="empleadoAdmin"
+                                                    class=" textoClaro form-label">Empleado</label>
+                                                <select id="empleado_admin" name="empleado_admin" class="form-select"
+                                                    required>
                                                 </select>
                                             </div>
                                         </div>
@@ -137,16 +137,15 @@
                                         <div class="row mt-3">
                                             <div class="col-12 text-end">
                                                 <button type="submit" class="btn btn-primary ps-4 pe-4">
-                                                    <i class="bi bi-person-fill-add me-1"></i> Agregar Administrador
+                                                    <i class="bi bi-person-fill-add me-1"></i> Aceptar
                                                 </button>
                                             </div>
                                         </div>
                                     </div>
-
                                 </div>
                             </div>
                         </form>
-                    </div>
+                    </form>
                 </div>
             </div>
         </div>
@@ -161,7 +160,8 @@
     <script type="text/javascript" src="../../resources/js/sweetalert.min.js"></script>
     <script type="text/javascript" src="../../controllers/utils/admin.js"></script>
     <script type="text/javascript" src="../../controllers/admin/administradores.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.2/dist/chart.umd.min.js"></script>
+    <script type="text/javascript" src="../../controllers/utils/Validaciones.js"></script>
+    <script src="../../resources/js/chart.umd.min.js"></script>
 </body>
 
 </html>

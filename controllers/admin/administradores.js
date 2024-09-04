@@ -68,7 +68,7 @@ const fillTable = async (form = null) => {
     ROWS_FOUND.textContent = '';
     TABLE_BODY.innerHTML = '';
     // Se verifica la acción a realizar.
-    (form) ? action = 'searchRows' : action = 'readAllOne';
+    (form) ? action = 'searchRows' : action = 'readAll';
     // Petición para obtener los registros disponibles.
     const DATA = await fetchData(ADMINISTRADOR_API, action, form);
     // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
@@ -81,7 +81,12 @@ const fillTable = async (form = null) => {
                 <td>${row.nombre_admin}</td>
                 <td>${row.correo_admin}</td>
                 <td>
-                <button class="btn btn-danger"><i class="bi bi-trash3-fill" onclick="openDelete(${row.id_admin})"></i></button>
+                <button class="btn btn-danger" onclick="openDelete(${row.id_admin})">
+                    <i class="bi bi-trash3-fill"> </i>
+                </button>
+                <button class="btn btn-primary" onclick="openUpdate(${row.id_admin})">
+                    <i class="bi bi-pen-fill"> </i>
+                </button>
             </td>
         </tr>
             `;
@@ -107,7 +112,7 @@ const openCreate = () => {
     CONTRASEÑA_TITLE.style.display = "block";
     CONTRASEÑA_ADMINISTRADOR.style.display = "block";
     CONTRASEÑA_ADMINISTRADOR.disabled = false;
-    fillSelect(EMPLEADO_API, 'readAll', 'empleadoAdmin');
+    fillSelect(EMPLEADO_API, 'readAll', 'empleado_admin');
 
 }
 
@@ -137,6 +142,7 @@ const openUpdate = async (id) => {
         CONTRASEÑA_TITLE.style.display = "none";
         CONTRASEÑA_ADMINISTRADOR.style.display = "none";
         CONTRASEÑA_ADMINISTRADOR.disabled = true;
+        fillSelect(ADMINISTRADOR_API, 'readEmployed', 'empleado_admin', ROW.id_admin);
     } else {
         sweetAlert(2, DATA.error, false);
     }
