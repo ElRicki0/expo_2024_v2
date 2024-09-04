@@ -61,7 +61,7 @@ if (isset($_GET['action'])) {
                 } elseif ($result['dataset'] = $cliente->readClienteCitas()) {
                     $result['status'] = 1;
                 } else {
-                    $result['error'] = 'No existen registros por el; momento';
+                    $result['error'] = 'No existen registros por el momento';
                 }
                 break;
             case 'reporteCitasMesActual':
@@ -70,7 +70,7 @@ if (isset($_GET['action'])) {
                 } elseif ($result['dataset'] = $cliente->reporteCitasMesActual()) {
                     $result['status'] = 1;
                 } else {
-                    $result['error'] = 'No existen registros por el; momento';
+                    $result['error'] = 'No existen registros por el momento';
                 }
                 break;
             default:

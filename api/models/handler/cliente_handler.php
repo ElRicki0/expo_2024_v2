@@ -87,11 +87,11 @@ class ClienteHandler
     public function searchRows()
     {
         $value = '%' . Validator::getSearchValue() . '%';
-        $sql = 'SELECT*from tb_clientes where 
-        nombre_cliente like ? or apellido_cliente like ? or dui_cliente like ? or correo_cliente like ? or telefono_cliente like ? 
-        or nacimiento_cliente like ? or estado_cliente like ?
-        order by nombre_cliente';
-        $params = array($value, $value, $value, $value, $value, $value, $value);
+        $sql = 'SELECT*from tb_clientes
+            where nombre_cliente like ?
+            or apellido_cliente like ?
+            order by nombre_cliente';
+        $params = array($value, $value, $value);
         return Database::getRows($sql, $params);
     }
 
