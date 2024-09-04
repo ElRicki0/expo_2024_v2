@@ -121,9 +121,6 @@ if (isset($_GET['action'])) {
                     $result['error'] = 'No hay datos disponibles';
                 }
                 break;
-
-
-
             case 'graficoCitasfechas':
                 $_POST = Validator::validateForm($_POST);
                 if (
@@ -138,27 +135,24 @@ if (isset($_GET['action'])) {
                     $result['error'] = 'Ocurrió un problema al crear la gráfica';
                 }
                 break;
-
-
-
             case 'readClientesServicio':
                 if (!$cita->setServicio($_POST['idServicio'])) {
                     $result['error'] = $cita->getDataError();
                 } elseif ($result['dataset'] = $cita->readClientesServicio()) {
                     $result['status'] = 1;
                 } else {
-                    $result['error'] = 'No existen registros por el; momento';
+                    $result['error'] = 'No existen registros por el momento';
                 }
                 break;
-                case 'reporteCitasMesActual':
-                    if (!$cliente->setId($_POST['idCliente'])) {
-                        $result['error'] = $cliente->getDataError();
-                    } elseif ($result['dataset'] = $cliente->reporteCitasMesActual()) {
-                        $result['status'] = 1;
-                    } else {
-                        $result['error'] = 'No existen registros por el; momento';
-                    }
-                    break;
+            case 'reporteCitasMesActual':
+                if (!$cliente->setId($_POST['idCliente'])) {
+                    $result['error'] = $cliente->getDataError();
+                } elseif ($result['dataset'] = $cliente->reporteCitasMesActual()) {
+                    $result['status'] = 1;
+                } else {
+                    $result['error'] = 'No existen registros por el momento';
+                }
+                break;
             default:
                 $result['error'] = 'Acción no disponible dentro de la sesión';
         }
@@ -167,9 +161,9 @@ if (isset($_GET['action'])) {
         // Se indica el tipo de contenido a mostrar y su respectivo conjunto de caracteres.
         header('Content-type: application/json; charset=utf-8');
         // Se imprime el resultado en formato JSON y se retorna al controlador.
-        print(json_encode($result));
+        print (json_encode($result));
     } else {
-        print(json_encode('Acceso denegado'));
+        print (json_encode('Acceso denegado'));
     }
 } else
-    print(json_encode('Recurso no disponible'));
+    print (json_encode('Recurso no disponible'));
