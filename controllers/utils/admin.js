@@ -81,10 +81,10 @@ const loadTemplate = async () => {
                                 <a class="nav-link" href="citas.html"><i class="bi bi-bookmark-plus-fill me-1"></i> Citas</a>
                             </li>
                             <li class="nav-item ms-4">
-                                <a class="nav-link" href="tratamientos.html"><i class="bi bi-clipboard2-pulse-fill me-1"></i>Tratamientos</a>
+                                <a class="nav-link" href="tratamientos.html"><i class="bi bi-clipboard2-pulse-fill me-1"></i> Tratamientos</a>
                             </li>
                             <li class="nav-item ms-4">
-                                <a class="nav-link" href="comentarios.html"><i class="bi bi-chat-left-text-fill me-1"></i>Comentarios</a>
+                                <a class="nav-link" href="comentarios.html"><i class="bi bi-chat-left-text-fill me-1"></i> Comentarios</a>
                             </li>
                         </ul>
                     </div>

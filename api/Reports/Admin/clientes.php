@@ -32,31 +32,19 @@ if ($dataClientes = $cliente->readAll()) {
 
     // Recorrer los registros fila por fila.
     foreach ($dataClientes as $rowClientes) {
-        
+
         // Concatenar nombre y apellido
         $nombreCompleto = $rowClientes['nombre_cliente'] . ' ' . $rowClientes['apellido_cliente'];
 
         // Imprimir el nombre completo en una sola celda
-        $pdf->cell(38, 10, $nombreCompleto, 'TB', 0, 'J');
+        $pdf->cell(38, 10, $nombreCompleto, 'T', 0, 'J');
 
         // Imprimir contacto y cumpleaños
-        $pdf->cell(38, 10, $rowClientes['dui_cliente'], 'TB', 0, 'C');
-        $pdf->cell(40, 10, $rowClientes['correo_cliente'], 'TB', 0, 'C');
-        $pdf->cell(38, 10, $rowClientes['telefono_cliente'], 'TB', 0, 'C');
-        $pdf->cell(35, 10, $rowClientes['nacimiento_cliente'], 'TB', 1, 'C');
-
-
-        // Restablecer la posición de la celda después de MultiCell
-        $pdf->setX($pdf->GetX() - 50);
-        $pdf->cell(0, 0, '', 'T'); // Añadir una celda vacía para ajustar la altura
-        $pdf->ln(); // Mover a la siguiente línea
+        $pdf->cell(38, 10, $rowClientes['dui_cliente'], 'T', 0, 'C');
+        $pdf->cell(40, 10, $rowClientes['correo_cliente'], 'T', 0, 'C');
+        $pdf->cell(38, 10, $rowClientes['telefono_cliente'], 'T', 0, 'C');
+        $pdf->cell(35, 10, $rowClientes['nacimiento_cliente'], 'T', 1, 'C');
     }
-
-    // Línea de cierre para la tabla
-    $pdf->cell(60, 0, '', 'T');
-    $pdf->cell(40, 0, '', 'T');
-    $pdf->cell(40, 0, '', 'T');
-    $pdf->cell(50, 0, '', 'T');
 } else {
     // Si no hay empleados para mostrar
     $pdf->cell(0, 10, $pdf->encodeString('No hay clientes para mostrar'), 1, 1, 'C');
@@ -64,4 +52,3 @@ if ($dataClientes = $cliente->readAll()) {
 
 // Se llama implícitamente al método footer() y se envía el documento al navegador web.
 $pdf->output('I', 'Clientes.pdf');
-?>
