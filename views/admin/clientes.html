@@ -2,15 +2,19 @@
 <html lang="es">
 
 <head>
-    <!-- Metadatos de la pagina -->
+
+    <!-- Título del documento -->
+    <title>Quiropráctica Específica </title>
+
+    <!-- Metadatos de la pagina web -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="../../resources/img/icons/icon.jpg">
+
+    <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="../../resources/css/boostrap_css.css">
     <link rel="stylesheet" href="../../resources/css/bootstrap-icons.min.css">
     <link rel="stylesheet" href="../../resources/css/general.css">
     <link rel="stylesheet" href="../../resources/css/barrahorizontal.css">
-    <title>Quiropráctica Específica </title>
 </head>
 
 <body>
@@ -21,10 +25,10 @@
         <!-- titulo principal -->
         <div class="container-fluid">
             <div class="row py-4">
-                <h3 class="fw-bold text-white"> / <i class="bi bi-people-fill"></i> Administrar Clientes</h3>
+                <h3 class="fw-bold text-white"> <i class="bi bi-people-fill"></i> Administrar Clientes</h3>
                 <h6 class="fw-medium text-secondary">Bienvenido a la sección de gestión de usuarios. Aquí puedes manejar
                     todos los usuarios registrados en tu página web. <br>
-                    La tabla te permite eliminar, dar de baja y ver
+                    La tabla te permite eliminar, dar de baja, ver graficas y
                     reportes generales y específicos de actividad.</h6>
             </div>
         </div>
@@ -56,8 +60,11 @@
 
         <!-- Contenedor para la tabla con scroll -->
         <div id="ContenedorTable">
+
             <!-- Tabla para mostrar los registros existentes -->
+
             <table class="table table-hover table-dark">
+
                 <!-- Cabeza de la tabla para mostrar la cantidad de registros y los títulos de las columnas -->
                 <thead>
                     <tr>
@@ -71,19 +78,20 @@
                         <th>ACCIONES</th>
                     </tr>
                 </thead>
+
                 <!-- Cuerpo de la tabla para mostrar un registro por fila -->
                 <tbody id="tableBody" class="table-group-divider"></tbody>
             </table>
         </div>
 
-        <div class="bg-dark rounded">
+        <div class="bg-dark rounded mb-3">
 
             <!-- titulo principal -->
             <div class="container-fluid text-center">
                 <div class="row justify-content-center mt-4 pt-3">
                     <h6 class="fw-medium text-secondary">Clientes con más citas: Esta gráfica muestra los usuarios más
-                        activos de
-                        nuestra página web, <br> destacando aquellos que han agendado la mayor cantidad de citas.</h6>
+                        activos de nuestra página web, 
+                        <br> destacando aquellos que han agendado la mayor cantidad de citas.</h6>
                 </div>
             </div>
 

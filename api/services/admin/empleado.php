@@ -67,7 +67,7 @@ if (isset($_GET['action'])) {
                     !$empleado->setApelldo($_POST['apellido_empleado']) or
                     !$empleado->setCorreo($_POST['correo_empleado']) or
                     !$empleado->setDui($_POST['dui_empleado']) or
-                    !$empleado->setFecha($_POST['fecha_empleado'])  or
+                    !$empleado->setFecha($_POST['fecha_empleado']) or
                     !$empleado->setEstado(isset($_POST['estadoEmpleado']) ? 1 : 0)
                 ) {
                     $result['error'] = $empleado->getDataError();
@@ -104,29 +104,41 @@ if (isset($_GET['action'])) {
                     $result['error'] = 'No existen servicios asignados por el momento';
                 }
                 break;
-
+            case 'updateRowEstado':
+                $_POST = Validator::validateForm($_POST);
+                if (
+                    !$empleado->setId($_POST['id_empleado'])
+                ) {
+                    $result['error'] = $empleado->getDataError();
+                } elseif ($empleado->updateRowEstado()) {
+                    $result['status'] = 1;
+                    $result['message'] = 'Estado modificado correctamente';
+                } else {
+                    $result['error'] = 'Ocurrió un problema al modificar el estado';
+                }
+                break;
             default:
                 $result['error'] = 'Acción no disponible dentro de la sesión';
         }
     } else {
         switch ($_GET['action']) {
-                case 'signUp':
-                    $_POST = Validator::validateForm($_POST);
-                    if (
-                        !$empleado->setNombre($_POST['nombreEmpleado']) or
-                        !$empleado->setApelldo($_POST['apellidoEmpleado']) or
-                        !$empleado->setCorreo($_POST['correoEmpleado']) or
-                        !$empleado->setDui($_POST['duiEmpleado']) or
-                        !$empleado->setFecha($_POST['fechaEmpleado'])
-                    ) {
-                        $result['error'] = $empleado->getDataError();
-                    } elseif ($empleado->createNewRow()) {
-                        $result['status'] = 1;
-                        $result['message'] = 'Empleado creado correctamente';
-                    } else {
-                        $result['error'] = 'Ocurrió un problema al crear al Empleado';
-                    }
-                    break;
+            case 'signUp':
+                $_POST = Validator::validateForm($_POST);
+                if (
+                    !$empleado->setNombre($_POST['nombreEmpleado']) or
+                    !$empleado->setApelldo($_POST['apellidoEmpleado']) or
+                    !$empleado->setCorreo($_POST['correoEmpleado']) or
+                    !$empleado->setDui($_POST['duiEmpleado']) or
+                    !$empleado->setFecha($_POST['fechaEmpleado'])
+                ) {
+                    $result['error'] = $empleado->getDataError();
+                } elseif ($empleado->createNewRow()) {
+                    $result['status'] = 1;
+                    $result['message'] = 'Empleado creado correctamente';
+                } else {
+                    $result['error'] = 'Ocurrió un problema al crear al Empleado';
+                }
+                break;
             case 'readEmployee':
                 // Lectura de todos los administradores (puede ser una acción pública).
                 if ($empleado->readAll()) {
@@ -149,8 +161,8 @@ if (isset($_GET['action'])) {
     header('Content-type: application/json; charset=utf-8');
 
     // Se imprime el resultado en formato JSON y se retorna al controlador.
-    print(json_encode($result));
+    print (json_encode($result));
 } else {
     // Si no hay acción definida, se imprime un mensaje indicando que el recurso no está disponible.
-    print(json_encode('Recurso no disponible'));
+    print (json_encode('Recurso no disponible'));
 }

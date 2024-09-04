@@ -36,14 +36,14 @@ if ($dataEmpleados = $empleado->readAll()) {
         $nombreCompleto = $rowEmpleados['nombre_empleado'] . ' ' . $rowEmpleados['apellido_empleado'];
 
         // Imprimir el nombre completo en una sola celda
-        $pdf->cell(60, 10, $nombreCompleto, 'TB', 0, 'C');
+        $pdf->cell(60, 10, $nombreCompleto, 'T', 0, 'C');
 
         // Imprimir contacto y cumpleaños
-        $pdf->cell(40, 10, $rowEmpleados['correo_empleado'], 'TB', 0, 'C');
-        $pdf->cell(40, 10, $rowEmpleados['nacimiento_empleado'], 'TB', 0, 'C');
+        $pdf->cell(40, 10, $rowEmpleados['correo_empleado'], 'T', 0, 'C');
+        $pdf->cell(40, 10, $rowEmpleados['nacimiento_empleado'], 'T', 0, 'C');
 
         // Imprimir la especialidad en la última columna
-        $pdf->cell(50, 10, $rowEmpleados['especialidad_empleado'], 'TB', 1, 'C');
+        $pdf->cell(50, 10, $rowEmpleados['especialidad_empleado'], 'T', 1, 'C');
     }
 } else {
     // Si no hay empleados para mostrar

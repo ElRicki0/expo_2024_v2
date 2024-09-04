@@ -47,6 +47,17 @@ class EmpleadoHandler
         return Database::executeRow($sql, $params);
     }
 
+    public function updateRowEstado()
+    {
+        $sql = 'UPDATE tb_empleados
+                SET estado_empleado = CASE 
+                WHEN estado_empleado = 0 THEN 1 
+                ELSE 0 END
+                WHERE id_empleado = ?';
+        $params = array($this->id);
+        return Database::executeRow($sql, $params);
+    }
+
     /*
      *  Métodos para realizar las operaciones SCRUD (search, create, read, update, and delete).
      */

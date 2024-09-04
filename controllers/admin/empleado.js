@@ -92,10 +92,15 @@ const fillTable = async (form = null) => {
                 <td>${row.nacimiento_empleado}</td>
                 <td><i class="${icon}"></i></td>
                 <td>
-                <button class="btn btn-danger"><i class="bi bi-trash3-fill" onclick="openDelete(${row.id_empleado})"></i></button>
+                <button class="btn btn-danger" onclick="openDelete(${row.id_empleado})">
+                    <i class="bi bi-trash3-fill"></i>
+                </button>
+                <button class="btn btn-primary" onclick="openState(${row.id_empleado})">
+                    <i class="bi bi-exclamation-octagon"></i>
+                </button>
                 <button type="button" class="btn btn-warning" onclick="openChart(${row.id_empleado})">
-                            <i class="bi bi-bar-chart-line-fill"></i>
-                        </button>
+                    <i class="bi bi-bar-chart-line-fill"></i>
+                </button>
                 <button class="btn btn-primary"><i class="bi bi-pen-fill" onclick="openUpdate(${row.id_empleado})"></i></button>
             </td>
         </tr>
@@ -105,6 +110,33 @@ const fillTable = async (form = null) => {
         ROWS_FOUND.textContent = DATA.message;
     } else {
         sweetAlert(4, DATA.error, true);
+    }
+}
+
+/*
+*   Función asíncrona para preparar el formulario al momento de actualizar un registro.
+*   Parámetros: id (identificador del registro seleccionado).
+*   Retorno: ninguno.
+*/
+const openState = async (id) => {
+    // Se muestra un mensaje de confirmación y se captura la respuesta en una constante.
+    const RESPONSE = await confirmAction('¿Está seguro de cambiar el estado del empleado?');
+    // Se verifica la respuesta del mensaje.
+    if (RESPONSE) {
+        // Se define un objeto con los datos del registro seleccionado.
+        const FORM = new FormData();
+        FORM.append('id_empleado', id);
+
+        // Petición para cambiar el estado del cliente
+        const DATA = await fetchData(EMPLEADO_API, 'updateRowEstado', FORM);
+
+        // Se comprueba si la respuesta es satisfactoria
+        if (DATA.status) {
+            sweetAlert(1, DATA.message, true); // Mensaje de éxito
+            fillTable(); // Recargar la tabla para visualizar los cambios
+        } else {
+            sweetAlert(2, DATA.error, false); // Mensaje de error
+        }
     }
 }
 
@@ -201,7 +233,7 @@ const graficoDona = async () => {
             estado.push(row.estado);
         });
         // Llamada a la función para generar y mostrar un gráfico de pastel. Se encuentra en el archivo components.js
-        donaGraph('chart1', estado, cantidad, 'Estado de empleados', 'Actividad de empleados');
+        donaGraph('chart1', estado, cantidad, 'ESTADO DE EMPLEADOS', 'Actividad de empleados');
     } else {
         document.getElementById('chart1').remove();
         console.log(DATA.error);
