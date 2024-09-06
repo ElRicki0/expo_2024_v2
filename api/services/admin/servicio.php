@@ -1,6 +1,7 @@
 <?php
 // Se incluye la clase del modelo.
 require_once('../../models/data/servicio_data.php');
+
 // Se comprueba si existe una acción a realizar, de lo contrario se finaliza el script con un mensaje de error.
 if (isset($_GET['action'])) {
     // Se crea una sesión o se reanuda la actual para poder utilizar variables de sesión en el script.
@@ -9,10 +10,8 @@ if (isset($_GET['action'])) {
     $servicio = new ServicioData;
     // Se declara e inicializa un arreglo para guardar el resultado que retorna la API.
     $result = array('status' => 0, 'message' => null, 'dataset' => null, 'error' => null, 'exception' => null, 'fileStatus' => null);
-    // Se verifica si existe una sesión iniciada como empleado, de lo contrario se finaliza el script con un mensaje de error.
+    // Se verifica si existe una sesión iniciada como administrador, de lo contrario se finaliza el script con un mensaje de error.
     if (isset($_SESSION['idAdministrador'])) {
-        $result['session'] = 1; // Indica que hay una sesión activa.
-        
         // Se compara la acción a realizar cuando un empleado ha iniciado sesión.
         switch ($_GET['action']) {
             case 'searchRows':
@@ -47,7 +46,7 @@ if (isset($_GET['action'])) {
                     $result['status'] = 1;
                     $result['message'] = 'Existen ' . count($result['dataset']) . ' registros';
                 } else {
-                    $result['error'] = 'No existen Servicios registrados';
+                    $result['error'] = 'No existen servicio registrados';
                 }
                 break;
             case 'readOne':
@@ -95,7 +94,7 @@ if (isset($_GET['action'])) {
                     $result['error'] = 'No ha datos diponibles';
                 }
                 break;
-                
+
             case 'graficoPastelServicio':
                 if ($result['dataset'] = $servicio->graficoPastelServicio()) {
                     $result['status'] = 1;

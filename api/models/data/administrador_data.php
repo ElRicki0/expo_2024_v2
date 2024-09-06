@@ -2,10 +2,12 @@
 // Se incluye la clase para validar los datos de entrada.
 require_once('../../helpers/validator.php');
 // Se incluye la clase padre.
-require_once('../../models/handler/administrador_handler.php');
+require_once('../../models/handler/administrador_handler.php'); // Ajusta la ruta según la ubicación del archivo handler
+
 /*
- *  Clase para manejar el encapsulamiento de los datos de la tabla USUARIO.
+ *  Clase para manejar el encapsulamiento de los datos de la tabla EMPLEADOS.
  */
+
 class AdministradorData extends AdministradorHandler
 {
     // Atributo genérico para manejo de errores.
@@ -14,21 +16,24 @@ class AdministradorData extends AdministradorHandler
     /*
      *  Métodos para validar y asignar valores de los atributos.
      */
+
+    // Método setId: valida y asigna el identificador del cliente.
     public function setId($value)
     {
         if (Validator::validateNaturalNumber($value)) {
             $this->id = $value;
             return true;
         } else {
-            $this->data_error = 'El identificador del administrador es incorrecto';
+            $this->data_error = 'El identificador del cliente es incorrecto';
             return false;
         }
     }
 
-    public function setNombre($value, $min = 2, $max = 50)
+    // Método setNombre: valida y asigna el nombre del administrador.
+    public function setNombre($value, $min = 2, $max = 250)
     {
         if (!Validator::validateAlphabetic($value)) {
-            $this->data_error = 'El nombre debe ser un valor alfabético';
+            $this->data_error = 'El formato del nombre es incorrecto';
             return false;
         } elseif (Validator::validateLength($value, $min, $max)) {
             $this->nombre = $value;
@@ -39,17 +44,7 @@ class AdministradorData extends AdministradorHandler
         }
     }
 
-    public function setContraseña($value)
-    {
-        if (Validator::validatePassword($value)) {
-            $this->contrasenia = password_hash($value, PASSWORD_DEFAULT);
-            return true;
-        } else {
-            $this->data_error = Validator::getPasswordError();
-            return false;
-        }
-    }
-
+    // Método setCorreo: valida y asigna el correo electrónico del administrador.
     public function setCorreo($value, $min = 8, $max = 100)
     {
         if (!Validator::validateEmail($value)) {
@@ -64,9 +59,34 @@ class AdministradorData extends AdministradorHandler
         }
     }
 
-    // Método para obtener el error de los datos.
+    // Metodo setEmpleado: valida y asigna la relacion del empleado con el administrador 
+    public function setEmpleado($value)
+    {
+        if (Validator::validateNaturalNumber($value)) {
+            $this->empleado = $value;
+            return true;
+        } else {
+            $this->data_error = 'El identificador del empleado es incorrecto';
+            return false;
+        }
+    }
+
+    // Método setContrasenia: valida y asigna la contraseña del administrador.
+    public function setcontrasenia($value, $min = 8, $max = 250)
+    {
+        if (Validator::validatePassword($value)) {
+            $this->contrasenia = password_hash($value, PASSWORD_DEFAULT);
+            return true;
+        } else {
+            $this->data_error = Validator::getPasswordError();
+            return false;
+        }
+    }
+
+    // Método getDataError: retorna el error actual de los datos.
     public function getDataError()
     {
         return $this->data_error;
     }
 }
+?>

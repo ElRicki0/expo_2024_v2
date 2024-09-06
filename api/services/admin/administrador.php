@@ -34,8 +34,9 @@ if (isset($_GET['action'])) {
                 $_POST = Validator::validateForm($_POST);
                 if (
                     !$administrador->setCorreo($_POST['correo_admin']) or
-                    !$administrador->setContraseña($_POST['contra_admin']) or
-                    !$administrador->setNombre($_POST['nombre_admin'])
+                    !$administrador->setContrasenia($_POST['contra_admin']) or
+                    !$administrador->setNombre($_POST['nombre_admin'])or
+                    !$administrador->setEmpleado($_POST['empleado_admin'])
                 ) {
                     $result['error'] = $administrador->getDataError();
                 } elseif ($administrador->createRow()) {
@@ -97,7 +98,7 @@ if (isset($_GET['action'])) {
                 break;
             case 'readEmployed':
                 // Lectura de un empleado específico por su ID.
-                if (!$administrador->setId($_POST['id_admin'])) {
+                if (!$administrador->setId($_POST['idAdmin'])) {
                     // Si el ID es incorrecto, se registra un error.
                     $result['error'] = 'Empleado incorrecto';
                 } elseif ($result['dataset'] = $administrador->readEmployed()) {
@@ -166,7 +167,7 @@ if (isset($_GET['action'])) {
                 $_POST = Validator::validateForm($_POST);
                 if (!$administrador->checkPassword($_POST['contraseña_actual'])) {
                     $result['error'] = 'Contraseña actual incorrecta';
-                } elseif (!$administrador->setContraseña($_POST['contraseña_nueva'])) {
+                } elseif (!$administrador->setContrasenia($_POST['contraseña_nueva'])) {
                     $result['error'] = $administrador->getDataError();
                 } elseif ($administrador->changePassword()) {
                     $result['status'] = 1;
@@ -209,7 +210,7 @@ if (isset($_GET['action'])) {
                 $_POST = Validator::validateForm($_POST);
                 if (
                     !$administrador->setCorreo($_POST['correo_admin2']) ||
-                    !$administrador->setContraseña($_POST['contra_admin2']) ||
+                    !$administrador->setContrasenia($_POST['contra_admin2']) ||
                     !$administrador->setNombre($_POST['nombre_admin2'])
                 ) {
                     // Si los datos no son válidos, se registra un error.

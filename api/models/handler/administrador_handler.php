@@ -105,9 +105,9 @@ class AdministradorHandler
     // Método para crear un nuevo administrador.
     public function createRow()
     {
-        $sql = 'INSERT INTO tb_admin(nombre_admin, contrasenia_admin, correo_admin)
-                VALUES(?, ?, ?)';
-        $params = array($this->nombre, $this->contrasenia, $this->correo);
+        $sql = 'INSERT INTO tb_admin(nombre_admin, contrasenia_admin, correo_admin, id_empleado)
+                VALUES(?, ?, ?, ?)';
+        $params = array($this->nombre, $this->contrasenia, $this->correo, $this->empleado);
         // Se ejecuta la consulta para insertar un nuevo registro de administrador.
         return Database::executeRow($sql, $params);
     }
@@ -135,10 +135,12 @@ class AdministradorHandler
     // Método para leer todos los administradores registrados.
     public function readAll()
     {
-        $sql = 'SELECT id_admin, nombre_admin, correo_admin
-                FROM tb_admin';
-        // Se ejecuta la consulta para actualizar la información del perfil del administrador.
-        return Database::getRows($sql);
+        $sql = 'SELECT *
+                FROM tb_admin a
+                WHERE a.id_admin <> ?';
+        $params = array($_SESSION['idAdministrador']);
+        // Se obtiene la información del perfil del administrador actual.
+        return Database::getRow($sql, $params);
     }
 
     // Método para leer todos los empleados registrados.
