@@ -142,7 +142,7 @@ const openUpdate = async (id) => {
         CONTRASEÑA_TITLE.style.display = "none";
         CONTRASEÑA_ADMINISTRADOR.style.display = "none";
         CONTRASEÑA_ADMINISTRADOR.disabled = true;
-        fillSelect(ADMINISTRADOR_API, 'readEmployed', 'empleado_admin', ROW.id_admin);
+        fillSelect(EMPLEADO_API, 'readAll', 'empleado_admin', parseInt(ROW.id_admin));
     } else {
         sweetAlert(2, DATA.error, false);
     }
