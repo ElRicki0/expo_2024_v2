@@ -41,7 +41,7 @@ CREATE TABLE tb_admin(
     id_admin INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
     nombre_admin VARCHAR(50) UNIQUE NOT NULL,
     correo_admin VARCHAR (100) unique NOT NULL,
-    contraseña_admin VARCHAR(500) NOT NULL,
+    contrasenia_admin VARCHAR(500) NOT NULL,
     id_empleado INT,
     FOREIGN KEY (id_empleado) REFERENCES tb_empleados (id_empleado)
 );

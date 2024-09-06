@@ -11,6 +11,8 @@ if (isset($_GET['action'])) {
     $result = array('status' => 0, 'message' => null, 'dataset' => null, 'error' => null, 'exception' => null, 'fileStatus' => null);
     // Se verifica si existe una sesión iniciada como empleado, de lo contrario se finaliza el script con un mensaje de error.
     if (isset($_SESSION['idAdministrador'])) {
+        $result['session'] = 1; // Indica que hay una sesión activa.
+        
         // Se compara la acción a realizar cuando un empleado ha iniciado sesión.
         switch ($_GET['action']) {
             case 'searchRows':
@@ -85,27 +87,29 @@ if (isset($_GET['action'])) {
                     $result['error'] = 'Ocurrió un problema al eliminar al Servicio';
                 }
                 break;
+
             case 'readCantidadCitas':
                 if ($result['dataset'] = $servicio->readCantidadCitas()) {
+                    $result['status'] = 1;
+                } else {
+                    $result['error'] = 'No ha datos diponibles';
+                }
+                break;
+                
+            case 'graficoPastelServicio':
+                if ($result['dataset'] = $servicio->graficoPastelServicio()) {
                     $result['status'] = 1;
                 } else {
                     $result['error'] = 'No hay datos disponibles';
                 }
                 break;
-                case 'graficoPastelServicio':
-                    if ($result['dataset'] = $servicio->graficoPastelServicio()) {
-                        $result['status'] = 1;
-                    } else {
-                        $result['error'] = 'No hay datos disponibles';
-                    }
-                    break;
-                    case 'graficoPastelServicio':
-                        if ($result['dataset'] = $servicio->graficoPastelServicio()) {
-                            $result['status'] = 1;
-                        } else {
-                            $result['error'] = 'No hay datos disponibles';
-                        }
-                        break;
+            case 'graficoPastelServicio':
+                if ($result['dataset'] = $servicio->graficoPastelServicio()) {
+                    $result['status'] = 1;
+                } else {
+                    $result['error'] = 'No hay datos disponibles';
+                }
+                break;
             default:
                 $result['error'] = 'Acción no disponible dentro de la sesión';
         }

@@ -23,47 +23,47 @@ class AdministradorHandler
     // Método para verificar el inicio de sesión del administrador.
     public function checkUser($username, $password)
     {
-        $sql = 'SELECT id_admin, correo_admin, contraseña_admin
+        $sql = 'SELECT id_admin, correo_admin, contrasenia_admin
                 FROM tb_admin
                 WHERE correo_admin = ?';
         $params = array($username);
         // Se intenta obtener el registro del administrador según el correo.
         if (!($data = Database::getRow($sql, $params))) {
             return false; // Si no se encuentra el usuario, retorna falso.
-        } elseif (password_verify($password, $data['contraseña_admin'])) {
-            // Si la contraseña coincide con el hash almacenado, se inicia la sesión del administrador.
+        } elseif (password_verify($password, $data['contrasenia_admin'])) {
+            // Si la contrasenia coincide con el hash almacenado, se inicia la sesión del administrador.
             $_SESSION['idAdministrador'] = $data['id_admin'];
             $_SESSION['correo_admin'] = $data['correo_admin'];
             return true; // Retorna verdadero indicando que el inicio de sesión fue exitoso.
         } else {
-            return false; // Si la contraseña no coincide, retorna falso.
+            return false; // Si la contrasenia no coincide, retorna falso.
         }
     }
 
-    // Método para verificar si la contraseña actual del administrador es correcta.
+    // Método para verificar si la contrasenia actual del administrador es correcta.
     public function checkPassword($password)
     {
-        $sql = 'SELECT contraseña_admin
+        $sql = 'SELECT contrasenia_admin
                 FROM tb_admin
                 WHERE id_admin = ?';
         $params = array($_SESSION['idAdministrador']);
         $data = Database::getRow($sql, $params);
-        // Se verifica si la contraseña actual coincide con el hash almacenado en la base de datos.
-        if (password_verify($password, $data['contraseña_admin'])) {
-            return true; // Retorna verdadero si la contraseña es correcta.
+        // Se verifica si la contrasenia actual coincide con el hash almacenado en la base de datos.
+        if (password_verify($password, $data['contrasenia_admin'])) {
+            return true; // Retorna verdadero si la contrasenia es correcta.
         } else {
-            return false; // Retorna falso si la contraseña no coincide.
+            return false; // Retorna falso si la contrasenia no coincide.
         }
     }
 
-    // Método para cambiar la contraseña del administrador.
+    // Método para cambiar la contrasenia del administrador.
     public function changePassword()
     {
         $sql = 'UPDATE tb_admin
-                SET contraseña_admin = ?
+                SET contrasenia_admin = ?
                 WHERE id_admin = ?';
         $params = array($this->contrasenia, $_SESSION['idAdministrador']);
-        // Se ejecuta la consulta para actualizar la contraseña del administrador.
+        // Se ejecuta la consulta para actualizar la contrasenia del administrador.
         return Database::executeRow($sql, $params);
     }
 
@@ -105,7 +105,7 @@ class AdministradorHandler
     // Método para crear un nuevo administrador.
     public function createRow()
     {
-        $sql = 'INSERT INTO tb_admin(nombre_admin, contraseña_admin, correo_admin)
+        $sql = 'INSERT INTO tb_admin(nombre_admin, contrasenia_admin, correo_admin)
                 VALUES(?, ?, ?)';
         $params = array($this->nombre, $this->contrasenia, $this->correo);
         // Se ejecuta la consulta para insertar un nuevo registro de administrador.
@@ -115,7 +115,7 @@ class AdministradorHandler
     // Método para crear un nuevo administrador.
     public function createNewRow()
     {
-        $sql = 'INSERT INTO tb_admin(nombre_admin, contraseña_admin, correo_admin, id_empleado)
+        $sql = 'INSERT INTO tb_admin(nombre_admin, contrasenia_admin, correo_admin, id_empleado)
                 VALUES(?, ?, ?, 1)';
         $params = array($this->nombre, $this->contrasenia, $this->correo);
         // Se ejecuta la consulta para insertar un nuevo registro de administrador.

@@ -7,6 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
     loadTemplate();
     graficoBarras();
     graficoPastel();
+    console.log("pitoooo");
     // Llamada a la función para llenar la tabla con los registros existentes.
     // fillTable();
 });
@@ -45,7 +46,8 @@ const graficoBarras = async () => {
 */
 const graficoPastel = async () => {
     // Petición para obtener los datos del gráfico.
-    const DATA = await fetchData(   SERVICIOS_API, 'readCantidadCitas');
+    const DATA = await fetchData(SERVICIOS_API, 'readCantidadCitas');
+    console.log(DATA);
     // Se comprueba si la respuesta es satisfactoria, de lo contrario se remueve la etiqueta canvas.
     if (DATA.status) {
         // Se declaran los arreglos para guardar los datos a graficar.
