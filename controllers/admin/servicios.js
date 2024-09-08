@@ -16,8 +16,6 @@ const SAVE_FORM = document.getElementById('saveForm'),
     TIPO_SERVICIO = document.getElementById('tipoServicio'),
     DESCRIPCION_SERVICIO = document.getElementById('descripcionServicio');
 
-
-
 // Método del evento para cuando el documento ha cargado.
 document.addEventListener('DOMContentLoaded', () => {
     loadTemplate();

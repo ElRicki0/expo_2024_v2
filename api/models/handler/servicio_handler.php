@@ -187,15 +187,14 @@ class ServicioHandler
         $sql = 'SELECT DISTINCT
                     cl.id_cliente,
                     cl.nombre_cliente,
-                    cl.apellido_cliente
-                FROM 
-                    tb_clientes cl
-                JOIN 
-                    tb_citas c ON cl.id_cliente = c.id_cliente
-                JOIN 
-                    tb_servicios s ON c.id_servicio = s.id_servicio
-                WHERE 
-                    c.id_servicio = ?';
+                    cl.apellido_cliente,
+                    c.numero_seciones,
+                    c.nombre_cita,
+                    c.fecha_creacion_cita
+                FROM tb_clientes cl
+                INNER JOIN tb_citas c ON cl.id_cliente = c.id_cliente
+                INNER JOIN tb_servicios s ON c.id_servicio = s.id_servicio
+                WHERE c.id_servicio = ?';
         $params = array($this->id);
         return Database::getRows($sql, $params);
     }

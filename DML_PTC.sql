@@ -43,11 +43,11 @@ VALUES
  
 INSERT INTO tb_servicios (tipo_servicio, descripcion_servicio, imagen_servicio) 
 VALUES 
-('Quiropráctica General', 'Servicio de quiropráctica para el cuidado de la salud de la columna vertebral', 'imagen1.jpg'),
-('Masaje Terapéutico', 'Masaje especializado para aliviar dolores musculares y tensiones', 'imagen2.jpg'),
-('Yoga y Meditación', 'Clases de yoga y meditación para el equilibrio cuerpo-mente', 'imagen3.jpg'),
-('Rehabilitación Física', 'Programa de rehabilitación física para lesiones y recuperación post-operatoria', 'imagen4.jpg'),
-('Nutrición Personalizada', 'Asesoramiento nutricional personalizado para una alimentación saludable', 'imagen5.jpg');
+('Quiropráctica General', 'Servicio de quiropráctica para el cuidado de la salud de la columna vertebral', '668d57610556f.png'),
+('Masaje Terapéutico', 'Masaje especializado para aliviar dolores musculares y tensiones', '668d57610556f.png'),
+('Yoga y Meditación', 'Clases de yoga y meditación para el equilibrio cuerpo-mente', '668d57610556f.png'),
+('Rehabilitación Física', 'Programa de rehabilitación física para lesiones y recuperación post-operatoria', '668d57610556f.png'),
+('Nutrición Personalizada', 'Asesoramiento nutricional personalizado para una alimentación saludable', '668d57610556f.png');
 
 
 INSERT INTO tb_beneficios (titulo_beneficio, contenido_beneficio, id_servicio) 

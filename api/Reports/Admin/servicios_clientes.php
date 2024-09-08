@@ -14,28 +14,42 @@ if (isset($_GET['idServicio'])) {
     $cliente = new ClienteData;
     // Se establece el valor de la servicio, de lo contrario se muestra un mensaje.
     if ($servicio->setId($_GET['idServicio'])) {
+
         // Se verifica si la servicio existe, de lo contrario se muestra un mensaje.
         if ($rowServicio = $servicio->readOne()) {
+
             // Se inicia el reporte con el encabezado del documento.
-            $pdf->startReport('Clientes del servicio ' . $rowServicio['tipo_servicio']);
+            $pdf->startReport('Clientes del servicio: ' . $rowServicio['tipo_servicio']);
+
             // Se verifica si existen registros para mostrar, de lo contrario se imprime un mensaje.
             if ($dataServicio = $servicio->servicioCliente()) {
-                // Se establece un color de relleno para los encabezados.
-                $pdf->setFillColor(225);
+
+                // Establecer el color de fondo verde oscuro para los encabezados.
+                $pdf->setFillColor(99, 193, 116); // RGB para verde oscuro
+
                 // Se establece la fuente para los encabezados.
                 $pdf->setFont('Arial', 'B', 11);
+
                 // Se imprimen las celdas con los encabezados.
-                $pdf->cell(30, 10, 'ID cliente', 1, 0, 'C', 1);
-                $pdf->cell(50, 10, 'Nombre cliente', 1, 0, 'C', 1);
-                $pdf->cell(50, 10, 'Nombre apellido', 1, 1, 'C', 1);
-                // Se establece la fuente para los datos de los productos.
+                $pdf->cell(50, 10, 'Nombre cliente', 'TB', 0, 'C', 1);
+                $pdf->cell(60, 10, 'Nombre de la cita', 'TB', 0, 'C', 1);
+                $pdf->cell(30, 10, 'Secciones', 'TB', 0, 'C', 1);
+                $pdf->cell(50, 10, $pdf->encodeString('Fecha de creación'), 'TB', 1, 'C', 1);
+
+                // Se establece la fuente para los datos de los clientes.
                 $pdf->setFont('Arial', '', 11);
+
                 // Se recorren los registros fila por fila.
                 foreach ($dataServicio as $rowServicio) {
-                    // Se imprimen las celdas con los datos de los productos.
-                    $pdf->cell(30, 10, $pdf->encodeString($rowServicio['id_cliente']), 1, 0);
-                    $pdf->cell(50, 10, $pdf->encodeString($rowServicio['nombre_cliente']), 1, 0);
-                    $pdf->cell(50, 10, $pdf->encodeString($rowServicio['apellido_cliente']), 1, 1);
+                    
+                    // Se imprimen las celdas con los datos de los clientes.
+                    $nombreCompleto = $rowServicio['nombre_cliente'] . ' ' . $rowServicio['apellido_cliente'];
+
+                    // Imprimir el nombre completo en una sola celda
+                    $pdf->cell(50, 10, $nombreCompleto, 'T', 0, 'C');
+                    $pdf->cell(60, 10, $rowServicio['nombre_cita'], 'T', 0, 'C');
+                    $pdf->cell(30, 10, $rowServicio['numero_seciones'], 'T', 0, 'C');
+                    $pdf->cell(50, 10, $rowServicio['fecha_creacion_cita'], 'T', 1, 'C');
                 }
             } else {
                 $pdf->cell(0, 10, $pdf->encodeString('No hay clientes para el servicio'), 1, 1);
