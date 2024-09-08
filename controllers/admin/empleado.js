@@ -96,7 +96,7 @@ const fillTable = async (form = null) => {
                     <i class="bi bi-trash3-fill"></i>
                 </button>
                 <button class="btn btn-primary" onclick="openUpdate(${row.id_empleado})">
-                    <i class="bi bi-pen-fill"> </i>
+                    <i class="bi bi-pen-fill"></i>
                 </button>
                 <button class="btn btn-primary" onclick="openState(${row.id_empleado})">
                     <i class="bi bi-exclamation-octagon"></i>

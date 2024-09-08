@@ -21,11 +21,11 @@ class BeneficioHandler
     {
         $value = '%' . Validator::getSearchValue() . '%';
         $sql = 'SELECT b.titulo_beneficio, b.contenido_beneficio, s.tipo_servicio 
-                    FROM tb_beneficios b
-                    join  tb_servicios s ON b.id_servicio = s.id_servicio
-                WHERE titulo_beneficio LIKE ? OR contenido_beneficio LIKE ? or tipo_servicio like ?
+                FROM tb_beneficios b
+                join  tb_servicios s ON b.id_servicio = s.id_servicio
+                WHERE titulo_beneficio LIKE ?
                 ORDER BY titulo_beneficio';
-        $params = array($value, $value, $value, $value);
+        $params = array($value);
         return Database::getRows($sql, $params);
     }
 
