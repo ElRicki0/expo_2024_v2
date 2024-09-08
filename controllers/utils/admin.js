@@ -63,10 +63,10 @@ const loadTemplate = async () => {
                                 <a class="nav-link" href="clientes.html"><i class="bi bi-people-fill me-1"></i> Clientes</a>
                             </li>
                             <li class="nav-item ms-4">
-                                <a class="nav-link" href="empleados.html"><i class="bi bi-people"></i> Empleados</a>
+                                <a class="nav-link" href="empleados.html"><i class="bi bi-person-vcard-fill"></i> Empleados</a>
                             </li>
                             <li class="nav-item ms-4">
-                                <a class="nav-link" href="administradores.html"><i class="bi bi-person-circle me-1"></i></i> Admin</a>
+                                <a class="nav-link" href="administradores.html"><i class="bi bi-shield-lock-fill"></i> Admin</a>
                             </li>
                             <li class="nav-item ms-4">
                                 <a class="nav-link" href="servicios.html"><i class="bi bi-file-medical-fill me-1"></i> Servicios</a>

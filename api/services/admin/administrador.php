@@ -45,7 +45,7 @@ if (isset($_GET['action'])) {
                     $result['message'] = 'Administrador agregado correctamente';
                 } else {
                     // Si hay un problema al crear, se registra un error.
-                    $result['error'] = 'el nombre del administrador ya existe ';
+                    $result['error'] = 'Este administrador ya existe';
                 }
                 break;
             case 'readAll':
