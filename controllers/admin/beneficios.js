@@ -89,7 +89,7 @@ const fillTable = async (form = null) => {
                             <i class="bi bi-trash3-fill"></i>
                         </button>
                         <button type="button" class="btn btn-primary" onclick="openUpdate(${row.id_beneficio})">
-                            <i class="bi bi-pen-fill"> </i>
+                            <i class="bi bi-pen-fill"></i>
                         </button>
                     </td>
                 </tr>

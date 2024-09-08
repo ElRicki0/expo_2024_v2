@@ -59,7 +59,6 @@ SAVE_FORM.addEventListener('submit', async (event) => {
     }
 });
 
-
 /*
 *   Función asíncrona para llenar la tabla con los registros disponibles.
 *   Parámetros: form (objeto opcional con los datos de búsqueda).
@@ -86,11 +85,11 @@ const fillTable = async (form = null) => {
                     <td>${row.contenido_pregunta}</td>
                     <td>${row.nombre_empleado}</td>
                     <td>
-                        <button type="button" class="btn btn-info" onclick="openUpdate(${row.id_pregunta})">
-                            <i class="bi bi-pencil-fill"></i>
-                        </button>
                         <button type="button" class="btn btn-danger" onclick="openDelete(${row.id_pregunta})">
                             <i class="bi bi-trash-fill"></i>
+                        </button>
+                        <button type="button" class="btn btn-primary" onclick="openUpdate(${row.id_pregunta})">
+                            <i class="bi bi-pen-fill"></i>
                         </button>
                     </td>
                 </tr>
@@ -103,7 +102,6 @@ const fillTable = async (form = null) => {
     }
 }
 
-
 /*
 *   Función para preparar el formulario al momento de insertar un registro.
 *   Parámetros: ninguno.
@@ -112,7 +110,7 @@ const fillTable = async (form = null) => {
 const openCreate = () => {
     // Se muestra la caja de diálogo con su título.
     SAVE_MODAL.show();
-    MODAL_TITLE.textContent = 'Crear pregunta';
+    MODAL_TITLE.textContent = 'AGREGAR PREGUNTA';
     // Se prepara el formulario.
     SAVE_FORM.reset();
     fillSelect(EMPLEADO_API, 'readAll', 'empleadoPregunta');
@@ -133,7 +131,7 @@ const openUpdate = async (id) => {
     if (DATA.status) {
         // Se muestra la caja de diálogo con su título.
         SAVE_MODAL.show();
-        MODAL_TITLE.textContent = 'Actualizar pregunta';
+        MODAL_TITLE.textContent = 'ACTUALIZAR PREGUNTA';
         // Se prepara el formulario.
         SAVE_FORM.reset();
         // Se inicializan los campos con los datos.
@@ -173,4 +171,3 @@ const openDelete = async (id) => {
         }
     }
 }
-

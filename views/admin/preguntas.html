@@ -2,128 +2,154 @@
 <html lang="es">
 
 <head>
+
+    <!-- Título del documento -->
+    <title>Quiropráctica Específica</title>
+
+    <!-- Metadatos de la pagina web -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Preguntas</title>
-    <!--Script para ponerle icono a la pagina-->
-    <link rel="icon" href="../../resources/img/icons/icon.jpg">
+
+    <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="../../resources/css/boostrap_css.css">
-    <link rel="stylesheet" href="../../resources/css/general.css">
     <link rel="stylesheet" href="../../resources/css/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="../../resources/css/general.css">
+    <link rel="stylesheet" href="../../resources/css/barrahorizontal.css">
 </head>
 
 <body>
-    <!-- contenido del header generado automáticamente -->
-    <header>
-    </header>
-    <!-- contenido principal -->
+
+    <!-- Contenedor principal -->
     <main class="container">
+
         <!-- titulo principal -->
-        <div class="container-fluid text-center">
-            <div class="row justify-content-center py-5">
-                <h3 class="fw-bold text-white">Administrar Preguntas</h3>
+        <div class="container-fluid">
+            <div class="row py-4">
+                <h3 class="fw-bold text-white"><i class="bi bi-question-lg me-1"></i> Administrar Preguntas</h3>
+                <h6 class="fw-medium text-secondary">Bienvenido a la sección de gestión de preguntas. Aquí puedes
+                    manejar todos los comentarios registrados en tu página web. <br>
+                    La tabla te permite eliminar, dar de baja, editar y
+                    reportes generales y específicos de actividad.</h6>
             </div>
         </div>
-        
+
+        <!-- Formulario de búsqueda -->
         <div class="row">
-            <!-- Formulario de búsqueda -->
-            <form class="col-sm-12 col-md-6" id="searchForm">
+            <form class="col-sm-12 col-md-12 col-lg-10" id="searchForm">
                 <div class="row">
                     <div class="col-6">
-                        <input type="search" class="form-control" name="search"
-                            placeholder="Pregunta, Empleado, Contenido" required>
+                        <input type="search" class="form-control custom-input border-2" id="search" name="search"
+                            placeholder="Buscar por Pregunta" required>
                     </div>
                     <div class="col-6">
                         <button type="submit" class="btn btn-success">
                             <i class="bi bi-search"></i>
                         </button>
                         <button type="reset" class="btn btn-secondary" onclick="fillTable()">
-                            <i class="bi bi-x-square-fill"></i>
+                            <i class="bi bi-arrow-counterclockwise"></i>
+                        </button>
+                        <button type="button" class="btn btn-warning" onclick="openCreate()">
+                            <i class="bi bi-plus"></i>
                         </button>
                     </div>
                 </div>
             </form>
-            <div class="col-sm-12 col-md-6 text-end">
-                <!-- Botón para abrir una caja de diálogo al momento de crear un nuevo registro -->
-                <button type="button" class="btn btn-primary" onclick="openCreate()">
-                    <i class="bi bi-plus-square-fill"></i>
-                </button>
-            </div>
-
         </div>
-        <!-- Tabla para mostrar los registros existentes -->
-        <table class="table table-hover table-dark">
-            <!-- Cabeza de la tabla para mostrar la cantidad de registros y los títulos de las columnas -->
-            <thead>
-                <tr>
-                    <td colspan="5" class="text-white fw-bold mt-3" id="rowsFound"></td>
-                </tr>
-                <tr>
-                    <th>IMAGEN</th>
-                    <th>PREGUNTA</th>
-                    <th>CONTENIDO</th>
-                    <th>EMPLEADO</th>
-                    <th>ACCIONES</th>
-                </tr>
-            </thead>
-            <!-- Cuerpo de la tabla para mostrar un registro por fila -->
-            <tbody id="tableBody" class="table-group-divider"></tbody>
-        </table>
 
-        <!-- Componente Modal para guardar un registro -->
-        <div class="modal fade" id="saveModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-            aria-labelledby="modalTitle" aria-hidden="true">
-            <div class="modal-dialog modal-lg modal-dialog-centered">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="modalTitle"></h1>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <!-- Formulario para crear o actualizar un registro -->
+        <p id="rowsFound" class="text-white fw-bold mt-3"></p>
+
+        <!-- Contenedor para la tabla con scroll -->
+        <div id="ContenedorTable">
+
+            <!-- Tabla para mostrar los registros existentes -->
+            <table class="table table-hover table-dark">
+
+                <!-- Cabeza de la tabla para mostrar la cantidad de registros y los títulos de las columnas -->
+                <thead>
+                    <tr>
+                        <th>IMAGEN</th>
+                        <th>PREGUNTA</th>
+                        <th>CONTENIDO</th>
+                        <th>EMPLEADO</th>
+                        <th>ACCIONES</th>
+                    </tr>
+                </thead>
+
+                <!-- Cuerpo de la tabla para mostrar un registro por fila -->
+                <tbody id="tableBody" class="table-group-divider"></tbody>
+            </table>
+        </div>
+
+        <!-- Modal agregar Pregunta -->
+        <div class="modal fade" id="saveModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-lg">
+                <div class="modal-content bg-dark text-white">
+
+                    <!-- Formulario saveForm -->
                     <form id="saveForm">
-                        <div class="modal-body row g-3">
-                            <!-- Campo oculto para asignar el id del registro al momento de modificar -->
-                            <input type="number" class="d-none" id="idPregunta" name="idPregunta">
-                            <div class="col-sm-12 col-md-6">
-                                <label for="imagenPregunta" class="form-label">Imagen</label>
-                                <input id="imagenPregunta" type="file" name="imagenPregunta" class="form-control"
-                                    accept=".png, .jpg">
+
+                        <!-- Campo oculto para asignar el id del registro al momento de modificar -->
+                        <input type="number" class="d-none" id="idBeneficio" name="idBeneficio">
+                        <form class="needs-validation">
+
+                            <!-- Body del modal -->
+                            <div class="modal-body">
+                                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                                    aria-label="Close"></button> <!-- Cambiar color del botón de cerrar -->
+                                <h1 class="fs-4 fw-bold text-center mb-4" id="modalTitle"></h1>
+
+                                <!-- Inputs -->
+                                <div class="row p-3">
+                                    <div class="col-12">
+                                        <div class="row">
+                                            <div class="col-6">
+                                                <label for="imagenPregunta" class="form-label">Imagen</label>
+                                                <input id="imagenPregunta" type="file" name="imagenPregunta"
+                                                    class="form-control" accept=".png, .jpg">
+                                            </div>
+                                            <div class="col-6">
+                                                <label for="nombrePregunta" class="form-label">Pregunta</label>
+                                                <input id="nombrePregunta" type="text" name="nombrePregunta"
+                                                    class="form-control" required>
+                                            </div>
+                                            <div class="col-6">
+                                                <label for="contenidoPregunta" class="form-label">Contenido</label>
+                                                <input id="contenidoPregunta" type="text" name="contenidoPregunta"
+                                                    class="form-control" required>
+                                            </div>
+                                            <div class="col-6">
+                                                <label for="empleadoPregunta" class="form-label">Empleado</label>
+                                                <select id="empleadoPregunta" name="empleadoPregunta"
+                                                    class="form-select" required>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="row mt-3">
+                                            <div class="col-6"></div>
+                                            <div class="col-6 text-end">
+                                                <button type="submit" class="btn btn-primary ps-4 pe-4">
+                                                    <i class="bi bi-person-fill-add me-1"></i> Aceptar
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="col-sm-12 col-md-6">
-                                <label for="nombrePregunta" class="form-label">Pregunta</label>
-                                <input id="nombrePregunta" type="text" name="nombrePregunta" class="form-control"
-                                    required>
-                            </div>
-                            <div class="col-sm-12 col-md-6">
-                                <label for="contenidoPregunta" class="form-label">Contenido</label>
-                                <input id="contenidoPregunta" type="text" name="contenidoPregunta" class="form-control"
-                                    required>
-                            </div>
-                            <div class="col-sm-12 col-md-6">
-                                <label for="empleadoPregunta" class="form-label">Empleado</label>
-                                <select id="empleadoPregunta" name="empleadoPregunta" class="form-select" required>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="submit" class="btn btn-primary">Guardar</button>
-                        </div>
+                        </form>
                     </form>
                 </div>
             </div>
         </div>
-
     </main>
 
-    <footer></footer>
-    <!-- importaciones de archivos js -->
-    <!-- importaciones de resources  -->
-    <script src="../../resources/js/bootstrap_js.js"></script>
-    <script src="../../resources/js/sweetalert.min.js"></script>
-    <!-- controladores del sitio privado -->
+    <!-- Importaciones -->
     <script src="../../controllers/utils/components.js"></script>
+    <script src="../../resources/js/sweetalert.min.js"></script>
+    <script src="../../resources/js/bootstrap_js.js"></script>
     <script src="../../controllers/utils/admin.js"></script>
     <script src="../../controllers/admin/preguntas.js"></script>
+    <script src="../../controllers/utils/Validaciones.js"></script>
+    <script src="../../resources/js/chart.umd.min.js"></script>
 
 </body>
 
