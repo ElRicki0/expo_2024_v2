@@ -80,18 +80,24 @@ const fillTable = async (form = null) => {
             // Se crean y concatenan las filas de la tabla con los datos de cada registro.
             TABLE_BODY.innerHTML += `
             <tr>
-                    <td><img src="${SERVER_URL}images/servicios/${row.imagen_servicio}" height="50"></td>
+                <td><img src="${SERVER_URL}images/servicios/${row.imagen_servicio}" height="50"></td>
                 <td>${row.tipo_servicio}</td>
                 <td>${row.descripcion_servicio}</td>
                 <td>
-                <button class="btn btn-danger"><i class="bi bi-trash3-fill" onclick="openDelete(${row.id_servicio})"></i></button>
-                <button class="btn btn-primary"><i class="bi bi-pen-fill" onclick="openUpdate(${row.id_servicio})"></i></button>
-                <button type="button" class="btn btn-warning" onclick="openChart(${row.id_servicio})"><i class="bi bi-bar-chart-line-fill"></i></button>
+                <button class="btn btn-danger" onclick="openDelete(${row.id_servicio})">
+                    <i class="bi bi-trash3-fill"></i>
+                </button>
+                <button class="btn btn-primary" onclick="openUpdate(${row.id_servicio})">
+                    <i class="bi bi-pen-fill"></i>
+                </button>
+                <button type="button" class="btn btn-warning" onclick="openChart(${row.id_servicio})">
+                    <i class="bi bi-bar-chart-line-fill"></i>
+                </button>
                 <button type="button" class="btn btn-info" onclick="openReportCliente(${row.id_servicio})">
-                            <i class="bi bi-file-earmark-pdf-fill"></i>
-                        </button>
-            </td>
-        </tr>
+                    <i class="bi bi-file-earmark-code-fill"></i>
+                </button>
+                </td>
+            </tr>
             `;
         });
         // Se muestra un mensaje de acuerdo con el resultado.
@@ -186,7 +192,7 @@ const graficoPastelServicio = async () => {
         });
         // Llamada a la función para generar y mostrar un gráfico de barras.
         // Asegúrate de que la función barGraph esté definida en components.js
-        donaGraph('ChartP2S', servicios, predicciones, 'Citas Predichas', 'Servicios');
+        donaGraph('ChartP2S', servicios, predicciones, 'CITAS PREDICHAS', 'SERVICIOS');
     } else {
         document.getElementById('ChartP2S').remove();
         console.log(DATA.error);
