@@ -2,73 +2,125 @@
 <html lang="es">
 
 <head>
+
+    <!-- Título del documento -->
+    <title>Quiropráctica Específica</title>
+
+    <!-- Metadatos de la página web -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quiropráctica Específica </title>
-    <link rel="icon" href="../../resources/img/icons/icon.jpg">
+
+    <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="../../resources/css/boostrap_css.css">
     <link rel="stylesheet" href="../../resources/css/general.css">
     <link rel="stylesheet" href="../../resources/css/bootstrap-icons.min.css">
-
+    <link rel="stylesheet" href="../../resources/css/barrahorizontal.css">
+    <link rel="stylesheet" href="../../resources/css/admin/inicio.css">
 </head>
 
 <body>
-    <main class="container">
+    <main>
+        <div class="full-screen container-1">
+            <div class="d-flex justify-content-between align-items-center">
+                <div class="ms-4 ms-lg-5"> <!-- Clases de margen responsivo -->
+                    <h1 class="fw-bold text-white effect-shine">Quiropráctica Específica</h1>
+                    <p class="fw-light text-secondary">Bienvenidos al panel de administración de Quiropráctica
+                        Específica. Panel de gestionamiento <br>
+                        y manejo de los datos de Quiropráctica Específica, hecho para administradores y personal de la
+                        clínica.</p>
+                </div>
+                <img src="../../resources/img/icons/icon.jpg" alt="Logo" height="350px">
+            </div>
+        </div>
 
-        <!-- Contenedor de gráficos -->
-        <div class="row mx-auto">
-            <div class="col-sm-12 col-md-6 col-lg-6 card inicioIndex mx-2 my-5">
-                <!-- Se muestra un gráfico con la cantidad de productos por categoría -->
-                <canvas id="chart1"></canvas>
-            </div>
-            <div class="col-sm-12 col-md-6 col-lg-4 card inicioIndex mx-2">
-                <!-- Se muestra un gráfico con el porcentaje de productos por categoría -->
-                <canvas id="chart2"></canvas>
-            </div>
-        </div>
-        <hr>
-        <br>
-        <br>
-        <div class="row">
-            <div class="row">
-                <div class="col-sm-6 mb-3 mb-sm-0">
-                    <div class="card inicioIndex">
-                        <div class="inicioindex card-body">
-                            <h5 class="card-title textoClaro">Administrar Empleados</h5>
-                            <p class="textoClaro card-text">Informacion de empleados en quiropractica.</p>
-                            <a href="../../views/admin/empleados.html" class="btn btn-primary">Ver empleados</a>
-                        </div>
+        <div class="full-screen container-2">
+            <div class="text-center">
+                <h1 class="fw-bold text-white mt-5">Graficas y reportes de la web</h1>
+                <p class="fw-light text-secondary">Aquí podrás visualizar diferentes gráficos y datos relevantes sobre
+                    el rendimiento de la clínica.</p>
+
+                <!-- Contenedor de gráficos -->
+                <div class="row mx-auto">
+                    <div class="col-sm-3 col-md-4 col-lg-6 card inicioIndex m-0 m-lg-3">
+                        <!-- Se muestra un gráfico con los empleados con citas pendientes -->
+                        <canvas id="chart1"></canvas>
                     </div>
-                </div>
-                <div class="col-sm-6">
-                    <div class=" card inicioIndex">
-                        <div class=" card-body">
-                            <h5 class="card-title textoClaro">Información Clientes</h5>
-                            <p class="textoClaro card-text">Visualiza toda la información acerca de tus clientes.</p>
-                            <a href="../../views/admin/clientes.html" class="btn btn-primary">Ver Clientes</a>
-                        </div>
+                    <div class="col-sm-3 col-md-4 col-lg-5 card inicioIndex mt-3 m-lg-3">
+                        <!-- Se muestra un gráfico con las citas realizadas por servicio -->
+                        <canvas id="chart2"></canvas>
                     </div>
                 </div>
             </div>
         </div>
-        <br>
-        <div class="row">
-            <div class="row">
-                <div class="col-sm-6 mb-3 mb-sm-0">
-                    <div class="card inicioIndex">
-                        <div class=" card-body">
-                            <h5 class="card-title textoClaro">Administrar Administradores</h5>
-                            <p class="textoClaro card-text">Administra la información de tus administradores.</p>
-                            <a href="../../views/admin/administradores.html" class="btn btn-primary">Ver empleados</a>
+
+        <div class="full-screen container-3">
+            <div class="mt-5">
+
+                <!-- Contenedor de cartas de acceso directo -->
+                <div class="container">
+                    <div class="row">
+                        <h1 class="fw-bold text-white mt-3">Accesos directos</h1>
+                        <p class=" fw-light text-secondary">Este contenedor contiene cartas de acceso directo para
+                            navegar dentro de la página web de manera eficiente.</p>
+                        <hr>
+                        <div class="col-sm-6 mb-3 mb-sm-0">
+                            <div class="card bg-dark">
+                                <div class="card-body">
+                                    <h4 class="fw-bold text-white">Manejar Empleados</h4>
+                                    <p class="fw-light fs-6 text-secondary">Descripción: Accede a la plataforma diseñada
+                                        para
+                                        todos los empleados de la clínica.
+                                        Aquí encontrarás recursos, horarios, y herramientas necesarias para facilitar tu
+                                        trabajo diario y mejorar la colaboración
+                                        entre equipos.</p>
+                                    <a href="../../views/admin/empleados.html"
+                                        class="btn btn-primary fw-bold text-white">Ver empleados</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="card bg-dark">
+                                <div class="card-body">
+                                    <h4 class="fw-bold text-white">Información Clientes</h4>
+                                    <p class="fw-light fs-6 text-secondary">Descripción: Esta carta está destinada a
+                                        nuestros
+                                        clientes. Aquí pueden acceder a su historial de citas, información sobre
+                                        tratamientos y recursos educativos sobre la quiropráctica para mejorar su
+                                        bienestar.</p>
+                                    <a href="../../views/admin/clientes.html"
+                                        class="btn btn-primary fw-bold text-white">Ver Clientes</a>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-sm-6">
-                    <div class=" card inicioIndex">
-                        <div class=" card-body">
-                            <h5 class="card-title textoClaro">Visualización Preguntas</h5>
-                            <p class="textoClaro card-text">Visualiza todas las preguntas realizadas por los clientes.</p>
-                            <a href="../../views/admin/preguntas.html" class="btn btn-primary">Ver ventas</a>
+                    <br>
+                    <div class="row">
+                        <div class="col-sm-6 mb-3 mb-sm-0">
+                            <div class="card bg-dark">
+                                <div class="card-body">
+                                    <h4 class="fw-bold text-white">Gestionar Administradores</h4>
+                                    <p class="fw-light fs-6 text-secondary">Descripción: Este acceso es exclusivo para
+                                        administradores. Aquí podrás gestionar la información de la clínica, supervisar
+                                        el rendimiento del personal, y acceder a informes detallados para tomar
+                                        decisiones informadas.</p>
+                                    <a href="../../views/admin/administradores.html"
+                                        class="btn btn-primary fw-bold text-white">Ver
+                                        Administradores</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="card bg-dark">
+                                <div class="card-body">
+                                    <h4 class="fw-bold text-white">Visualización Preguntas</h4>
+                                    <p class="fw-light fs-6 text-secondary">Descripción: Si tienes dudas o necesitas
+                                        información adicional, dirígete a esta sección. Aquí encontrarás respuestas a
+                                        preguntas frecuentes y recursos útiles para resolver tus inquietudes de manera
+                                        rápida y efectiva.</p>
+                                    <a href="../../views/admin/preguntas.html"
+                                        class="btn btn-primary fw-bold text-white">Ver Preguntas</a>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -76,19 +128,13 @@
         </div>
     </main>
 
-    <footer>
-    </footer>
-
-    <script src="../../resources/js/bootstrap_js.js"></script>
-    <script type="text/javascript" src="../../resources/js/sweetalert.min.js"></script>
-    <script src="../../resources/js/chart.umd.min.js"></script>
-    <!-- llamar al controntrolador del sitio privado-->
+    <!-- Importaciones -->
     <script src="../../controllers/utils/components.js"></script>
-    <!-- llamar al controntrolador del los sitios-->
+    <script src="../../resources/js/sweetalert.min.js"></script>
+    <script src="../../resources/js/bootstrap.bundle.min.js"> </script>
     <script src="../../controllers/utils/admin.js"></script>
-
-    <script type="module" src="../../controllers/admin/inicio.js"></script>
+    <script src="../../controllers/admin/inicio.js"></script>
+    <script src="../../resources/js/chart.umd.min.js"></script>
 </body>
-
 
 </html>

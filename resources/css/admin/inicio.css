@@ -1,9 +1,55 @@
-.iniciotarjet{
-    background-color: #000000 ;
-    color: #28930D;
+.full-screen {
+    height: 100vh;
+    display: flex;
+    color: white;
+    position: sticky;
+    top: 0;
+    width: 100%;
 }
 
-.letrados{
-    background-color: #000000 ;
-    color: #ffffff;
+.container-1 {
+    background-color: #000000;
+    justify-content: start;
+    align-items: center;
+}
+
+.container-2 {
+    background-color: #161616;
+    justify-content: center;
+}
+
+.container-3 {
+    background-color: #000000;
+    justify-content: center;
+}
+
+.container-1 h1 {
+    font-size: 5rem;
+}
+
+.full-screen p {
+    font-size: 1.4rem;
+    /* Tamaño de las descripciones generales */
+}
+
+@media (max-width: 768px) {
+    .container-1 h1 {
+        font-size: 3rem;
+        /* Ajustar el tamaño del título en pantallas pequeñas */
+    }
+
+    .container-1 {
+        justify-content: center;
+        align-items: center;
+    }
+
+    .full-screen p {
+        font-size: 1.2rem;
+        /* Ajustar el tamaño del texto en pantallas pequeñas */
+    }
+
+    /* Ocultar la imagen en dispositivos móviles */
+    img {
+        display: none;
+    }
 }

@@ -32,7 +32,7 @@ const graficoBarras = async () => {
             citas.push(row.cantidad_citas);
         });
         // Llamada a la función para generar y mostrar un gráfico de barras. Se encuentra en el archivo components.js
-        barGraph('chart1', empleado, citas, 'citas pendientes', 'empleados con citas pendientes');
+        barGraph('chart1', empleado, citas, 'CITAS PENDIENTES', 'EMPLEADOS CON CITAS PENDIENTES');
     } else {
         document.getElementById('chart1').remove();
         console.log(DATA.error);
@@ -60,7 +60,7 @@ const graficoPastel = async () => {
             citas.push(row.cantidad_citas);
         });
         // Llamada a la función para generar y mostrar un gráfico de pastel. Se encuentra en el archivo components.js
-        pieGraph('chart2', servicio, citas, 'citas realizadas', 'Servicios con mas citas realizadas');
+        pieGraph('chart2', servicio, citas, 'CITAS REALIZADAS', 'SERVICIOS CON MAS CITAS REALIZADAS');
     } else {
         document.getElementById('chart2').remove();
         console.log(DATA.error);

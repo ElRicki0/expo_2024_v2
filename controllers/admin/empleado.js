@@ -95,14 +95,14 @@ const fillTable = async (form = null) => {
                 <button class="btn btn-danger" onclick="openDelete(${row.id_empleado})">
                     <i class="bi bi-trash3-fill"></i>
                 </button>
+                <button class="btn btn-primary" onclick="openUpdate(${row.id_empleado})">
+                    <i class="bi bi-pen-fill"> </i>
+                </button>
                 <button class="btn btn-primary" onclick="openState(${row.id_empleado})">
                     <i class="bi bi-exclamation-octagon"></i>
                 </button>
                 <button type="button" class="btn btn-warning" onclick="openChart(${row.id_empleado})">
                     <i class="bi bi-bar-chart-line-fill"></i>
-                </button>
-                <button class="btn btn-primary" onclick="openUpdate(${row.id_empleado})">
-                    <i class="bi bi-pen-fill"> </i>
                 </button>
             </td>
         </tr>
