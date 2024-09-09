@@ -82,11 +82,11 @@ const fillTable = async (form = null) => {
                     <td>${row.notas_adicionales}</td>
                     <td>${row.nombre_cita}</td>
                     <td>
-                        <button type="button" class="btn btn-info" onclick="openUpdate(${row.id_tratamiento})">
-                            <i class="bi bi-pencil-fill"></i>
-                        </button>
                         <button type="button" class="btn btn-danger" onclick="openDelete(${row.id_tratamiento})">
                             <i class="bi bi-trash-fill"></i>
+                        </button>
+                        <button type="button" class="btn btn-primary" onclick="openUpdate(${row.id_tratamiento})">
+                            <i class="bi bi-pen-fill"></i>
                         </button>
                     </td>
                 </tr>
@@ -107,7 +107,7 @@ const fillTable = async (form = null) => {
 const openCreate = () => {
     // Se muestra la caja de diálogo con su título.
     SAVE_MODAL.show();
-    MODAL_TITLE.textContent = 'Crear tratamiento';
+    MODAL_TITLE.textContent = 'AGREGAR TRATAMIENTO';
     // Se prepara el formulario.
     SAVE_FORM.reset();
     fillSelect(SERVICIO_API, 'readAll', 'citaTratamiento');
@@ -128,7 +128,7 @@ const openUpdate = async (id) => {
     if (DATA.status) {
         // Se muestra la caja de diálogo con su título.
         SAVE_MODAL.show();
-        MODAL_TITLE.textContent = 'Actualizar tratamiento';
+        MODAL_TITLE.textContent = 'ACTUALIZAR TRATAMIENTO';
         // Se prepara el formulario.
         SAVE_FORM.reset();
         // Se inicializan los campos con los datos.
