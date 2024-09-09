@@ -13,14 +13,12 @@ const TABLE_BODY = document.getElementById('tableBody'),
 const SAVE_MODAL = new bootstrap.Modal('#saveModal'),
     MODAL_TITLE = document.getElementById('modalTitle');
 
-
 // constantes para mostrar datos de citas durante un periodo de tiempo
 const MODAL_GRAFIC = new bootstrap.Modal('#modalGrafic'),
     MODAL_G_TITLE = document.getElementById('modalGraficTitle');
 
 // constantes para mostrar datos de citas durante un periodo de tiempo
 const CHART_MODAL = new bootstrap.Modal('#chartModal');
-
 
 // constantes para mostrar un dato en especifico
 const DATE_FORM = document.getElementById('saveDate'),
@@ -144,9 +142,15 @@ const fillTable = async (form = null) => {
                 <td>${row.nombre_cliente}</td>
                 <td>${row.tipo_servicio}</td>
                 <td>
-                <button class="btn btn-danger"><i class="bi bi-trash3-fill" onclick="openDelete(${row.id_cita})"></i></button>
-                <button class="btn btn-primary"><i class="bi bi-pen-fill" onclick="openUpdate(${row.id_cita})"></i></button>
-                <button class="btn btn-info"><i class="bi bi-calendar-week-fill" onclick="openReport(${row.id_cliente})"></i></button>
+                <button class="btn btn-danger" onclick="openDelete(${row.id_cita})">
+                    <i class="bi bi-trash3-fill"></i>
+                </button>
+                <button class="btn btn-primary" onclick="openUpdate(${row.id_cita})">
+                    <i class="bi bi-pen-fill"></i>
+                </button>
+                <button class="btn btn-info" onclick="openReport(${row.id_cliente})">
+                    <i class="bi bi-file-earmark-code-fill"></i>
+                </button>
             </td>
         </tr>
             `;
@@ -198,7 +202,7 @@ const openUpdate = async (id) => {
     if (DATA.status) {
         // Se muestra la caja de diálogo con su título.
         SAVE_MODAL.show();
-        MODAL_TITLE.textContent = 'Actualizar Cita';
+        MODAL_TITLE.textContent = 'ACTUALIZAR CITA';
         // Se prepara el formulario.
         SAVE_FORM.reset();
         const ROW = DATA.dataset;

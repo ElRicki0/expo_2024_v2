@@ -2,211 +2,261 @@
 <html lang="es">
 
 <head>
+
+    <!-- Título del documento -->
+    <title>Quiropráctica Específica</title>
+
+    <!-- Metadatos de la pagina web -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quiropráctica Específica </title>
-    <link rel="icon" href="../../resources/img/icons/icon.jpg">
+
+    <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="../../resources/css/boostrap_css.css">
-    <link rel="stylesheet" href="../../resources/css/general.css">
     <link rel="stylesheet" href="../../resources/css/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="../../resources/css/general.css">
+    <link rel="stylesheet" href="../../resources/css/barrahorizontal.css">
 </head>
 
 <body>
 
     <!-- Contenedor principal -->
-    <main>
+    <main class="container">
 
-        <!-- Títulos -->
-        <div class="mt-5 justify-content-center">
-            <div class="container-fluid text-center">
-                <div class="row justify-content-center py-5">
-                    <h3 class="fw-bold text-white">Administrar Citas</h3>
-                </div>
+        <!-- titulo principal -->
+        <div class="container-fluid">
+            <div class="row py-4">
+                <h3 class="fw-bold text-white"><i class="bi bi-bookmark-plus-fill me-1"></i> Administrar Citas</h3>
+                <h6 class="fw-medium text-secondary">Bienvenido a la sección de gestión de citas. Aquí puedes manejar
+                    todos las citas registrados en tu página web. <br>
+                    La tabla te permite eliminar, dar de baja, ver graficas y
+                    reportes generales y específicos de actividad.</h6>
             </div>
+        </div>
+
+        <!-- Formulario de búsqueda -->
+        <div class="row">
+            <form class="col-sm-12 col-md-12 col-lg-10" id="searchForm">
+                <div class="row">
+                    <div class="col-6">
+                        <input type="search" class="form-control custom-input border-2" id="search" name="search"
+                            placeholder="Nombre de Cita o Cliente" required>
+                    </div>
+                    <div class="col-6">
+                        <button type="submit" class="btn btn-success">
+                            <i class="bi bi-search"></i>
+                        </button>
+                        <button type="reset" class="btn btn-secondary" onclick="fillTable()">
+                            <i class="bi bi-arrow-counterclockwise"></i>
+                        </button>
+                        <button type="button" class="btn btn-warning" onclick="openCreate()">
+                            <i class="bi bi-plus"></i>
+                        </button>
+                        <button type="button" class="btn btn-warning" onclick="openGraf()">
+                            <i class="bi bi-bar-chart-line-fill"></i>
+                        </button>
+                        <button type="button" onclick="reporteCitasMesActual()" class="btn btn-success">
+                            <i class="bi bi-filetype-pdf"></i>
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <p id="rowsFound" class="text-white fw-bold mt-3"></p>
+
+        <!-- Contenedor para la tabla con scroll -->
+        <div id="ContenedorTable">
+
+            <!-- Tabla para mostrar los registros existentes -->
+            <table class="table table-hover table-dark">
+
+                <!-- Cabeza de la tabla para mostrar la cantidad de registros y los títulos de las columnas -->
+                <thead>
+                    <tr>
+                        <th scope="col">NOMBRE</th>
+                        <th scope="col">FECHA REGISTRO</th>
+                        <th scope="col">FECHA CITA</th>
+                        <th scope="col">ESTADO</th>
+                        <th scope="col">SESIONES</th>
+                        <th scope="col">CLIENTE</th>
+                        <th scope="col">SERVICIO</th>
+                        <th scope="col">ACCIONES</th>
+                    </tr>
+                </thead>
+
+                <!-- Cuerpo de la tabla para mostrar un registro por fila -->
+                <tbody id="tableBody" class="table-group-divider"></tbody>
+            </table>
+        </div>
+
+        <div class="bg-dark rounded mb-3 mt-3">
 
             <!-- Contenedor de gráficos -->
             <div class="container">
                 <div class="row justify-content-center">
-                    <div class="col-12 col-md-6 col-lg-5 my-3">
+
+                    <!-- Primera columna -->
+                    <div class="col-12 col-md-6 my-3">
+
+                        <!-- Título y descripción -->
+                        <div class="text-center">
+                            <h6 class="fw-medium text-secondary">Estado de las citas: Esta gráfica muestra las citas
+                                activos e inactivos de nuestra página
+                                <br> web, los que estan pendientes de revisión.
+                            </h6>
+                        </div>
+
+                        <!-- Gráfico -->
                         <div class="card inicioIndex">
                             <div class="card-body">
-                                <!-- Se muestra un gráfico con la cantidad de productos por categoría -->
                                 <div class="chart-container">
                                     <canvas id="chart1"></canvas>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-12 col-md-6 col-lg-5 my-3">
+
+                    <!-- Segunda columna -->
+                    <div class="col-12 col-md-6 my-3">
+
+                        <!-- Título y descripción -->
+                        <div class="text-center">
+                            <h6 class="fw-medium text-secondary">Prediccion de citas: Esta gráfica muestra una
+                                predicción
+                                de las citas que habran la
+                                <br> proxima semana, tomando en cuenta cada servicio.
+                            </h6>
+                        </div>
+
+                        <!-- Gráfico -->
                         <div class="card inicioIndex">
                             <div class="card-body">
-                                <!-- Se muestra un gráfico con el porcentaje de productos por categoría -->
                                 <div class="chart-container">
                                     <canvas id="chartP2"></canvas>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-12 col-md-5 col-lg-5 my-3 justify-content-center">
-                        
-                    </div>
                 </div>
             </div>
-            <br>
-            <br>
-
-
-            <div class="container mb-3 justify-content-center">
-
-                <!-- Formulario de búsqueda -->
-                <form class="col-sm-12 col-md-12" id="searchForm">
-                    <div class="row">
-                        <div class="col-4">
-                            <input type="search" class="form-control custom-input border-2 textoClaro" id="search"
-                                name="search" placeholder="Buscar" required>
-                        </div>
-                        <div class="col-6">
-                            <button type="submit" class="btn btn-success">
-                                <i class="bi bi-search"></i>
-                            </button>
-                            <button type="reset" class="btn btn-secondary" onclick="fillTable()">
-                                <i class="bi bi-arrow-counterclockwise"></i>
-                            </button>
-                            <button type="button" class="btn btn-warning" onclick="openCreate()">
-                                <i class="bi bi-person-fill-add"></i>
-                            </button>
-                            <button type="button" class="btn btn-info" onclick="openGraf()">
-                                <i class="bi bi-bar-chart-line"></i>
-                            </button>
-                            <button type="button" onclick="reporteCitasMesActual()"  class="btn btn-success"><i class="bi bi-cast"></i> Reporte de citas mensuales
-                            </button>
-                        </div>
-                    </div>
-                </form>
-
-                <!-- Tabla de empleado con opciones -->
-                <div class="table-responsive">
-
-                    <!-- Tabla -->
-                    <div class="table-responsive">
-
-                        <!-- Tabla para mostrar los registros existentes -->
-                        <table class="table table-dark table-hover">
-
-                            <!-- Cabeza de la tabla para mostrar la cantidad de registros y los títulos de las columnas -->
-                            <thead>
-                                <tr>
-                                    <td colspan="8" class="text-white  fw-bold mt-3" id="rowsFound"></td>
-                                </tr>
-                                <tr>
-                                    <th scope="col">NOMBRE</th>
-                                    <th scope="col">FECHA REGISTRO</th>
-                                    <th scope="col">FECHA CITA</th>
-                                    <th scope="col">ESTADO</th>
-                                    <th scope="col">SESIONES</th>
-                                    <th scope="col">CLIENTE</th>
-                                    <th scope="col">SERVICIO</th>
-                                    <th scope="col">ACCIONES</th>
-                                </tr>
-                            </thead>
-
-                            <!-- Filas -->
-                            <tbody id="tableBody" class="table-group-divider">
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-
         </div>
-            
-        
 
-        <!-- Componente Modal para guardar un registro -->
-        <div class="modal fade" id="saveModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-            aria-labelledby="modalTitle" aria-hidden="true">
-            <div class="modal-dialog modal-lg modal-dialog-centered">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="modalTitle"></h1>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <!-- Formulario para crear o actualizar un registro -->
+        <!-- Modal agregar cita -->
+        <div class="modal fade" id="saveModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-lg">
+                <div class="modal-content bg-dark text-white">
+
+                    <!-- Formulario saveForm -->
                     <form id="saveForm">
-                        <div class="modal-body row g-3">
-                            <!-- Campo oculto para asignar el id del registro al momento de modificar -->
-                            <input type="number" class="d-none" id="idCita" name="idCita">
-                            <div class="col-sm-12 col-md-6">
-                                <label for="nombreCita" class="form-label">Nombre</label>
-                                <input id="nombreCita" type="text" name="nombreCita" class="form-control" required>
+
+                        <!-- Campo oculto para asignar el id del registro al momento de modificar -->
+                        <input type="number" class="d-none" id="idCita" name="idCita">
+                        <form class="needs-validation">
+
+                            <!-- Body del modal -->
+                            <div class="modal-body">
+                                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                                    aria-label="Close"></button> <!-- Cambiar color del botón de cerrar -->
+                                <h1 class="fs-4 fw-bold text-center mb-4" id="modalTitle"></h1>
+
+                                <!-- Inputs -->
+                                <div class="row p-3">
+                                    <div class="col-12">
+                                        <div class="row">
+                                            <div class="col-6">
+                                                <label for="nombreCita" class="form-label">Nombre</label>
+                                                <input id="nombreCita" type="text" name="nombreCita"
+                                                    class="form-control" required>
+                                            </div>
+                                            <div class="col-6">
+                                                <label for="fechaCita" class="form-label">Fecha cita</label>
+                                                <input id="fechaCita" type="datetime-local" name="fechaCita"
+                                                    class="form-control" required>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-6 mt-2">
+                                                <label for="estadoCita" class="form-label">Estado</label>
+                                                <select id="estadoCita" name="estadoCita" class="form-select" required>
+                                                    <option selected>Seleccione un estado</option>
+                                                    <option value="pendiente">pendiente</option>
+                                                    <option value="proceso">proceso</option>
+                                                    <option value="terminado">terminado</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-6 mt-2">
+                                                <label for="sesionesCita" class="form-label">Cantidad sesiones</label>
+                                                <input id="sesionesCita" type="number" name="sesionesCita" min="1"
+                                                    step="1" class="form-control" required>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-6 mt-2">
+                                                <label for="clienteCita" class="form-label">Cliente</label>
+                                                <select id="clienteCita" name="clienteCita" class="form-select"
+                                                    required>
+                                                </select>
+                                            </div>
+                                            <div class="col-6 mt-2">
+                                                <label for="servicioCita" class="form-label">Servicio</label>
+                                                <select id="servicioCita" name="servicioCita" class="form-select"
+                                                    required>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-6 mt-2">
+                                            <label for="empleadoCita" class="form-label">Empleado</label>
+                                            <select id="empleadoCita" name="empleadoCita" class="form-select" required>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="row mt-3">
+                                        <div class="col-6"></div>
+                                        <div class="col-6 text-end">
+                                            <button type="submit" class="btn btn-primary ps-4 pe-4">
+                                                <i class="bi bi-person-fill-add me-1"></i> Aceptar
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="col-sm-12 col-md-6">
-                                <label for="fechaCita" class="form-label">Fecha cita</label>
-                                <input id="fechaCita" type="datetime-local" name="fechaCita" class="form-control"
-                                    required>
-                            </div>
-                            <div class="col-sm-12 col-md-6">
-                                <label for="estadoCita" class="form-label">Estado</label>
-                                <select id="estadoCita" name="estadoCita" class="form-select" required>
-                                    <option selected>Seleccione un estado</option>
-                                    <option value="pendiente">pendiente</option>
-                                    <option value="proceso">proceso</option>
-                                    <option value="terminado">terminado</option>
-                                </select>
-                            </div>
-                            <div class="col-sm-12 col-md-6">
-                                <label for="sesionesCita" class="form-label">Cantidad sesiones</label>
-                                <input id="sesionesCita" type="number" name="sesionesCita" min="1" step="1"
-                                    class="form-control" required>
-                            </div>
-                            <div class="col-sm-12 col-md-6">
-                                <label for="clienteCita" class="form-label">Cliente</label>
-                                <select id="clienteCita" name="clienteCita" class="form-select" required>
-                                </select>
-                            </div>
-                            <div class="col-sm-12 col-md-6">
-                                <label for="servicioCita" class="form-label">Servicio</label>
-                                <select id="servicioCita" name="servicioCita" class="form-select" required>
-                                </select>
-                            </div>
-                            <div class="col-sm-12 col-md-6">
-                                <label for="empleadoCita" class="form-label">Empleado</label>
-                                <select id="empleadoCita" name="empleadoCita" class="form-select" required>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="submit" class="btn btn-primary">Guardar</button>
-                        </div>
+                        </form>
                     </form>
                 </div>
             </div>
         </div>
 
-        <!-- Componente Modal para gráfica parametrizada -->
-        <div class="modal fade" id="modalGrafic" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-            aria-labelledby="modalTitle" aria-hidden="true">
-            <div class="modal-dialog modal-lg modal-dialog-centered">
-                <div class="modal-content">
-                    <div class="modal-header inicioIndex">
-                        <h1 class="modal-title fs-5 textoClaro" id="modalGraficTitle"></h1>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <!-- Formulario para crear o actualizar un registro -->
-                    <form id="saveDate" class="inicioIndex">
-                        <div class="modal-body row g-3">
-                            <div class="col-6 mt-3">
-                                <label class="textoClaro form-label">Fecha inicio</label>
-                                <input id="fechaInicio" name="fechaInicio" type="date" class="form-control" required>
+        <!-- Modal ver grafica -->
+        <div class="modal fade" id="modalGrafic" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-lg">
+                <div class="modal-content bg-dark text-white">
+
+                    <!-- Formulario saveForm -->
+                    <form id="saveDate">
+                        <form class="needs-validation">
+
+                            <!-- Body del modal -->
+                            <div class="row modal-body">
+                                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                                    aria-label="Close"></button> <!-- Cambiar color del botón de cerrar -->
+                                <h1 class="fs-4 fw-bold text-center mb-4" id="modalGraficTitle"></h1>
+
+                                <!-- Inputs -->
+                                <div class="col-6 mt-3">
+                                    <label class="textoClaro form-label">Fecha inicio</label>
+                                    <input id="fechaInicio" name="fechaInicio" type="date" class="form-control"
+                                        required>
+                                </div>
+                                <div class="col-6 mt-3">
+                                    <label class="textoClaro form-label">Fecha final</label>
+                                    <input id="fechaFinal" name="fechaFinal" type="date" class="form-control" required>
+                                </div>
                             </div>
-                            <div class="col-6 mt-3">
-                                <label class="textoClaro form-label">Fecha final</label>
-                                <input id="fechaFinal" name="fechaFinal" type="date" class="form-control" required>
+
+                            <div class="modal-footer">
+                                <button type="submit" class="btn btn-primary">Buscar</button>
                             </div>
-                        </div>
-                        <div class="modal-footer inicioIndex">
-                            <button type="submit" class="btn btn-primary">Buscar</button>
-                        </div>
+                        </form>
                     </form>
                 </div>
             </div>
@@ -216,34 +266,31 @@
         <div class="modal fade" id="chartModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
             aria-labelledby="chartTitle" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content">
-                    <div class="modal-header inicioIndex">
-                        <h3 class="modal-title textoClaro " id="chartTitle">Gráfico por fechas</h3>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <div class="modal-content bg-dark text-white"> <!-- Clases para modo oscuro -->
+                    <div class="modal-header">
+                        <h3 class="modal-title" id="chartTitle">Gráfico de citas</h3>
+                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                            aria-label="Close"></button> <!-- Cambiar color del botón de cerrar -->
                     </div>
+
                     <!-- Contenedor para mostrar el gráfico -->
-                    <div class="modal-body inicioIndex" id="chartContainer"></div>
-                    <div class="modal-footer inicioIndex">
+                    <div class="modal-body" id="chartContainer"></div>
+                    <div class="modal-footer">
                         <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Aceptar</button>
                     </div>
                 </div>
             </div>
         </div>
-
     </main>
 
-    <!-- Librerias -->
-    <!-- Bootstrap -->
-    <script src="../../resources/js/bootstrap_js.js"></script>
-    <script src="../../resources/js/sweetalert.min.js"></script>
-    <script src="../../resources/js/chart.umd.min.js"></script>
-    <!-- llamar al controntrolador del sitio privado-->
-    <script src="../../controllers/utils/Validaciones.js"></script>
+    <!-- Importaciones -->
     <script src="../../controllers/utils/components.js"></script>
-    <!-- llamar al controntrolador del los sitios-->
+    <script src="../../resources/js/sweetalert.min.js"></script>
+    <script src="../../resources/js/bootstrap_js.js"></script>
     <script src="../../controllers/utils/admin.js"></script>
-    <!-- llamar al controntrolador de la pagina-->
     <script src="../../controllers/admin/cita.js"></script>
+    <script src="../../controllers/utils/Validaciones.js"></script>
+    <script src="../../resources/js/chart.umd.min.js"></script>
 </body>
 
 </html>
