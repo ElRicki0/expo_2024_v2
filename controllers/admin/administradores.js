@@ -17,6 +17,20 @@ const SAVE_FORM = document.getElementById('saveForm'),
     CONTRASEÑA_ADMINISTRADOR = document.getElementById('contra_admin'),
     CONTRASEÑA_TITLE = document.getElementById('TextPassword');
 
+
+const SAVE_FORM_EMPLEADO = new bootstrap.Modal('#modalEmpleado'),
+    MODAL_TITLE_EMPLEADO = document.getElementById('modalTitleEmpleado');
+// constantes que estan adentro del formulario
+
+const SAVE_EMPLEADO = document.getElementById('saveFormEmpleado'),
+    ID_EMPLEADO = document.getElementById('idEmpleado'),
+    NOMBRE_EMPLEADO = document.getElementById('nombreEmpleado'),
+    APELLIDO_EMPLEADO = document.getElementById('apellidoEmpleado'),
+    CORREO_EMPLEADO = document.getElementById('correoEmpleado'),
+    DUI_EMPLEADO = document.getElementById('duiEmpleado'),
+    FECHA_EMPLEADO = document.getElementById('fechaEmpleado');
+
+
 // Método del evento para cuando el documento ha cargado.
 document.addEventListener('DOMContentLoaded', () => {
     // Llamada a la función para mostrar el encabezado y pie del documento.
@@ -58,6 +72,7 @@ SAVE_FORM.addEventListener('submit', async (event) => {
     }
 });
 
+
 /*
 *   Función asíncrona para llenar la tabla con los registros disponibles.
 *   Parámetros: form (objeto opcional con los datos de búsqueda).
@@ -81,11 +96,8 @@ const fillTable = async (form = null) => {
                 <td>${row.nombre_admin}</td>
                 <td>${row.correo_admin}</td>
                 <td>
-                <button class="btn btn-danger" onclick="openDelete(${row.id_admin})">
-                    <i class="bi bi-trash3-fill"> </i>
-                </button>
-                <button class="btn btn-primary" onclick="openUpdate(${row.id_admin})">
-                    <i class="bi bi-pen-fill"> </i>
+                <button class="btn btn-info" onclick="openEmpleado(${row.id_empleado})">
+                    <i class="bi bi-person-badge-fill"></i>
                 </button>
             </td>
         </tr>
@@ -121,28 +133,27 @@ const openCreate = () => {
 *   Parámetros: id (identificador del registro seleccionado).
 *   Retorno: ninguno.
 */
-const openUpdate = async (id) => {
+const openEmpleado = async (id) => {
     // Se define una constante tipo objeto con los datos del registro seleccionado.
     const FORM = new FormData();
-    FORM.append('id_admin', id);
+    FORM.append('id_empleado', id);
     // Petición para obtener los datos del registro solicitado.
-    const DATA = await fetchData(ADMINISTRADOR_API, 'readOne', FORM);
+    const DATA = await fetchData(EMPLEADO_API, 'readOne', FORM);
     // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
     if (DATA.status) {
         // Se muestra la caja de diálogo con su título.
-        SAVE_MODAL.show();
-        MODAL_TITLE.textContent = 'EDITAR ADMINISTRADOR';
+        SAVE_FORM_EMPLEADO.show();
+        MODAL_TITLE_EMPLEADO.textContent = 'INFORMACIÓN EMPLEADO';
         // Se prepara el formulario.
-        SAVE_FORM.reset();
+        SAVE_EMPLEADO.reset();
         // Se inicializan los campos con los datos.
         const ROW = DATA.dataset;
-        ID_ADMINISTRADOR.value = ROW.id_admin;
-        NOMBRE_ADMINISTRADOR.value = ROW.nombre_admin;
-        CORREO_ADMINISTRADOR.value = ROW.correo_admin;
-        CONTRASEÑA_TITLE.style.display = "none";
-        CONTRASEÑA_ADMINISTRADOR.style.display = "none";
-        CONTRASEÑA_ADMINISTRADOR.disabled = true;
-        fillSelect(EMPLEADO_API, 'readAll', 'empleado_admin', parseInt(ROW.id_admin));
+        ID_EMPLEADO.value = ROW.id_empleado;
+        NOMBRE_EMPLEADO.value = ROW.nombre_empleado;
+        APELLIDO_EMPLEADO.value = ROW.apellido_empleado;
+        CORREO_EMPLEADO.value = ROW.correo_empleado;
+        DUI_EMPLEADO.value = ROW.dui_empleado;
+        FECHA_EMPLEADO.value = ROW.nacimiento_empleado;
     } else {
         sweetAlert(2, DATA.error, false);
     }
