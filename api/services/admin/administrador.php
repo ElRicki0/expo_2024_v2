@@ -35,7 +35,7 @@ if (isset($_GET['action'])) {
                 if (
                     !$administrador->setCorreo($_POST['correo_admin']) or
                     !$administrador->setContrasenia($_POST['contra_admin']) or
-                    !$administrador->setNombre($_POST['nombre_admin'])or
+                    !$administrador->setNombre($_POST['nombre_admin']) or
                     !$administrador->setEmpleado($_POST['empleado_admin'])
                 ) {
                     $result['error'] = $administrador->getDataError();
@@ -174,6 +174,26 @@ if (isset($_GET['action'])) {
                     $result['message'] = 'Contraseña actualizada correctamente';
                 } else {
                     $result['error'] = 'Ocurrió un problema al cambiar la contraseña';
+                }
+                break;
+            case 'checkPassword':
+                $_POST = Validator::validateForm($_POST);
+                if (!$administrador->checkPassword($_POST['contraseñaAdmin'])) {
+                    $result['error'] = 'Contraseña incorrecta';
+                } else {
+                    $result['status'] = 1;
+                    $result['message'] = 'Contraseña correcta';
+                }
+                break;
+            case 'DeleteProfile':
+                $_POST = Validator::validateForm($_POST);
+                if ($administrador->DeleteProfile()) {
+                    $result['status'] = 1;
+                    if (session_destroy()) {
+                        $result['message'] = 'Perfil eliminado correctamente';
+                    }
+                } else {
+                    $result['error'] = 'Ocurrió un problema al eliminar el perfil';
                 }
                 break;
             default:

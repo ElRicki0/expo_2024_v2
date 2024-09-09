@@ -71,7 +71,7 @@ class AdministradorHandler
     public function searchRows()
     {
         $value = '%' . Validator::getSearchValue() . '%';
-            $sql = 'SELECT id_admin, nombre_admin, correo_admin
+        $sql = 'SELECT id_admin, nombre_admin, correo_admin
                         FROM tb_admin
                         WHERE nombre_admin LIKE ?
                         AND id_admin <> ?
@@ -175,17 +175,16 @@ class AdministradorHandler
         return Database::getRow($sql, $params);
     }
 
-        // Método para leer un empleado del administrador.
-        public function readEmployed()
-        {
-            $sql = 'SELECT E.id_empleado, E.nombre_empleado
+    // Método para leer un empleado del administrador.
+    public function readEmployed()
+    {
+        $sql = 'SELECT E.id_empleado, E.nombre_empleado
                     FROM tb_empleados E
                     INNER JOIN tb_admin A ON E.id_empleado = A.id_empleado
                     WHERE A.id_admin = ?';
-            $params = array($this->id);
-            return Database::getRow($sql, $params);
-        }
-    
+        $params = array($this->id);
+        return Database::getRow($sql, $params);
+    }
 
     // Método deleteRow: elimina un empleado de la base de datos según su ID.
     public function deleteRow()
@@ -193,6 +192,15 @@ class AdministradorHandler
         $sql = 'DELETE FROM tb_admin
                     WHERE id_admin = ?';
         $params = array($this->id);
+        return Database::executeRow($sql, $params);
+    }
+
+    // Método deleteRow: elimina un empleado de la base de datos según su ID.
+    public function DeleteProfile()
+    {
+        $sql = 'DELETE FROM tb_admin
+                WHERE id_admin = ?';
+        $params = array($_SESSION['idAdministrador']);
         return Database::executeRow($sql, $params);
     }
 }

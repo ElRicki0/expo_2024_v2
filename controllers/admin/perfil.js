@@ -5,10 +5,14 @@ const CORREO_ADMINISTRADOR = document.getElementById('correo_admin');
 const PASSWORD_MODAL = new bootstrap.Modal('#passwordModal');
 // Constante para establecer el formulario de cambiar contraseña.
 const PASSWORD_FORM = document.getElementById('passwordForm');
-// Constante para establecer la modal de cambiar contraseña.
+// Constante para establecer la modal de cambiar perfil.
 const PERFIL_MODAL = new bootstrap.Modal('#PerfilModal');
-// Constante para establecer el formulario de cambiar contraseña.
+// Constante para establecer el formulario de cambiar perfil.
 const PROFILE_FORM = document.getElementById('editForm');
+// Constante para establecer la modal de eliminar perfil
+const DELETE_MODAL = new bootstrap.Modal('#deleteModal');
+// Constante para establecer el formulario de eliminar perfil
+const DELETE_FORM = document.getElementById('deleteForm');
 
 // Método del evento para cuando el documento ha cargado.
 document.addEventListener('DOMContentLoaded', async () => {
@@ -65,6 +69,42 @@ PROFILE_FORM.addEventListener('submit', async (event) => {
     }
 });
 
+// Mètodo del evento para cuando se envía el formulario de cambiar contraseña.
+DELETE_FORM.addEventListener('submit', async (event) => {
+    // Se evita recargar la página web después de enviar el formulario.
+    event.preventDefault();
+    // Constante tipo objeto con los datos del formulario.
+    const FORM = new FormData(DELETE_FORM);
+    // Petición para actualizar la constraseña.
+    const DATA = await fetchData(USER_API, 'checkPassword', FORM);
+    // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+    if (DATA.status) {
+        // Se muestra un mensaje de confirmación y se captura la respuesta en una constante.
+        const RESPONSE = await confirmAction('¿Está seguro de eliminar el perfil?');
+        // Se verifica la respuesta del mensaje.
+        if (RESPONSE) {
+            // Se define un objeto con los datos del registro seleccionado.
+            const FORM = new FormData();
+
+            // Petición para cambiar el estado del cliente
+            const DATA = await fetchData(USER_API, 'DeleteProfile', FORM);
+
+            // Se comprueba si la respuesta es satisfactoria
+            if (DATA.status) {
+                sweetAlert(1, DATA.message, true); // Mensaje de éxito
+                // Aquí puedes usar un temporizador antes de redirigir
+                setTimeout(() => {
+                    location.href = "index.html";
+                }, 3000); // Espera 3 segundos antes de redirigir
+            } else {
+                sweetAlert(2, DATA.error, false); // Mensaje de error
+            }
+        }
+    } else {
+        sweetAlert(2, DATA.error, false);
+    }
+});
+
 /*
 *   Función para preparar el formulario al momento de cambiar la constraseña.
 *   Parámetros: ninguno.
@@ -78,7 +118,7 @@ const openPassword = () => {
 }
 
 /*
-*   Función para preparar el formulario al momento de cambiar la constraseña.
+*   Función para preparar el formulario al momento de editar el perfil
 *   Parámetros: ninguno.
 *   Retorno: ninguno.
 */
@@ -87,4 +127,16 @@ const openProfile = () => {
     PERFIL_MODAL.show();
     // Se restauran los elementos del formulario.
     PROFILE_FORM.reset();
+}
+
+/*
+*   Función para preparar el formulario al momento de eliminar el perfil
+*   Parámetros: ninguno.
+*   Retorno: ninguno.
+*/
+const openDelete = () => {
+    // Se abre la caja de diálogo que contiene el formulario.
+    DELETE_MODAL.show();
+    // Se restauran los elementos del formulario.
+    DELETE_FORM.reset();
 }
