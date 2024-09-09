@@ -144,9 +144,15 @@ const fillTable = async (form = null) => {
                 <td>${row.nombre_cliente}</td>
                 <td>${row.tipo_servicio}</td>
                 <td>
-                <button class="btn btn-danger"><i class="bi bi-trash3-fill" onclick="openDelete(${row.id_cita})"></i></button>
-                <button class="btn btn-primary"><i class="bi bi-pen-fill" onclick="openUpdate(${row.id_cita})"></i></button>
-                <button class="btn btn-info"><i class="bi bi-calendar-week-fill" onclick="openReport(${row.id_cliente})"></i></button>
+                <button class="btn btn-danger" onclick="openDelete(${row.id_cita})">
+                    <i class="bi bi-trash3-fill"></i>
+                </button>
+                <button class="btn btn-primary" onclick="openUpdate(${row.id_cita})">
+                    <i class="bi bi-pen-fill"></i>
+                </button>
+                <button class="btn btn-info" onclick="openReport(${row.id_cliente})">
+                    <i class="bi bi-file-earmark-code-fill"></i>
+                </button>
             </td>
         </tr>
             `;
