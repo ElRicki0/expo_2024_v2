@@ -46,13 +46,13 @@ if (isset($_GET['id_cliente'])) {
                 // Recorrer los registros fila por fila.
                 foreach ($dataCitas as $citaRow) {
                     // Imprimir nombre, correo y identificador
-                    $pdf->cell(40, 10, $citaRow['nombre_cita'], 'TB', 0, 'C');
-                    $pdf->cell(40, 10, $pdf->encodeString($citaRow['tipo_servicio']), 'TB', 0, 'C');
-                    $pdf->cell(30, 10, $citaRow['estado_cita'], 'TB', 0, 'C');
-                    $pdf->cell(20, 10, $citaRow['numero_seciones'], 'TB', 0, 'C');
+                    $pdf->cell(40, 10, $citaRow['nombre_cita'], 'T', 0, 'C');
+                    $pdf->cell(40, 10, $pdf->encodeString($citaRow['tipo_servicio']), 'T', 0, 'C');
+                    $pdf->cell(30, 10, $citaRow['estado_cita'], 'T', 0, 'C');
+                    $pdf->cell(20, 10, $citaRow['numero_seciones'], 'T', 0, 'C');
 
                     // Imprimir solo la fecha de creación
-                    $pdf->cell(60, 10, $citaRow['fecha_creacion_cita'], 'TB', 1, 'C'); // Cambié a 'TB', 1 para que haga un salto de línea después
+                    $pdf->cell(60, 10, $citaRow['fecha_creacion_cita'], 'T', 1, 'C'); // Cambié a 'TB', 1 para que haga un salto de línea después
                 }
 
             } else {

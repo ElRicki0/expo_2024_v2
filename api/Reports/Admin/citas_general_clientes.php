@@ -31,10 +31,10 @@ if ($CitaData = $cita->readAll()) {
 
         // Imprimir nombrem correo y identificador
         $pdf->SetTextColor(10, 10, 10);
-        $pdf->cell(70, 10, $pdf->encodeString($citasRow['nombre_cita']), 'TB', 0, 'C');
-        $pdf->cell(35, 10, $citasRow['numero_seciones'], 'TB', 0, 'C');
-        $pdf->cell(40, 10, $citasRow['estado_cita'], 'TB', 0, 'C');
-        $pdf->cell(40, 10, $pdf->encodeString($citasRow['tipo_servicio']), 'TB', 1, 'C');
+        $pdf->cell(70, 10, $pdf->encodeString($citasRow['nombre_cita']), 'T', 0, 'C');
+        $pdf->cell(35, 10, $citasRow['numero_seciones'], 'T', 0, 'C');
+        $pdf->cell(40, 10, $citasRow['estado_cita'], 'T', 0, 'C');
+        $pdf->cell(40, 10, $pdf->encodeString($citasRow['tipo_servicio']), 'T', 1, 'C');
     }
 } else {
     // Si no hay administradores para mostrar
