@@ -13,14 +13,12 @@ const TABLE_BODY = document.getElementById('tableBody'),
 const SAVE_MODAL = new bootstrap.Modal('#saveModal'),
     MODAL_TITLE = document.getElementById('modalTitle');
 
-
 // constantes para mostrar datos de citas durante un periodo de tiempo
 const MODAL_GRAFIC = new bootstrap.Modal('#modalGrafic'),
     MODAL_G_TITLE = document.getElementById('modalGraficTitle');
 
 // constantes para mostrar datos de citas durante un periodo de tiempo
 const CHART_MODAL = new bootstrap.Modal('#chartModal');
-
 
 // constantes para mostrar un dato en especifico
 const DATE_FORM = document.getElementById('saveDate'),
@@ -204,7 +202,7 @@ const openUpdate = async (id) => {
     if (DATA.status) {
         // Se muestra la caja de diálogo con su título.
         SAVE_MODAL.show();
-        MODAL_TITLE.textContent = 'Actualizar Cita';
+        MODAL_TITLE.textContent = 'ACTUALIZAR CITA';
         // Se prepara el formulario.
         SAVE_FORM.reset();
         const ROW = DATA.dataset;
