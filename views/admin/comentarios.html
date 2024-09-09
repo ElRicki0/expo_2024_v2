@@ -2,123 +2,91 @@
 <html lang="es">
 
 <head>
+
+    <!-- Título del documento -->
+    <title>Quiropráctica Específica</title>
+
+    <!-- Metadatos de la pagina web -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quiropráctica Específica </title>
-    <link rel="icon" href="../../resources/img/icons/icon.jpg">
+
+    <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="../../resources/css/boostrap_css.css">
-    <link rel="stylesheet" href="../../resources/css/general.css">
     <link rel="stylesheet" href="../../resources/css/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="../../resources/css/general.css">
+    <link rel="stylesheet" href="../../resources/css/barrahorizontal.css">
 </head>
 
 <body>
 
-    <!-- contenido del header generado automáticamente -->
-    <header>
-    </header>
+    <!-- Contenedor principal -->
     <main class="container">
+
         <!-- titulo principal -->
-        <div class="container-fluid text-center">
-            <div class="row justify-content-center py-5">
-                <h3 class="fw-bold text-white">Administrar Comentarios</h3>
+        <div class="container-fluid">
+            <div class="row py-4">
+                <h3 class="fw-bold text-white"><i class="bi bi-chat-left-text-fill me-1"></i> Administrar Comentarios</h3>
+                <h6 class="fw-medium text-secondary">Bienvenido a la sección de gestión de comentarios. Aquí puedes manejar
+                    todos los comentarios registrados en tu página web. <br>
+                    La tabla te permite eliminar, dar de baja y
+                    reportes generales y específicos de actividad.</h6>
             </div>
         </div>
+
+        <!-- Formulario de búsqueda -->
         <div class="row">
-            <!-- Formulario de búsqueda -->
-            <form class="col-sm-12 col-md-6" id="searchForm">
+            <form class="col-sm-12 col-md-12 col-lg-10" id="searchForm">
                 <div class="row">
                     <div class="col-6">
-                        <input type="search" class="form-control" name="search" placeholder="Buscar" required>
+                        <input type="search" class="form-control custom-input border-2" id="search" name="search"
+                            placeholder="Buscar por comentario o Usuario" required>
                     </div>
                     <div class="col-6">
                         <button type="submit" class="btn btn-success">
                             <i class="bi bi-search"></i>
                         </button>
                         <button type="reset" class="btn btn-secondary" onclick="fillTable()">
-                            <i class="bi bi-x-square-fill"></i>
+                            <i class="bi bi-arrow-counterclockwise"></i>
                         </button>
                     </div>
                 </div>
             </form>
         </div>
 
-        <!-- Tabla para mostrar los registros existentes -->
-        <table class="table table-hover table-dark">
-            <!-- Cabeza de la tabla para mostrar la cantidad de registros y los títulos de las columnas -->
-            <thead>
-                <tr>
-                    <td colspan="4" class="text-white  fw-bold mt-3" id="rowsFound"></td>
-                </tr>
-                <tr>
-                    <th>COMENTARIO</th>
-                    <th>CLIENTE</th>
-                    <tr>SERVICIO</tr>
-                    <th>ESTADO</th>
-                </tr>
-            </thead>
-            <!-- Cuerpo de la tabla para mostrar un registro por fila -->
-            <tbody id="tableBody" class="table-group-divider"></tbody>
-        </table>
+        <p id="rowsFound" class="text-white fw-bold mt-3"></p>
 
+        <!-- Contenedor para la tabla con scroll -->
+        <div id="ContenedorTable">
 
-        <!-- este es un futuro disenio de las cards del comentarios -->
+            <!-- Tabla para mostrar los registros existentes -->
 
-        <!--Comentarios de servicios-->
-        <!-- 
-        <div class="my-5" id="Comentarios">
-            <div class="card my-4">
-                <div class="card-body">
-                    <h5 class="card-title">Tratamiento de escoliosis</h5>
-                    <p class="card-text">El tratamiento fue increíblemente efectivo. Sentí una mejora notable en mi
-                        postura y reducción del dolor en poco tiempo. El equipo médico fue profesional y atento durante
-                        todo el proceso.</p>
-                    <a href="#" data-bs-toggle="modal" data-bs-target="#ModalInterrogante" class="texto_verde">Eliminar
-                        Comentario</a>
-                </div>
-            </div>
-        </div> -->
-        <!-- Componente Modal para guardar un registro -->
-        <div class="modal fade" id="saveModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-            aria-labelledby="modalTitle" aria-hidden="true">
-            <div class="modal-dialog modal-sm modal-dialog-centered">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="modalTitle"></h1>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <!-- Formulario para crear o actualizar un registro -->
-                    <form id="saveForm">
-                        <div class="modal-body row g-3">
-                            <!-- Campo oculto para asignar el id del registro al momento de modificar -->
-                            <input type="number" class="d-none" id="idComentario" name="idComentario">
-                            <div class="d-flex justify-content-center">
-                                <div class="form-check form-switch form-check-reverse text-center">
-                                    <input class="form-check-input" type="checkbox" id="estadoComentario"
-                                        name="estadoComentario" checked>
-                                    <label class="form-check-label" for="estadoComentario">Estado</label>
-                                </div>
-                            </div>
+            <table class="table table-hover table-dark">
 
-                        </div>
-                        <div class="modal-footer">
-                            <button type="submit" class="btn btn-primary">Guardar</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
+                <!-- Cabeza de la tabla para mostrar la cantidad de registros y los títulos de las columnas -->
+                <thead>
+                    <tr>
+                        <th>COMENTARIO</th>
+                        <th>CLIENTE</th>
+                        <th>SERVICIO</th>
+                        <th>ESTADO</th>
+                        <th>ACCIONES</th>
+                    </tr>
+                </thead>
+
+                <!-- Cuerpo de la tabla para mostrar un registro por fila -->
+                <tbody id="tableBody" class="table-group-divider"></tbody>
+            </table>
         </div>
     </main>
-    <footer></footer>
 
-    <script src="../../resources/js/bootstrap_js.js"></script>
-    <script type="text/javascript" src="../../resources/js/sweetalert.min.js"></script>
-
-    <!-- llamar al controntrolador del sitio privado-->
+    <!-- Importaciones -->
     <script src="../../controllers/utils/components.js"></script>
-    <!-- llamar al controntrolador del los sitios-->
+    <script src="../../resources/js/sweetalert.min.js"></script>
+    <script src="../../resources/js/bootstrap_js.js"></script>
     <script src="../../controllers/utils/admin.js"></script>
-    <!-- llamar al controntrolador de la pagina-->
     <script src="../../controllers/admin/comentarios.js"></script>
+    <script src="../../controllers/utils/Validaciones.js"></script>
+    <script src="../../resources/js/chart.umd.min.js"></script>
 </body>
 
 </html>

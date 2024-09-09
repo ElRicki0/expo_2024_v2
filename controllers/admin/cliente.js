@@ -61,18 +61,18 @@ const fillTable = async (form = null) => {
                     <td>${row.nacimiento_cliente}</td>
                     <td><i class="${icon}"></i></td>
                     <td>
-                    <button class="btn btn-danger" onclick="openDelete(${row.id_cliente})">
-                        <i class="bi bi-trash3-fill"></i>
-                    </button>
-                    <button class="btn btn-primary" onclick="openState(${row.id_cliente})">
-                        <i class="bi bi-exclamation-octagon"></i>
-                    </button>
-                    <button type="button" class="btn btn-warning" onclick="openChart(${row.id_cliente})">
-                        <i class="bi bi-bar-chart-line-fill"></i>
-                    </button>
-                    <button type="button" class="btn btn-info" onclick="openClienteReport(${row.id_cliente})">
-                        <i class="bi bi-file-earmark-code-fill"></i>
-                    </button>
+                        <button class="btn btn-danger" onclick="openDelete(${row.id_cliente})">
+                            <i class="bi bi-trash3-fill"></i>
+                        </button>
+                        <button class="btn btn-primary" onclick="openState(${row.id_cliente})">
+                            <i class="bi bi-exclamation-octagon"></i>
+                        </button>
+                        <button type="button" class="btn btn-warning" onclick="openChart(${row.id_cliente})">
+                            <i class="bi bi-bar-chart-line-fill"></i>
+                        </button>
+                        <button type="button" class="btn btn-info" onclick="openClienteReport(${row.id_cliente})">
+                            <i class="bi bi-file-earmark-code-fill"></i>
+                        </button>
                     </td>
                 </tr>
             `;
@@ -86,7 +86,7 @@ const fillTable = async (form = null) => {
 
 
 /*
-*   Función asíncrona para preparar el formulario al momento de actualizar un registro.
+*   Función asíncrona para preparar un modal de confirmacion para una funcion de estado
 *   Parámetros: id (identificador del registro seleccionado).
 *   Retorno: ninguno.
 */
