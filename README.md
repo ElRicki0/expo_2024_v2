@@ -1,4 +1,4 @@
-﻿Imformación del equipo
+﻿Información del equipo
 Integrantes:
 
 -Juan Pablo Montes Espinoza
