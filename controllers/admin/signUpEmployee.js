@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         location.href = "signUpAdmin.html";
     } else {
         // Se muestra el formulario para registrar el primer usuario.
-        sweetAlert(2, DATA.error, false);
+        sweetAlert(4, DATA.error, false);
     }
 
 });

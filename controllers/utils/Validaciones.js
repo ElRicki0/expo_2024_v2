@@ -267,13 +267,16 @@ function validarFecha(input) {
     // Obtener la fecha actual
     var fechaActual = new Date();
 
-    // Obtener la fecha ingresada en el campo de entrada
-    var fechaIngresada = new Date(input.value);
-
     // Calcular la fecha hace 18 años
     var fechaHace18Anios = new Date(fechaActual.getFullYear() - 18, fechaActual.getMonth(), fechaActual.getDate());
 
-    // Comparar la fecha ingresada con la fecha actual y la fecha hace 18 años
+    // Establecer el valor del input a la fecha hace 18 años
+    input.value = fechaHace18Anios.toISOString().split('T')[0];
+
+    // Obtener la fecha ingresada en el campo de entrada
+    var fechaIngresada = new Date(input.value);
+
+    // Comparar la fecha ingresada con la fecha hace 18 años
     if (fechaIngresada >= fechaHace18Anios) {
         // Agregar la clase "is-invalid" al campo de entrada
         input.classList.add('is-invalid');

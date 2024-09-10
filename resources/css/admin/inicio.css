@@ -16,6 +16,7 @@
 .container-2 {
     background-color: #161616;
     justify-content: center;
+    overflow: hidden;
 }
 
 .container-3 {
