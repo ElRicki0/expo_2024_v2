@@ -67,4 +67,17 @@ class ComentarioHandler
         $params = array($this->id);
         return Database::executeRow($sql, $params);
     }
+
+    public function graficaComentariosTop5()
+    {
+        $sql = 'SELECT s.tipo_servicio, COUNT(c.id_comentario) AS numero_comentarios
+                FROM tb_comentarios c
+                JOIN tb_servicios s ON c.id_servicio = s.id_servicio
+                WHERE c.estado_comentario = 1  -- Solo comentarios aprobados o activos
+                GROUP BY s.id_servicio
+                ORDER BY numero_comentarios DESC
+                LIMIT 5;';
+        return Database::getRows($sql);
+    }
+    
 }

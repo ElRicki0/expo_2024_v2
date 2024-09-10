@@ -38,32 +38,45 @@
 
         <div class="full-screen container-2">
             <div class="text-center">
-                <h1 class="fw-bold text-white mt-5">Graficas y reportes de la web</h1>
-                <p class="fw-light text-secondary">Aquí podrás visualizar diferentes gráficos y datos relevantes sobre
-                    el rendimiento de la clínica.</p>
-
+                <h1 class="fw-bold text-white mt-5">Gráficas y reportes de la web</h1>
+                <p class="fw-light text-secondary">Aquí podrás visualizar diferentes gráficos y datos relevantes sobre el rendimiento de la clínica.</p>
+        
                 <!-- Contenedor de gráficos -->
                 <div class="row">
-                    <div class="col-sm-3 col-md-6 col-lg-6 card inicioIndex m-0 m-lg-3">
+                    <div class="col-sm-12 col-md-6 col-lg-6 mb-4">
                         <!-- Se muestra un gráfico con los empleados con citas pendientes -->
-                        <canvas id="chart1"></canvas>
+                        <div class="card inicioIndex">
+                            <canvas id="chart1"></canvas>
+                        </div>
                     </div>
-                    <div class="col-sm-3 col-md-6 col-lg-5 card inicioIndex mt-3 m-lg-3">
+                    <div class="col-sm-12 col-md-6 col-lg-6 mb-4">
                         <!-- Se muestra un gráfico con las citas realizadas por servicio -->
-                        <canvas id="chart2"></canvas>
+                        <div class="card inicioIndex">
+                            <canvas id="chart2"></canvas>
+                        </div>
                     </div>
-                    <div class="col-sm-3 col-md-6 col-lg-6 card inicioIndex mt-3 m-lg-3">
-                        <!-- Espacio para agregar un gráfico -->
+                </div>
+                <div class="row">
+                    <div class="col-sm-12 col-md-6 col-lg-6 mb-4">
+                        <!-- Se muestra un gráfico adicional -->
+                        <div class="card inicioIndex">
+                            <canvas id="chart3"></canvas>
+                        </div>
                     </div>
-                    <div class="col-sm-3 col-md-6 col-lg-5 card inicioIndex mt-3 m-lg-3">
-                        <!-- Espacio para agregar un gráfico -->
+                    <div class="col-sm-12 col-md-6 col-lg-6 mb-4">
+                        <!-- Se muestra un gráfico adicional -->
+                        <div class="card inicioIndex">
+                            <canvas id="chart4"></canvas>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
+        
+        
 
         <div class="full-screen container-3">
-            <div class="mt-5">
+            <div class="mt-4">
 
                 <!-- Contenedor de cartas de acceso directo -->
                 <div class="container">
