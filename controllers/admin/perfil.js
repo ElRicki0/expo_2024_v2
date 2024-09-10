@@ -8,7 +8,9 @@ const PASSWORD_FORM = document.getElementById('passwordForm');
 // Constante para establecer la modal de cambiar perfil.
 const PERFIL_MODAL = new bootstrap.Modal('#PerfilModal');
 // Constante para establecer el formulario de cambiar perfil.
-const PROFILE_FORM = document.getElementById('editForm');
+const PROFILE_FORM = document.getElementById('editForm'),
+    NOMBRE_ADMINISTRADOR_PERFIL = document.getElementById('nombre_admin_perfil'),
+    CORREO_ADMINISTRADOR_PERFIL = document.getElementById('correo_admin_perfil');
 // Constante para establecer la modal de eliminar perfil
 const DELETE_MODAL = new bootstrap.Modal('#deleteModal');
 // Constante para establecer el formulario de eliminar perfil
@@ -64,6 +66,9 @@ PROFILE_FORM.addEventListener('submit', async (event) => {
         PERFIL_MODAL.hide();
         // Se muestra un mensaje de éxito.
         sweetAlert(1, DATA.message, true);
+        setTimeout(() => {
+            location.href = "perfil.html";
+        }, 2000); // Espera 3 segundos antes de redirigir
     } else {
         sweetAlert(2, DATA.error, false);
     }
@@ -92,7 +97,6 @@ DELETE_FORM.addEventListener('submit', async (event) => {
             // Se comprueba si la respuesta es satisfactoria
             if (DATA.status) {
                 sweetAlert(1, DATA.message, true); // Mensaje de éxito
-                // Aquí puedes usar un temporizador antes de redirigir
                 setTimeout(() => {
                     location.href = "index.html";
                 }, 3000); // Espera 3 segundos antes de redirigir
@@ -122,11 +126,25 @@ const openPassword = () => {
 *   Parámetros: ninguno.
 *   Retorno: ninguno.
 */
-const openProfile = () => {
-    // Se abre la caja de diálogo que contiene el formulario.
-    PERFIL_MODAL.show();
-    // Se restauran los elementos del formulario.
-    PROFILE_FORM.reset();
+const openProfile = async (id) => {
+    // Se define una constante tipo objeto con los datos del registro seleccionado.
+    const FORM = new FormData();
+    FORM.append('idAdministrador', id);
+    // Petición para obtener los datos del registro solicitado.
+    const DATA = await fetchData(USER_API, 'readProfile', FORM);
+    // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+    if (DATA.status) {
+        // Se muestra la caja de diálogo con su título.
+        PERFIL_MODAL.show();
+        // Se prepara el formulario.
+        PROFILE_FORM.reset();
+        // Se inicializan los campos con los datos.
+        const ROW = DATA.dataset;
+        NOMBRE_ADMINISTRADOR_PERFIL.value = ROW.nombre_admin;
+        CORREO_ADMINISTRADOR_PERFIL.value = ROW.correo_admin;
+    } else {
+        sweetAlert(2, DATA.error, false);
+    }
 }
 
 /*

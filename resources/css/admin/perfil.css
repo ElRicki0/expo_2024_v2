@@ -29,3 +29,10 @@
 .tituloDelete {
     color: rgb(219, 0, 0);
 }
+
+@media (max-width: 768px) {
+    .container {
+        width: 380px;
+        height: 335px;
+    }
+}
