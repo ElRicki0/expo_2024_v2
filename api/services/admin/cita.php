@@ -122,12 +122,11 @@ if (isset($_GET['action'])) {
                 }
                 break;
             case 'graficoCitasfechas':
-                $_POST = Validator::validateForm($_POST);
                 if (
                     !$cita->setFechaInicio($_POST['fechaInicio']) or
                     !$cita->setFechaFinal($_POST['fechaFinal'])
                 ) {
-                    $result['error'] = $cita->getDataError();
+                    $result['error'] = $cita->getDataError(); 
                 } elseif ($result['dataset'] = $cita->graficoEntreFechas()) {
                     $result['status'] = 1;
                     $result['message'] = 'gráfico creado correctamente';
