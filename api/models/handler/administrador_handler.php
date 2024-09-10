@@ -5,6 +5,8 @@ require_once('../../helpers/database.php');
 /*
  *  Clase para manejar el comportamiento de los datos de la tabla administrador.
  */
+// Generar un número aleatorio de 6 dígitos
+$codigo_aleatorio = rand(100000, 999999);
 class AdministradorHandler
 {
     /*
@@ -15,6 +17,19 @@ class AdministradorHandler
     protected $correo = null;
     protected $contrasenia = null;
     protected $empleado = null;
+    protected $codigo = null; // Inicialmente nulo
+
+    public function __construct()
+    {
+        // Generar un código aleatorio de 6 dígitos y asignarlo a $codigo
+        $this->codigo = rand(100000, 999999);
+    }
+
+    // Método para obtener el código (opcional)
+    public function getCodigo()
+    {
+        return $this->codigo;
+    }
 
     /*
      *  Métodos para gestionar la cuenta del administrador.
@@ -105,9 +120,9 @@ class AdministradorHandler
     // Método para crear un nuevo administrador.
     public function createRow()
     {
-        $sql = 'INSERT INTO tb_admin(nombre_admin, contrasenia_admin, correo_admin, id_empleado)
-                VALUES(?, ?, ?, ?)';
-        $params = array($this->nombre, $this->contrasenia, $this->correo, $this->empleado);
+        $sql = 'INSERT INTO tb_admin(nombre_admin, contrasenia_admin, correo_admin, id_empleado, codigo_admin)
+                VALUES(?, ?, ?, ?, ?)';
+        $params = array($this->nombre, $this->contrasenia, $this->correo, $this->empleado, $this->codigo);
         // Se ejecuta la consulta para insertar un nuevo registro de administrador.
         return Database::executeRow($sql, $params);
     }
@@ -115,9 +130,9 @@ class AdministradorHandler
     // Método para crear un nuevo administrador.
     public function createNewRow()
     {
-        $sql = 'INSERT INTO tb_admin(nombre_admin, contrasenia_admin, correo_admin, id_empleado)
-                VALUES(?, ?, ?, 1)';
-        $params = array($this->nombre, $this->contrasenia, $this->correo);
+        $sql = 'INSERT INTO tb_admin(nombre_admin, contrasenia_admin, correo_admin, id_empleado, codigo_admin)
+                VALUES(?, ?, ?, 1, ?)';
+        $params = array($this->nombre, $this->contrasenia, $this->correo, $this->codigo);
         // Se ejecuta la consulta para insertar un nuevo registro de administrador.
         return Database::executeRow($sql, $params);
     }

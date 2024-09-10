@@ -13,7 +13,8 @@ CREATE TABLE tb_clientes(
     contrasenia_cliente VARCHAR(200) not null,
     telefono_cliente VARCHAR (9) NOT NULL,
     nacimiento_cliente DATE NOT NULL,
-    estado_cliente tinyint(1) NOT NULL DEFAULT 1
+    estado_cliente tinyint(1) NOT NULL DEFAULT 1,
+    codigo_cliente VARCHAR(6) NOT NULL 
 );
 
 -- proximamente
@@ -43,7 +44,8 @@ CREATE TABLE tb_admin(
     correo_admin VARCHAR (100) unique NOT NULL,
     contrasenia_admin VARCHAR(500) NOT NULL,
     id_empleado INT,
-    FOREIGN KEY (id_empleado) REFERENCES tb_empleados (id_empleado)
+    FOREIGN KEY (id_empleado) REFERENCES tb_empleados (id_empleado),
+    codigo_admin VARCHAR(6) NOT NULL 
 );
 
 -- CREATE TABLE tb_fotos (
