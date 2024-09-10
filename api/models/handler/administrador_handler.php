@@ -213,8 +213,8 @@ class AdministradorHandler
     // Método DeleteProfile: elimina un administrador de la base de datos según su ID.
     public function DeleteProfile()
     {
-        $sql = 'DELETE FROM tb_admin
-                WHERE id_admin = ?';
+        $sql = 'DELETE FROM tb_empleados 
+                WHERE id_empleado = (SELECT id_empleado FROM tb_admin WHERE id_admin = ?);';
         $params = array($_SESSION['idAdministrador']);
         return Database::executeRow($sql, $params);
     }
