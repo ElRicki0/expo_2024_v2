@@ -150,7 +150,7 @@ class AdministradorHandler
     // Método para leer todos los administradores registrados.
     public function readAll()
     {
-        $sql = 'SELECT a.id_admin, a.nombre_admin, a.correo_admin, a.contrasenia_admin, e.nombre_empleado, a.id_empleado
+        $sql = 'SELECT a.id_admin, a.nombre_admin, a.correo_admin, a.contrasenia_admin, e.nombre_empleado, a.id_empleado, e.nombre_empleado
                 FROM tb_admin a
                 INNER JOIN tb_empleados e ON a.id_empleado= e.id_empleado
                 WHERE a.id_admin <> ?';

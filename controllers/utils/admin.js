@@ -122,7 +122,7 @@ const loadTemplate = async () => {
                 </footer>
             `);
         } else {
-            location.href = 'index.html';
+            sweetAlert(3, DATA.error, false, 'index.html');
         }
     }
 }

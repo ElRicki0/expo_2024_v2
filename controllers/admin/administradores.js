@@ -93,6 +93,7 @@ const fillTable = async (form = null) => {
             <tr>
                 <td>${row.nombre_admin}</td>
                 <td>${row.correo_admin}</td>
+                <td>${row.nombre_empleado}</td>
                 <td>
                 <button class="btn btn-info" onclick="openEmpleado(${row.id_empleado})">
                     <i class="bi bi-person-badge-fill"></i>

@@ -117,6 +117,17 @@ if (isset($_GET['action'])) {
                     $result['error'] = 'Ocurrió un problema al modificar el estado';
                 }
                 break;
+            case 'readEmployee':
+                // Lectura de todos los administradores (puede ser una acción pública).
+                if ($empleado->readAll()) {
+                    // Si hay administradores registrados, se devuelve un mensaje de autenticación requerida.
+                    $result['status'] = 1;
+                    $result['message'] = 'Debe autenticarse para ingresar';
+                } else {
+                    // Si no hay administradores registrados, se muestra un mensaje de creación requerida.
+                    $result['error'] = 'Debe crear un empleado para comenzar';
+                }
+                break;
             default:
                 $result['error'] = 'Acción no disponible dentro de la sesión';
         }
@@ -161,8 +172,8 @@ if (isset($_GET['action'])) {
     header('Content-type: application/json; charset=utf-8');
 
     // Se imprime el resultado en formato JSON y se retorna al controlador.
-    print (json_encode($result));
+    print(json_encode($result));
 } else {
     // Si no hay acción definida, se imprime un mensaje indicando que el recurso no está disponible.
-    print (json_encode('Recurso no disponible'));
+    print(json_encode('Recurso no disponible'));
 }
