@@ -201,7 +201,7 @@ class AdministradorHandler
         return Database::getRow($sql, $params);
     }
 
-    // Método deleteRow: elimina un empleado de la base de datos según su ID.
+    // Método deleteRow: elimina un administrador de la base de datos según su ID.
     public function deleteRow()
     {
         $sql = 'DELETE FROM tb_admin
@@ -210,7 +210,7 @@ class AdministradorHandler
         return Database::executeRow($sql, $params);
     }
 
-    // Método deleteRow: elimina un empleado de la base de datos según su ID.
+    // Método DeleteProfile: elimina un administrador de la base de datos según su ID.
     public function DeleteProfile()
     {
         $sql = 'DELETE FROM tb_admin

@@ -17,7 +17,6 @@ const SAVE_FORM = document.getElementById('saveForm'),
     CONTRASEÑA_ADMINISTRADOR = document.getElementById('contra_admin'),
     CONTRASEÑA_TITLE = document.getElementById('TextPassword');
 
-
 const SAVE_FORM_EMPLEADO = new bootstrap.Modal('#modalEmpleado'),
     MODAL_TITLE_EMPLEADO = document.getElementById('modalTitleEmpleado');
 // constantes que estan adentro del formulario
@@ -71,7 +70,6 @@ SAVE_FORM.addEventListener('submit', async (event) => {
         sweetAlert(2, DATA.error, false);
     }
 });
-
 
 /*
 *   Función asíncrona para llenar la tabla con los registros disponibles.
