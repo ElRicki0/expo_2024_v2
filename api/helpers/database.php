@@ -105,7 +105,7 @@ class Database
             case '23000':
                 self::$error = 'Violación de restricción de integridad';
                 break;
-            default: self::$error = 'Ocurrió un problema en la base de datos';
+            default: self::$error = $message . PHP_EOL;
         }
     }
 
