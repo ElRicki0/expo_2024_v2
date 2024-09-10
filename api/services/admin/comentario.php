@@ -28,8 +28,7 @@ if (isset($_GET['action'])) {
             case 'updateRowEstado':
                 $_POST = Validator::validateForm($_POST);
                 if (
-                    !$comentario->setId($_POST['idComentario']) or
-                    !$comentario->setEstado(isset($_POST['estadoComentario']) ? 1 : 0)
+                    !$comentario->setId($_POST['id_comentario'])
                 ) {
                     $result['error'] = $comentario->getDataError();
                 } elseif ($comentario->updateRowEstado()) {
@@ -42,7 +41,7 @@ if (isset($_GET['action'])) {
             case 'readAll':
                 if ($result['dataset'] = $comentario->readAll()) {
                     $result['status'] = 1;
-                    $result['message'] = 'Existen ' . count($result['dataset']) . ' registros';
+                    $result['message'] = 'Existen ' . count($result['dataset']) . ' registro(s)';
                 } else {
                     $result['error'] = 'No existen comentarios registrados';
                 }

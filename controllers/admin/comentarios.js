@@ -5,13 +5,6 @@ const SEARCH_FORM = document.getElementById('searchForm');
 // Constantes para establecer el contenido de la tabla.
 const TABLE_BODY = document.getElementById('tableBody'),
     ROWS_FOUND = document.getElementById('rowsFound');
-// Constantes para establecer los elementos del componente Modal.
-const SAVE_MODAL = new bootstrap.Modal('#saveModal'),
-    MODAL_TITLE = document.getElementById('modalTitle');
-// Constantes para establecer los elementos del formulario de guardar.
-const SAVE_FORM = document.getElementById('saveForm'),
-    ID_COMENTARIO = document.getElementById('idComentario'),
-    ESTADO_COMENTARIO = document.getElementById('estadoComentario');
 
 // Método del evento para cuando el documento ha cargado.
 document.addEventListener('DOMContentLoaded', () => {
@@ -20,7 +13,6 @@ document.addEventListener('DOMContentLoaded', () => {
     // Llamada a la función para llenar la tabla con los registros existentes.
     fillTable();
 });
-
 
 // Método del evento para cuando se envía el formulario de buscar.
 SEARCH_FORM.addEventListener('submit', (event) => {
@@ -31,28 +23,6 @@ SEARCH_FORM.addEventListener('submit', (event) => {
     // Llamada a la función para llenar la tabla con los resultados de la búsqueda.
     fillTable(FORM);
 });
-
-// Método del evento para cuando se envía el formulario de guardar.
-SAVE_FORM.addEventListener('submit', async (event) => {
-    // Se evita recargar la página web después de enviar el formulario.
-    event.preventDefault();
-    // Constante tipo objeto con los datos del formulario.
-    const FORM = new FormData(SAVE_FORM);
-    // Petición para guardar los datos del formulario.
-    const DATA = await fetchData(COMENTARIO_API, 'updateRowEstado', FORM);
-    // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
-    if (DATA.status) {
-        // Se cierra la caja de diálogo.
-        SAVE_MODAL.hide();
-        // Se muestra un mensaje de éxito.
-        sweetAlert(1, DATA.message, true);
-        // Se carga nuevamente la tabla para visualizar los cambios.
-        fillTable();
-    } else {
-        sweetAlert(2, DATA.error, false);
-    }
-});
-
 
 /*
 *   Función asíncrona para llenar la tabla con los registros disponibles.
@@ -81,8 +51,8 @@ const fillTable = async (form = null) => {
                     <td>${row.tipo_servicio}</td>
                     <td><i class="${icon}"></i></td>
                     <td>
-                        <button type="button" class="btn btn-info" onclick="openUpdate(${row.id_comentario})">
-                            <i class="bi bi-pencil-fill"></i>
+                        <button class="btn btn-primary" onclick="openState(${row.id_comentario})">
+                            <i class="bi bi-exclamation-octagon"></i>
                         </button>
                     </td>
                 </tr>
@@ -96,27 +66,28 @@ const fillTable = async (form = null) => {
 }
 
 /*
-*   Función asíncrona para preparar el formulario al momento de actualizar un registro.
+*   Función asíncrona para preparar un modal de confirmacion para una funcion de estado
 *   Parámetros: id (identificador del registro seleccionado).
 *   Retorno: ninguno.
 */
-const openUpdate = async (id) => {
-    // Se define un objeto con los datos del registro seleccionado.
-    const FORM = new FormData();
-    FORM.append('idComentario', id);
-    // Petición para obtener los datos del registro solicitado.
-    const DATA = await fetchData(COMENTARIO_API, 'readOne', FORM);
-    // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
-    if (DATA.status) {
-        // Se muestra la caja de diálogo con su título.
-        SAVE_MODAL.show();
-        MODAL_TITLE.textContent = 'Actualizar comentario';
-        // Se prepara el formulario.
-        SAVE_FORM.reset();
-        const ROW = DATA.dataset;
-        ID_COMENTARIO.value = ROW.id_comentario;
-        ESTADO_COMENTARIO.checked = ROW.estado_comentario;
-    } else {
-        sweetAlert(2, DATA.error, false);
+const openState = async (id) => {
+    // Se muestra un mensaje de confirmación y se captura la respuesta en una constante.
+    const RESPONSE = await confirmAction('¿Está seguro de cambiar el estado del comentario?');
+    // Se verifica la respuesta del mensaje.
+    if (RESPONSE) {
+        // Se define un objeto con los datos del registro seleccionado.
+        const FORM = new FormData();
+        FORM.append('id_comentario', id);
+
+        // Petición para cambiar el estado del cliente
+        const DATA = await fetchData(COMENTARIO_API, 'updateRowEstado', FORM);
+
+        // Se comprueba si la respuesta es satisfactoria
+        if (DATA.status) {
+            sweetAlert(1, DATA.message, true); // Mensaje de éxito
+            fillTable(); // Recargar la tabla para visualizar los cambios
+        } else {
+            sweetAlert(2, DATA.error, false); // Mensaje de error
+        }
     }
 }

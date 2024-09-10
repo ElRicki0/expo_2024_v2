@@ -114,14 +114,35 @@ const fillSelect = async (filename, action, select, filter = undefined) => {
 }
 
 /*
+*   Función para generar una paleta de colores
+*   Parámetros: ninguno.
+*   Retorno: xAsis.
+*/
+const generateColorPalette = (numColors) => {
+    const palette = [];
+    const baseColors = [[253, 222, 17], [94, 200, 245], [64, 169, 136], [255, 78, 78], [35, 51, 198]]; // Colores base RGB
+
+    for (let i = 0; i < numColors; i++) {
+        const baseColor = baseColors[i % baseColors.length]; // Rotar entre los colores base
+        const variation = (i / numColors) * 0.5; // Variación de brillo entre 0 y 0.5
+        const r = Math.round(baseColor[0] * (1 - variation));
+        const g = Math.round(baseColor[1] * (1 - variation));
+        const b = Math.round(baseColor[2] * (1 - variation));
+        const color = `rgba(${r}, ${g}, ${b}, 1)`; // Opacidad de 1
+        palette.push(color);
+    }
+
+    return palette;
+}
+
+/*
 *   Función para generar un gráfico de barras verticales.
 *   Requiere la librería chart.js para funcionar.
 *   Parámetros: canvas (identificador de la etiqueta canvas), xAxis (datos para el eje X), yAxis (datos para el eje Y), legend (etiqueta para los datos) y title (título del gráfico).
 *   Retorno: ninguno.
 */
 const barGraph = (canvas, xAxis, yAxis, legend, title) => {
-    // Se declara un arreglo para guardar códigos de colores en formato hexadecimal.
-    let colors = [];
+    const colors = generateColorPalette(xAxis.length); // Generar paleta de colores
     // Se generan códigos hexadecimales de 6 cifras de acuerdo con el número de datos a mostrar y se agregan al arreglo.
     xAxis.forEach(() => {
         colors.push('#' + (Math.random().toString(16)).substring(2, 8));
@@ -173,20 +194,56 @@ const barGraph = (canvas, xAxis, yAxis, legend, title) => {
     });
 }
 
+/*
+*   Función para generar un gráfico de radar.
+*   Requiere la librería chart.js para funcionar.
+*   Parámetros: canvas (identificador de la etiqueta canvas), xAxis (datos para el eje X), yAxis (datos para el eje Y), legend (etiqueta para los datos) y title (título del gráfico).
+*   Retorno: ninguno.
+*/
+const radarGraph = (canvas, legends, values, title) => {
+    let colors = values.map(() => '#' + (Math.random().toString(16)).substring(2, 8));
+
+    // Configurar los datos del gráfico
+    new Chart(document.getElementById(canvas), {
+        type: 'radar',
+        data: {
+            labels: legends,
+            datasets: [{
+                label: title,
+                data: values,
+                backgroundColor: colors,
+                borderColor: colors,
+                borderWidth: 2
+            }]
+        },
+        options: {
+            scales: {
+                r: {
+                    suggestedMin: 0 // Establecer el mínimo del eje radial a 0
+                }
+            },
+            plugins: {
+                title: {
+                    display: true,
+                    text: title,
+                    color: 'white'
+                },
+                legend: {
+                    display: false, // Ocultar la leyenda porque ya tenemos etiquetas en el radar
+                }
+            }
+        }
+    });
+};
 
 /*
-*   Función para generar un gráfico de pastel.
-*   Requiere la librería chart.js para funcionar.
+*   Función para generar un gráfico de pastel. Requiere la librería chart.js para funcionar.
 *   Parámetros: canvas (identificador de la etiqueta canvas), legends (valores para las etiquetas), values (valores de los datos) y title (título del gráfico).
 *   Retorno: ninguno.
 */
 const pieGraph = (canvas, legends, values, title) => {
-    // Se declara un arreglo para guardar códigos de colores en formato hexadecimal.
-    let colors = [];
-    // Se generan códigos hexadecimales de 6 cifras de acuerdo con el número de datos a mostrar y se agregan al arreglo.
-    values.forEach(() => {
-        colors.push('#' + (Math.random().toString(16)).substring(2, 8));
-    });
+    const numColors = values.length; // Número de colores necesarios
+    const colors = generateColorPalette(numColors); // Generar paleta de colores
     // Se crea una instancia para generar el gráfico con los datos recibidos.
     new Chart(document.getElementById(canvas), {
         type: 'pie',
@@ -220,9 +277,8 @@ const pieGraph = (canvas, legends, values, title) => {
     });
 }
 
-const lineGraph = (canvas, values, yAxis, legend, title) => {
-    // Se declara un arreglo para guardar códigos de colores en formato hexadecimal.
-    let colors = [];
+const lineGraph = (canvas, values, yAxis, xAxis, legend, title) => {
+    const colors = generateColorPalette(xAxis.length); // Generar paleta de colores
     // Se generan códigos hexadecimales de 6 cifras de acuerdo con el número de datos a mostrar y se agregan al arreglo.
     values.forEach(() => {
         colors.push('#' + (Math.random().toString(16)).substring(2, 8));
@@ -268,9 +324,8 @@ const lineGraph = (canvas, values, yAxis, legend, title) => {
 *   Parámetros: canvas (identificador de la etiqueta canvas), legends (valores para las etiquetas), values (valores de los datos) y title (título del gráfico).
 *   Retorno: ninguno.
 */
-const donaGraph = (canvas, legends, values, title) => {
-    // Se declara un arreglo para guardar códigos de colores en formato hexadecimal.
-    let colors = [];
+const donaGraph = (canvas, legends, xAxis, values, title) => {
+    const colors = generateColorPalette(xAxis.length); // Generar paleta de colores
     // Se generan códigos hexadecimales de 6 cifras de acuerdo con el número de datos a mostrar y se agregan al arreglo.
     values.forEach(() => {
         colors.push('#' + (Math.random().toString(16)).substring(2, 8));

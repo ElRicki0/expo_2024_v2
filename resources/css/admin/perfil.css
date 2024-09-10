@@ -1,6 +1,6 @@
 .container {
     width: 480px;
-    height: 288px;
+    height: 335px;
 }
 
 #User {
@@ -17,6 +17,15 @@
     color: rgb(0, 219, 84);
 }
 
+#ButtonDelete {
+    background-color: rgb(255, 255, 255);
+    color: rgb(219, 0, 0);
+}
+
 .TituloModal {
     color: rgb(0, 219, 84);
+}
+
+.tituloDelete {
+    color: rgb(219, 0, 0);
 }

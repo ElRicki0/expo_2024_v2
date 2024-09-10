@@ -20,9 +20,9 @@ class ComentarioHandler
                     from tb_comentarios c
                     join tb_clientes cl on c.id_cliente= cl.id_cliente
                     join tb_servicios s on c.id_servicio = s.id_servicio
-                WHERE contenido_comentario LIKE ? OR nombre_cliente LIKE ? OR tipo_servicio LIKE ? 
+                WHERE contenido_comentario LIKE ? OR nombre_cliente LIKE ?
                 ORDER BY contenido_comentario';
-        $params = array($value, $value, $value);
+        $params = array($value, $value);
         return Database::getRows($sql, $params);
     }
 
@@ -60,9 +60,11 @@ class ComentarioHandler
     public function updateRowEstado()
     {
         $sql = 'UPDATE tb_comentarios
-                SET estado_comentario = ?
+                SET estado_comentario = CASE 
+                WHEN estado_comentario = 0 THEN 1 
+                ELSE 0 END
                 WHERE id_comentario = ?';
-        $params = array($this->estado, $this->id);
+        $params = array($this->id);
         return Database::executeRow($sql, $params);
     }
 }

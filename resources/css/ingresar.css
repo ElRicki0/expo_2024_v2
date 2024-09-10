@@ -1,3 +1,11 @@
-#bonitaaaa{
-    border-radius: 16px;
+@media (max-width: 576px) {
+
+    /* Ocultar la imagen en dispositivos móviles */
+    .d-none.d-sm-block {
+        display: none;
+    }
+
+    .SingUp {
+        margin-top: 150px;
+    }
 }

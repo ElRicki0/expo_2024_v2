@@ -6,10 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Llamada a la función para mostrar el encabezado y pie del documento.
     loadTemplate();
     graficoBarras();
-    graficoPastel();
-    console.log("pitoooo");
-    // Llamada a la función para llenar la tabla con los registros existentes.
-    // fillTable();
+    graficoBarras2();
 });
 
 /*
@@ -32,7 +29,7 @@ const graficoBarras = async () => {
             citas.push(row.cantidad_citas);
         });
         // Llamada a la función para generar y mostrar un gráfico de barras. Se encuentra en el archivo components.js
-        barGraph('chart1', empleado, citas, 'CITAS PENDIENTES', 'EMPLEADOS CON CITAS PENDIENTES');
+        barGraph('chart1', empleado, citas, 'CANTIDAD DE CITAS', 'EMPLEADOS CON CITAS PENDIENTES');
     } else {
         document.getElementById('chart1').remove();
         console.log(DATA.error);
@@ -44,7 +41,7 @@ const graficoBarras = async () => {
 *   Parámetros: ninguno.
 *   Retorno: ninguno.
 */
-const graficoPastel = async () => {
+const graficoBarras2 = async () => {
     // Petición para obtener los datos del gráfico.
     const DATA = await fetchData(SERVICIOS_API, 'readCantidadCitas');
     console.log(DATA);
@@ -56,11 +53,11 @@ const graficoPastel = async () => {
         // Se recorre el conjunto de registros fila por fila a través del objeto row.
         DATA.dataset.forEach(row => {
             // Se agregan los datos a los arreglos.
-            servicio.push(row.tipo_servicio);
+            servicio.push(row.tipo_servicio.slice(0, 12));
             citas.push(row.cantidad_citas);
         });
         // Llamada a la función para generar y mostrar un gráfico de pastel. Se encuentra en el archivo components.js
-        pieGraph('chart2', servicio, citas, 'CITAS REALIZADAS', 'SERVICIOS CON MAS CITAS REALIZADAS');
+        barGraph('chart2', servicio, citas, 'CITAS POR SERVICIOS', 'SERVICIOS CON MAS CITAS REALIZADAS');
     } else {
         document.getElementById('chart2').remove();
         console.log(DATA.error);
