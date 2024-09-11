@@ -20,7 +20,6 @@ document.addEventListener('DOMContentLoaded', () => {
     fillTable();
 });
 
-
 // Método del evento para cuando se envía el formulario de buscar.
 SEARCH_FORM.addEventListener('submit', (event) => {
     // Se evita recargar la página web después de enviar el formulario.
@@ -84,7 +83,6 @@ const fillTable = async (form = null) => {
     }
 }
 
-
 /*
 *   Función asíncrona para preparar un modal de confirmacion para una funcion de estado
 *   Parámetros: id (identificador del registro seleccionado).
@@ -117,7 +115,6 @@ const openState = async (id) => {
 *   Parámetros: id (identificador del registro seleccionado).
 *   Retorno: ninguno.
 */
-
 const openDelete = async (id) => {
     // Llamada a la función para mostrar un mensaje de confirmación, capturando la respuesta en una constante.
     const RESPONSE = await confirmAction('¿Desea eliminar al cliente de forma permanente?');
@@ -213,7 +210,6 @@ const openReport = () => {
 }
 
 // reporte parametrizado
-
 const openClienteReport = (id) => {
     // Se declara una constante tipo objeto con la ruta específica del reporte en el servidor.
     const PATH = new URL(`${SERVER_URL}reports/admin/cliente_servicio.php`);

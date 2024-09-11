@@ -6,17 +6,17 @@ const SEARCH_FORM = document.getElementById('searchForm');
 const TABLE_BODY = document.getElementById('tableBody'),
     ROWS_FOUND = document.getElementById('rowsFound');
 // Constantes para establecer los elementos del componente Modal.
-const SAVE_MODAL = new bootstrap.Modal('#modalEmpleado'),
+const SAVE_MODAL = new bootstrap.Modal('#saveModal'),
     MODAL_TITLE = document.getElementById('modalTitle'),
     CHART_MODAL = new bootstrap.Modal('#chartModal');
 // Constantes para establecer los elementos del formulario de guardar.
 const SAVE_FORM = document.getElementById('saveForm'),
-    ID_EMPLEADO = document.getElementById('id_empleado'),
-    NOMBRE_EMPLEADO = document.getElementById('nombre_empleado'),
-    APELLIDO_EMPLEADO = document.getElementById('apellido_empleado'),
-    CORREO_EMPLEADO = document.getElementById('correo_empleado'),
-    DUI_EMPLEADO = document.getElementById('dui_empleado'),
-    FECHA_EMPLEADO = document.getElementById('fecha_empleado'),
+    ID_EMPLEADO = document.getElementById('idEmpleado'),
+    NOMBRE_EMPLEADO = document.getElementById('nombreEmpleado'),
+    APELLIDO_EMPLEADO = document.getElementById('apellidoEmpleado'),
+    CORREO_EMPLEADO = document.getElementById('correoEmpleado'),
+    DUI_EMPLEADO = document.getElementById('duiEmpleado'),
+    FECHA_EMPLEADO = document.getElementById('fechaEmpleado'),
     ESTADO_EMPLEADO = document.getElementById('estadoEmpleado');
 
 // Método del evento para cuando el documento ha cargado.
@@ -127,7 +127,7 @@ const openState = async (id) => {
     if (RESPONSE) {
         // Se define un objeto con los datos del registro seleccionado.
         const FORM = new FormData();
-        FORM.append('id_empleado', id);
+        FORM.append('idEmpleado', id);
 
         // Petición para cambiar el estado del cliente
         const DATA = await fetchData(EMPLEADO_API, 'updateRowEstado', FORM);
@@ -163,7 +163,7 @@ const openCreate = () => {
 const openUpdate = async (id) => {
     // Se define una constante tipo objeto con los datos del registro seleccionado.
     const FORM = new FormData();
-    FORM.append('id_empleado', id);
+    FORM.append('idEmpleado', id);
     // Petición para obtener los datos del registro solicitado.
     const DATA = await fetchData(EMPLEADO_API, 'readOne', FORM);
     // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
@@ -199,7 +199,7 @@ const openDelete = async (id) => {
     if (RESPONSE) {
         // Se define una constante tipo objeto con los datos del registro seleccionado.
         const FORM = new FormData();
-        FORM.append('id_empleado', id);
+        FORM.append('idEmpleado', id);
         // Petición para eliminar el registro seleccionado.
         const DATA = await fetchData(EMPLEADO_API, 'deleteRow', FORM);
         // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
@@ -249,7 +249,7 @@ const graficoDona = async () => {
 const openChart = async (id) => {
     // Se define una constante tipo objeto con los datos del registro seleccionado.
     const FORM = new FormData();
-    FORM.append('id_empleado', id);
+    FORM.append('idEmpleado', id);
     // Petición para obtener los datos del registro solicitado.
     const DATA = await fetchData(EMPLEADO_API, 'readCantidadServiciosEmpleado', FORM);
     // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con el error.

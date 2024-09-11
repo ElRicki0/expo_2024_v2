@@ -28,7 +28,7 @@ if (isset($_GET['action'])) {
             case 'updateRowEstado':
                 $_POST = Validator::validateForm($_POST);
                 if (
-                    !$cliente->setId($_POST['id_cliente'])
+                    !$cliente->setId($_POST['idCliente'])
                 ) {
                     $result['error'] = $cliente->getDataError();
                 } elseif ($cliente->updateRowEstado()) {
@@ -47,7 +47,7 @@ if (isset($_GET['action'])) {
                 }
                 break;
             case 'readOne':
-                if (!$cliente->setId($_POST['id_cliente'])) {
+                if (!$cliente->setId($_POST['idCliente'])) {
                     $result['error'] = $cliente->getDataError();
                 } elseif ($result['dataset'] = $cliente->readOne()) {
                     $result['status'] = 1;

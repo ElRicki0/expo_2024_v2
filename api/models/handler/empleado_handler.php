@@ -25,28 +25,6 @@ class EmpleadoHandler
      *  Métodos para gestionar la cuenta del empleado.
      */
 
-    // Método checkStatus: verifica el estado del empleado y establece variables de sesión si está activo.
-    public function checkStatus()
-    {
-        if ($this->estado) {
-            $_SESSION['idCliente'] = $this->id;
-            $_SESSION['correoCliente'] = $this->correo;
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    // Método changeStatus: cambia el estado del empleado en la base de datos.
-    public function changeStatus()
-    {
-        $sql = 'UPDATE tb_clientes
-                SET estado_cliente = ?
-                WHERE id_cliente = ?';
-        $params = array($this->estado, $this->id);
-        return Database::executeRow($sql, $params);
-    }
-
     public function updateRowEstado()
     {
         $sql = 'UPDATE tb_empleados
@@ -140,8 +118,8 @@ class EmpleadoHandler
     }
 
     /*
-    *   Métodos para generar gráficos.
-    */
+     *   Métodos para generar gráficos.
+     */
     public function readEstadoEmpleado()
     {
         $sql = 'SELECT 
@@ -150,10 +128,8 @@ class EmpleadoHandler
                         WHEN estado_empleado = 1 THEN "Activo"
                     END AS estado,
                     COUNT(*) AS cantidad
-                FROM 
-                    tb_empleados
-                GROUP BY 
-                    estado_empleado;';
+                FROM tb_empleados
+                GROUP BY estado_empleado;';
         return Database::getRows($sql);
     }
 
@@ -164,18 +140,12 @@ class EmpleadoHandler
                     e.nombre_empleado,
                     s.tipo_servicio,
                     COUNT(*) AS cantidad_servicios
-                FROM 
-                    tb_citas c
-                JOIN 
-                    tb_servicios s ON c.id_servicio = s.id_servicio
-                JOIN 
-                    tb_empleados e ON c.id_empleado = e.id_empleado
-                WHERE 
-                    c.id_empleado = ?
-                GROUP BY 
-                    e.id_empleado, s.tipo_servicio
-                ORDER BY 
-                    e.id_empleado, s.tipo_servicio;';
+                FROM tb_citas c
+                JOIN tb_servicios s ON c.id_servicio = s.id_servicio
+                JOIN tb_empleados e ON c.id_empleado = e.id_empleado
+                WHERE c.id_empleado = ?
+                GROUP BY e.id_empleado, s.tipo_servicio
+                ORDER BY e.id_empleado, s.tipo_servicio;';
         $params = array($this->id);
         return Database::getRows($sql, $params);
     }

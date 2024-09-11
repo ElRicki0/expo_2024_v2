@@ -98,6 +98,7 @@
 
             <div class="row align-items-center">
                 <div class="card col-3 mx-auto inicioIndex my-3">
+                    
                     <!-- Se muestra un gráfico con la cantidad de productos por categoría -->
                     <canvas id="chart1"></canvas>
                 </div>
@@ -105,7 +106,7 @@
         </div>
 
         <!-- Modal agregar Empleado -->
-        <div class="modal fade" id="modalEmpleado" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal fade" id="saveModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered modal-lg">
                 <div class="modal-content bg-dark text-white">
 
@@ -113,7 +114,7 @@
                     <form id="saveForm">
 
                         <!-- Campo oculto para asignar el id del registro al momento de modificar -->
-                        <input type="number" class="d-none" id="id_empleado" name="id_empleado">
+                        <input type="number" class="d-none" id="idEmpleado" name="idEmpleado">
                         <form class="needs-validation">
 
                             <!-- Body del modal -->
@@ -128,18 +129,18 @@
                                         <div class="row">
                                             <div class="col-6">
                                                 <label class="form-label">Nombre(s)</label>
-                                                <input id="nombre_empleado" name="nombre_empleado" class="form-control"
+                                                <input id="nombreEmpleado" name="nombreEmpleado" class="form-control"
                                                     required oninput="formatAlphabetic(this)">
                                             </div>
                                             <div class="col-6">
                                                 <label class="form-label">Apellido(s)</label>
-                                                <input id="apellido_empleado" name="apellido_empleado"
+                                                <input id="apellidoEmpleado" name="apellidoEmpleado"
                                                     class="form-control" required oninput="formatAlphabetic(this)">
                                             </div>
                                         </div>
                                         <div class="col-12 mt-3">
                                             <label class="form-label">Correo electronico</label>
-                                            <input id="correo_empleado" name="correo_empleado" class="form-control"
+                                            <input id="correoEmpleado" name="correoEmpleado" class="form-control"
                                                 required oninput="formatEmail(this)">
                                         </div>
                                     </div>
@@ -148,13 +149,13 @@
                                             <div class="row">
                                                 <div class="col-6 mt-3">
                                                     <label class="form-label">Documento de identidad</label>
-                                                    <input id="dui_empleado" name="dui_empleado" class="form-control"
+                                                    <input id="duiEmpleado" name="duiEmpleado" class="form-control"
                                                         required oninput="formatDui(this)">
                                                 </div>
                                                 <div class="col-6 mt-3">
                                                     <label class="form-label">Fecha de nacimiento</label>
-                                                    <input id="fecha_empleado" name="fecha_empleado" type="date"
-                                                        class="form-control" required oninput="validarFecha(this)">
+                                                    <input id="fechaEmpleado" name="fechaEmpleado" type="date"
+                                                        class="form-control" required onclick="validarFecha(this)">
                                                 </div>
                                             </div>
                                             <div class="form-check form-switch form-check-reverse mt-3">
@@ -183,10 +184,10 @@
         <!-- Componente Modal para mostrar un gráfico -->
         <div class="modal fade" id="chartModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
             aria-labelledby="chartTitle" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-dialog modal-dialog-centered text-white">
                 <div class="modal-content">
                     <div class="modal-header inicioIndex">
-                        <h3 class="modal-title textoClaro " id="chartTitle">Citas asignadas</h3>
+                        <h3 class="modal-title" id="chartTitle">Citas asignadas</h3>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
 
