@@ -29,9 +29,9 @@ class ComentarioHandler
     public function readAll()
     {
         $sql = 'SELECT c.id_comentario, c.contenido_comentario, cl.nombre_cliente, s.tipo_servicio, c.estado_comentario
-                    from tb_comentarios c
-                    join tb_clientes cl on c.id_cliente= cl.id_cliente
-                    join tb_servicios s on c.id_servicio = s.id_servicio
+                from tb_comentarios c
+                join tb_clientes cl on c.id_cliente= cl.id_cliente
+                join tb_servicios s on c.id_servicio = s.id_servicio
                 ORDER BY contenido_comentario';
         return Database::getRows($sql);
     }

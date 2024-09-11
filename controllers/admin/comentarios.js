@@ -1,7 +1,9 @@
 // Constantes para completar las rutas de la API.
 const COMENTARIO_API = 'services/admin/comentario.php';
+
 // Constante para establecer el formulario de buscar.
 const SEARCH_FORM = document.getElementById('searchForm');
+
 // Constantes para establecer el contenido de la tabla.
 const TABLE_BODY = document.getElementById('tableBody'),
     ROWS_FOUND = document.getElementById('rowsFound');
@@ -10,7 +12,6 @@ const TABLE_BODY = document.getElementById('tableBody'),
 document.addEventListener('DOMContentLoaded', () => {
     // Llamada a la función para mostrar el encabezado y pie del documento.
     loadTemplate();
-    graficaComentariosTop5();
     // Llamada a la función para llenar la tabla con los registros existentes.
     fillTable();
 });
@@ -78,7 +79,7 @@ const openState = async (id) => {
     if (RESPONSE) {
         // Se define un objeto con los datos del registro seleccionado.
         const FORM = new FormData();
-        FORM.append('id_comentario', id);
+        FORM.append('idComentario', id);
 
         // Petición para cambiar el estado del cliente
         const DATA = await fetchData(COMENTARIO_API, 'updateRowEstado', FORM);
@@ -90,30 +91,5 @@ const openState = async (id) => {
         } else {
             sweetAlert(2, DATA.error, false); // Mensaje de error
         }
-    }
-}
-
-const graficaComentariosTop5 = async () => {
-    // Petición para obtener los datos del gráfico.
-    const DATA = await fetchData(COMENTARIO_API, 'graficaComentariosTop5');
-    
-    // Se comprueba si la respuesta es satisfactoria, de lo contrario se remueve la etiqueta canvas.
-    if (DATA.status) {
-        // Se declaran los arreglos para guardar los datos a graficar.
-        let comentarios = [];
-        let servicios = [];
-        
-        // Se recorre el conjunto de registros fila por fila a través del objeto row.
-        DATA.dataset.forEach(row => {
-            // Se agregan los datos a los arreglos.
-            comentarios.push(row.numero_comentarios);
-            servicios.push(row.tipo_servicio);
-        });
-        
-        // Llamada a la función para generar y mostrar un gráfico de barras. Se encuentra en el archivo components.js.
-        lineGraph('chart4', servicios, comentarios, 'Número de Comentarios', 'Servicios');
-    } else {
-        document.getElementById('chart4').remove();
-        console.log(DATA.error);
     }
 }
