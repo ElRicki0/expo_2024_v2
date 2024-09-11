@@ -77,18 +77,6 @@ class ServicioData extends ServicioHandler
         }
     }
 
-    // Método setFilename: verifica y asigna el nombre de archivo de imagen de la categoría del servicio.
-    public function setFilename()
-    {
-        if ($data = $this->readFilename()) {
-            $this->filename = $data['imagen_servicio'];
-            return true;
-        } else {
-            $this->data_error = 'Servicio inexistente';
-            return false;
-        }
-    }
-
     // Método getDataError: retorna el error actual de los datos.
     public function getDataError()
     {

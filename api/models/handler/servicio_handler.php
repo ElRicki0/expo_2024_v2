@@ -85,15 +85,6 @@ class ServicioHandler
         return Database::executeRow($sql, $params);
     }
 
-    public function readFilename()
-    {
-        $sql = 'SELECT imagen_servicio 
-                FROM tb_servicios
-                WHERE id_servicio  = ?';
-        $params = array($this->id);
-        return Database::getRow($sql, $params);
-    }
-
     public function deleteRow()
     {
         $sql = 'DELETE FROM tb_servicios
@@ -103,93 +94,46 @@ class ServicioHandler
     }
 
     /*
-    *   Métodos para generar gráficos.
-    */
+     *   Métodos para generar gráficos.
+     */
     public function readCantidadCitas()
     {
         $sql = 'SELECT
                     s.id_servicio,
                     s.tipo_servicio,
                     COUNT(c.id_cita) AS cantidad_citas
-                FROM
-                    tb_servicios s
-                LEFT JOIN
-                    tb_citas c ON s.id_servicio = c.id_servicio
-                GROUP BY
-                    s.id_servicio, s.tipo_servicio
-                	LIMIT 5;';
+                FROM tb_servicios s
+                LEFT JOIN tb_citas c ON s.id_servicio = c.id_servicio
+                GROUP BY s.id_servicio, s.tipo_servicio
+                LIMIT 5;';
         return Database::getRows($sql);
     }
 
-    public function readCantidadBeneficios()
-    {
-        $sql = 'SELECT
-                    s.id_servicio,
-                    s.tipo_servicio,
-                    s.descripcion_servicio,
-                    s.imagen_servicio,
-                    COUNT(b.id_beneficio) AS cantidad_beneficios
-                FROM
-                    tb_servicios s
-                LEFT JOIN
-                    tb_beneficios b ON s.id_servicio = b.id_servicio
-                GROUP BY
-                    s.id_servicio, s.tipo_servicio, s.descripcion_servicio, s.imagen_servicio
-                ORDER BY
-                    cantidad_beneficios DESC;';
-        return Database::getRows($sql);
-    }
-
-       // métodos paa generar gráficas
+    // métodos paa generar gráficas
     public function graficoPastelServicio()
     {
         $sql = 'WITH citas_por_semana AS (
-                SELECT 
-                    s.id_servicio,
-                    s.tipo_servicio,
-                    YEARWEEK(c.fecha_asignacion_cita, 1) AS semana,
+                SELECT s.id_servicio, s.tipo_servicio, YEARWEEK(c.fecha_asignacion_cita, 1) AS semana,
                 COUNT(c.id_cita) AS num_citas
-                FROM 
-                    tb_citas c
-                JOIN 
-                    tb_servicios s ON c.id_servicio = s.id_servicio
-                WHERE 
-                     c.fecha_asignacion_cita IS NOT NULL
-                GROUP BY 
-                    s.id_servicio, s.tipo_servicio, YEARWEEK(c.fecha_asignacion_cita, 1)
-                    ),
-
-                    citas_agrupadas AS (
-                SELECT 
-                    id_servicio,
-                    tipo_servicio,
-                    AVG(num_citas) AS promedio_citas,
-                    COUNT(DISTINCT semana) AS semanas
-                FROM 
-                    citas_por_semana
-                GROUP BY 
-                    id_servicio, tipo_servicio)
-
-                SELECT 
-                    id_servicio,
-                    tipo_servicio,
-                ROUND(promedio_citas) AS prediccion_citas_siguiente_semana
-                FROM 
-                    citas_agrupadas;';
-            return Database::getRows($sql);
+                FROM tb_citas c
+                JOIN tb_servicios s ON c.id_servicio = s.id_servicio
+                WHERE c.fecha_asignacion_cita IS NOT NULL
+                GROUP BY s.id_servicio, s.tipo_servicio, YEARWEEK(c.fecha_asignacion_cita, 1)),citas_agrupadas AS (
+                SELECT id_servicio, tipo_servicio, AVG(num_citas) AS promedio_citas, COUNT(DISTINCT semana) AS semanas
+                FROM citas_por_semana
+                GROUP BY id_servicio, tipo_servicio)
+                SELECT id_servicio, tipo_servicio,
+                ROUND (promedio_citas) AS prediccion_citas_siguiente_semana
+                FROM citas_agrupadas;';
+        return Database::getRows($sql);
     }
 
     /*
-    *   Métodos para generar reportes.
-    */
+     *   Métodos para generar reportes.
+     */
     public function servicioCliente()
     {
-        $sql = 'SELECT DISTINCT
-                    cl.id_cliente,
-                    cl.nombre_cliente,
-                    cl.apellido_cliente,
-                    c.numero_seciones,
-                    c.nombre_cita,
+        $sql = 'SELECT DISTINCT cl.id_cliente, cl.nombre_cliente, cl.apellido_cliente, c.numero_seciones, c.nombre_cita,
                     c.fecha_creacion_cita
                 FROM tb_clientes cl
                 INNER JOIN tb_citas c ON cl.id_cliente = c.id_cliente
@@ -198,5 +142,4 @@ class ServicioHandler
         $params = array($this->id);
         return Database::getRows($sql, $params);
     }
-    
 }
