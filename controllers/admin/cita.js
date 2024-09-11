@@ -37,7 +37,6 @@ const SAVE_FORM = document.getElementById('saveForm'),
 document.addEventListener('DOMContentLoaded', () => {
     // Llamada a la función para mostrar el encabezado y pie del documento.
     loadTemplate();
-    graficoBarrasPrediccionCitas();
     graficoBarras();
     // Llamada a la función para llenar la tabla con los registros existentes.
     fillTable();
@@ -113,7 +112,6 @@ const fechaActual = new Date().toISOString().slice(0, 16);
 // Establecer el atributo "min" en el input para que solo acepte fechas y horas futuras
 FECHA_CITA.setAttribute('min', fechaActual);
 
-
 /*
 *   Función asíncrona para llenar la tabla con los registros disponibles.
 *   Parámetros: form (objeto opcional con los datos de búsqueda).
@@ -179,8 +177,6 @@ const openCreate = () => {
 }
 
 // método para mostrar gráfica entre dos fechas futuras
-
-
 const openGraf = () => {
     MODAL_GRAFIC.show();
     MODAL_G_TITLE.textContent = 'CREAR GRÁFICA ENTRE FECHAS';
@@ -225,7 +221,6 @@ const openUpdate = async (id) => {
 *   Parámetros: id (identificador del registro seleccionado).
 *   Retorno: ninguno.
 */
-
 const openDelete = async (id) => {
     // Llamada a la función para mostrar un mensaje de confirmación, capturando la respuesta en una constante.
     const RESPONSE = await confirmAction('¿Desea eliminar la cita de forma permanente?');
@@ -274,53 +269,6 @@ const graficoBarras = async () => {
         console.log(DATA.error);
     }
 }
-
-const graficoBarrasPrediccionCitas = async () => {
-    // Petición para obtener los datos del gráfico.
-    const DATA = await fetchData(CITA_API, 'graficoBarrasPrediccionCitas');
-    // Se comprueba si la respuesta es satisfactoria, de lo contrario se remueve la etiqueta canvas.
-    if (DATA.status) {
-        // Se declaran los arreglos para guardar los datos a graficar.
-        let citas = [];
-        let servicio = [];
-        // Se recorre el conjunto de registros fila por fila a través del objeto row.
-        DATA.dataset.forEach(row => {
-            // Se agregan los datos a los arreglos.
-            citas.push(row.prediccion_proxima_semana);
-            servicio.push(row.tipo_servicio);
-        });
-        // Llamada a la función para generar y mostrar un gráfico de barras. Se encuentra en el archivo components.js
-        lineGraph('chartP2', servicio, citas, 'Prediccion de citas proxima semana', 'Prediccion de servicios cotizados por semana futura');
-    } else {
-        document.getElementById('chartP2').remove();
-        console.log(DATA.error);
-    }
-
-}
-
-
-// Establecer la fecha máxima en los inputs a la fecha actual
-const today = new Date().toISOString().split('T')[0];
-document.getElementById('fechaInicio').setAttribute('max', today);
-document.getElementById('fechaFinal').setAttribute('max', today);
-
-// Validar que la fecha final no sea menor que la fecha de inicio
-const fechaInicioInput = document.getElementById('fechaInicio');
-const fechaFinalInput = document.getElementById('fechaFinal');
-
-fechaInicioInput.addEventListener('change', validarFechas);
-fechaFinalInput.addEventListener('change', validarFechas);
-
-function validarFechas() {
-    const fechaInicio = new Date(fechaInicioInput.value);
-    const fechaFinal = new Date(fechaFinalInput.value);
-
-    if (fechaFinal < fechaInicio) {
-        alert('La fecha final no puede ser anterior a la fecha de inicio.');
-        fechaFinalInput.value = ''; // Limpia la fecha final si no es válida
-    }
-}
-
 
 /*
 *   Función para abrir un reporte parametrizado de cita general por cliente.

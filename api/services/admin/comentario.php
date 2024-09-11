@@ -55,13 +55,6 @@ if (isset($_GET['action'])) {
                     $result['error'] = 'Comentario inexistente';
                 }
                 break;
-                case 'graficaComentariosTop5':
-                    if ($result['dataset'] = $comentario->graficaComentariosTop5()) {
-                        $result['status'] = 1;
-                    } else {
-                        $result['error'] = 'No ha datos diponibles';
-                    }
-                    break;
             default:
                 $result['error'] = 'Acción no disponible dentro de la sesión';
         }

@@ -61,11 +61,11 @@ VALUES
 
 INSERT INTO tb_preguntas (nombre_pregunta, contenido_pregunta, imagen_pregunta, id_empleado) 
 VALUES 
-('Pregunta 1', 'Contenido de la Pregunta 1', 'imagen1.jpg', 1),
-('Pregunta 2', 'Contenido de la Pregunta 2', 'imagen2.jpg', 2),
-('Pregunta 3', 'Contenido de la Pregunta 3', 'imagen3.jpg', 3),
-('Pregunta 4', 'Contenido de la Pregunta 4', 'imagen4.jpg', 4),
-('Pregunta 5', 'Contenido de la Pregunta 5', 'imagen5.jpg', 5);
+('Pregunta 1', 'Contenido de la Pregunta 1', 'pregunta.jpg', 1),
+('Pregunta 2', 'Contenido de la Pregunta 2', 'pregunta.jpg', 2),
+('Pregunta 3', 'Contenido de la Pregunta 3', 'pregunta.jpg', 3),
+('Pregunta 4', 'Contenido de la Pregunta 4', 'pregunta.jpg', 4),
+('Pregunta 5', 'Contenido de la Pregunta 5', 'pregunta.jpg', 5);
 
 INSERT INTO tb_citas (id_cliente, id_servicio) 
 VALUES 

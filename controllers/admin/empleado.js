@@ -234,7 +234,7 @@ const graficoDona = async () => {
             estado.push(row.estado);
         });
         // Llamada a la función para generar y mostrar un gráfico de pastel. Se encuentra en el archivo components.js
-        donaGraph('chart1', estado, cantidad, 'ESTADO DE EMPLEADOS', 'Actividad de empleados');
+        donaGraph('chart1', estado, cantidad, 'ESTADO DE EMPLEADOS', 'ACTIVIDAD DE EMPLEADOS');
     } else {
         document.getElementById('chart1').remove();
         console.log(DATA.error);

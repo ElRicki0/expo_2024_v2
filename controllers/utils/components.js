@@ -324,12 +324,9 @@ const lineGraph = (canvas, values, yAxis, xAxis, legend, title) => {
 *   Parámetros: canvas (identificador de la etiqueta canvas), legends (valores para las etiquetas), values (valores de los datos) y title (título del gráfico).
 *   Retorno: ninguno.
 */
-const donaGraph = (canvas, legends, xAxis, values, title) => {
-    const colors = generateColorPalette(xAxis.length); // Generar paleta de colores
-    // Se generan códigos hexadecimales de 6 cifras de acuerdo con el número de datos a mostrar y se agregan al arreglo.
-    values.forEach(() => {
-        colors.push('#' + (Math.random().toString(16)).substring(2, 8));
-    });
+const donaGraph = (canvas, legends, values, title) => {
+    // Se declara un arreglo para guardar códigos de colores en formato hexadecimal.
+    const colors = generateColorPalette(legends.length);
     // Se crea una instancia para generar el gráfico con los datos recibidos.
     new Chart(document.getElementById(canvas), {
         type: 'doughnut',

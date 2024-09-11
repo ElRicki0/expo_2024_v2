@@ -1,15 +1,14 @@
 // importación de ruta api
 const SERVICIOS_API ='services/admin/servicio.php';
 const CITA_API = 'services/admin/cita.php';
-const COMENTARIO_API = 'services/admin/comentario.php';
 // Método del evento para cuando el documento ha cargado.
 document.addEventListener('DOMContentLoaded', () => {
     // Llamada a la función para mostrar el encabezado y pie del documento.
     loadTemplate();
     graficoBarras();
     graficoBarras2();
-    graficoLienalCitas();
-    graficaComentariosTop5();
+    GraficoLineal1();
+    GraficoLineal2();
 });
 
 /*
@@ -71,7 +70,7 @@ const graficoBarras2 = async () => {
 }
 
 
-const graficoLienalCitas = async () => {
+const GraficoLineal1 = async () => {
     // Petición para obtener los datos del gráfico.
     const DATA = await fetchData(CITA_API, 'readCantidadClienteEstado');
     // Se comprueba si la respuesta es satisfactoria, de lo contrario se remueve la etiqueta canvas.
@@ -86,34 +85,31 @@ const graficoLienalCitas = async () => {
             clientes.push(row.cantidad_citas);
         });
         // Llamada a la función para generar y mostrar un gráfico de barras. Se encuentra en el archivo components.js
-        lineGraph('chart3', estados, clientes, 'Cantidades de citas', 'Cantidad de citas por estados');
+        lineGraph('chart3', estados, clientes, 'Cantidades de citas', 'CANTIDAD DE CITAS POR SU ESTADO');
     } else {
         document.getElementById('chart3').remove();
         console.log(DATA.error);
     }
 }
 
-const graficaComentariosTop5 = async () => {
+const GraficoLineal2 = async () => {
     // Petición para obtener los datos del gráfico.
-    const DATA = await fetchData(COMENTARIO_API, 'graficaComentariosTop5');
-    
+    const DATA = await fetchData(CITA_API, 'graficoBarrasPrediccionCitas');
     // Se comprueba si la respuesta es satisfactoria, de lo contrario se remueve la etiqueta canvas.
     if (DATA.status) {
         // Se declaran los arreglos para guardar los datos a graficar.
-        let comentarios = [];
-        let servicios = [];
-        
+        let citas = [];
+        let servicio = [];
         // Se recorre el conjunto de registros fila por fila a través del objeto row.
         DATA.dataset.forEach(row => {
             // Se agregan los datos a los arreglos.
-            comentarios.push(row.numero_comentarios);
-            servicios.push(row.tipo_servicio);
+            citas.push(row.prediccion_proxima_semana);
+            servicio.push(row.tipo_servicio);
         });
-        
-        // Llamada a la función para generar y mostrar un gráfico de barras. Se encuentra en el archivo components.js.
-        lineGraph('chart4', servicios, comentarios, 'Número de Comentarios', 'Servicios');
+        // Llamada a la función para generar y mostrar un gráfico de barras. Se encuentra en el archivo components.js
+        lineGraph('chart4', servicio, citas, 'CITAS PROXIMA SEMANA', 'PREDICCIÓN DE CITAS POR SEMANA FUTURA');
     } else {
-        document.getElementById('chart4').remove();
+        document.getElementById('chartP2').remove();
         console.log(DATA.error);
     }
 }
