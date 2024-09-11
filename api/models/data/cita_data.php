@@ -46,13 +46,6 @@ class CitaData extends CitaHandler
 
     public function setFecha($value)
     {
-        // if (Validator::validateAlphanumeric($value)) {
-        //     $this->fechaC = $value;
-        //     return true;
-        // } else {
-        //     $this->data_error = 'La fecha de la cita es incorrecta';
-        //     return false;
-        // }
         $this->fechaC = $value;
         return true;
     }
@@ -138,15 +131,10 @@ class CitaData extends CitaHandler
     }
 
     /*
-      *  Métodos para obtener el valor de los atributos adicionales.
-      */
+     *  Métodos para obtener el valor de los atributos adicionales.
+     */
     public function getDataError()
     {
         return $this->data_error;
-    }
-
-    public function getFilename()
-    {
-        return $this->filename;
     }
 }
