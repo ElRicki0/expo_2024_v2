@@ -1,11 +1,14 @@
     // Constantes para completar las rutas de la API.
 const SERVICIO_API = 'services/admin/servicio.php';
 const BENEFICIO_API = 'services/admin/beneficio.php';
+
 // Constante para establecer el formulario de buscar.
 const SEARCH_FORM = document.getElementById('searchForm');
+
 // Constantes para establecer el contenido de la tabla.
 const TABLE_BODY = document.getElementById('tableBody'),
     ROWS_FOUND = document.getElementById('rowsFound');
+    
 // Constantes para establecer los elementos del componente Modal.
 const SAVE_MODAL = new bootstrap.Modal('#saveModal'),
     MODAL_TITLE = document.getElementById('modalTitle');
