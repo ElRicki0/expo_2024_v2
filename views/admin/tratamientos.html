@@ -105,7 +105,7 @@
                                             <div class="col-6">
                                                 <label for="nombreTratamiento" class="form-label">Nombre</label>
                                                 <input id="nombreTratamiento" type="text" name="nombreTratamiento"
-                                                    class="form-control" required>
+                                                    class="form-control" required oninput="formatAlphabetic(this)">
                                             </div>
                                             <div class="col-6">
                                                 <label for="notaTratamiento" class="form-label">Nota</label>
@@ -116,7 +116,7 @@
                                             <div class="col-6">
                                                 <label for="citaTratamiento" class="form-label">Cita</label>
                                                 <select id="citaTratamiento" name="citaTratamiento" class="form-select"
-                                                    required>
+                                                    required oninput="formatAlphabetic(this)">
                                                 </select>
                                             </div>
                                         </div>

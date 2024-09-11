@@ -74,9 +74,4 @@ class TratamientoData extends TratamientoHandler
     {
         return $this->data_error;
     }
-
-    public function getFilename()
-    {
-        return $this->filename;
-    }
 }

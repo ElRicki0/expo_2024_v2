@@ -59,7 +59,7 @@ if (isset($_GET['action'])) {
                     $result['error'] = $cita->getDataError();
                 } elseif ($cita->updateRow()) {
                     $result['status'] = 1;
-                    $result['message'] = 'cita modificado correctamente';
+                    $result['message'] = 'Cita modificado correctamente';
                 } else {
                     $result['error'] = 'Ocurrió un problema al modificar la cita';
                 }

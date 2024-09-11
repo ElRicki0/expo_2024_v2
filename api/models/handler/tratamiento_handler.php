@@ -2,21 +2,21 @@
 // Se incluye la clase para trabajar con la base de datos.
 require_once('../../helpers/database.php');
 /*
-*	Clase para manejar el comportamiento de los datos de la tabla PRODUCTO.
-*/
-class TratamientoHandler 
+ *	Clase para manejar el comportamiento de los datos de la tabla PRODUCTO.
+ */
+class TratamientoHandler
 {
     /*
-    *   Declaración de atributos para el manejo de datos.
-    */
+     *   Declaración de atributos para el manejo de datos.
+     */
     protected $id = null;
     protected $nombre = null;
     protected $nota = null;
     protected $cita = null;
 
     /*
-    *   Métodos para realizar las operaciones SCRUD (search, create, read, update, and delete).
-    */
+     *   Métodos para realizar las operaciones SCRUD (search, create, read, update, and delete).
+     */
     public function searchRows()
     {
         $value = '%' . Validator::getSearchValue() . '%';
@@ -29,7 +29,6 @@ class TratamientoHandler
         return Database::getRows($sql, $params);
     }
 
-    
     public function createRow()
     {
         $sql = 'INSERT INTO tb_nombres_tratamientos(nombre_tratamiento, notas_adicionales, id_cita)
@@ -71,6 +70,4 @@ class TratamientoHandler
         $params = array($this->id);
         return Database::executeRow($sql, $params);
     }
-
-    
 }
