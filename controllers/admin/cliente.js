@@ -157,7 +157,7 @@ const graficoBarras = async () => {
             citas.push(row.cantidad_citas);
         });
         // Llamada a la función para generar y mostrar un gráfico de barras. Se encuentra en el archivo components.js
-        barGraph('chart1', empleado, citas, 'Mayor cantidad', 'CLIENTES CON MAS CITAS');
+        barGraph('chart1', empleado, citas, 'MAYOR CANTIDAD DE CITAS', 'CLIENTES CON MAS CITAS');
     } else {
         document.getElementById('chart1').remove();
         console.log(DATA.error);
@@ -191,7 +191,7 @@ const openChart = async (id) => {
         // Se agrega la etiqueta canvas al contenedor de la modal.
         document.getElementById('chartContainer').innerHTML = `<canvas id="chart"></canvas>`;
         // Llamada a la función para generar y mostrar un gráfico de barras. Se encuentra en el archivo components.js
-        barGraph('chart', servicios, citas, 'Cantidad de citas', 'CITAS REALIZADAS POR EL CLIENTE');
+        barGraph('chart', servicios, citas, 'CANTIDAD DE CITAS', 'CITAS REALIZADAS POR EL CLIENTE');
     } else {
         sweetAlert(4, DATA.error, true);
     }

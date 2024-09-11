@@ -98,7 +98,7 @@
 
             <div class="row align-items-center">
                 <div class="card col-3 mx-auto inicioIndex my-3">
-                    
+
                     <!-- Se muestra un gráfico con la cantidad de productos por categoría -->
                     <canvas id="chart1"></canvas>
                 </div>
@@ -184,16 +184,17 @@
         <!-- Componente Modal para mostrar un gráfico -->
         <div class="modal fade" id="chartModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
             aria-labelledby="chartTitle" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered text-white">
-                <div class="modal-content">
-                    <div class="modal-header inicioIndex">
-                        <h3 class="modal-title" id="chartTitle">Citas asignadas</h3>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content bg-dark text-white"> <!-- Clases para modo oscuro -->
+                    <div class="modal-header">
+                        <h3 class="modal-title" id="chartTitle">Gráfico de las citas</h3>
+                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                            aria-label="Close"></button> <!-- Cambiar color del botón de cerrar -->
                     </div>
 
                     <!-- Contenedor para mostrar el gráfico -->
-                    <div class="modal-body inicioIndex" id="chartContainer"></div>
-                    <div class="modal-footer inicioIndex">
+                    <div class="modal-body" id="chartContainer"></div>
+                    <div class="modal-footer">
                         <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Aceptar</button>
                     </div>
                 </div>
