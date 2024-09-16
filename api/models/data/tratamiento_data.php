@@ -27,7 +27,7 @@ class TratamientoData extends TratamientoHandler
             return false;
         }
     }
-
+    // Método para validar y establecer el nombre, con longitud mínima y máxima.
     public function setNombre($value, $min = 2, $max = 50)
     {
         if (!Validator::validateAlphanumeric($value)) {
@@ -41,7 +41,7 @@ class TratamientoData extends TratamientoHandler
             return false;
         }
     }
-
+    // Método para validar y establecer una nota, con longitud mínima y máxima.
     public function setNota($value, $min = 2, $max = 250)
     {
         if (!Validator::validateString($value)) {
@@ -55,7 +55,7 @@ class TratamientoData extends TratamientoHandler
             return false;
         }
     }
-
+    // Método para validar y establecer el identificador de la cita.
     public function setCita($value)
     {
         if (Validator::validateNaturalNumber($value)) {
