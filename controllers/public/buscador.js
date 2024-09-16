@@ -13,7 +13,7 @@ const SAVE_FORM = document.getElementById('saveForm'),
     TIPO_SERVICIO = document.getElementById('tipoServicio'),
     DESCRIPCION_SERVICIO = document.getElementById('descripcionServicio');
 
-// componentes del segundo buscador
+// Componentes del segundo buscador
 const BENEFICIO_API = 'services/public/beneficio.php';
 // Constante para establecer el formulario de buscar.
 const SEARCH_FORM2 = document.getElementById('searchForm2');
@@ -173,7 +173,6 @@ const openUpdate2 = async (id) => {
     const DATA = await fetchData(BENEFICIO_API, 'readOne', FORM);
     // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
     if (DATA.status) {
-        // Se muestra la caja de diálogo con su título.
         // Se muestra la caja de diálogo con su título.
         SAVE_MODAL2.show();
         MODAL_TITLE2.textContent = 'Actualizar beneficio';

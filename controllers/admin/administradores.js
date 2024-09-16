@@ -11,10 +11,10 @@ const SAVE_MODAL = new bootstrap.Modal('#saveModal'),
     MODAL_TITLE = document.getElementById('modalTitle');
 // Constantes para establecer los elementos del formulario de guardar.
 const SAVE_FORM = document.getElementById('saveForm'),
-    ID_ADMINISTRADOR = document.getElementById('id_admin'),
-    NOMBRE_ADMINISTRADOR = document.getElementById('nombre_admin'),
-    CORREO_ADMINISTRADOR = document.getElementById('correo_admin'),
-    CONTRASEÑA_ADMINISTRADOR = document.getElementById('contra_admin'),
+    ID_ADMINISTRADOR = document.getElementById('idAdmin'),
+    NOMBRE_ADMINISTRADOR = document.getElementById('nombreAdmin'),
+    CORREO_ADMINISTRADOR = document.getElementById('correoAdmin'),
+    CONTRASEÑA_ADMINISTRADOR = document.getElementById('contraAdmin'),
     CONTRASEÑA_TITLE = document.getElementById('TextPassword');
 
 const SAVE_FORM_EMPLEADO = new bootstrap.Modal('#modalEmpleado'),
@@ -95,8 +95,8 @@ const fillTable = async (form = null) => {
                 <td>${row.correo_admin}</td>
                 <td>${row.nombre_empleado}</td>
                 <td>
-                <button class="btn btn-info" onclick="openEmpleado(${row.id_empleado})">
-                    <i class="bi bi-person-badge-fill"></i>
+                <button class="btn btn-primary" onclick="openEmpleado(${row.id_empleado})">
+                    <i class="bi bi-exclamation-octagon"></i>
                 </button>
             </td>
         </tr>
@@ -135,7 +135,7 @@ const openCreate = () => {
 const openEmpleado = async (id) => {
     // Se define una constante tipo objeto con los datos del registro seleccionado.
     const FORM = new FormData();
-    FORM.append('id_empleado', id);
+    FORM.append('idEmpleado', id);
     // Petición para obtener los datos del registro solicitado.
     const DATA = await fetchData(EMPLEADO_API, 'readOne', FORM);
     // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
@@ -171,7 +171,7 @@ const openDelete = async (id) => {
     if (RESPONSE) {
         // Se define una constante tipo objeto con los datos del registro seleccionado.
         const FORM = new FormData();
-        FORM.append('id_admin', id);
+        FORM.append('idAdmin', id);
         // Petición para eliminar el registro seleccionado.
         const DATA = await fetchData(ADMINISTRADOR_API, 'deleteRow', FORM);
         // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.

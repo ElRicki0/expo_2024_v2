@@ -27,11 +27,11 @@ if (isset($_GET['action'])) {
             case 'createRow':
                 $_POST = Validator::validateForm($_POST);
                 if (
-                    !$empleado->setNombre($_POST['nombre_empleado']) or
-                    !$empleado->setApelldo($_POST['apellido_empleado']) or
-                    !$empleado->setCorreo($_POST['correo_empleado']) or
-                    !$empleado->setDui($_POST['dui_empleado']) or
-                    !$empleado->setFecha($_POST['fecha_empleado']) or
+                    !$empleado->setNombre($_POST['nombreEmpleado']) or
+                    !$empleado->setApelldo($_POST['apellidoEmpleado']) or
+                    !$empleado->setCorreo($_POST['correoEmpleado']) or
+                    !$empleado->setDui($_POST['duiEmpleado']) or
+                    !$empleado->setFecha($_POST['fechaEmpleado']) or
                     !$empleado->setEstado(isset($_POST['estadoEmpleado']) ? 1 : 0)
                 ) {
                     $result['error'] = $empleado->getDataError();
@@ -51,7 +51,7 @@ if (isset($_GET['action'])) {
                 }
                 break;
             case 'readOne':
-                if (!$empleado->setId($_POST['id_empleado'])) {
+                if (!$empleado->setId($_POST['idEmpleado'])) {
                     $result['error'] = 'Empleado incorrecto';
                 } elseif ($result['dataset'] = $empleado->readOne()) {
                     $result['status'] = 1;
@@ -62,12 +62,12 @@ if (isset($_GET['action'])) {
             case 'updateRow':
                 $_POST = Validator::validateForm($_POST);
                 if (
-                    !$empleado->setId($_POST['id_empleado']) or
-                    !$empleado->setNombre($_POST['nombre_empleado']) or
-                    !$empleado->setApelldo($_POST['apellido_empleado']) or
-                    !$empleado->setCorreo($_POST['correo_empleado']) or
-                    !$empleado->setDui($_POST['dui_empleado']) or
-                    !$empleado->setFecha($_POST['fecha_empleado']) or
+                    !$empleado->setId($_POST['idEmpleado']) or
+                    !$empleado->setNombre($_POST['nombreEmpleado']) or
+                    !$empleado->setApelldo($_POST['apellidoEmpleado']) or
+                    !$empleado->setCorreo($_POST['correoEmpleado']) or
+                    !$empleado->setDui($_POST['duiEmpleado']) or
+                    !$empleado->setFecha($_POST['fechaEmpleado']) or
                     !$empleado->setEstado(isset($_POST['estadoEmpleado']) ? 1 : 0)
                 ) {
                     $result['error'] = $empleado->getDataError();
@@ -79,7 +79,7 @@ if (isset($_GET['action'])) {
                 }
                 break;
             case 'deleteRow':
-                if (!$empleado->setId($_POST['id_empleado'])) {
+                if (!$empleado->setId($_POST['idEmpleado'])) {
                     $result['error'] = $empleado->getDataError();
                 } elseif ($empleado->deleteRow()) {
                     $result['status'] = 1;
@@ -96,7 +96,7 @@ if (isset($_GET['action'])) {
                 }
                 break;
             case 'readCantidadServiciosEmpleado':
-                if (!$empleado->setId($_POST['id_empleado'])) {
+                if (!$empleado->setId($_POST['idEmpleado'])) {
                     $result['error'] = $empleado->getDataError();
                 } elseif ($result['dataset'] = $empleado->readCantidadServiciosEmpleado()) {
                     $result['status'] = 1;
@@ -107,7 +107,7 @@ if (isset($_GET['action'])) {
             case 'updateRowEstado':
                 $_POST = Validator::validateForm($_POST);
                 if (
-                    !$empleado->setId($_POST['id_empleado'])
+                    !$empleado->setId($_POST['idEmpleado'])
                 ) {
                     $result['error'] = $empleado->getDataError();
                 } elseif ($empleado->updateRowEstado()) {

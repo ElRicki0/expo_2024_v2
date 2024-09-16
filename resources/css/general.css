@@ -2,20 +2,13 @@ body {
     background-color: #000000;
 }
 
-.cartaPacientePrivado {
-   
-    height: auto;
-    border-color: #28930D;
-}
-
 #ContenedorTable {
     max-height: 450px;
-    overflow-y: auto; 
+    overflow-y: auto;
     display: block;
 }
 
-.quirpracticos
-{
+.quirpracticos {
     height: auto;
     border: #28930D;
     border: 20px !important;
@@ -26,134 +19,27 @@ body {
     color: rgb(255, 255, 255) !important;
 }
 
-.cardservicio
-{
-    width: 23rem;
-    height: auto;
-    border: #28930D;
-    border-color: #28930D;
-}
-
-.conteinerInicio
-{
+.conteinerInicio {
     background-color: rgb(49, 49, 49);
 }
 
-/*tarjetas de comentarios*/
-
-
-
-.card-custom {
-    border: 1px solid #ccc;
-    border-radius: 10px;
-    padding: 15px;
-    margin: 10px;
-    flex: 1;
-    background-color: #000000;
-}
-
-.card-custom .card-title {
-    font-size: 1.25rem;
-    font-weight: bold;
-}
-
-.card-custom .card-text {
-    font-size: 1rem;
-    color: #aaaaaa;
-}
-
-.NServiocio {
-    font-size: 1rem;
-    color: #6CB559;
-}
-
-
 .linea-verde {
     border: none;
-    border-top: 3px solid rgb(131, 239, 131); /* Cambia el color y el grosor aquí */
-    width: 100%; /* Ajusta el ancho de la línea */
-}
-.comentariosseccion
-{   
-    background-color: #6CB559;
+    border-top: 3px solid rgb(131, 239, 131);
+    /* Cambia el color y el grosor aquí */
+    width: 100%;
+    /* Ajusta el ancho de la línea */
 }
 
-.BTNCom {
-    font-size: 1rem;
-}
-
-.tarjetaSer{
-    font-size: 1rem;
-    background-color: #ffffff !important;
-    border: #ffffff !important;
-    color: #000000;
-}
-
-.fotoServIndex-wrapper {
-    position: relative;
-    display: inline-block;
-}
-
-
-.conteinerInicio {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-}
-
-.card-custom {
-    margin: 15px 0;
-}
-
-/* Estilo personalizado para las imágenes dentro de las tarjetas */
-.fotoServIndex {
-    border-top: 3px solid green;
-    border-bottom: 3px solid green;
-}
-
-.inicioIndex{
+.inicioIndex {
     background-color: rgb(50, 50, 50);
     border: grey;
 }
 
-/* Ajuste para los contenedores flex */
-.d-flex {
-    flex-wrap: wrap;
-}
-
-.fotoServIndex {
-    display: block;
-    width: 100%;
-    border-top: 5px solid green; /* Borde superior */
-    border-bottom: 5px solid green; /* Borde inferior */
-    border-left: none; /* Sin borde en los lados */
-    border-right: none; /* Sin borde en los lados */
-}
-/*finaliza*/
-
-.card-img-wrapper {
-    border: 10px solid #6CB559; /* Borde verde alrededor de la imagen */
-    padding: 10px; /* Espacio entre la imagen y el borde */
-    background-color: #6CB559;/* Fondo blanco para el padding */
-    border-width: 0;
-    border-left: 0;
-    margin-top: 20px;
-}
 .card-img {
     display: block;
     max-width: 100%;
     height: auto;
-}
-
-.tarjetaCobtene
-{
-    margin: 20px;
-    margin-inline-end: 20px;
-}
-
-.textopacienteprivado {
-    height: 288px;
-    max-height: 288px;
 }
 
 .custom-input {
@@ -173,130 +59,26 @@ body {
     border-color: white;
 }
 
-.textodenotadefinido {
-    height: auto;
-    max-height: 400px;
-    border-color: rgb(42, 141, 180);
-    height:400px !important;
-}
-
-.textodenotasgregar {
-    height: auto;
-    max-height: 400px;
-    border-color: rgb(42, 141, 180);
-}
-
-.cardsServiciosPrivado {
-    width: 18rem;
-}
-
-.Tarjetapreguntaestilo {
-    width: 18rem;
-}
-
-.contactohu {
-    background-color: #303231;
-}
-
-.contactespacio {
-    margin: 90px;
-}
-
-.tarjetacont {
-    width: 100px;
-    height: 100px;
-    padding: 20px;
-    margin-top: 90px;
-}
-
-.tarcontacting {
-    color: aliceblue;
-}
-
-.direcontatcard {
-    width: 100px;
-    height: 100px;
-    padding: 20px;
-    margin-top: 90px;
-}
-
-
-.contactespacio {
-
-    margin: 90px;
-
-}
-
-.contatdirect {
-
-    color: aliceblue;
-}
-
-.pregunasfrecuentesbody {
-
-    background-color: #303231;
-}
-
-.modalheaderTratamiento {
-
-    background-color: #303231;
-}
-.textomoltratamiento {
-
-    color: aliceblue;
-}
-
-.Modaleditarempleado {
-
-    background-color: #303231;
-}
-
-.ModalEditarUsuario {
-
-    background-color: #303231;
-}
-
-.modaleditarusuPerfil{
-
-    background-color: #303231;
-}
-
-.notatarjetaeditablenota
-{
-
-    width: 17rem; 
-    height:19rem;
-}
-.cardfotonota{
-
-    width: 17rem; 
-    height:19rem;
-}
-.textoClaro
-{
-    color: white;
-}
-
 #search::placeholder {
     color: white;
 }
 
 .separadorClaro {
-    border-top: 1px solid white; /* Establece el color del borde superior del hr en blanco */
+    border-top: 1px solid white;
+    /* Establece el color del borde superior del hr en blanco */
 }
 
-
-.sinLink{
-    text-decoration: none; /* Quitar el subrayado */
-        transition: color 0.3s; /* Agregar transición para suavizar el cambio de color */
-}
-
-.btn:hover a {
-    color: black; /* Cambiar el color al invertido al pasar el cursor sobre el botón */
+.sinLink {
+    text-decoration: none;
+    /* Quitar el subrayado */
+    transition: color 0.3s;
+    /* Agregar transición para suavizar el cambio de color */
 }
 
 header {
     background-color: black;
-    color: white; /* Opcional: Cambia el color del texto a blanco para que sea visible sobre el fondo negro */
-    padding: 10px; /* Opcional: Agrega un poco de espacio alrededor del contenido del header */
+    color: white;
+    /* Opcional: Cambia el color del texto a blanco para que sea visible sobre el fondo negro */
+    padding: 10px;
+    /* Opcional: Agrega un poco de espacio alrededor del contenido del header */
 }

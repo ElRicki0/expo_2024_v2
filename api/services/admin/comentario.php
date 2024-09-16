@@ -1,7 +1,6 @@
 <?php
 // Se incluye la clase del modelo.
 require_once('../../models/data/comentario_data.php');
-
 // Se comprueba si existe una acción a realizar, de lo contrario se finaliza el script con un mensaje de error.
 if (isset($_GET['action'])) {
     // Se crea una sesión o se reanuda la actual para poder utilizar variables de sesión en el script.
@@ -28,7 +27,7 @@ if (isset($_GET['action'])) {
             case 'updateRowEstado':
                 $_POST = Validator::validateForm($_POST);
                 if (
-                    !$comentario->setId($_POST['id_comentario'])
+                    !$comentario->setId($_POST['idComentario'])
                 ) {
                     $result['error'] = $comentario->getDataError();
                 } elseif ($comentario->updateRowEstado()) {
@@ -55,13 +54,6 @@ if (isset($_GET['action'])) {
                     $result['error'] = 'Comentario inexistente';
                 }
                 break;
-                case 'graficaComentariosTop5':
-                    if ($result['dataset'] = $comentario->graficaComentariosTop5()) {
-                        $result['status'] = 1;
-                    } else {
-                        $result['error'] = 'No ha datos diponibles';
-                    }
-                    break;
             default:
                 $result['error'] = 'Acción no disponible dentro de la sesión';
         }
@@ -70,10 +62,10 @@ if (isset($_GET['action'])) {
         // Se indica el tipo de contenido a mostrar y su respectivo conjunto de caracteres.
         header('Content-type: application/json; charset=utf-8');
         // Se imprime el resultado en formato JSON y se retorna al controlador.
-        print(json_encode($result));
+        print (json_encode($result));
     } else {
-        print(json_encode('Acceso denegado'));
+        print (json_encode('Acceso denegado'));
     }
 } else {
-    print(json_encode('Recurso no disponible'));
+    print (json_encode('Recurso no disponible'));
 }

@@ -105,17 +105,17 @@
                                             <div class="col-6">
                                                 <label for="imagenPregunta" class="form-label">Imagen</label>
                                                 <input id="imagenPregunta" type="file" name="imagenPregunta"
-                                                    class="form-control" accept=".png, .jpg">
+                                                    class="form-control" accept=".png, .jpg" required oninput="formatImg(this)">
                                             </div>
                                             <div class="col-6">
                                                 <label for="nombrePregunta" class="form-label">Pregunta</label>
                                                 <input id="nombrePregunta" type="text" name="nombrePregunta"
-                                                    class="form-control" required>
+                                                    class="form-control" required oninput="formatAlphabetic(this)">
                                             </div>
                                             <div class="col-6 mt-2">
                                                 <label for="contenidoPregunta" class="form-label">Contenido</label>
                                                 <input id="contenidoPregunta" type="text" name="contenidoPregunta"
-                                                    class="form-control" required>
+                                                    class="form-control" required oninput="formatAlphabetic(this)">
                                             </div>
                                             <div class="col-6 mt-2">
                                                 <label for="empleadoPregunta" class="form-label">Empleado</label>
@@ -150,7 +150,6 @@
     <script src="../../controllers/admin/preguntas.js"></script>
     <script src="../../controllers/utils/Validaciones.js"></script>
     <script src="../../resources/js/chart.umd.min.js"></script>
-
 </body>
 
 </html>

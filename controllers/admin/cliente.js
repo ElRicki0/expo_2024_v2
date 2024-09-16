@@ -20,7 +20,6 @@ document.addEventListener('DOMContentLoaded', () => {
     fillTable();
 });
 
-
 // Método del evento para cuando se envía el formulario de buscar.
 SEARCH_FORM.addEventListener('submit', (event) => {
     // Se evita recargar la página web después de enviar el formulario.
@@ -84,7 +83,6 @@ const fillTable = async (form = null) => {
     }
 }
 
-
 /*
 *   Función asíncrona para preparar un modal de confirmacion para una funcion de estado
 *   Parámetros: id (identificador del registro seleccionado).
@@ -117,7 +115,6 @@ const openState = async (id) => {
 *   Parámetros: id (identificador del registro seleccionado).
 *   Retorno: ninguno.
 */
-
 const openDelete = async (id) => {
     // Llamada a la función para mostrar un mensaje de confirmación, capturando la respuesta en una constante.
     const RESPONSE = await confirmAction('¿Desea eliminar al cliente de forma permanente?');
@@ -160,7 +157,7 @@ const graficoBarras = async () => {
             citas.push(row.cantidad_citas);
         });
         // Llamada a la función para generar y mostrar un gráfico de barras. Se encuentra en el archivo components.js
-        barGraph('chart1', empleado, citas, 'Mayor cantidad', 'CLIENTES CON MAS CITAS');
+        barGraph('chart1', empleado, citas, 'MAYOR CANTIDAD DE CITAS', 'CLIENTES CON MAS CITAS');
     } else {
         document.getElementById('chart1').remove();
         console.log(DATA.error);
@@ -194,7 +191,7 @@ const openChart = async (id) => {
         // Se agrega la etiqueta canvas al contenedor de la modal.
         document.getElementById('chartContainer').innerHTML = `<canvas id="chart"></canvas>`;
         // Llamada a la función para generar y mostrar un gráfico de barras. Se encuentra en el archivo components.js
-        barGraph('chart', servicios, citas, 'Cantidad de citas', 'CITAS REALIZADAS POR EL CLIENTE');
+        barGraph('chart', servicios, citas, 'CANTIDAD DE CITAS', 'CITAS REALIZADAS POR EL CLIENTE');
     } else {
         sweetAlert(4, DATA.error, true);
     }
@@ -213,7 +210,6 @@ const openReport = () => {
 }
 
 // reporte parametrizado
-
 const openClienteReport = (id) => {
     // Se declara una constante tipo objeto con la ruta específica del reporte en el servidor.
     const PATH = new URL(`${SERVER_URL}reports/admin/cliente_servicio.php`);

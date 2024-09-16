@@ -1,10 +1,13 @@
 const SERVICIO_API = 'services/admin/servicio.php';
 const CITA_API = 'services/admin/cita.php';
+
 // Constante para establecer el formulario de buscar.
 const SEARCH_FORM = document.getElementById('searchForm');
+
 // Constantes para establecer el contenido de la tabla.
 const TABLE_BODY = document.getElementById('tableBody'),
     ROWS_FOUND = document.getElementById('rowsFound');
+
 // Constantes para establecer los elementos del componente Modal.
 const SAVE_MODAL = new bootstrap.Modal('#saveModal'),
     MODAL_TITLE = document.getElementById('modalTitle'),
@@ -151,7 +154,6 @@ const openUpdate = async (id) => {
 *   Parámetros: id (identificador del registro seleccionado).
 *   Retorno: ninguno.
 */
-
 const openDelete = async (id) => {
     // Llamada a la función para mostrar un mensaje de confirmación, capturando la respuesta en una constante.
     const RESPONSE = await confirmAction('¿Desea eliminar el servicio de forma permanente?');
@@ -197,7 +199,6 @@ const graficoPastelServicio = async () => {
     }
 
 };
-
 
 /*
 *   Función asíncrona para mostrar un gráfico parametrizado.
@@ -257,21 +258,3 @@ const openReportCliente = (id) => {
     // Se abre el reporte en una nueva pestaña.
     window.open(PATH.href);
 }
-
-/* Obtener el input de carga de imagen y la imagen
-var imageUpload = document.getElementById("id_foto");
-var serviceImage = document.getElementById("serviceImage");
-
- // Cuando el usuario hace clic en la imagen, abre el input de carga de imagen
- serviceImage.onclick = function() {
-    imageUpload.click();
-}
-
-// Cuando el usuario selecciona una imagen, cambia la imagen mostrada
-imageUpload.onchange = function(event) {
-    var reader = new FileReader();
-    reader.onload = function() {
-        serviceImage.src = reader.result;
-    }
-    reader.readAsDataURL(event.target.files[0]);
-}*/

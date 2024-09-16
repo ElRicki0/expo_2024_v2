@@ -25,7 +25,8 @@
         <!-- titulo principal -->
         <div class="container-fluid">
             <div class="row py-4">
-                <h3 class="fw-bold text-white"> <i class="bi bi-shield-lock-fill me-1"></i> Gestionar Administradores</h3>
+                <h3 class="fw-bold text-white"> <i class="bi bi-shield-lock-fill me-1"></i> Gestionar Administradores
+                </h3>
                 <h6 class="fw-medium text-secondary">Bienvenido a la sección de gestión de administradores. Aquí puedes
                     manejar todas las personas administradoras registrados en tu página web. <br>
                     La tabla te permite eliminar, dar de baja, editar, ver graficas y
@@ -91,7 +92,7 @@
                     <form id="saveForm">
 
                         <!-- Campo oculto para asignar el id del registro al momento de modificar -->
-                        <input type="number" class="d-none" id="id_admin" name="id_admin">
+                        <input type="number" class="d-none" id="idAministrador" name="idAministrador">
                         <form class="needs-validation">
 
                             <!-- Body del modal -->
@@ -106,13 +107,13 @@
                                         <div class="row">
                                             <div class="col-6">
                                                 <label class="textoClaro form-label">Nombre(s)</label>
-                                                <input type="text" id="nombre_admin" name="nombre_admin"
-                                                    class="form-control" required>
+                                                <input type="text" id="nombreAdmin" name="nombreAdmin"
+                                                    class="form-control" required oninput="formatAlphabetic(this)">
                                             </div>
                                             <div class="col-6">
                                                 <label class="textoClaro form-label">Correo electronico</label>
-                                                <input type="email" id="correo_admin" name="correo_admin"
-                                                    class="form-control" required>
+                                                <input type="email" id="correoAdmin" name="correoAdmin"
+                                                    class="form-control" required oninput="formatEmail(this)">
                                             </div>
                                         </div>
                                     </div>
@@ -121,13 +122,13 @@
                                             <div class="col-6 mt-3">
                                                 <label class="textoClaro form-label"
                                                     id="TextPassword">Contraseña</label>
-                                                <input type="password" id="contra_admin" name="contra_admin"
-                                                    class="form-control" required>
+                                                <input type="password" id="contraAdmin" name="contraAdmin"
+                                                    class="form-control" required oninput="formatPassword(this)">
                                             </div>
                                             <div class="col-6 mt-3">
                                                 <label for="empleadoAdmin"
                                                     class=" textoClaro form-label">Empleado</label>
-                                                <select id="empleado_admin" name="empleado_admin" class="form-select"
+                                                <select id="empleadoAdmin" name="empleadoAdmin" class="form-select"
                                                     required>
                                                 </select>
                                             </div>
@@ -167,7 +168,7 @@
                                 <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
                                     aria-label="Close"></button> <!-- Cambiar color del botón de cerrar -->
                                 <h1 class="fs-4 fw-bold text-center mb-4" id="modalTitleEmpleado"> </h1>
-                        
+
                                 <!-- Inputs -->
                                 <div class="row p-3">
                                     <div class="col-12">
@@ -180,7 +181,8 @@
                                             <div class="col-6">
                                                 <label class="form-label">Apellido(s)</label>
                                                 <input id="apellidoEmpleado" name="apellidoEmpleado"
-                                                    class="form-control" required oninput="formatAlphabetic(this)" readonly>
+                                                    class="form-control" required oninput="formatAlphabetic(this)"
+                                                    readonly>
                                             </div>
                                         </div>
                                         <div class="col-12 mt-3">
@@ -200,16 +202,15 @@
                                                 <div class="col-6 mt-3">
                                                     <label class="form-label">Fecha de nacimiento</label>
                                                     <input id="fechaEmpleado" name="fechaEmpleado" type="date"
-                                                        class="form-control" required oninput="validarFecha(this)" readonly>
+                                                        class="form-control" required oninput="validarFecha(this)"
+                                                        readonly>
                                                 </div>
                                             </div>
-                                            
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </form>
-                        
                     </form>
                 </div>
             </div>

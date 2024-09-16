@@ -13,6 +13,11 @@ class ComentarioHandler
     protected $servicio = null;
     protected $estado = null;
 
+    /*
+     * Métodos para realizar las operaciones CRUD (Create, Read, Update, Delete) y búsqueda.
+     */
+
+    // Método para buscar comentarios en la base de datos según un término de búsqueda.
     public function searchRows()
     {
         $value = '%' . Validator::getSearchValue() . '%';
@@ -25,18 +30,18 @@ class ComentarioHandler
         $params = array($value, $value);
         return Database::getRows($sql, $params);
     }
-
+    // Método para obtener todos los comentarios registrados en la base de datos.
     public function readAll()
     {
         $sql = 'SELECT c.id_comentario, c.contenido_comentario, cl.nombre_cliente, s.tipo_servicio, c.estado_comentario
-                    from tb_comentarios c
-                    join tb_clientes cl on c.id_cliente= cl.id_cliente
-                    join tb_servicios s on c.id_servicio = s.id_servicio
+                from tb_comentarios c
+                join tb_clientes cl on c.id_cliente= cl.id_cliente
+                join tb_servicios s on c.id_servicio = s.id_servicio
                 ORDER BY contenido_comentario';
         return Database::getRows($sql);
     }
-
-    public function readIndex()
+    // Método para obtener comentarios al azar y mostrarlos en el índice o página principal, limitado a 3 comentarios.
+    public function readIndex(): array|bool
     {
         $sql = 'SELECT cm.id_comentario, cm.contenido_comentario, cm.estado_comentario, cl.nombre_cliente, cl.apellido_cliente, sv.tipo_servicio, sv.imagen_servicio
                 FROM tb_comentarios cm
@@ -47,7 +52,7 @@ class ComentarioHandler
         ';
         return Database::getRows($sql);
     }
-
+    // Método para obtener un comentario específico según su ID.
     public function readOne()
     {
         $sql = 'SELECT* 
@@ -56,7 +61,7 @@ class ComentarioHandler
         $params = array($this->id);
         return Database::getRow($sql, $params);
     }
-
+    // Método para cambiar el estado del comentario (activarlo o desactivarlo).
     public function updateRowEstado()
     {
         $sql = 'UPDATE tb_comentarios
@@ -67,17 +72,4 @@ class ComentarioHandler
         $params = array($this->id);
         return Database::executeRow($sql, $params);
     }
-
-    public function graficaComentariosTop5()
-    {
-        $sql = 'SELECT s.tipo_servicio, COUNT(c.id_comentario) AS numero_comentarios
-                FROM tb_comentarios c
-                JOIN tb_servicios s ON c.id_servicio = s.id_servicio
-                WHERE c.estado_comentario = 1  -- Solo comentarios aprobados o activos
-                GROUP BY s.id_servicio
-                ORDER BY numero_comentarios DESC
-                LIMIT 5;';
-        return Database::getRows($sql);
-    }
-    
 }

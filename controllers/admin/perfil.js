@@ -1,18 +1,24 @@
 // Constantes para establecer los elementos del formulario de editar perfil.
-const NOMBRE_ADMINISTRADOR = document.getElementById('nombre_admin');
-const CORREO_ADMINISTRADOR = document.getElementById('correo_admin');
+const NOMBRE_ADMINISTRADOR = document.getElementById('nombreAdmin');
+const CORREO_ADMINISTRADOR = document.getElementById('correoAdmin');
+
 // Constante para establecer la modal de cambiar contraseña.
 const PASSWORD_MODAL = new bootstrap.Modal('#passwordModal');
+
 // Constante para establecer el formulario de cambiar contraseña.
 const PASSWORD_FORM = document.getElementById('passwordForm');
+
 // Constante para establecer la modal de cambiar perfil.
 const PERFIL_MODAL = new bootstrap.Modal('#PerfilModal');
+
 // Constante para establecer el formulario de cambiar perfil.
 const PROFILE_FORM = document.getElementById('editForm'),
-    NOMBRE_ADMINISTRADOR_PERFIL = document.getElementById('nombre_admin_perfil'),
-    CORREO_ADMINISTRADOR_PERFIL = document.getElementById('correo_admin_perfil');
+    NOMBRE_ADMINISTRADOR_PERFIL = document.getElementById('nombreAdminPerfil'),
+    CORREO_ADMINISTRADOR_PERFIL = document.getElementById('correoAdminPerfil');
+
 // Constante para establecer la modal de eliminar perfil
 const DELETE_MODAL = new bootstrap.Modal('#deleteModal');
+
 // Constante para establecer el formulario de eliminar perfil
 const DELETE_FORM = document.getElementById('deleteForm');
 

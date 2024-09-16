@@ -29,7 +29,7 @@ if ($CitaData = $cita->readAll()) {
     // Recorrer los registros fila por fila.
     foreach ($CitaData as $citasRow) {
 
-        // Imprimir nombrem correo y identificador
+        // Imprimir nombre correo y identificador
         $pdf->SetTextColor(10, 10, 10);
         $pdf->cell(70, 10, $pdf->encodeString($citasRow['nombre_cita']), 'T', 0, 'C');
         $pdf->cell(35, 10, $citasRow['numero_seciones'], 'T', 0, 'C');

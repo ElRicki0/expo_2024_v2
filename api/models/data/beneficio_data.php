@@ -77,9 +77,4 @@ class BeneficioData extends BeneficioHandler
     {
         return $this->data_error;
     }
-
-    public function getFilename()
-    {
-        return $this->filename;
-    }
 }

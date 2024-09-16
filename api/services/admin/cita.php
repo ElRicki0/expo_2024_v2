@@ -59,7 +59,7 @@ if (isset($_GET['action'])) {
                     $result['error'] = $cita->getDataError();
                 } elseif ($cita->updateRow()) {
                     $result['status'] = 1;
-                    $result['message'] = 'cita modificado correctamente';
+                    $result['message'] = 'Cita modificado correctamente';
                 } else {
                     $result['error'] = 'Ocurrió un problema al modificar la cita';
                 }
@@ -126,7 +126,7 @@ if (isset($_GET['action'])) {
                     !$cita->setFechaInicio($_POST['fechaInicio']) or
                     !$cita->setFechaFinal($_POST['fechaFinal'])
                 ) {
-                    $result['error'] = $cita->getDataError(); 
+                    $result['error'] = $cita->getDataError();
                 } elseif ($result['dataset'] = $cita->graficoEntreFechas()) {
                     $result['status'] = 1;
                     $result['message'] = 'gráfico creado correctamente';

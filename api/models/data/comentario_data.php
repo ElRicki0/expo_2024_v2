@@ -28,39 +28,6 @@ class ComentarioData extends ComentarioHandler
         }
     }
 
-    public function setComentario($value, $min = 2, $max = 250)
-    {
-        if (Validator::validateLength($value, $min, $max)) {
-            $this->comentario = $value;
-            return true;
-        } else {
-            $this->data_error = 'El comentario debe tener una longitud entre ' . $min . ' y ' . $max;
-            return false;
-        }
-    }
-
-    public function setCliente($value)
-    {
-        if (Validator::validateNaturalNumber($value)) {
-            $this->cliente = $value;
-            return true;
-        } else {
-            $this->data_error = 'El cliente de la categoría es incorrecto';
-            return false;
-        }
-    }
-
-    public function setServicio($value)
-    {
-        if (Validator::validateNaturalNumber($value)) {
-            $this->servicio = $value;
-            return true;
-        } else {
-            $this->data_error = 'El servicio de la categoría es incorrecto';
-            return false;
-        }
-    }
-
     public function setEstado($value)
     {
         if (Validator::validateBoolean($value)) {

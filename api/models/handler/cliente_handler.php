@@ -18,8 +18,8 @@ class ClienteHandler
     protected $estado = null;
 
     /*
-    *   Métodos para gestionar la cuenta del cliente.
-    */
+     *   Métodos para gestionar la cuenta del cliente.
+     */
     // Método para verificar las credenciales del cliente al iniciar sesión
     public function checkUser($email, $contraseña)
     {
@@ -178,18 +178,12 @@ class ClienteHandler
                     s.tipo_servicio,
                     e.nombre_empleado,
                     e.apellido_empleado
-                FROM 
-                    tb_citas c
-                INNER JOIN 
-                    tb_clientes cl ON c.id_cliente = cl.id_cliente
-                INNER JOIN 
-                    tb_servicios s ON c.id_servicio = s.id_servicio
-                LEFT JOIN 
-                    tb_empleados e ON c.id_empleado = e.id_empleado
-                WHERE 
-                    YEAR(c.fecha_creacion_cita) = YEAR(CURDATE()) AND 
-                    MONTH(c.fecha_creacion_cita) = MONTH(CURDATE());';
-                    
+                FROM tb_citas c
+                INNER JOIN tb_clientes cl ON c.id_cliente = cl.id_cliente
+                INNER JOIN tb_servicios s ON c.id_servicio = s.id_servicio
+                LEFT JOIN tb_empleados e ON c.id_empleado = e.id_empleado
+                WHERE YEAR(c.fecha_creacion_cita) = YEAR(CURDATE()) 
+                AND MONTH(c.fecha_creacion_cita) = MONTH(CURDATE());';
         return Database::getRows($sql);
     }
 
@@ -199,14 +193,10 @@ class ClienteHandler
                     s.id_servicio,
                     s.tipo_servicio,
                     s.descripcion_servicio
-                FROM 
-                    tb_clientes cl
-                JOIN 
-                    tb_citas c ON cl.id_cliente = c.id_cliente
-                JOIN 
-                    tb_servicios s ON c.id_servicio = s.id_servicio
-                WHERE 
-                    cl.id_cliente = ?';
+                FROM tb_clientes cl
+                JOIN tb_citas c ON cl.id_cliente = c.id_cliente
+                JOIN tb_servicios s ON c.id_servicio = s.id_servicio
+                WHERE cl.id_cliente = ?';
         $params = array($this->id);
         return Database::getRows($sql, $params);
     }
