@@ -259,6 +259,32 @@ if (isset($_GET['action'])) {
                     $result['error'] = 'Credenciales incorrectas';
                 }
                 break;
+            case 'logInRecuperacion':
+                // Inicio de sesión de un administrador (puede ser una acción pública).
+                $_POST = Validator::validateForm($_POST);
+                if ($administrador->checkUserRecuperacion($_POST['correoUsuario'])) {
+                    // Si las credenciales son correctas, se actualiza el estado y mensaje.
+                    $result['status'] = 1;
+                    $result['message'] = 'Autenticación correcta';
+                } else {
+                    // Si las credenciales son incorrectas, se registra un error.
+                    $result['error'] = 'Credenciales incorrectas';
+                }
+                break;
+                // método para recuperar contraseña mediante correo electrónico
+            case 'readOneRecuperacion':
+                // Lectura de un administrador específico por su ID.
+                if (!$administrador->setCorreo($_POST['correoUsuario'])) {
+                    // Si el correo es incorrecto, se registra un error.
+                    $result['error'] = 'correo incorrecto';
+                } elseif ($result['dataset'] = $administrador->readOneRecuperacion()) {
+                    // Si se encuentra el administrador, se actualiza el estado.
+                    $result['status'] = 1;
+                } else {
+                    // Si no se encuentra el administrador, se registra un error.
+                    $result['error'] = 'Administrador inexistente';
+                }
+                break;
             default:
                 // Acción no disponible fuera de la sesión.
                 $result['error'] = 'Acción no disponible fuera de la sesión';
@@ -272,8 +298,8 @@ if (isset($_GET['action'])) {
     header('Content-type: application/json; charset=utf-8');
 
     // Se imprime el resultado en formato JSON y se retorna al controlador.
-    print (json_encode($result));
+    print(json_encode($result));
 } else {
     // Si no hay acción definida, se imprime un mensaje indicando que el recurso no está disponible.
-    print (json_encode('Recurso no disponible'));
+    print(json_encode('Recurso no disponible'));
 }

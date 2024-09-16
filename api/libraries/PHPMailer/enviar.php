@@ -14,7 +14,7 @@ try {
 
     // datos del html
     $emailTo = $_POST["correoUsuario"];
-$subject = $_POST["asunto"];
+    $subject = '$_POST["asunto"]';
     $bodyEmail = '$_POST["mensaje"]';
     $persona = '$_POST["persona"]';
 

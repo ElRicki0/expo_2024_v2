@@ -55,6 +55,26 @@ class AdministradorHandler
         }
     }
 
+    // Método para verificar el inicio de sesión del administrador.
+    public function checkUserRecuperacion($username)
+    {
+        $sql = 'SELECT id_admin, correo_admin, contrasenia_admin
+            FROM tb_admin
+            WHERE correo_admin = ?';
+        $params = array($username);
+        // Se intenta obtener el registro del administrador según el correo.
+        if (!($data = Database::getRow($sql, $params))) {
+            return false; // Si no se encuentra el usuario, retorna falso.
+        } else{
+            // Si la contrasenia coincide con el hash almacenado, se inicia la sesión del administrador.
+            $_SESSION['idAdministrador'] = $data['id_admin'];
+            $_SESSION['correo_admin'] = $data['correo_admin'];
+            return true; // Retorna verdadero indicando que el inicio de sesión fue exitoso.
+        } 
+            return false; // Si la contrasenia no coincide, retorna falso.
+        
+    }
+
     // Método para verificar si la contrasenia actual del administrador es correcta.
     public function checkPassword($password)
     {
@@ -217,5 +237,15 @@ class AdministradorHandler
                 WHERE id_empleado = (SELECT id_empleado FROM tb_admin WHERE id_admin = ?);';
         $params = array($_SESSION['idAdministrador']);
         return Database::executeRow($sql, $params);
+    }
+
+    // Método para leer un administrador.
+    public function readOneRecuperacion()
+    {
+        $sql = 'SELECT a.correo_admin, a.nombre_admin, a.codigo_admin
+                FROM tb_admin a
+                WHERE a.correo_admin = ?';
+        $params = array($this->correo);
+        return Database::getRow($sql, $params);
     }
 }
