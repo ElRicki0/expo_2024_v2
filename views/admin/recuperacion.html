@@ -4,7 +4,7 @@
 <head>
 
     <!-- Título del documento -->
-   <title>Recuperacion de contraseña</title> 
+    <title>Recuperacion de contraseña</title>
 
     <!-- Metadatos de la página web -->
     <meta charset="UTF-8">
@@ -42,12 +42,23 @@
                                             <input type="email" id="correoUsuario" name="correoUsuario"
                                                 class="form-control form-control-lg" required />
                                         </div>
+
+                                        <div class="d-none">
+                                            <h3 class="fs-4 fw-medium" id="nombreAdmin" name="nombreAdmin"></h3>
+                                            <h5 class="fs-6 fw-normal text-secondary" id="correoAdmin"
+                                                name="correoAdmin">
+                                            </h5>
+                                            <h5 class="fs-6 fw-normal text-secondary" id="codigoAdmin"
+                                                name="codigoAdmin">
+                                            </h5>
+                                        </div>
                                         <div class="pt-1 mb-4">
                                             <button data-mdb-button-init data-mdb-ripple-init
                                                 class="btn btn-dark btn-lg btn-block" type="submit">ENVIAR
                                                 CÓDIGO</button></a>
                                         </div>
                                     </form>
+
                                 </div>
                             </div>
                         </div>
@@ -55,8 +66,9 @@
                 </div>
             </div>
         </div>
+        </div>
     </section>
-        <!-- Importaciones -->
+    <!-- Importaciones -->
     <script src="../../resources/js/bootstrap.bundle.min.js"></script>
     <script src="../../controllers/admin/recuperacion.js"></script>
     <script src="../../resources/js/sweetalert.min.js"></script>

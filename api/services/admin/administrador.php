@@ -147,6 +147,13 @@ if (isset($_GET['action'])) {
                     $result['error'] = 'Ocurrió un problema al leer el perfil';
                 }
                 break;
+            case 'readProfileRecuperacion':
+                if ($result['dataset'] = $administrador->readProfileRecuperacion()) {
+                    $result['status'] = 1;
+                } else {
+                    $result['error'] = 'Ocurrió un problema al leer el perfil';
+                }
+                break;
             case 'editProfile':
                 $_POST = Validator::validateForm($_POST);
                 if (
@@ -258,18 +265,6 @@ if (isset($_GET['action'])) {
                     $result['error'] = 'Credenciales incorrectas';
                 }
                 break;
-            case 'logInRecuperacion':
-                // Inicio de sesión de un administrador (puede ser una acción pública).
-                $_POST = Validator::validateForm($_POST);
-                if ($administrador->checkUserRecuperacion($_POST['correoUsuario'])) {
-                    // Si las credenciales son correctas, se actualiza el estado y mensaje.
-                    $result['status'] = 1;
-                    $result['message'] = 'Autenticación correcta';
-                } else {
-                    // Si las credenciales son incorrectas, se registra un error.
-                    $result['error'] = 'Credenciales incorrectas';
-                }
-                break;
                 // método para recuperar contraseña mediante correo electrónico
             case 'readOneRecuperacion':
                 // Lectura de un administrador específico por su ID.
@@ -299,10 +294,5 @@ if (isset($_GET['action'])) {
     print(json_encode($result));
 } else {
     // Si no hay acción definida, se imprime un mensaje indicando que el recurso no está disponible.
-<<<<<<< HEAD
     print(json_encode('Recurso no disponible'));
 }
-=======
-    print (json_encode('Recurso no disponible'));
-}
->>>>>>> 81c465f4d0af439a746dbccdde4d96e8baafad92

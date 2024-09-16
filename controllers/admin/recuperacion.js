@@ -3,37 +3,43 @@ const USER_API = 'services/admin/administrador.php';
 const CORREO = 'libraries/PHPMailer/enviar.php';
 
 // Constantes para establecer los elementos del formulario de guardar.
-const SAVE_FORM = document.getElementById('saveForm'),
-    CORREO_USUARIO = document.getElementById('correoUsuario');
+const SAVE_FORM = document.getElementById('saveForm');
+const CORREO_USUARIO = document.getElementById('correoUsuario');
+
+const CODIGO_ADMINISTRADOR = document.getElementById('codigoAdmin');
+const CORREO_ADMINISTRADOR = document.getElementById('correoAdmin');
 
 // Método del evento para cuando se envía el formulario de guardar.
 SAVE_FORM.addEventListener('submit', async (event) => {
     // Se evita recargar la página web después de enviar el formulario.
     event.preventDefault();
+    
     // Constante tipo objeto con los datos del formulario.
     const FORM = new FormData(SAVE_FORM);
-    // Petición para guardar los datos del formulario.
-    const DATA2 = await fetchData(USER_API, 'logInRecuperacion', FORM);
-    const DATA = await fetchData(CORREO, 'logInRecuperacion', FORM);
-    // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+
+    // Petición para obtener los datos del administrador.
+    const DATA = await fetchData(USER_API, 'readOneRecuperacion', FORM);
+    
+    // Verificamos si la respuesta es satisfactoria.
     if (DATA.status) {
-        // Se muestra un mensaje de éxito
-        document.forms.saveForm.addEventListener('submit', enviarFormulario);
-        sweetAlert(1, 'código enviado correctamente', false, 'confirmacion.html');
+        const ROW = DATA.dataset;
+        CODIGO_ADMINISTRADOR.textContent = ROW.codigo_admin;
+        CORREO_ADMINISTRADOR.textContent = ROW.correo_admin;
+        
+        // Llamar directamente a la función para enviar el correo.
+        enviarFormulario(FORM);
+        // sweetAlert(1, 'Codigo enviado correctamente a su correo electrónico', false, 'confirmacion.html');
     } else {
         sweetAlert(2, DATA.error, false);
     }
 });
 
+
+
 // Función para manejar el envío del formulario
-function enviarFormulario(event) {
-    event.preventDefault(); // Evitar el envío tradicional del formulario
-
-    // Capturamos los datos del formulario
-    const formData = new FormData(document.forms.enviar);
-
+function enviarFormulario(formData) {
     // Enviar los datos usando fetch()
-    fetch('libraries/PHPMailer/enviar.php', {
+    fetch('/expo_2024_v2/api/libraries/PHPMailer/enviar.php', {
         method: 'POST',
         body: formData
     })
@@ -47,4 +53,3 @@ function enviarFormulario(event) {
         alert('Hubo un error al enviar el correo.');
     });
 }
-

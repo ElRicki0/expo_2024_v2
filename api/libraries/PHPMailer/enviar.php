@@ -13,9 +13,9 @@ $mail = new PHPMailer(true);
 try {
 
     // datos del html
-    $emailTo = $_POST["correoUsuario"];
-    $subject = '$_POST["asunto"]';
-    $bodyEmail = '$_POST["mensaje"]';
+    $emailTo = $_POST["correoAdmin"];
+    $subject = $_POST["codigoAdmin"];
+    $bodyEmail = '$_POST["codigoAdmin"]';
     $persona = '$_POST["persona"]';
 
     //Server settings

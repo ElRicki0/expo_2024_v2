@@ -125,6 +125,16 @@ class AdministradorHandler
         // Se obtiene la información del perfil del administrador actual.
         return Database::getRow($sql, $params);
     }
+    // Método para leer el perfil del administrador actual.
+    public function readProfileRecuperacion()
+    {
+        $sql = 'SELECT id_admin, nombre_admin, correo_admin, codigo_admin
+                FROM tb_admin
+                WHERE id_admin = ?';
+        $params = array($_SESSION['idAdministrador']);
+        // Se obtiene la información del perfil del administrador actual.
+        return Database::getRow($sql, $params);
+    }
 
     // Método para editar el perfil del administrador.
     public function editProfile()
