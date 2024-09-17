@@ -8,8 +8,6 @@ document.addEventListener('DOMContentLoaded', async () => {
 
 });
 
-
-
 // Método del evento para cuando se envía el formulario de guardar.
 SAVE_FORM.addEventListener('submit', async (event) => {
 
@@ -28,8 +26,14 @@ SAVE_FORM.addEventListener('submit', async (event) => {
     const DATA = await fetchData(USER_API, 'changeNewPassword', FORM);
     // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
     if (DATA.status) {
-        // Se muestra un mensaje de éxito
-        sweetAlert(1, DATA.message, false, 'index.html');
+
+        const DATA = await fetchData(USER_API, 'logOut');
+        // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+        if (DATA.status) {
+            sweetAlert(1, 'Clave actualizada correctamente', true, 'index.html');
+        } else {
+            sweetAlert(2, DATA.exception, false);
+        }
     } else {
         sweetAlert(2, DATA.error, false);
     }

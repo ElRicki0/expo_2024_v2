@@ -98,7 +98,7 @@ class AdministradorHandler
         $sql = 'UPDATE tb_admin
                 SET contrasenia_admin = ?, codigo_admin = ?
                 WHERE id_admin = ?';
-        $params = array($this->contrasenia, $_SESSION['idAdministrador'], $this->codigo);
+        $params = array($this->contrasenia, $this->codigo, $_SESSION['idAdministrador']);
         // Se ejecuta la consulta para actualizar la contrasenia del administrador.
         return Database::executeRow($sql, $params);
     }

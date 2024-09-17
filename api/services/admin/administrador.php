@@ -273,7 +273,7 @@ if (isset($_GET['action'])) {
             case 'logIn':
                 // Inicio de sesión de un administrador (puede ser una acción pública).
                 $_POST = Validator::validateForm($_POST);
-                if ($administrador->checkUser($_POST['contraAdmin'], $_POST['contraAdmin'])) {
+                if ($administrador->checkUser($_POST['correoAdmin'], $_POST['contraAdmin'])) {
                     // Si las credenciales son correctas, se actualiza el estado y mensaje.
                     $result['status'] = 1;
                     $result['message'] = 'Autenticación correcta';
