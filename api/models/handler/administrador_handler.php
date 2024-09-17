@@ -18,6 +18,7 @@ class AdministradorHandler
     protected $contrasenia = null;
     protected $empleado = null;
     protected $codigo = null; // Inicialmente nulo
+    protected $codigoUsuario = null; // Inicialmente nulo
 
     public function __construct()
     {
@@ -56,23 +57,23 @@ class AdministradorHandler
     }
 
     // Método para verificar el inicio de sesión del administrador.
-    public function checkUserRecuperacion($username)
+    public function checkUserCodigo($codigoUsuario)
     {
-        $sql = 'SELECT id_admin, correo_admin, contrasenia_admin
-            FROM tb_admin
-            WHERE correo_admin = ?';
-        $params = array($username);
+        $sql = 'SELECT a.id_admin, a.correo_admin, a.nombre_admin, a.codigo_admin
+                FROM tb_admin a
+                WHERE a.codigo_admin =?';
+        $params = array($codigoUsuario);
         // Se intenta obtener el registro del administrador según el correo.
         if (!($data = Database::getRow($sql, $params))) {
             return false; // Si no se encuentra el usuario, retorna falso.
-        } else{
+        } else {
             // Si la contrasenia coincide con el hash almacenado, se inicia la sesión del administrador.
             $_SESSION['idAdministrador'] = $data['id_admin'];
             $_SESSION['correo_admin'] = $data['correo_admin'];
             return true; // Retorna verdadero indicando que el inicio de sesión fue exitoso.
-        } 
-            return false; // Si la contrasenia no coincide, retorna falso.
-        
+        }
+        return false; // Si la contrasenia no coincide, retorna falso.
+
     }
 
     // Método para verificar si la contrasenia actual del administrador es correcta.
@@ -95,9 +96,9 @@ class AdministradorHandler
     public function changePassword()
     {
         $sql = 'UPDATE tb_admin
-                SET contrasenia_admin = ?
+                SET contrasenia_admin = ?, codigo_admin = ?
                 WHERE id_admin = ?';
-        $params = array($this->contrasenia, $_SESSION['idAdministrador']);
+        $params = array($this->contrasenia, $_SESSION['idAdministrador'], $this->codigo);
         // Se ejecuta la consulta para actualizar la contrasenia del administrador.
         return Database::executeRow($sql, $params);
     }
@@ -252,10 +253,20 @@ class AdministradorHandler
     // Método para leer un administrador.
     public function readOneRecuperacion()
     {
-        $sql = 'SELECT a.correo_admin, a.nombre_admin, a.codigo_admin
+        $sql = 'SELECT a.id_admin, a.correo_admin, a.nombre_admin, a.codigo_admin
                 FROM tb_admin a
-                WHERE a.correo_admin = ?';
+                WHERE a.correo_admin =?';
         $params = array($this->correo);
+        return Database::getRow($sql, $params);
+    }
+
+    // Método para leer un administrador.
+    public function readOneRecuperacionCodigo()
+    {
+        $sql = 'SELECT a.id_admin, a.correo_admin, a.nombre_admin, a.codigo_admin
+                FROM tb_admin a
+                WHERE a.codigo_admin =?;';
+        $params = array($this->codigoUsuario);
         return Database::getRow($sql, $params);
     }
 }

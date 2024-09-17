@@ -182,6 +182,23 @@ if (isset($_GET['action'])) {
                     $result['error'] = 'Ocurrió un problema al cambiar la contraseña';
                 }
                 break;
+            case 'changeNewPassword':
+                // Actualización de datos de un administrador.
+                $_POST = Validator::validateForm($_POST);
+                if (
+                    !$administrador->setcontrasenia($_POST['claveAdmin'])
+                ) {
+                    // Si los datos no son válidos, se registra un error.
+                    $result['error'] = $administrador->getDataError();
+                } elseif ($administrador->changePassword()) {
+                    // Si se actualiza correctamente, se actualiza el estado y mensaje.
+                    $result['status'] = 1;
+                    $result['message'] = 'Clave actualizada correctamente';
+                } else {
+                    // Si hay un problema al actualizar, se registra un error.
+                    $result['error'] = 'Ocurrió un problema al modificar el administrador';
+                }
+                break;
             case 'checkPassword':
                 $_POST = Validator::validateForm($_POST);
                 if (!$administrador->checkPassword($_POST['contraseñaAdmin'])) {
@@ -277,6 +294,19 @@ if (isset($_GET['action'])) {
                 } else {
                     // Si no se encuentra el administrador, se registra un error.
                     $result['error'] = 'Administrador inexistente';
+                }
+                break;
+
+            case 'checkUserCodigo':
+                // Inicio de sesión de un administrador (puede ser una acción pública).
+                $_POST = Validator::validateForm($_POST);
+                if ($administrador->checkUserCodigo($_POST['codigoUsuario'])) {
+                    // Si las credenciales son correctas, se actualiza el estado y mensaje.
+                    $result['status'] = 1;
+                    $result['message'] = 'Autenticación correcta';
+                } else {
+                    // Si las credenciales son incorrectas, se registra un error.
+                    $result['error'] = 'Credenciales incorrectas';
                 }
                 break;
             default:

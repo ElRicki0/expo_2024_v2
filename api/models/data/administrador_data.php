@@ -44,6 +44,21 @@ class AdministradorData extends AdministradorHandler
         }
     }
 
+    // Método setcodigo: valida y asigna el nombre del administrador.
+    public function setCodigoUsuario($value, $min = 2, $max = 250)
+    {
+        if (!Validator::validateAlphabetic($value)) {
+            $this->data_error = 'El formato del nombre es incorrecto';
+            return false;
+        } elseif (Validator::validateLength($value, $min, $max)) {
+            $this->codigoUsuario = $value;
+            return true;
+        } else {
+            $this->data_error = 'El codigo debe tener una longitud entre ' . $min . ' y ' . $max;
+            return false;
+        }
+    }
+
     // Método setCorreo: valida y asigna el correo electrónico del administrador.
     public function setCorreo($value, $min = 8, $max = 100)
     {

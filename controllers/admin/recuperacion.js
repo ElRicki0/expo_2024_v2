@@ -28,7 +28,7 @@ SAVE_FORM.addEventListener('submit', async (event) => {
         
         // Llamar directamente a la función para enviar el correo.
         enviarFormulario(FORM);
-        // sweetAlert(1, 'Codigo enviado correctamente a su correo electrónico', false, 'confirmacion.html');
+        sweetAlert(1, 'Codigo enviado correctamente a su correo electrónico', false, 'confirmacion.html');
     } else {
         sweetAlert(2, DATA.error, false);
     }
