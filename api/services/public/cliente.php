@@ -89,7 +89,7 @@ if (isset($_GET['action'])) {
         switch ($_GET['action']) {
             case 'logIn':
                 $_POST = Validator::validateForm($_POST);
-                if (!$cliente->checkUser($_POST['correo_cliente'], $_POST['contra_cliente'])) {
+                if (!$cliente->checkUser($_POST['correoCliente'], $_POST['contraCliente'])) {
                     $result['error'] = 'Datos incorrectos';
                 } elseif ($cliente->checkStatus()) {
                     $result['status'] = 1;
@@ -101,17 +101,17 @@ if (isset($_GET['action'])) {
             case 'signUp':
                 $_POST = Validator::validateForm($_POST);
                 if (
-                    !$cliente->setNombre($_POST['nombre_cliente']) or
-                    !$cliente->setApellido($_POST['apellido_cliente']) or
-                    !$cliente->setCorreo($_POST['correo_cliente']) or
-                    !$cliente->setDui($_POST['dui_cliente']) or
-                    !$cliente->setTelefono($_POST['telefono_cliente']) or
-                    !$cliente->setNacimiento($_POST['nacimiento_cliente']) or
-                    !$cliente->setContrasenia($_POST['contra_cliente']) or
-                    !$cliente->setConfirmar($_POST['confirmar_cliente'])
+                    !$cliente->setNombre($_POST['nombreCliente']) or
+                    !$cliente->setApellido($_POST['apellidoCliente']) or
+                    !$cliente->setCorreo($_POST['correoCliente']) or
+                    !$cliente->setDui($_POST['duiCliente']) or
+                    !$cliente->setTelefono($_POST['telefonoCliente']) or
+                    !$cliente->setNacimiento($_POST['nacimientoCliente']) or
+                    !$cliente->setContrasenia($_POST['contraCliente']) or
+                    !$cliente->setConfirmar($_POST['confirmarCliente'])
                 ) {
                     $result['error'] = $cliente->getDataError();
-                } elseif ($_POST['contra_cliente'] != $_POST['confirmar_cliente']) {
+                } elseif ($_POST['contraCliente'] != $_POST['confirmarCliente']) {
                     $result['error'] = 'Contraseñas diferentes';
                 } elseif ($cliente->createRow()) {
                     $result['status'] = 1;
