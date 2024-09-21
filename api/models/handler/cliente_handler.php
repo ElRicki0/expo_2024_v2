@@ -16,6 +16,20 @@ class ClienteHandler
     protected $telefono = null;
     protected $nacimiento = null;
     protected $estado = null;
+    protected $codigo = null; // Inicialmente nulo
+    protected $codigoUsuario = null; // Inicialmente nulo
+
+    public function __construct()
+    {
+        // Generar un código aleatorio de 6 dígitos y asignarlo a $codigo
+        $this->codigo = rand(100000, 999999);
+    }
+
+    // Método para obtener el código (opcional)
+    public function getCodigo()
+    {
+        return $this->codigo;
+    }
 
     /*
      *   Métodos para gestionar la cuenta del cliente.
@@ -78,9 +92,9 @@ class ClienteHandler
     public function changePassword()
     {
         $sql = 'UPDATE tb_clientes
-                SET contrasenia_cliente = ?
+                SET contrasenia_cliente = ?, codigo_cliente = ?
                 WHERE id_cliente = ?';
-        $params = array($this->contrasenia, $_SESSION['idCliente']);
+        $params = array($this->contrasenia, $this->codigo, $_SESSION['idCliente']);
         return Database::executeRow($sql, $params);
     }
 
@@ -125,9 +139,9 @@ class ClienteHandler
     // Método para crear un nuevo registro de cliente
     public function createRow()
     {
-        $sql = 'INSERT INTO tb_clientes(nombre_cliente, apellido_cliente, dui_cliente, telefono_cliente, correo_cliente, contrasenia_cliente, nacimiento_cliente)
-                    VALUES(?, ?, ?, ?, ?, ?, ?)';
-        $params = array($this->nombre, $this->apellido, $this->dui, $this->telefono, $this->correo, $this->contrasenia, $this->nacimiento);
+        $sql = 'INSERT INTO tb_clientes(nombre_cliente, apellido_cliente, dui_cliente, telefono_cliente, correo_cliente, contrasenia_cliente, nacimiento_cliente, codigo_cliente)
+                    VALUES(?, ?, ?, ?, ?, ?, ?, ?)';
+        $params = array($this->nombre, $this->apellido, $this->dui, $this->telefono, $this->correo, $this->contrasenia, $this->nacimiento,  $this->codigo);
         return Database::executeRow($sql, $params);
     }
 

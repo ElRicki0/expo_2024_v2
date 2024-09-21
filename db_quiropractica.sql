@@ -6,8 +6,8 @@ USE db_quiropractica;
 
 CREATE TABLE tb_clientes(
     id_cliente INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
-    nombre_cliente VARCHAR (50) NOT NULL unique,
-    apellido_cliente VARCHAR (50) NOT NULL UNIQUE,
+    nombre_cliente VARCHAR (50) NOT NULL,
+    apellido_cliente VARCHAR (50) NOT NULL,
     dui_cliente VARCHAR (10) unique,
     correo_cliente VARCHAR (100) NOT NULL,
     contrasenia_cliente VARCHAR(200) not null,
@@ -28,8 +28,8 @@ CREATE TABLE tb_clientes(
 -- );
 CREATE TABLE tb_empleados(
     id_empleado INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
-    nombre_empleado VARCHAR (50) NOT NULL unique,
-    apellido_empleado VARCHAR (50) NOT NULL unique,
+    nombre_empleado VARCHAR (50) NOT NULL,
+    apellido_empleado VARCHAR (50) NOT NULL,
 	 especialidad_empleado VARCHAR (50) DEFAULT 'especialidad no especificada',
     dui_empleado VARCHAR (10) NOT NULL unique,
     correo_empleado VARCHAR (100) NOT NULL unique,

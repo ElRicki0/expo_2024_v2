@@ -100,7 +100,10 @@ if (isset($_GET['action'])) {
                 break;
             case 'signUp':
                 $_POST = Validator::validateForm($_POST);
+                // var_dump(($_POST['duiCliente']));
+                //     die();
                 if (
+                    
                     !$cliente->setNombre($_POST['nombreCliente']) or
                     !$cliente->setApellido($_POST['apellidoCliente']) or
                     !$cliente->setCorreo($_POST['correoCliente']) or
