@@ -141,7 +141,7 @@ class ClienteHandler
     {
         $sql = 'INSERT INTO tb_clientes(nombre_cliente, apellido_cliente, dui_cliente, telefono_cliente, correo_cliente, contrasenia_cliente, nacimiento_cliente, codigo_cliente)
                     VALUES(?, ?, ?, ?, ?, ?, ?, ?)';
-        $params = array($this->nombre, $this->apellido, $this->dui, $this->telefono, $this->correo, $this->contrasenia, $this->nacimiento,  $this->codigo);
+        $params = array($this->nombre, $this->apellido, $this->dui, $this->telefono, $this->correo, $this->contrasenia, $this->nacimiento, $this->codigo);
         return Database::executeRow($sql, $params);
     }
 
@@ -213,5 +213,34 @@ class ClienteHandler
                 WHERE cl.id_cliente = ?';
         $params = array($this->id);
         return Database::getRows($sql, $params);
+    }
+
+    // Método para leer un cliente.
+    public function readOneRecuperacion()
+    {
+        $sql = 'SELECT a.id_cliente, a.correo_cliente, a.nombre_cliente, a.apellido_cliente, a.codigo_cliente
+                    FROM tb_clientes a
+                    WHERE a.correo_cliente =?';
+        $params = array($this->correo);
+        return Database::getRow($sql, $params);
+    }
+
+    // Método para verificar el inicio de sesión del administrador.
+    public function checkUserCodigo($codigoUsuario)
+    {
+        $sql = 'SELECT a.id_cliente, a.correo_cliente, a.nombre_cliente, a.codigo_cliente
+                    FROM tb_clientes a
+                    WHERE a.codigo_cliente =?';
+        $params = array($codigoUsuario);
+        // Se intenta obtener el registro del administrador según el correo.
+        if (!($data = Database::getRow($sql, $params))) {
+            return false; // Si no se encuentra el usuario, retorna falso.
+        } else {
+            // Si la contrasenia coincide con el hash almacenado, se inicia la sesión del administrador.
+            $_SESSION['idCliente'] = $data['id_cliente'];
+            $_SESSION['correo_cliente'] = $data['correo_cliente'];
+            return true; // Retorna verdadero indicando que el inicio de sesión fue exitoso.
+        }
+        return false; // Si la contrasenia no coincide, retorna falso.
     }
 }

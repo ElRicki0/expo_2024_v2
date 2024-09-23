@@ -81,6 +81,19 @@ if (isset($_GET['action'])) {
                     $result['error'] = 'Ocurrió un problema al cambiar la contraseña';
                 }
                 break;
+            case 'changePasswordMobile':
+                $_POST = Validator::validateForm($_POST);
+                if ($_POST['claveNueva'] != $_POST['confirmarClave']) {
+                    $result['error'] = 'Confirmación de contraseña diferente';
+                } elseif (!$cliente->setContrasenia($_POST['claveNueva'])) {
+                    $result['error'] = $cliente->getDataError();
+                } elseif ($cliente->changePassword()) {
+                    $result['status'] = 1;
+                    $result['message'] = 'Contraseña cambiada correctamente';
+                } else {
+                    $result['error'] = 'Ocurrió un problema al cambiar la contraseña';
+                }
+                break;
             default:
                 $result['error'] = 'Acción no disponible dentro de la sesión.';
         }
@@ -103,7 +116,7 @@ if (isset($_GET['action'])) {
                 // var_dump(($_POST['duiCliente']));
                 //     die();
                 if (
-                    
+
                     !$cliente->setNombre($_POST['nombreCliente']) or
                     !$cliente->setApellido($_POST['apellidoCliente']) or
                     !$cliente->setCorreo($_POST['correoCliente']) or
@@ -123,6 +136,31 @@ if (isset($_GET['action'])) {
                     $result['error'] = 'Ocurrió un problema al registrar la cuenta';
                 }
                 break;
+            case 'readOneRecuperacion':
+                // Lectura de un administrador específico por su ID.
+                if (!$cliente->setCorreo($_POST['correoUsuario'])) {
+                    // Si el correo es incorrecto, se registra un error.
+                    $result['error'] = 'Correo inexistente';
+                } elseif ($result['dataset'] = $cliente->readOneRecuperacion()) {
+                    // Si se encuentra el administrador, se actualiza el estado.
+                    $result['status'] = 1;
+                } else {
+                    // Si no se encuentra el administrador, se registra un error.
+                    $result['error'] = 'Cliente inexistente';
+                }
+                break;
+            case 'checkUserCodigo':
+                // Inicio de sesión de un administrador (puede ser una acción pública).
+                $_POST = Validator::validateForm($_POST);
+                if ($cliente->checkUserCodigo($_POST['codigoUsuario'])) {
+                    // Si las credenciales son correctas, se actualiza el estado y mensaje.
+                    $result['status'] = 1;
+                    $result['message'] = 'Autenticación correcta';
+                } else {
+                    // Si las credenciales son incorrectas, se registra un error.
+                    $result['error'] = 'Credenciales incorrectas';
+                }
+                break;
             default:
                 $result['message'] = 'Acción no disponible dentro de la sesión.';
         }
@@ -132,7 +170,7 @@ if (isset($_GET['action'])) {
     // Se indica el tipo de contenido a mostrar y su respectivo conjunto de caracteres.
     header('Content-type: application/json; charset=utf-8');
     // Se imprime el resultado en formato JSON y se retorna al controlador.
-    print(json_encode($result));
+    print (json_encode($result));
 } else {
-    print(json_encode('Recurso no disponible'));
+    print (json_encode('Recurso no disponible'));
 }
