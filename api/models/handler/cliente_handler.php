@@ -239,7 +239,7 @@ class ClienteHandler
         } else {
             // Si la contrasenia coincide con el hash almacenado, se inicia la sesión del administrador.
             $_SESSION['idCliente'] = $data['id_cliente'];
-            $_SESSION['correo_cliente'] = $data['correo_cliente'];
+            $_SESSION['correoCliente'] = $data['correo_cliente'];
             return true;
         }
         return false;

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ingresar</title>
+    <!-- Se enlaza Bootstrap para estilos adicionales -->
+    <link rel="stylesheet" href="../../resources/css/boostrap_css.css">
+    <link rel="stylesheet" href="../../resources/css/public/Login.css">
+    <link rel="stylesheet" href="../../resources/css/colores.css">
+</head>
+
+<body>
+    <main>
+        <div class="container position-absolute top-50 start-50 translate-middle">
+            <div class="row">
+                <div class="col-lg-4 col-md-7 col-sm-6 d-none d-sm-block">
+                    <img src="../../resources/img/public/bonita.png" alt="Imagen" width="418px">
+                </div>
+                <div class="col-lg-8 col-md-5 col-sm-6 bg-dark text-center">
+                    <div class="my-5">
+                        <h1 class="font-weight-bold font-monospace text-white margen_superior">Recuperación de
+                            contraseña</h1>
+                        <h5 class="fw-normal mb-3 pb-2 text-white" style="letter-spacing: 1px;">Ingresa tu código
+                            de verificación</h5>
+                        <p class="text-white">se ha enviado un correo electronico con el codigo de confirmacion para
+                            actualizar la contraseña actual</p>
+                        <h3>Ingrese su código</h3>
+                        <form id="saveForm">
+                            <div class="form-group mt-5 d-flex justify-content-center">
+                                <div class="col-8">
+                                    <input type="number" class="form-control" placeholder="Código..." id="codigoUsuario"
+                                        name="codigoUsuario" aria-label="Username" aria-describedby="addon-wrapping">
+                                </div>
+                            </div>
+                            <button type="submit"
+                                class="btn btn-light text-primary fw-bold pe-4 ps-4 m-5">Enviar</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <!-- Bootstrap -->
+    <script type="text/javascript" src="../../resources/js/bootstrap.bundle.min.js"> </script>
+
+    <!-- Js -->
+    <script type="text/javascript" src="../../controllers/utils/components.js"></script>
+    <script type="text/javascript" src="../../resources/js/sweetalert.min.js"></script>
+    <script type="text/javascript" src="../../controllers/utils/Validaciones.js"></script>
+    <script type="text/javascript" src="../../controllers/public/confirmacion.js"></script>
+</body>
+
+</html>

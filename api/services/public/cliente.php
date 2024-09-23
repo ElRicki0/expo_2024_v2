@@ -94,6 +94,23 @@ if (isset($_GET['action'])) {
                     $result['error'] = 'Ocurrió un problema al cambiar la contraseña';
                 }
                 break;
+            case 'changeNewPassword':
+                // Actualización de datos de un cliente.
+                $_POST = Validator::validateForm($_POST);
+                if (
+                    !$cliente->setcontrasenia($_POST['claveUser'])
+                ) {
+                    // Si los datos no son válidos, se registra un error.
+                    $result['error'] = $cliente->getDataError();
+                } elseif ($cliente->changePassword()) {
+                    // Si se actualiza correctamente, se actualiza el estado y mensaje.
+                    $result['status'] = 1;
+                    $result['message'] = 'Clave actualizada correctamente';
+                } else {
+                    // Si hay un problema al actualizar, se registra un error.
+                    $result['error'] = 'Ocurrió un problema al modificar el cliente';
+                }
+                break;
             default:
                 $result['error'] = 'Acción no disponible dentro de la sesión.';
         }

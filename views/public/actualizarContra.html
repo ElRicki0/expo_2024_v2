@@ -22,17 +22,27 @@
                     <div class="my-5">
                         <h1 class="font-weight-bold font-monospace text-white margen_superior">Recuperación de
                             contraseña</h1>
-                        <h4 class="text-white my-5">ingrese su correo electrónico</h4>
+                        <h5 class="fw-normal mb-3 pb-2 text-white" style="letter-spacing: 1px;">Ingresa tu código
+                            de verificación</h5>
+                        <p class="text-white">se ha enviado un correo electronico con el codigo de confirmacion para
+                            actualizar la contraseña actual</p>
+                        <h3>Ingrese su código</h3>
                         <form id="saveForm">
                             <div class="form-group mt-5 d-flex justify-content-center">
-                                <div class="col-8">
-                                    <input type="email" class="form-control" placeholder="Correo electronico..."
-                                        id="correoUsuario" name="correoUsuario" aria-label="Username"
-                                        oninput="formatEmail(this)" aria-describedby="addon-wrapping">
+                                <div data-mdb-input-init class="form-outline mb-4">
+                                    <label class="form-label text-white" for="claveUser" >Nueva
+                                        clave</label>
+                                    <input type="password" id="claveUser" name="claveUser"
+                                        class="form-control form-control-lg" />
+                                        <br>
+                                    <label class="form-label text-white" for="repetirUser" >Repetir clave
+                                        clave</label>
+                                    <input type="password" id="repetirUser" name="repetirUser"
+                                        class="form-control form-control-lg" />
                                 </div>
                             </div>
                             <button type="submit"
-                                class="btn btn-light text-primary fw-bold pe-4 ps-4 m-5">Enviar</button>
+                                class="btn btn-light text-primary fw-bold">Enviar</button>
                         </form>
                     </div>
                 </div>
@@ -46,7 +56,7 @@
     <script type="text/javascript" src="../../controllers/utils/components.js"></script>
     <script type="text/javascript" src="../../resources/js/sweetalert.min.js"></script>
     <script type="text/javascript" src="../../controllers/utils/Validaciones.js"></script>
-    <script type="text/javascript" src="../../controllers/public/recuperacion.js"></script>
+    <script type="text/javascript" src="../../controllers/public/actualizarContra.js"></script>
 </body>
 
 </html>
