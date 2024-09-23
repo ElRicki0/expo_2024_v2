@@ -162,7 +162,7 @@ if (isset($_GET['action'])) {
                 }
                 break;
             default:
-                $result['message'] = 'Acción no disponible dentro de la sesión.';
+                $result['message'] = 'Acción no disponible fuera de la sesión.';
         }
     }
     // Se obtiene la excepción del servidor de base de datos por si ocurrió un problema.
@@ -170,7 +170,7 @@ if (isset($_GET['action'])) {
     // Se indica el tipo de contenido a mostrar y su respectivo conjunto de caracteres.
     header('Content-type: application/json; charset=utf-8');
     // Se imprime el resultado en formato JSON y se retorna al controlador.
-    print (json_encode($result));
+    print(json_encode($result));
 } else {
-    print (json_encode('Recurso no disponible'));
+    print(json_encode('Recurso no disponible'));
 }

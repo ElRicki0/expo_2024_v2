@@ -1,17 +1,17 @@
 use db_quiropractica;
 
-INSERT INTO tb_clientes (nombre_cliente, apellido_cliente, dui_cliente, correo_cliente, contrasenia_cliente, telefono_cliente, nacimiento_cliente, estado_cliente) 
+INSERT INTO tb_clientes (nombre_cliente, apellido_cliente, dui_cliente, correo_cliente, contrasenia_cliente, telefono_cliente, nacimiento_cliente, estado_cliente, codigo_client) 
 VALUES 
 ('jhonny', 'Melara', '1234567890', 'cliente@example.com', '$2y$10$OrPBIgS7IFzMJPFVzw0v1.siV7i3dVhk4fNpwxmHZ31cXWxNxxaca', '6666-6666', '1990-05-15', 1),
-('Bob', 'Smith', '2345678901', 'bob.smith@example.com', 'password456', '234567890', '1985-08-20', 1),
-('Charlie', 'Williams', '3456789012', 'charlie.williams@example.com', 'abc123', '345678901', '1988-11-25', 1),
-('David', 'Brown', '4567890123', 'david.brown@example.com', 'securepwd', '456789012', '1992-02-10', 1),
-('Emily', 'Davis', '5678901234', 'emily.davis@example.com', 'davis456', '567890123', '1995-04-05', 1),
-('Frank', 'Moore', '6789012345', 'frank.moore@example.com', 'pass456', '678901234', '1982-07-18', 1),
-('Grace', 'Taylor', '7890123456', 'grace.taylor@example.com', 'taylorpass', '789012345', '1990-10-12', 1),
-('Henry', 'Anderson', '8901234567', 'henry.anderson@example.com', 'anderson123', '890123456', '1987-03-29', 1),
-('Ivy', 'Thomas', '9012345678', 'ivy.thomas@example.com', 'thomasivy', '901234567', '1998-06-17', 1),
-('Jack', 'Roberts', '0123456789', 'jack.roberts@example.com', 'jack123', '012345678', '1993-09-22', 1);
+('Bob', 'Smith', '2345678901', 'bob.smith@example.com', 'password456', '234567890', '1985-08-20', 1 '111111'),
+('Charlie', 'Williams', '3456789012', 'charlie.williams@example.com', 'abc123', '345678901', '1988-11-25', 1 '111112'),
+('David', 'Brown', '4567890123', 'david.brown@example.com', 'securepwd', '456789012', '1992-02-10', 1 '111113'),
+('Emily', 'Davis', '5678901234', 'emily.davis@example.com', 'davis456', '567890123', '1995-04-05', 1 '111114'),
+('Frank', 'Moore', '6789012345', 'frank.moore@example.com', 'pass456', '678901234', '1982-07-18', 1 '111115'),
+('Grace', 'Taylor', '7890123456', 'grace.taylor@example.com', 'taylorpass', '789012345', '1990-10-12', 1 '111116'),
+('Henry', 'Anderson', '8901234567', 'henry.anderson@example.com', 'anderson123', '890123456', '1987-03-29', 1 '111117'),
+('Ivy', 'Thomas', '9012345678', 'ivy.thomas@example.com', 'thomasivy', '901234567', '1998-06-17', 1 '111118'),
+('Jack', 'Roberts', '0123456789', 'jack.roberts@example.com', 'jack123', '012345678', '1993-09-22', 1 '111119');
 
 
 -- INSERT INTO tb_testimonios (titulo_testimonio, contenido_testimonio, id_cliente, estado_testimonio) 
