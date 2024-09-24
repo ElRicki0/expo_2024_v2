@@ -164,3 +164,21 @@ const openDelete = () => {
     // Se restauran los elementos del formulario.
     DELETE_FORM.reset();
 }
+
+// Método del evento para cuando se envía el formulario de verificación del código.
+CODE_FORM.addEventListener('submit', async (event) => {
+    // Se evita recargar la página web después de enviar el formulario.
+    event.preventDefault();
+    // Constante tipo objeto con los datos del formulario.
+    const FORM = new FormData(CODE_FORM);
+    // Petición para verificar el código ingresado.
+    const DATA = await fetchData(USER_API, 'checkUserCodigo', FORM);
+    // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+    if (DATA.status) {
+        // Se redirige al usuario al dashboard o página principal.
+        window.location.href = 'principal.html';
+    } else {
+        // Se muestra un mensaje de error.
+        sweetAlert(2, DATA.error, false);
+    }
+});
