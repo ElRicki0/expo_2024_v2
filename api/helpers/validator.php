@@ -233,7 +233,7 @@ class Validator
 
         // Verificar si la contraseña tiene al menos un carácter especial.
         if (!preg_match('/[\W_]/', $value)) { // \W coincide con cualquier carácter no alfanumérico.
-            self::$password_error = 'La contraseña debe contener al menos un carácter especial, como !, @, #, $, %, ^, &, *, (, ), -, +, =, {, }, [, ], |, \, :, ;, ", <, >, ,, ., ?, /, ~';
+            self::$password_error = 'La contraseña debe contener al menos un carácter especial';
             return false;
         }
 

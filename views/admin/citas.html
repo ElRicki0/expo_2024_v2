@@ -143,19 +143,20 @@
                                         <div class="row">
                                             <div class="col-6">
                                                 <label for="nombreCita" class="form-label">Nombre</label>
-                                                <input id="nombreCita" type="text" name="nombreCita"
-                                                    class="form-control" required>
+                                                <input id="nombreCita" type="text" name="nombreCita" autocomplete="off"
+                                                    class="form-control" required oninput="formatAlphabetic(this)">
                                             </div>
                                             <div class="col-6">
                                                 <label for="fechaCita" class="form-label">Fecha cita</label>
                                                 <input id="fechaCita" type="datetime-local" name="fechaCita"
-                                                    class="form-control" required>
+                                                    autocomplete="off" class="form-control" required>
                                             </div>
                                         </div>
                                         <div class="row">
                                             <div class="col-6 mt-2">
                                                 <label for="estadoCita" class="form-label">Estado</label>
-                                                <select id="estadoCita" name="estadoCita" class="form-select" required>
+                                                <select id="estadoCita" name="estadoCita" class="form-select"
+                                                    autocomplete="off" required>
                                                     <option selected>Seleccione un estado</option>
                                                     <option value="pendiente">pendiente</option>
                                                     <option value="proceso">proceso</option>
@@ -165,26 +166,27 @@
                                             <div class="col-6 mt-2">
                                                 <label for="sesionesCita" class="form-label">Cantidad sesiones</label>
                                                 <input id="sesionesCita" type="number" name="sesionesCita" min="1"
-                                                    step="1" class="form-control" required>
+                                                    autocomplete="off" step="1" class="form-control" required>
                                             </div>
                                         </div>
                                         <div class="row">
                                             <div class="col-6 mt-2">
                                                 <label for="clienteCita" class="form-label">Cliente</label>
                                                 <select id="clienteCita" name="clienteCita" class="form-select"
-                                                    required>
+                                                    autocomplete="off" required oninput="formatCombo(this)">
                                                 </select>
                                             </div>
                                             <div class="col-6 mt-2">
                                                 <label for="servicioCita" class="form-label">Servicio</label>
                                                 <select id="servicioCita" name="servicioCita" class="form-select"
-                                                    required>
+                                                    autocomplete="off" required oninput="formatCombo(this)">
                                                 </select>
                                             </div>
                                         </div>
                                         <div class="col-6 mt-2">
                                             <label for="empleadoCita" class="form-label">Empleado</label>
-                                            <select id="empleadoCita" name="empleadoCita" class="form-select" required>
+                                            <select id="empleadoCita" name="empleadoCita" class="form-select"
+                                                autocomplete="off" required oninput="formatCombo(this)">
                                             </select>
                                         </div>
                                     </div>

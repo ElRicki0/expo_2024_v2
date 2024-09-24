@@ -104,23 +104,23 @@
                                         <div class="row">
                                             <div class="col-6">
                                                 <label for="imagenPregunta" class="form-label">Imagen</label>
-                                                <input id="imagenPregunta" type="file" name="imagenPregunta"
+                                                <input id="imagenPregunta" type="file" name="imagenPregunta" autocomplete="off"
                                                     class="form-control" accept=".png, .jpg" required oninput="formatImg(this)">
                                             </div>
                                             <div class="col-6">
                                                 <label for="nombrePregunta" class="form-label">Pregunta</label>
-                                                <input id="nombrePregunta" type="text" name="nombrePregunta"
+                                                <input id="nombrePregunta" type="text" name="nombrePregunta" autocomplete="off"
                                                     class="form-control" required oninput="formatAlphabetic(this)">
                                             </div>
                                             <div class="col-6 mt-2">
                                                 <label for="contenidoPregunta" class="form-label">Contenido</label>
-                                                <input id="contenidoPregunta" type="text" name="contenidoPregunta"
+                                                <input id="contenidoPregunta" type="text" name="contenidoPregunta" autocomplete="off"
                                                     class="form-control" required oninput="formatAlphabetic(this)">
                                             </div>
                                             <div class="col-6 mt-2">
                                                 <label for="empleadoPregunta" class="form-label">Empleado</label>
-                                                <select id="empleadoPregunta" name="empleadoPregunta"
-                                                    class="form-select" required>
+                                                <select id="empleadoPregunta" name="empleadoPregunta" autocomplete="off"
+                                                    class="form-select" required oninput="formatCombo(this)">
                                                 </select>
                                             </div>
                                         </div>
