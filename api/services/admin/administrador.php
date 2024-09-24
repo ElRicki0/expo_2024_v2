@@ -91,7 +91,7 @@ if (isset($_GET['action'])) {
                     // Diferencia en días entre la fecha actual y la fecha de la contraseña
                     $diferenciaDias = $fechaActual->diff($fechaContrasenia)->days;
                     // Verificar si han pasado más de 90 días
-                    if ($diferenciaDias > 1) {
+                    if ($diferenciaDias > 90) {
                         $result['error'] = "Tu clave es muy antigua, tienes que cambiar tu contraseña.";
                     } else {
                         $result['message'] = "Tu contraseña aún es válida.";

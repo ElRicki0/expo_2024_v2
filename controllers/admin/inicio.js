@@ -5,6 +5,8 @@ const CITA_API = 'services/admin/cita.php';
 
 // Constante para establecer la modal de cambiar contraseña.
 const PASSWORD_MODAL = new bootstrap.Modal('#passwordModal');
+// Constante para establecer el formulario de cambiar contraseña.
+const PASSWORD_FORM = document.getElementById('passwordForm');
 
 // Método del evento para cuando el documento ha cargado.
 document.addEventListener('DOMContentLoaded', () => {
@@ -56,6 +58,25 @@ const obtenerFechaClave = async () => {
         openPassword();
     }
 }
+
+// Mètodo del evento para cuando se envía el formulario de cambiar contraseña.
+PASSWORD_FORM.addEventListener('submit', async (event) => {
+    // Se evita recargar la página web después de enviar el formulario.
+    event.preventDefault();
+    // Constante tipo objeto con los datos del formulario.
+    const FORM = new FormData(PASSWORD_FORM);
+    // Petición para actualizar la constraseña.
+    const DATA = await fetchData(USER_API, 'changePassword', FORM);
+    // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+    if (DATA.status) {
+        // Se cierra la caja de diálogo.
+        PASSWORD_MODAL.hide();
+        // Se muestra un mensaje de éxito.
+        sweetAlert(1, DATA.message, true);
+    } else {
+        sweetAlert(2, DATA.error, false);
+    }
+});
 
 
 /*
