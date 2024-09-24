@@ -151,8 +151,8 @@
         </div>
 
         <!-- Componente modal para cambiar la contraseña  cuando sea mayor a 90 Dias -->
-        <div class="modal fade" id="passwordModal"  data-bs-backdrop="static" data-bs-theme="dark" data-bs-keyboard="false" tabindex="-1"
-            aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal fade" id="passwordModal" data-bs-backdrop="static" data-bs-theme="dark"
+            data-bs-keyboard="false" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-body">
@@ -161,12 +161,14 @@
                                 <h1 class="modal-title fs-5 text-white">Actualizar contraseña
                                 </h1>
                             </div>
-                            <p class="text-white">Cada 90 Dias tiene que  actualizar su clave por su seguridad.
+                            <br>
+                            <p class="text-white">Cada 90 Dias tiene que actualizar su clave por su seguridad.
+                            <h3 class="text-danger">Si no actualizar su clave, se serrara la sesión</h3>
                             </p>
                             <div class="col-12">
                                 <div class="row">
                                     <div class="col-3">
-                                        <p class="TituloModal text-end">Contraseña Actual</p>
+                                        <p class="text-white ">Contraseña Actual</p>
                                     </div>
                                     <div class="col-9">
                                         <input type="password" id="contraseñaActual" name="contraseñaActual"
@@ -177,7 +179,7 @@
                             <div class="col-12">
                                 <div class="row">
                                     <div class="col-3">
-                                        <p class="TituloModal text-end">Contraseña Nueva</p>
+                                        <p class="text-white ">Contraseña Nueva</p>
                                     </div>
                                     <div class="col-9">
                                         <input type="password" id="contraseñaNueva" name="contraseñaNueva"
@@ -188,12 +190,13 @@
                             <div class="d-flex flex-row-reverse">
                                 <button type="submit" class="btn fw-bold" id="ButtonPassword">Actualizar
                                     contraseña</button>
+                                    <button type="button" class="btn btn-danger" onclick="logOut()">Cerrar sesión</button>
                             </div>
                         </form>
                     </div>
                 </div>
             </div>
-        </div>  
+        </div>
     </main>
 
     <!-- Importaciones -->
