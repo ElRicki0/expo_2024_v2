@@ -9,14 +9,14 @@ document.addEventListener('DOMContentLoaded', async () => {
 });
 
 
-// Método del evento para cuando se envía el formulario de guardar.
+// Método del evento que se envía el formulario de guardar.
 SAVE_FORM.addEventListener('submit', async (event) => {
 
     const claveUser = document.getElementById('claveUser').value;
     const repetirUser = document.getElementById('repetirUser').value;
 
     if (claveUser !== repetirUser) {
-        event.preventDefault(); // Detiene el envío del formulario
+        event.preventDefault(); // Detiene el envío del formulario.
         sweetAlert(2, 'Las contraseñas no coinciden. Por favor, inténtalo de nuevo', false);
     }
     else {
@@ -30,7 +30,7 @@ SAVE_FORM.addEventListener('submit', async (event) => {
         if (DATA.status) {
 
             const DATA = await fetchData(USER_API, 'logOut');
-            // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+            // Se comprueba si la respuesta es correcta, de lo contrario se muestra un mensaje con la excepción.
             if (DATA.status) {
                 sweetAlert(1, 'Clave actualizada correctamente', true, 'index.html');
             } else {
