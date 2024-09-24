@@ -13,6 +13,7 @@ class ClienteHandler
     protected $dui = null;
     protected $correo = null;
     protected $contrasenia = null;
+    protected $fechaContrasenia = null;
     protected $telefono = null;
     protected $nacimiento = null;
     protected $estado = null;
@@ -23,12 +24,19 @@ class ClienteHandler
     {
         // Generar un código aleatorio de 6 dígitos y asignarlo a $codigo
         $this->codigo = rand(100000, 999999);
+        $this->fechaContrasenia = date('Y-m-d'); // Formato año-mes-día
     }
 
-    // Método para obtener el código (opcional)
+    // Método para obtener el código para recuperación de clave
     public function getCodigo()
     {
         return $this->codigo;
+    }
+
+    // Metodo para asignar 90 Dias para la clave
+    public function getFechaContrasenia()
+    {
+        return $this->fechaContrasenia;
     }
 
     /*
@@ -92,9 +100,9 @@ class ClienteHandler
     public function changePassword()
     {
         $sql = 'UPDATE tb_clientes
-                SET contrasenia_cliente = ?, codigo_cliente = ?
+                SET contrasenia_cliente = ?, codigo_cliente = ?, fecha_contrasenia=?
                 WHERE id_cliente = ?';
-        $params = array($this->contrasenia, $this->codigo, $_SESSION['idCliente']);
+        $params = array($this->contrasenia, $this->codigo, $this->fechaContrasenia, $_SESSION['idCliente']);
         return Database::executeRow($sql, $params);
     }
 
@@ -139,9 +147,9 @@ class ClienteHandler
     // Método para crear un nuevo registro de cliente
     public function createRow()
     {
-        $sql = 'INSERT INTO tb_clientes(nombre_cliente, apellido_cliente, dui_cliente, telefono_cliente, correo_cliente, contrasenia_cliente, nacimiento_cliente, codigo_cliente)
-                    VALUES(?, ?, ?, ?, ?, ?, ?, ?)';
-        $params = array($this->nombre, $this->apellido, $this->dui, $this->telefono, $this->correo, $this->contrasenia, $this->nacimiento, $this->codigo);
+        $sql = 'INSERT INTO tb_clientes(nombre_cliente, apellido_cliente, dui_cliente, telefono_cliente, correo_cliente, contrasenia_cliente, nacimiento_cliente, codigo_cliente, fecha_contrasenia)
+                    VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)';
+        $params = array($this->nombre, $this->apellido, $this->dui, $this->telefono, $this->correo, $this->contrasenia, $this->nacimiento, $this->codigo, $this->fechaContrasenia);
         return Database::executeRow($sql, $params);
     }
 

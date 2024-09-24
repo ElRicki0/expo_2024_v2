@@ -105,9 +105,9 @@ class AdministradorHandler
     public function changePassword()
     {
         $sql = 'UPDATE tb_admin
-                SET contrasenia_admin = ?, codigo_admin = ?
+                SET contrasenia_admin = ?, codigo_admin = ?, fecha_contrasenia= ?
                 WHERE id_admin = ?';
-        $params = array($this->contrasenia, $this->codigo, $_SESSION['idAdministrador']);
+        $params = array($this->contrasenia, $this->codigo, $this->fechaContrasenia, $_SESSION['idAdministrador']);
         // Se ejecuta la consulta para actualizar la contrasenia del administrador.
         return Database::executeRow($sql, $params);
     }
