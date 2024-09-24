@@ -105,18 +105,20 @@
                                             <div class="col-6">
                                                 <label for="nombreTratamiento" class="form-label">Nombre</label>
                                                 <input id="nombreTratamiento" type="text" name="nombreTratamiento"
-                                                    class="form-control" required oninput="formatAlphabetic(this)">
+                                                    autocomplete="off" class="form-control" required
+                                                    oninput="formatAlphabetic(this)">
                                             </div>
                                             <div class="col-6">
                                                 <label for="notaTratamiento" class="form-label">Nota</label>
                                                 <textarea class="form-control" type="text" name="notaTratamiento"
-                                                    id="notaTratamiento" placeholder="Ingrese una nota"
-                                                    required></textarea>
+                                                    autocomplete="off" id="notaTratamiento"
+                                                    placeholder="Ingrese una nota" required
+                                                    oninput="formatAlphabetic(this)"></textarea>
                                             </div>
                                             <div class="col-6">
                                                 <label for="citaTratamiento" class="form-label">Cita</label>
                                                 <select id="citaTratamiento" name="citaTratamiento" class="form-select"
-                                                    required oninput="formatAlphabetic(this)">
+                                                    autocomplete="off" required oninput="formatAlphabetic(this)">
                                                 </select>
                                             </div>
                                         </div>

@@ -19,7 +19,7 @@
 </head>
 
 <body>
-    
+
     <!-- Contenedor principal -->
     <main class="container SingUp">
 
@@ -41,32 +41,40 @@
                             <!-- Columna para el formulario de ingreso -->
                             <div class="col-md-6 col-lg-7 d-flex align-items-center">
                                 <div class="card-body p-4 p-lg-5 text-white">
+
                                     <form id="loginForm">
+                                        <form class="needs-validation">
 
-                                        <h3 class="fw-bold text-white">Ingresa tus credenciales</h5>
+                                            <h3 class="fw-bold text-white">Ingresa tus credenciales</h5>
 
-                                        <!-- Campo de correo electrónico -->
-                                        <div class="form-outline mt-4">
-                                            <label class="form-label" for="correoAdmin">Correo Electrónico</label>
-                                            <input type="email" id="correoAdmin" name="correoAdmin"
-                                                class="form-control form-control-lg" required />
-                                        </div>
+                                                <!-- Campo de correo electrónico -->
+                                                <div class="form-outline mt-4">
+                                                    <label class="form-label" for="correoAdmin">Correo
+                                                        Electrónico</label>
+                                                    <input type="email" id="correoAdmin" name="correoAdmin"
+                                                        autocomplete="off" class="form-control" required
+                                                        oninput="formatEmail(this)">
+                                                </div>
 
-                                        <!-- Campo de contraseña -->
-                                        <div class="form-outline mt-4">
-                                            <label class="form-label" for="contraAdmin">Contraseña</label>
-                                            <input type="password" id="contraAdmin" name="contraAdmin"
-                                                class="form-control form-control-lg" />
-                                        </div>
+                                                <!-- Campo de contraseña -->
+                                                <div class="form-outline mt-4">
+                                                    <label class="form-label" for="contraAdmin">Contraseña</label>
+                                                    <input type="password" id="contraAdmin" name="contraAdmin"
+                                                        autocomplete="off" class="form-control" required
+                                                        oninput="formatPassword(this)">
+                                                </div>
 
-                                        <!-- Botón de inicio de sesión -->
-                                        <div class="mt-4 mb-4">
-                                            <button class="btn btn-primary fw-bold" type="submit">INICIAR</button>
-                                        </div>
+                                                <!-- Botón de inicio de sesión -->
+                                                <div class="mt-4 mb-4">
+                                                    <button class="btn btn-primary fw-bold"
+                                                        type="submit">INICIAR</button>
+                                                </div>
 
-                                        <!-- Enlace para recuperación de contraseña -->
-                                        <a class="small" href="../admin/recuperacion.html">¿Olvidaste tu
-                                            contraseña?</a>
+                                                <!-- Enlace para recuperación de contraseña -->
+                                                <a class="small" href="../admin/recuperacion.html">
+                                                    ¿Olvidaste tu contraseña?
+                                                </a>
+                                        </form>
                                     </form>
                                 </div>
                             </div>
@@ -86,6 +94,7 @@
     <script src="../../controllers/utils/components.js"></script>
     <script src="../../resources/js/sweetalert.min.js"></script>
     <script src="../../controllers/utils/admin.js"></script>
+    <script src="../../controllers/utils/Validaciones.js"></script>
     <script src="../../controllers/admin/index.js"></script>
 </body>
 

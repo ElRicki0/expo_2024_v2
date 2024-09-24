@@ -117,6 +117,7 @@
                         <!-- Campo oculto para asignar el id del registro al momento de modificar -->
                         <input type="number" class="d-none" id="idServicio" name="idServicio">
                         <form class="needs-validation">
+                            
                             <!-- Body del modal -->
                             <div class="modal-body">
                                 <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
@@ -126,17 +127,17 @@
                                 <div class="col-12">
                                     <label for="imagenServicio" class="form-label">Imagen</label>
                                     <input id="imagenServicio" type="file" name="imagenServicio" class="form-control"
-                                        accept=".png, .jpg" required oninput="formatImg(this)">
+                                        autocomplete="off" accept=".png, .jpg" required oninput="formatImg(this)">
                                 </div>
                                 <div class="col-12 mt-3">
                                     <label class="form-label">Servicio</label>
                                     <input id="tipoServicio" name="tipoServicio" class="form-control" required
-                                        oninput="formatAlphabetic(this)">
+                                        autocomplete="off" oninput="formatAlphabetic(this)">
                                 </div>
                                 <div class="col-12 mt-3">
                                     <label class="form-label">Descripcion</label>
                                     <textarea id="descripcionServicio" name="descripcionServicio" class="form-control"
-                                        placeholder="Ingrese una descripción" required
+                                        autocomplete="off" placeholder="Ingrese una descripción" required
                                         oninput="formatAlphabetic(this)"></textarea></textarea>
                                 </div>
                                 <div class="modal-footer">

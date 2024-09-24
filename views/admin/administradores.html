@@ -108,12 +108,14 @@
                                             <div class="col-6">
                                                 <label class="textoClaro form-label">Nombre(s)</label>
                                                 <input type="text" id="nombreAdmin" name="nombreAdmin"
-                                                    class="form-control" required oninput="formatAlphabetic(this)">
+                                                    autocomplete="off" class="form-control" required
+                                                    oninput="formatAlphabetic(this)">
                                             </div>
                                             <div class="col-6">
                                                 <label class="textoClaro form-label">Correo electronico</label>
                                                 <input type="email" id="correoAdmin" name="correoAdmin"
-                                                    class="form-control" required oninput="formatEmail(this)">
+                                                    autocomplete="off" class="form-control" required
+                                                    oninput="formatEmail(this)">
                                             </div>
                                         </div>
                                     </div>
@@ -123,13 +125,14 @@
                                                 <label class="textoClaro form-label"
                                                     id="TextPassword">Contraseña</label>
                                                 <input type="password" id="contraAdmin" name="contraAdmin"
-                                                    class="form-control" required oninput="formatPassword(this)">
+                                                    autocomplete="off" class="form-control" required
+                                                    oninput="formatPassword(this)">
                                             </div>
                                             <div class="col-6 mt-3">
                                                 <label for="empleadoAdmin"
                                                     class=" textoClaro form-label">Empleado</label>
                                                 <select id="empleadoAdmin" name="empleadoAdmin" class="form-select"
-                                                    required>
+                                                    autocomplete="off" required oninput="formatCombo(this)">
                                                 </select>
                                             </div>
                                         </div>
