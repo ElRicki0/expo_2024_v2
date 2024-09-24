@@ -180,6 +180,18 @@ if (isset($_GET['action'])) {
                     $result['error'] = 'Credenciales incorrectas';
                 }
                 break;
+                case 'checkUserCodigoSesion':
+                    // Inicio de sesión de un administrador (puede ser una acción pública).
+                    $_POST = Validator::validateForm($_POST);
+                    if ($cliente->checkUserCodigoSesion($_POST['codigoUsuario'])) {
+                        // Si las credenciales son correctas, se actualiza el estado y mensaje.
+                        $result['status'] = 1;
+                        $result['message'] = 'Autenticación correcta';
+                    } else {
+                        // Si las credenciales son incorrectas, se registra un error.
+                        $result['error'] = 'Credenciales incorrectas';
+                    }
+                    break;
             default:
                 $result['message'] = 'Acción no disponible fuera de la sesión.';
         }

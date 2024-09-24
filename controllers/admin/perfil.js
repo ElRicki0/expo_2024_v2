@@ -172,7 +172,7 @@ CODE_FORM.addEventListener('submit', async (event) => {
     // Constante tipo objeto con los datos del formulario.
     const FORM = new FormData(CODE_FORM);
     // Petición para verificar el código ingresado.
-    const DATA = await fetchData(USER_API, 'checkUserCodigo', FORM);
+    const DATA = await fetchData(USER_API, 'checkUserCodigoSesion', FORM);
     // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
     if (DATA.status) {
         // Se redirige al usuario al dashboard o página principal.

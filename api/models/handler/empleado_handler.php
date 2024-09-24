@@ -117,6 +117,24 @@ class EmpleadoHandler
         return Database::executeRow($sql, $params);
     }
 
+    public function checkUserCodigoSesion($codigoUsuario)
+    {
+        $sql = 'SELECT id_cliente, correo_cliente, contrasenia_cliente, estado_cliente, codigo_cliente
+                FROM tb_clientes
+                WHERE codigo_cliente = ?';
+        $params = array($codigoUsuario);
+        // Verifica si la contraseña coincide con el hash almacenado y establece los datos del cliente si es válido
+        if (!($data = Database::getRow($sql, $params))) {
+            return false;
+        } else {
+            // Si la contrasenia coincide con el hash almacenado, se inicia la sesión del administrador.
+            $_SESSION['idCliente'] = $data['id_cliente'];
+            $_SESSION['correoCliente'] = $data['correo_cliente'];
+            return true;
+        }
+        return false;
+    }
+
     /*
      *   Métodos para generar gráficos.
      */
