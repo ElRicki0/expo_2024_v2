@@ -11,6 +11,7 @@ CREATE TABLE tb_clientes(
     dui_cliente VARCHAR (10) unique,
     correo_cliente VARCHAR (100) NOT NULL,
     contrasenia_cliente VARCHAR(200) not null,
+    fecha_contrasenia DATE,	
     telefono_cliente VARCHAR (9) NOT NULL,
     nacimiento_cliente DATE NOT NULL,
     estado_cliente tinyint(1) NOT NULL DEFAULT 1,
@@ -43,6 +44,7 @@ CREATE TABLE tb_admin(
     nombre_admin VARCHAR(50) UNIQUE NOT NULL,
     correo_admin VARCHAR (100) unique NOT NULL,
     contrasenia_admin VARCHAR(500) NOT NULL,
+    fecha_contrasenia date not null,
     id_empleado INT,
     FOREIGN KEY (id_empleado) REFERENCES tb_empleados (id_empleado) ON DELETE CASCADE,
     codigo_admin VARCHAR(6) NOT NULL 
