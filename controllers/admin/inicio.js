@@ -1,6 +1,11 @@
 // importación de ruta api
 const SERVICIOS_API = 'services/admin/servicio.php';
 const CITA_API = 'services/admin/cita.php';
+
+
+// Constante para establecer la modal de cambiar contraseña.
+const PASSWORD_MODAL = new bootstrap.Modal('#passwordModal');
+
 // Método del evento para cuando el documento ha cargado.
 document.addEventListener('DOMContentLoaded', () => {
     // Llamada a la función para mostrar el encabezado y pie del documento.
@@ -45,9 +50,10 @@ const obtenerFechaClave = async () => {
     const DATA = await fetchData(USER_API, 'getFechaClave');
     // Se comprueba si la respuesta es satisfactoria, de lo contrario se remueve la etiqueta canvas.
     if (DATA.status) {
-        console.log('mensaje1');
+        console.log('claves correctas :)');
     } else {
         console.log('error1');
+        openPassword();
     }
 }
 
@@ -123,4 +129,16 @@ const GraficoLineal2 = async () => {
         document.getElementById('chartP2').remove();
         console.log(DATA.error);
     }
+}
+
+/*
+*   Función para preparar el formulario al momento de cambiar la constraseña.
+*   Parámetros: ninguno.
+*   Retorno: ninguno.
+*/
+const openPassword = () => {
+    // Se abre la caja de diálogo que contiene el formulario.
+    PASSWORD_MODAL.show();
+    // Se restauran los elementos del formulario.
+    PASSWORD_FORM.reset();
 }

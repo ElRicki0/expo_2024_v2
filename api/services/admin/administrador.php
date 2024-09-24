@@ -76,25 +76,8 @@ if (isset($_GET['action'])) {
                 break;
             case 'getUser':
                 if (isset($_SESSION['correo_admin'])) {
-                    if ($_SESSION['fechaContrasenia']) {
-                        // Fecha actual
-                        $fechaActual = new DateTime();
-                        // Fecha de la contraseña almacenada en la sesión
-                        $fechaContrasenia = new DateTime($_SESSION['fechaContrasenia']);
-                        // Diferencia en días entre la fecha actual y la fecha de la contraseña
-                        $diferenciaDias = $fechaActual->diff($fechaContrasenia)->days;
-                        // Verificar si han pasado más de 90 días
-                        if ($diferenciaDias > 1) {
-                            $result['error'] = "Tu clave es muy antigua, tienes que cambiar tu contraseña.";
-                            $result['username'] = $_SESSION['correo_admin'];
-                            $result['status'] = 1;
-                        } else {
-                            echo "Tu contraseña aún es válida.";
-                            $result['status'] = 1;
-                        }
-                    } else {
-                        echo "No hay una fecha de contraseña establecida.";
-                    }
+                    $result['status'] = 1;
+                    $result['username'] = $_SESSION['correo_admin'];
                 } else {
                     $result['error'] = 'Administrador no encontrado';
                 }
@@ -111,7 +94,8 @@ if (isset($_GET['action'])) {
                     if ($diferenciaDias > 1) {
                         $result['error'] = "Tu clave es muy antigua, tienes que cambiar tu contraseña.";
                     } else {
-                        echo "Tu contraseña aún es válida.";
+                        $result['message'] = "Tu contraseña aún es válida.";
+                        $result['status'] = 1;
                     }
                 } else {
                     echo "No hay una fecha de contraseña establecida.";

@@ -39,8 +39,9 @@
         <div class="full-screen container-2">
             <div class="text-center">
                 <h1 class="fw-bold text-white mt-5">Gráficas y reportes de la web</h1>
-                <p class="fw-light text-secondary">Aquí podrás visualizar diferentes gráficos y datos relevantes sobre el rendimiento de la clínica.</p>
-        
+                <p class="fw-light text-secondary">Aquí podrás visualizar diferentes gráficos y datos relevantes sobre
+                    el rendimiento de la clínica.</p>
+
                 <!-- Contenedor de gráficos -->
                 <div class="row">
                     <div class="col-sm-12 col-md-6 col-lg-6 mb-4">
@@ -72,8 +73,8 @@
                 </div>
             </div>
         </div>
-        
-        
+
+
 
         <div class="full-screen container-3">
             <div class="mt-4">
@@ -148,6 +149,51 @@
                 </div>
             </div>
         </div>
+
+        <!-- Componente modal para cambiar la contraseña  cuando sea mayor a 90 Dias -->
+        <div class="modal fade" id="passwordModal"  data-bs-backdrop="static" data-bs-theme="dark" data-bs-keyboard="false" tabindex="-1"
+            aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <form id="passwordForm">
+                            <div class="d-flex justify-content-between">
+                                <h1 class="modal-title fs-5 text-white">Actualizar contraseña
+                                </h1>
+                            </div>
+                            <p class="text-white">Cada 90 Dias tiene que  actualizar su clave por su seguridad.
+                            </p>
+                            <div class="col-12">
+                                <div class="row">
+                                    <div class="col-3">
+                                        <p class="TituloModal text-end">Contraseña Actual</p>
+                                    </div>
+                                    <div class="col-9">
+                                        <input type="password" id="contraseñaActual" name="contraseñaActual"
+                                            class="form-control" aria-describedby="passwordHelpInline" required>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="row">
+                                    <div class="col-3">
+                                        <p class="TituloModal text-end">Contraseña Nueva</p>
+                                    </div>
+                                    <div class="col-9">
+                                        <input type="password" id="contraseñaNueva" name="contraseñaNueva"
+                                            class="form-control" aria-describedby="passwordHelpInline" required>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="d-flex flex-row-reverse">
+                                <button type="submit" class="btn fw-bold" id="ButtonPassword">Actualizar
+                                    contraseña</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>  
     </main>
 
     <!-- Importaciones -->
