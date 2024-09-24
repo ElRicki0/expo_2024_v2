@@ -69,7 +69,9 @@
                                             <div class="form-outline mt-3">
                                                 <label class="form-label" for="contra_admin2">Contraseña</label>
                                                 <input type="password" id="contraAdmin2" name="contraAdmin2"
-|                                            </div>
+                                                    autocomplete="off" class="form-control" required
+                                                    oninput="formatPassword(this)">
+                                            </div>
 
                                             <!-- Campo para confirmar contraseña -->
                                             <div class="form-outline mt-3">

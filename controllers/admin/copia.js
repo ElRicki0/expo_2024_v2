@@ -6,7 +6,6 @@ const CLIENTE_API = 'services/admin/cliente.php';
 const SEARCH_FORM = document.getElementById('searchForm');
 // Constantes para establecer el contenido de la tabla.
 const CLIENTES = document.getElementById('clientes');
-const ROWS_FOUND = document.getElementById('rowsFound');
 
 // Constantes para establecer los elementos del componente Modal.
 const CHART_MODAL = new bootstrap.Modal('#chartModal');
