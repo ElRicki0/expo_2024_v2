@@ -1,5 +1,5 @@
 // importación de ruta api
-const SERVICIOS_API ='services/admin/servicio.php';
+const SERVICIOS_API = 'services/admin/servicio.php';
 const CITA_API = 'services/admin/cita.php';
 // Método del evento para cuando el documento ha cargado.
 document.addEventListener('DOMContentLoaded', () => {
@@ -9,6 +9,8 @@ document.addEventListener('DOMContentLoaded', () => {
     graficoBarras2();
     GraficoLineal1();
     GraficoLineal2();
+    obtenerFechaClave();
+
 });
 
 /*
@@ -18,7 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
 */
 const graficoBarras = async () => {
     // Petición para obtener los datos del gráfico.
-    const DATA = await fetchData(   CITA_API, 'readCantidadClientePendiente');
+    const DATA = await fetchData(CITA_API, 'readCantidadClientePendiente');
     // Se comprueba si la respuesta es satisfactoria, de lo contrario se remueve la etiqueta canvas.
     if (DATA.status) {
         // Se declaran los arreglos para guardar los datos a graficar.
@@ -38,7 +40,16 @@ const graficoBarras = async () => {
     }
 }
 
-
+const obtenerFechaClave = async () => {
+    // Petición para obtener los datos del gráfico.
+    const DATA = await fetchData(USER_API, 'getFechaClave');
+    // Se comprueba si la respuesta es satisfactoria, de lo contrario se remueve la etiqueta canvas.
+    if (DATA.status) {
+        console.log('mensaje1');
+    } else {
+        console.log('error1');
+    }
+}
 
 
 /*

@@ -47,7 +47,7 @@ class AdministradorHandler
     // Método para verificar el inicio de sesión del administrador.
     public function checkUser($username, $password)
     {
-        $sql = 'SELECT id_admin, correo_admin, contrasenia_admin
+        $sql = 'SELECT id_admin, correo_admin, contrasenia_admin, fecha_contrasenia
                 FROM tb_admin
                 WHERE correo_admin = ?';
         $params = array($username);
@@ -58,6 +58,7 @@ class AdministradorHandler
             // Si la contrasenia coincide con el hash almacenado, se inicia la sesión del administrador.
             $_SESSION['idAdministrador'] = $data['id_admin'];
             $_SESSION['correo_admin'] = $data['correo_admin'];
+            $_SESSION['fechaContrasenia'] = $data['fecha_contrasenia'];
             return true; // Retorna verdadero indicando que el inicio de sesión fue exitoso.
         } else {
             return false; // Si la contrasenia no coincide, retorna falso.
