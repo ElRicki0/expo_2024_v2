@@ -225,17 +225,33 @@ class Validator
             return false;
         }
 
+        // Verificar si la contraseña tiene al menos un número.
+        if (!preg_match('/\d/', $value)) {
+            self::$password_error = 'La contraseña debe contener al menos un número';
+            return false;
+        }
+
+        // Verificar si la contraseña tiene al menos un carácter especial.
+        if (!preg_match('/[\W_]/', $value)) { // \W coincide con cualquier carácter no alfanumérico.
+            self::$password_error = 'La contraseña debe contener al menos un carácter especial, como !, @, #, $, %, ^, &, *, (, ), -, +, =, {, }, [, ], |, \, :, ;, ", <, >, ,, ., ?, /, ~';
+            return false;
+        }
+
         // Se verifica la longitud mínima.
         if (strlen($value) < 8) {
             self::$password_error = 'La contraseña es menor a 8 caracteres';
             return false;
-        } elseif (strlen($value) > 72) {
+        }
+
+        // Se verifica la longitud máxima.
+        if (strlen($value) > 72) {
             self::$password_error = 'La contraseña es mayor a 72 caracteres';
             return false;
         }
 
         return true;
     }
+
 
 
     /*
