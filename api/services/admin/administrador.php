@@ -173,6 +173,8 @@ if (isset($_GET['action'])) {
                 $_POST = Validator::validateForm($_POST);
                 if (!$administrador->checkPassword($_POST['contraseñaActual'])) {
                     $result['error'] = 'Contraseña actual incorrecta';
+                } elseif ($_POST['contraseñaActual'] == $_POST['contraseñaNueva']) {
+                    $result['error'] = 'Las claves no pueden ser las mismas';
                 } elseif (!$administrador->setContrasenia($_POST['contraseñaNueva'])) {
                     $result['error'] = $administrador->getDataError();
                 } elseif ($administrador->changePassword()) {

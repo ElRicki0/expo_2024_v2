@@ -70,6 +70,8 @@ if (isset($_GET['action'])) {
                 $_POST = Validator::validateForm($_POST);
                 if (!$cliente->checkPassword($_POST['claveActual'])) {
                     $result['error'] = 'Contraseña actual incorrecta';
+                } elseif ($_POST['claveNueva'] == $_POST['claveActual']) {
+                    $result['error'] = 'Las claves no pueden ser las mismas';
                 } elseif ($_POST['claveNueva'] != $_POST['confirmarClave']) {
                     $result['error'] = 'Confirmación de contraseña diferente';
                 } elseif (!$cliente->setContrasenia($_POST['claveNueva'])) {
