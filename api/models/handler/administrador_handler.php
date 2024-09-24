@@ -16,6 +16,7 @@ class AdministradorHandler
     protected $nombre = null;
     protected $correo = null;
     protected $contrasenia = null;
+    protected $fechaContrasenia = null;
     protected $empleado = null;
     protected $codigo = null; // Inicialmente nulo
     protected $codigoUsuario = null; // Inicialmente nulo
@@ -24,6 +25,7 @@ class AdministradorHandler
     {
         // Generar un código aleatorio de 6 dígitos y asignarlo a $codigo
         $this->codigo = rand(100000, 999999);
+        $this->fechaContrasenia = date('Y-m-d'); // Formato año-mes-día
     }
 
     // Método para obtener el código (opcional)
@@ -31,6 +33,12 @@ class AdministradorHandler
     {
         return $this->codigo;
     }
+
+    public function getFechaContrasenia()
+    {
+        return $this->fechaContrasenia;
+    }
+
 
     /*
      *  Métodos para gestionar la cuenta del administrador.
@@ -151,9 +159,9 @@ class AdministradorHandler
     // Método para crear un nuevo administrador.
     public function createRow()
     {
-        $sql = 'INSERT INTO tb_admin(nombre_admin, contrasenia_admin, correo_admin, id_empleado, codigo_admin)
-                VALUES(?, ?, ?, ?, ?)';
-        $params = array($this->nombre, $this->contrasenia, $this->correo, $this->empleado, $this->codigo);
+        $sql = 'INSERT INTO tb_admin(nombre_admin, contrasenia_admin, correo_admin, id_empleado, codigo_admin, fecha_contrasenia)
+                VALUES(?, ?, ?, ?, ?, ?)';
+        $params = array($this->nombre, $this->contrasenia, $this->correo, $this->empleado, $this->codigo, $this->fechaContrasenia);
         // Se ejecuta la consulta para insertar un nuevo registro de administrador.
         return Database::executeRow($sql, $params);
     }
@@ -161,9 +169,9 @@ class AdministradorHandler
     // Método para crear un nuevo administrador.
     public function createNewRow()
     {
-        $sql = 'INSERT INTO tb_admin(nombre_admin, contrasenia_admin, correo_admin, id_empleado, codigo_admin)
-                VALUES(?, ?, ?, 1, ?)';
-        $params = array($this->nombre, $this->contrasenia, $this->correo, $this->codigo);
+        $sql = 'INSERT INTO tb_admin(nombre_admin, contrasenia_admin, correo_admin, id_empleado, codigo_admin, fecha_contrasenia)
+                VALUES(?, ?, ?, 1, ?, ?)';
+        $params = array($this->nombre, $this->contrasenia, $this->correo, $this->codigo, $this->fechaContrasenia);
         // Se ejecuta la consulta para insertar un nuevo registro de administrador.
         return Database::executeRow($sql, $params);
     }
