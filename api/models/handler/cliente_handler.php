@@ -19,6 +19,10 @@ class ClienteHandler
     protected $estado = null;
     protected $codigo = null; // Inicialmente nulo
     protected $codigoUsuario = null; // Inicialmente nulo
+    protected $imagen = null; // Inicialmente nulo
+
+    // Constante para establecer la ruta de las imágenes.
+    const RUTA_IMAGEN = '../../images/clientes/';
 
     public function __construct()
     {
@@ -76,9 +80,18 @@ class ClienteHandler
 
     public function readProfile()
     {
-        $sql = 'SELECT nombre_cliente, apellido_cliente, dui_cliente, correo_cliente, telefono_cliente, nacimiento_cliente 
+        $sql = 'SELECT nombre_cliente, imagen_cliente, apellido_cliente, dui_cliente, correo_cliente, telefono_cliente, nacimiento_cliente 
                 from tb_clientes where id_cliente = ?;';
         $params = array($_SESSION['idCliente']);
+        return Database::getRow($sql, $params);
+    }
+
+    public function readFilename()
+    {
+        $sql = 'SELECT imagen_cliente
+                FROM tb_clientes
+                WHERE id_cliente = ?';
+        $params = array($this->id);
         return Database::getRow($sql, $params);
     }
 
@@ -119,7 +132,7 @@ class ClienteHandler
 
     public function readAll()
     {
-        $sql = 'SELECT id_cliente, nombre_cliente, apellido_cliente, dui_cliente, correo_cliente, contrasenia_cliente, telefono_cliente, nacimiento_cliente, estado_cliente from tb_clientes
+        $sql = 'SELECT id_cliente, nombre_cliente, apellido_cliente, dui_cliente, correo_cliente, contrasenia_cliente, telefono_cliente, nacimiento_cliente, estado_cliente, imagen_cliente from tb_clientes
                 ORDER BY nombre_cliente';
         return Database::getRows($sql);
     }
@@ -150,6 +163,22 @@ class ClienteHandler
         $sql = 'INSERT INTO tb_clientes(nombre_cliente, apellido_cliente, dui_cliente, telefono_cliente, correo_cliente, contrasenia_cliente, nacimiento_cliente, codigo_cliente, fecha_contrasenia)
                     VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)';
         $params = array($this->nombre, $this->apellido, $this->dui, $this->telefono, $this->correo, $this->contrasenia, $this->nacimiento, $this->codigo, $this->fechaContrasenia);
+        return Database::executeRow($sql, $params);
+    }
+
+    public function createAdminRow()
+    {
+        $sql = 'INSERT INTO tb_clientes(nombre_cliente, apellido_cliente, dui_cliente, telefono_cliente, correo_cliente, contrasenia_cliente, nacimiento_cliente, codigo_cliente, fecha_contrasenia, imagen_cliente)
+                    VALUES(?, ?, ?, ?, ?, "$2y$10$1QuF.8fuqgt4TpohL8kXNeqyTfNFTx.zfHGrPoTRKGMsSt19VUcia", ?, ?, ?, ?)';
+        $params = array($this->nombre, $this->apellido, $this->dui, $this->telefono, $this->correo, $this->nacimiento, $this->codigo, $this->fechaContrasenia, $this->imagen);
+        return Database::executeRow($sql, $params);
+    }
+
+    public function deleteRow()
+    {
+        $sql = 'DELETE FROM tb_clientes
+                WHERE id_cliente = ?';
+        $params = array($this->id);
         return Database::executeRow($sql, $params);
     }
 

@@ -11,6 +11,20 @@ const ROWS_FOUND = document.getElementById('rowsFound');
 // Constantes para establecer los elementos del componente Modal.
 const CHART_MODAL = new bootstrap.Modal('#chartModal');
 
+// Constantes para establecer los elementos del componente Modal.
+const SAVE_MODAL = new bootstrap.Modal('#saveModal'),
+    MODAL_TITLE = document.getElementById('modalTitle');
+
+const SAVE_FORM = document.getElementById('saveForm'),
+    ID_CLIENTE = document.getElementById('idCliente'),
+    IMAGEN_CLIENTE = document.getElementById('imagenCliente'),
+    NOMBRE_CLIENTE = document.getElementById('nombreCliente'),
+    APELLIDO_CLIENTE = document.getElementById('apellidoCliente'),
+    CORREO_CLIENTE = document.getElementById('correoCliente'),
+    DUI_CLIENTE = document.getElementById('duiCliente'),
+    FECHA_CLIENTE = document.getElementById('fechaCliente'),
+    ESTADO_CLIENTE = document.getElementById('estadoCliente');
+
 // Método del evento para cuando el documento ha cargado.
 document.addEventListener('DOMContentLoaded', () => {
     // Llamada a la función para mostrar el encabezado y pie del documento.
@@ -28,6 +42,29 @@ SEARCH_FORM.addEventListener('submit', (event) => {
     const FORM = new FormData(SEARCH_FORM);
     // Llamada a la función para llenar la tabla con los resultados de la búsqueda.
     fillTable(FORM);
+});
+
+// Método del evento para cuando se envía el formulario de guardar.
+SAVE_FORM.addEventListener('submit', async (event) => {
+    // Se evita recargar la página web después de enviar el formulario.
+    event.preventDefault();
+    // Se verifica la acción a realizar.
+    (ID_CLIENTE.value) ? action = 'updateRow' : action = 'createAdminRow';
+    // Constante tipo objeto con los datos del formulario.
+    const FORM = new FormData(SAVE_FORM);
+    // Petición para guardar los datos del formulario.
+    const DATA = await fetchData(CLIENTE_API, action, FORM);
+    // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+    if (DATA.status) {
+        // Se cierra la caja de diálogo.
+        SAVE_MODAL.hide();
+        // Se muestra un mensaje de éxito.
+        sweetAlert(1, DATA.message, true);
+        // Se carga nuevamente la tabla para visualizar los cambios.
+        fillTable();
+    } else {
+        sweetAlert(2, DATA.error, false);
+    }
 });
 
 /*
@@ -51,8 +88,8 @@ const fillTable = async (form = null) => {
             // Se crean y concatenan las filas de la tabla con los datos de cada registro.
             CLIENTES.innerHTML += `
                 <div class="col-sm-12 col-md-6 col-lg-4 mt-5" id="searchForm">
-                <div class="card" style="width: 30 rem">
-                    <img src="..." class="card-img-top" alt="...">
+                <div class="card" style="width: 15 rem">
+                    <img src="${SERVER_URL}images/clientes/${row.imagen_cliente}" class="card-img-top" alt="..." onerror="this.onerror=null; this.src='../../resources/img/error/cliente.jpg';">
                     <div class="card-body">
                         <h5 for="">Nombre cliente</h5>
                         <p class="card-title">${row.nombre_cliente}</p>
@@ -87,6 +124,26 @@ const fillTable = async (form = null) => {
         sweetAlert(4, DATA.error, true);
     }
 }
+
+/*
+*   Función para preparar el formulario al momento de insertar un registro.
+*   Parámetros: ninguno.
+*   Retorno: ninguno.
+*/
+const openCreate = () => {
+    // Se muestra la caja de diálogo con su título.
+    SAVE_MODAL.show();
+    MODAL_TITLE.textContent = 'Crear cliente';
+    // Se prepara el formulario.
+    SAVE_FORM.reset();
+}
+
+/*
+*   Función asíncrona para eliminar un registro.
+*   Parámetros: id (identificador del registro seleccionado).
+*   Retorno: ninguno.
+*/
+
 
 /*
 *   Función asíncrona para preparar un modal de confirmacion para una funcion de estado
@@ -127,7 +184,7 @@ const openDelete = async (id) => {
     if (RESPONSE) {
         // Se define una constante tipo objeto con los datos del registro seleccionado.
         const FORM = new FormData();
-        FORM.append('id_cliente', id);
+        FORM.append('idCliente', id);
         // Petición para eliminar el registro seleccionado.
         const DATA = await fetchData(CLIENTE_API, 'deleteRow', FORM);
         // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.

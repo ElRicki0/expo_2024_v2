@@ -49,7 +49,7 @@ CREATE TABLE tb_admin(
     id_empleado INT,
     FOREIGN KEY (id_empleado) REFERENCES tb_empleados (id_empleado) ON DELETE CASCADE,
     codigo_admin VARCHAR(6) NOT NULL,
-	 imagen_adminVARCHAR(500) DEFAULT 'administrador.jpg'
+	 imagen_admin VARCHAR(300) DEFAULT 'administrador.jpg'
 );
 
 -- CREATE TABLE tb_fotos (

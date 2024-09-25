@@ -93,6 +93,34 @@ class ClienteData extends ClienteHandler
         }
     }
 
+    public function setImagen($file, $filename = null)
+    {
+        if (Validator::validateImageFile($file, 1000)) {
+            $this->imagen = Validator::getFileName();
+            return true;
+        } elseif (Validator::getFileError()) {
+            $this->data_error = Validator::getFileError();
+            return false;
+        } elseif ($filename) {
+            $this->imagen = $filename;
+            return true;
+        } else {
+            $this->imagen = 'cliente.png';
+            return true;
+        }
+    }
+
+    public function setFilename()
+    {
+        if ($data = $this->readFilename()) {
+            $this->filename = $data['imagen_cliente'];
+            return true;
+        } else {
+            $this->data_error = 'Cliente inexistente';
+            return false;
+        }
+    }
+
     public function setContrasenia($value)
     {
         if (Validator::validatePassword($value)) {
@@ -132,5 +160,10 @@ class ClienteData extends ClienteHandler
     public function getDataError()
     {
         return $this->data_error;
+    }
+
+    public function getFilename()
+    {
+        return $this->filename;
     }
 }
