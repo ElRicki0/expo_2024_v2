@@ -63,7 +63,6 @@
 
         <!-- Contenedor para la tabla con scroll -->
         <div id="clientes" class=" justify-content-center row">
-
         </div>
 
         <div class="bg-dark rounded mb-3">
@@ -125,6 +124,12 @@
                                 <h1 class="fs-4 fw-bold text-center mb-4" id="modalTitle"> </h1>
 
                                 <!-- Inputs -->
+
+                                <div class="col-12">
+                                    <img id="imagenMuestra"
+                                        class="rounded  mx-auto d-block img-fluid mt-3 border border-3 border-secondary-subtle rounded-circle imagen_R"
+                                        src="../../resources/img/persona.png" alt="..." width="300px" height="300px">
+                                </div>
                                 <div class="row p-3">
                                     <div class="col-12">
                                         <label for="imagenCliente" class="form-label">Imagen Cliente</label>
@@ -168,7 +173,7 @@
                                                         onclick="validarFecha(this)">
                                                 </div>
                                             </div>
-                                            <div class="row">
+                                            <div class="row mt-2">
                                                 <div class="col-6">
                                                     <label class="form-label">Numero teléfono</label>
                                                     <input id="telefonoCliente" name="telefonoCliente"

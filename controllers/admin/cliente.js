@@ -2,6 +2,9 @@
 const CITA_API = 'services/admin/cita.php';
 const CLIENTE_API = 'services/admin/cliente.php';
 
+// constangtes para poder mostrar la imagen seleccionada
+const IMAGEN_MUESTRA = document.getElementById('imagenMuestra');
+
 // Constante para establecer el formulario de buscar.
 const SEARCH_FORM = document.getElementById('searchForm');
 // Constantes para establecer el contenido de la tabla.
@@ -33,6 +36,21 @@ document.addEventListener('DOMContentLoaded', () => {
     // Llamada a la función para llenar la tabla con los registros existentes.
     fillTable();
 });
+
+IMAGEN_CLIENTE.addEventListener ('change', function (event){
+    // Verifica si hay una imagen seleccionada
+    if (event.target.files && event.target.files[0]){
+        // con el objeto Filereader lee el archivo seleccionado
+        const reader = new FileReader();
+        // Luego de haber leido la imagen selecionada se nos devuelve un objeto de tipo blob
+        // Con el metodo createObjectUrl de fileReader crea una url temporal para la imagen
+        reader.onload = function(event){
+            // finalmente la url creada se le asigna el atributo de la etiqueta img
+            IMAGEN_MUESTRA.src = event.target.result;
+        };
+        reader.readAsDataURL(event.target.files[0]);
+    }
+})
 
 // Método del evento para cuando se envía el formulario de buscar.
 SEARCH_FORM.addEventListener('submit', (event) => {
@@ -87,10 +105,14 @@ const fillTable = async (form = null) => {
             (row.estado_cliente) ? icon = 'bi bi-eye-fill' : icon = 'bi bi-eye-slash-fill';
             // Se crean y concatenan las filas de la tabla con los datos de cada registro.
             CLIENTES.innerHTML += `
-                <div class="col-sm-12 col-md-6 col-lg-4 mt-5" id="searchForm">
-                <div class="card inicioIndex" style="width: 15 rem">
-                    <img src="${SERVER_URL}images/clientes/${row.imagen_cliente}" class="card-img-top" alt="..." onerror="this.onerror=null; this.src='../../resources/img/error/cliente.jpg';">
-                    <div class="card-body">
+            <div class="col-12 card mt-2" id="searchForm">
+                <div class="row  inicioIndex">
+                    <div class="col-3 mt-3 d-flex align-items-center justify-content-center" style="height: 200px; width: 200px;"> <!-- Ajusta la altura según sea necesario -->
+    <img src="${SERVER_URL}images/clientes/${row.imagen_cliente}" class="card-img-top" alt="..."
+        onerror="this.onerror=null; this.src='../../resources/img/error/cliente.jpg';" style="max-width: 100%; max-height: 100%;">
+</div>
+
+                    <div class="col-3 card-body">
                         <h5 class="text-white" for="">Nombre cliente</h5>
                         <p class="card-title text-white">${row.nombre_cliente}</p>
                         <p class="card-text text-white">${row.apellido_cliente}</p>
@@ -99,21 +121,25 @@ const fillTable = async (form = null) => {
                         <h5 class="text-white" for="">Estado cliente</h5>
                         <p class="card-text text-white">Estado: <i class="${icon} text-white"></i></p>
                     </div>
-                    <div class="text-center mb-2">
-                        <button class="btn btn-danger" onclick="openDelete(${row.id_cliente})">
-                            <i class="bi bi-trash3-fill"></i>
+                    <div class="col-3 text-center my-5">
+                    <div class="mt-3">
+                    <div class="d-flex flex-column">
+                        <button class="btn btn-outline-light mb-2" onclick="openDelete(${row.id_cliente})">
+                            <i class="bi bi-trash3-fill"></i> Eliminar
                         </button>
-                        <button class="btn btn-primary" onclick="openState(${row.id_cliente})">
-                            <i class="bi bi-exclamation-octagon"></i>
+                        <button class="btn btn-outline-light mb-2" onclick="openState(${row.id_cliente})">
+                            <i class="bi bi-exclamation-octagon"></i> Cambiar Estado
                         </button>
-                        <button type="button" class="btn btn-warning" onclick="openChart(${row.id_cliente})">
-                            <i class="bi bi-bar-chart-line-fill"></i>
+                        <button type="button" class="btn btn-outline-light mb-2" onclick="openChart(${row.id_cliente})">
+                            <i class="bi bi-bar-chart-line-fill"></i> Ver Gráfico
                         </button>
-                        <button type="button" class="btn btn-info" onclick="openClienteReport(${row.id_cliente})">
-                            <i class="bi bi-file-earmark-code-fill"></i>
+                        <button type="button" class="btn btn-outline-light" onclick="openClienteReport(${row.id_cliente})">
+                            <i class="bi bi-file-earmark-code-fill"></i> Informe del Cliente
                         </button>
                     </div>
-
+                </div>
+                
+                    </div>
                 </div>
             </div>
             `;
@@ -152,7 +178,7 @@ const openCreate = () => {
 */
 const openState = async (id) => {
     // Se muestra un mensaje de confirmación y se captura la respuesta en una constante.
-    const RESPONSE = await confirmAction('¿Está seguro de cambiar el estado del usuario?');
+    const RESPONSE = await confirmAction('¿Está seguro de cambiar el estado del cliente?');
     // Se verifica la respuesta del mensaje.
     if (RESPONSE) {
         // Se define un objeto con los datos del registro seleccionado.
