@@ -125,8 +125,10 @@ class ClienteHandler
         $sql = 'SELECT*from tb_clientes
             where nombre_cliente like ?
             or apellido_cliente like ?
+            or correo_cliente like ?
+            or telefono_cliente like ?
             order by nombre_cliente';
-        $params = array($value, $value, $value);
+        $params = array($value, $value, $value, $value  );
         return Database::getRows($sql, $params);
     }
 

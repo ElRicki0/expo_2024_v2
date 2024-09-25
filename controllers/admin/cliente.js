@@ -88,16 +88,16 @@ const fillTable = async (form = null) => {
             // Se crean y concatenan las filas de la tabla con los datos de cada registro.
             CLIENTES.innerHTML += `
                 <div class="col-sm-12 col-md-6 col-lg-4 mt-5" id="searchForm">
-                <div class="card" style="width: 15 rem">
+                <div class="card inicioIndex" style="width: 15 rem">
                     <img src="${SERVER_URL}images/clientes/${row.imagen_cliente}" class="card-img-top" alt="..." onerror="this.onerror=null; this.src='../../resources/img/error/cliente.jpg';">
                     <div class="card-body">
-                        <h5 for="">Nombre cliente</h5>
-                        <p class="card-title">${row.nombre_cliente}</p>
-                        <p class="card-text">${row.apellido_cliente}</p>
-                        <h5 for="">Teléfono cliente</h5>
-                        <p class="card-text">${row.telefono_cliente}</p>
-                        <h5 for="">Estado cliente</h5>
-                        <p class="card-text">Estado: <i class="${icon}"></i></p>
+                        <h5 class="text-white" for="">Nombre cliente</h5>
+                        <p class="card-title text-white">${row.nombre_cliente}</p>
+                        <p class="card-text text-white">${row.apellido_cliente}</p>
+                        <h5 class="text-white" for="">Teléfono cliente</h5>
+                        <p class="card-text text-white">${row.telefono_cliente}</p>
+                        <h5 class="text-white" for="">Estado cliente</h5>
+                        <p class="card-text text-white">Estado: <i class="${icon} text-white"></i></p>
                     </div>
                     <div class="text-center mb-2">
                         <button class="btn btn-danger" onclick="openDelete(${row.id_cliente})">
@@ -157,7 +157,7 @@ const openState = async (id) => {
     if (RESPONSE) {
         // Se define un objeto con los datos del registro seleccionado.
         const FORM = new FormData();
-        FORM.append('id_cliente', id);
+        FORM.append('idCliente', id);
 
         // Petición para cambiar el estado del cliente
         const DATA = await fetchData(CLIENTE_API, 'updateRowEstado', FORM);
