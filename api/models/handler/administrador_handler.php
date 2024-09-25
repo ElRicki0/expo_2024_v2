@@ -5,8 +5,6 @@ require_once('../../helpers/database.php');
 /*
  *  Clase para manejar el comportamiento de los datos de la tabla administrador.
  */
-// Generar un número aleatorio de 6 dígitos
-$codigo_aleatorio = rand(100000, 999999);
 class AdministradorHandler
 {
     /*
@@ -20,6 +18,10 @@ class AdministradorHandler
     protected $empleado = null;
     protected $codigo = null; // Inicialmente nulo
     protected $codigoUsuario = null; // Inicialmente nulo
+    protected $imagen = null; // Inicialmente nulo
+
+    // Constante para establecer la ruta de las imágenes.
+    const RUTA_IMAGEN = '../../images/administradores/';
 
     public function __construct()
     {
@@ -160,9 +162,9 @@ class AdministradorHandler
     // Método para crear un nuevo administrador.
     public function createRow()
     {
-        $sql = 'INSERT INTO tb_admin(nombre_admin, contrasenia_admin, correo_admin, id_empleado, codigo_admin, fecha_contrasenia)
-                VALUES(?, ?, ?, ?, ?, ?)';
-        $params = array($this->nombre, $this->contrasenia, $this->correo, $this->empleado, $this->codigo, $this->fechaContrasenia);
+        $sql = 'INSERT INTO tb_admin(nombre_admin, contrasenia_admin, correo_admin, id_empleado, codigo_admin, fecha_contrasenia, imagen_admin)
+                VALUES(?, ?, ?, ?, ?, ?, ?)';
+        $params = array($this->nombre, $this->contrasenia, $this->correo, $this->empleado, $this->codigo, $this->fechaContrasenia, $this->imagen);
         // Se ejecuta la consulta para insertar un nuevo registro de administrador.
         return Database::executeRow($sql, $params);
     }
@@ -226,6 +228,15 @@ class AdministradorHandler
         $sql = 'SELECT A.id_admin, A.nombre_admin, A.correo_admin, A.id_empleado
                 FROM tb_admin A
                 WHERE A.id_admin = ?';
+        $params = array($this->id);
+        return Database::getRow($sql, $params);
+    }
+
+    public function readFilename()
+    {
+        $sql = 'SELECT imagen_admin
+                FROM tb_admin
+                WHERE id_admin = ?';
         $params = array($this->id);
         return Database::getRow($sql, $params);
     }

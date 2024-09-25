@@ -100,6 +100,8 @@ const fillTable = async (form = null) => {
                 </button>
             </td>
         </tr>
+
+
             `;
         });
         // Se muestra un mensaje de acuerdo con el resultado.
@@ -120,10 +122,7 @@ const openCreate = () => {
     MODAL_TITLE.textContent = 'AGREGAR ADMINISTRADOR';
     // Se prepara el formulario.
     SAVE_FORM.reset();
-    CONTRASEÑA_TITLE.style.display = "block";
-    CONTRASEÑA_ADMINISTRADOR.style.display = "block";
-    CONTRASEÑA_ADMINISTRADOR.disabled = false;
-    fillSelect(EMPLEADO_API, 'readAll', 'empleado_admin');
+    fillSelect(EMPLEADO_API, 'readAll', 'empleadoAdmin');
 
 }
 

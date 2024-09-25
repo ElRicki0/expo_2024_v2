@@ -35,13 +35,16 @@ if (isset($_GET['action'])) {
                     !$administrador->setCorreo($_POST['correoAdmin']) or
                     !$administrador->setContrasenia($_POST['contraAdmin']) or
                     !$administrador->setNombre($_POST['nombreAdmin']) or
-                    !$administrador->setEmpleado($_POST['empleadoAdmin'])
+                    !$administrador->setEmpleado($_POST['empleadoAdmin']) or
+                    !$administrador->setImagen($_FILES['imagenAdmin'])
                 ) {
                     $result['error'] = $administrador->getDataError();
                 } elseif ($administrador->createRow()) {
                     // Si se crea correctamente, se actualiza el estado y mensaje.
                     $result['status'] = 1;
                     $result['message'] = 'Administrador agregado correctamente';
+                    // Se asigna el estado del archivo después de insertar.
+                    $result['fileStatus'] = Validator::saveFile($_FILES['imagenAdmin'], $administrador::RUTA_IMAGEN);
                 } else {
                     // Si hay un problema al crear, se registra un error.
                     $result['error'] = 'Este administrador ya existe';
