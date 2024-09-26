@@ -25,6 +25,7 @@ const SAVE_FORM = document.getElementById('saveForm'),
     APELLIDO_CLIENTE = document.getElementById('apellidoCliente'),
     CORREO_CLIENTE = document.getElementById('correoCliente'),
     DUI_CLIENTE = document.getElementById('duiCliente'),
+    TELEFONO_CLIENTE = document.getElementById('telefonoCliente'),
     FECHA_CLIENTE = document.getElementById('fechaCliente'),
     ESTADO_CLIENTE = document.getElementById('estadoCliente');
 
@@ -37,14 +38,14 @@ document.addEventListener('DOMContentLoaded', () => {
     fillTable();
 });
 
-IMAGEN_CLIENTE.addEventListener ('change', function (event){
+IMAGEN_CLIENTE.addEventListener('change', function (event) {
     // Verifica si hay una imagen seleccionada
-    if (event.target.files && event.target.files[0]){
+    if (event.target.files && event.target.files[0]) {
         // con el objeto Filereader lee el archivo seleccionado
         const reader = new FileReader();
         // Luego de haber leido la imagen selecionada se nos devuelve un objeto de tipo blob
         // Con el metodo createObjectUrl de fileReader crea una url temporal para la imagen
-        reader.onload = function(event){
+        reader.onload = function (event) {
             // finalmente la url creada se le asigna el atributo de la etiqueta img
             IMAGEN_MUESTRA.src = event.target.result;
         };
@@ -126,6 +127,9 @@ const fillTable = async (form = null) => {
                     <div class="d-flex flex-column">
                         <button class="btn btn-outline-light mb-2" onclick="openDelete(${row.id_cliente})">
                             <i class="bi bi-trash3-fill"></i> Eliminar
+                        </button>
+                        <button class="btn btn-outline-light mb-2" onclick="openUpdate(${row.id_cliente})">
+                            <i class="bi bi-pencil-fill"></i>Actualizar
                         </button>
                         <button class="btn btn-outline-light mb-2" onclick="openState(${row.id_cliente})">
                             <i class="bi bi-exclamation-octagon"></i> Cambiar Estado
@@ -222,6 +226,40 @@ const openDelete = async (id) => {
         } else {
             sweetAlert(2, DATA.error, false);
         }
+    }
+}
+
+/*
+*   Función asíncrona para preparar el formulario al momento de actualizar un registro.
+*   Parámetros: id (identificador del registro seleccionado).
+*   Retorno: ninguno.
+*/
+const openUpdate = async (id) => {
+    // Se define una constante tipo objeto con los datos del registro seleccionado.
+    const FORM = new FormData();
+    FORM.append('idCliente', id);
+    // Petición para obtener los datos del registro solicitado.
+    const DATA = await fetchData(CLIENTE_API, 'readOne', FORM);
+    // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+    if (DATA.status) {
+        // Se muestra la caja de diálogo con su título.
+        SAVE_MODAL.show();
+        MODAL_TITLE.textContent = 'Editar Cliente';
+        // Se prepara el formulario.
+        SAVE_FORM.reset();
+        // Se inicializan los campos con los datos.
+        const ROW = DATA.dataset;
+        ID_CLIENTE.value = ROW.id_cliente;
+        NOMBRE_CLIENTE.value = ROW.nombre_cliente;
+        APELLIDO_CLIENTE.value = ROW.apellido_cliente;
+        CORREO_CLIENTE.value = ROW.correo_cliente;
+        DUI_CLIENTE.value = ROW.dui_cliente;
+        FECHA_CLIENTE.value = ROW.nacimiento_cliente;
+        TELEFONO_CLIENTE.value = ROW.telefono_cliente;
+        ESTADO_CLIENTE.checked = ROW.estado_cliente;
+        console.log(NOMBRE_CLIENTE);
+    } else {
+        sweetAlert(2, DATA.error, false);
     }
 }
 
