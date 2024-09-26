@@ -120,15 +120,18 @@ const fillTable = async (form = null) => {
         </div>
 
         <div class="col-3 card-body">
-            <h5 class="text-white" for="">Nombre cliente</h5>
+            <h5 class="text-white" for="">Nombre usuario</h5>
             <p class="card-title text-white">${row.nombre_admin}</p>
-            <p class="card-text text-white">${row.apellido_admin}</p>
+            <h5 class="text-white" for="">Correo electronico</h5>
+            <p class="card-text text-white">${row.correo_admin}</p>
+            <h5 class="text-white" for="">Nombre empleado</h5>
+            <p class="card-text text-white">${row.nombre_empleado} ${row.apellido_empleado}</p>
         </div>
         <div class="col-3 text-center my-5">
             <div class="mt-3">
                 <div class="d-flex flex-column">
                     <button class="btn btn-outline-light mb-2 mx-3" onclick="openEmpleado(${row.id_admin})">
-                        <i class="bi bi-trash3-fill"></i> Informacion Empleado
+                        <i class="bi bi-info-circle-fill"></i> Informacion Empleado
                     </button>
                 </div>
             </div>
