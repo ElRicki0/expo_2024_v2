@@ -4,7 +4,7 @@ const EMPLEADO_API = 'services/admin/empleado.php';
 // Constante para establecer el formulario de buscar.
 const SEARCH_FORM = document.getElementById('searchForm');
 // Constantes para establecer los elementos de la tabla.
-const TABLE_BODY = document.getElementById('tableBody'),
+const ADMINISTRADORES = document.getElementById('administradores'),
     ROWS_FOUND = document.getElementById('rowsFound');
 // Constantes para establecer los elementos del componente Modal.
 const SAVE_MODAL = new bootstrap.Modal('#saveModal'),
@@ -15,7 +15,12 @@ const SAVE_FORM = document.getElementById('saveForm'),
     NOMBRE_ADMINISTRADOR = document.getElementById('nombreAdmin'),
     CORREO_ADMINISTRADOR = document.getElementById('correoAdmin'),
     CONTRASEÑA_ADMINISTRADOR = document.getElementById('contraAdmin'),
+    IMAGEN_ADMINISTRADOR = document.getElementById('imagenAdmin'),
     CONTRASEÑA_TITLE = document.getElementById('TextPassword');
+
+
+// constangtes para poder mostrar la imagen seleccionada
+const IMAGEN_MUESTRA = document.getElementById('imagenMuestra');
 
 const SAVE_FORM_EMPLEADO = new bootstrap.Modal('#modalEmpleado'),
     MODAL_TITLE_EMPLEADO = document.getElementById('modalTitleEmpleado');
@@ -36,6 +41,21 @@ document.addEventListener('DOMContentLoaded', () => {
     loadTemplate();
     // Llamada a la función para llenar la tabla con los registros existentes.
     fillTable();
+});
+
+IMAGEN_ADMINISTRADOR.addEventListener('change', function (event) {
+    // Verifica si hay una imagen seleccionada
+    if (event.target.files && event.target.files[0]) {
+        // con el objeto Filereader lee el archivo seleccionado
+        const reader = new FileReader();
+        // Luego de haber leido la imagen selecionada se nos devuelve un objeto de tipo blob
+        // Con el metodo createObjectUrl de fileReader crea una url temporal para la imagen
+        reader.onload = function (event) {
+            // finalmente la url creada se le asigna el atributo de la etiqueta img
+            IMAGEN_MUESTRA.src = event.target.result;
+        };
+        reader.readAsDataURL(event.target.files[0]);
+    }
 });
 
 // Método del evento para cuando se envía el formulario de buscar.
@@ -72,14 +92,14 @@ SAVE_FORM.addEventListener('submit', async (event) => {
 });
 
 /*
-*   Función asíncrona para llenar la tabla con los registros disponibles.
-*   Parámetros: form (objeto opcional con los datos de búsqueda).
-*   Retorno: ninguno.
+* Función asíncrona para llenar la tabla con los registros disponibles.
+* Parámetros: form (objeto opcional con los datos de búsqueda).
+* Retorno: ninguno.
 */
 const fillTable = async (form = null) => {
     // Se inicializa el contenido de la tabla.
     ROWS_FOUND.textContent = '';
-    TABLE_BODY.innerHTML = '';
+    ADMINISTRADORES.innerHTML = '';
     // Se verifica la acción a realizar.
     (form) ? action = 'searchRows' : action = 'readAll';
     // Petición para obtener los registros disponibles.
@@ -89,20 +109,35 @@ const fillTable = async (form = null) => {
         // Se recorre el conjunto de registros fila por fila.
         DATA.dataset.forEach(row => {
             // Se crean y concatenan las filas de la tabla con los datos de cada registro.
-            TABLE_BODY.innerHTML += `
-            <tr>
-                <td>${row.nombre_admin}</td>
-                <td>${row.correo_admin}</td>
-                <td>${row.nombre_empleado}</td>
-                <td>
-                <button class="btn btn-primary" onclick="openEmpleado(${row.id_empleado})">
-                    <i class="bi bi-exclamation-octagon"></i>
-                </button>
-            </td>
-        </tr>
+            ADMINISTRADORES.innerHTML += `
+<div class="col-12 card mt-2 inicioIndex" id="searchForm">
+    <div class="row  ">
+        <div class="col-3 mt-3 d-flex align-items-center mx-3 justify-content-center" style="height: 200px; width: 200px;">
+            <!-- Ajusta la altura según sea necesario -->
+            <img src="${SERVER_URL}images/administradores/${row.imagen_admin}" class="card-img-top" alt="..."
+                onerror="this.onerror=null; this.src='../../resources/img/error/cliente.jpg';"
+                style="max-width: 100%; max-height: 100%;">
+        </div>
 
+        <div class="col-3 card-body">
+            <h5 class="text-white" for="">Nombre cliente</h5>
+            <p class="card-title text-white">${row.nombre_admin}</p>
+            <p class="card-text text-white">${row.apellido_admin}</p>
+        </div>
+        <div class="col-3 text-center my-5">
+            <div class="mt-3">
+                <div class="d-flex flex-column">
+                    <button class="btn btn-outline-light mb-2 mx-3" onclick="openEmpleado(${row.id_admin})">
+                        <i class="bi bi-trash3-fill"></i> Informacion Empleado
+                    </button>
+                </div>
+            </div>
 
-            `;
+        </div>
+    </div>
+</div>
+
+`;
         });
         // Se muestra un mensaje de acuerdo con el resultado.
         ROWS_FOUND.textContent = DATA.message;
@@ -112,9 +147,9 @@ const fillTable = async (form = null) => {
 }
 
 /*
-*   Función para preparar el formulario al momento de insertar un registro.
-*   Parámetros: ninguno.
-*   Retorno: ninguno.
+* Función para preparar el formulario al momento de insertar un registro.
+* Parámetros: ninguno.
+* Retorno: ninguno.
 */
 const openCreate = () => {
     // Se muestra la caja de diálogo con su título.
@@ -127,9 +162,9 @@ const openCreate = () => {
 }
 
 /*
-*   Función asíncrona para preparar el formulario al momento de actualizar un registro.
-*   Parámetros: id (identificador del registro seleccionado).
-*   Retorno: ninguno.
+* Función asíncrona para preparar el formulario al momento de actualizar un registro.
+* Parámetros: id (identificador del registro seleccionado).
+* Retorno: ninguno.
 */
 const openEmpleado = async (id) => {
     // Se define una constante tipo objeto con los datos del registro seleccionado.
@@ -158,9 +193,9 @@ const openEmpleado = async (id) => {
 }
 
 /*
-*   Función asíncrona para eliminar un registro.
-*   Parámetros: id (identificador del registro seleccionado).
-*   Retorno: ninguno.
+* Función asíncrona para eliminar un registro.
+* Parámetros: id (identificador del registro seleccionado).
+* Retorno: ninguno.
 */
 
 const openDelete = async (id) => {
@@ -186,9 +221,9 @@ const openDelete = async (id) => {
 }
 
 /*
-*   Función para abrir un reporte automático de productos por categoría.
-*   Parámetros: ninguno.
-*   Retorno: ninguno.
+* Función para abrir un reporte automático de productos por categoría.
+* Parámetros: ninguno.
+* Retorno: ninguno.
 */
 const openReport = () => {
     // Se declara una constante tipo objeto con la ruta específica del reporte en el servidor.

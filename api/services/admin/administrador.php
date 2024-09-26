@@ -32,6 +32,7 @@ if (isset($_GET['action'])) {
                 // Validación y creación de un nuevo administrador.
                 $_POST = Validator::validateForm($_POST);
                 if (
+                    !$administrador->setImagen($_FILES['imagenAdmin']) or
                     !$administrador->setCorreo($_POST['correoAdmin']) or
                     !$administrador->setContrasenia($_POST['contraAdmin']) or
                     !$administrador->setNombre($_POST['nombreAdmin']) or

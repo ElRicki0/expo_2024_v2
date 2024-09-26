@@ -51,7 +51,7 @@ IMAGEN_CLIENTE.addEventListener('change', function (event) {
         };
         reader.readAsDataURL(event.target.files[0]);
     }
-})
+});
 
 // Método del evento para cuando se envía el formulario de buscar.
 SEARCH_FORM.addEventListener('submit', (event) => {
@@ -106,8 +106,8 @@ const fillTable = async (form = null) => {
             (row.estado_cliente) ? icon = 'bi bi-eye-fill' : icon = 'bi bi-eye-slash-fill';
             // Se crean y concatenan las filas de la tabla con los datos de cada registro.
             CLIENTES.innerHTML += `
-            <div class="col-12 card mt-2" id="searchForm">
-                <div class="row  inicioIndex">
+            <div class="col-12 card mt-2 inicioIndex" id="searchForm">
+                <div class="row  ">
                     <div class="col-3 mt-3 d-flex align-items-center justify-content-center" style="height: 200px; width: 200px;"> <!-- Ajusta la altura según sea necesario -->
     <img src="${SERVER_URL}images/clientes/${row.imagen_cliente}" class="card-img-top" alt="..."
         onerror="this.onerror=null; this.src='../../resources/img/error/cliente.jpg';" style="max-width: 100%; max-height: 100%;">
