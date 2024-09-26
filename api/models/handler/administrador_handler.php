@@ -172,9 +172,9 @@ class AdministradorHandler
     // Método para crear un nuevo administrador.
     public function createNewRow()
     {
-        $sql = 'INSERT INTO tb_admin(nombre_admin, contrasenia_admin, correo_admin, id_empleado, codigo_admin, fecha_contrasenia)
-                VALUES(?, ?, ?, 1, ?, ?)';
-        $params = array($this->nombre, $this->contrasenia, $this->correo, $this->codigo, $this->fechaContrasenia);
+        $sql = 'INSERT INTO tb_admin(nombre_admin, contrasenia_admin, correo_admin, id_empleado, codigo_admin, fecha_contrasenia, imagen_admin)
+                VALUES(?, ?, ?, 1, ?, ?, ?)';
+        $params = array($this->nombre, $this->contrasenia, $this->correo, $this->codigo, $this->fechaContrasenia, $this->imagen);
         // Se ejecuta la consulta para insertar un nuevo registro de administrador.
         return Database::executeRow($sql, $params);
     }

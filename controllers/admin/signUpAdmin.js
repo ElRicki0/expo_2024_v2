@@ -1,10 +1,29 @@
 // constante de api de empleado
 const EMPLEADO_API = "services/admin/empleado.php";
 
+// constangtes para poder mostrar la imagen seleccionada
+const IMAGEN_MUESTRA = document.getElementById('imagenMuestra'),
+    IMAGEN_ADMIN = document.getElementById('imagenAdmin');
+
 // Constante para establecer el formulario de registro del primer usuario.
 const SIGNUP_FORM = document.getElementById("signupForm");
 // Constante para establecer el formulario de registro del primer usuario.
 const CONTENEDOR_SIGNUP_FORM = document.getElementById("contenedorSignUp");
+
+IMAGEN_ADMIN.addEventListener('change', function (event) {
+    // Verifica si hay una imagen seleccionada
+    if (event.target.files && event.target.files[0]) {
+        // con el objeto Filereader lee el archivo seleccionado
+        const reader = new FileReader();
+        // Luego de haber leido la imagen selecionada se nos devuelve un objeto de tipo blob
+        // Con el metodo createObjectUrl de fileReader crea una url temporal para la imagen
+        reader.onload = function (event) {
+            // finalmente la url creada se le asigna el atributo de la etiqueta img
+            IMAGEN_MUESTRA.src = event.target.result;
+        };
+        reader.readAsDataURL(event.target.files[0]);
+    }
+})
 
 // Método del evento para cuando el documento ha cargado.
 document.addEventListener("DOMContentLoaded", async () => {

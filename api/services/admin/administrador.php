@@ -276,8 +276,9 @@ if (isset($_GET['action'])) {
                 // Registro de un nuevo administrador (puede ser una acción pública).
                 $_POST = Validator::validateForm($_POST);
                 if (
-                    !$administrador->setCorreo($_POST['correoAdmin2']) ||
-                    !$administrador->setContrasenia($_POST['contraAdmin2']) ||
+                    !$administrador->setImagen($_FILES['imagenAdmin']) or
+                    !$administrador->setCorreo($_POST['correoAdmin2']) or
+                    !$administrador->setContrasenia($_POST['contraAdmin2']) or
                     !$administrador->setNombre($_POST['nombreAdmin2'])
                 ) {
                     // Si los datos no son válidos, se registra un error.
@@ -288,6 +289,8 @@ if (isset($_GET['action'])) {
                 } elseif ($administrador->createNewRow()) {
                     // Si se crea correctamente, se actualiza el estado y mensaje.
                     $result['status'] = 1;
+                    // Se asigna el estado del archivo después de insertar.
+                    $result['fileStatus'] = Validator::saveFile($_FILES['imagenAdmin'], $administrador::RUTA_IMAGEN);
                     $result['message'] = 'Administrador registrado correctamente';
                 } else {
                     // Si hay un problema al registrar, se registra un error.
