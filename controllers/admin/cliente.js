@@ -87,9 +87,9 @@ SAVE_FORM.addEventListener('submit', async (event) => {
 });
 
 /*
-*   Función asíncrona para llenar la tabla con los registros disponibles.
-*   Parámetros: form (objeto opcional con los datos de búsqueda).
-*   Retorno: ninguno.
+* Función asíncrona para llenar la tabla con los registros disponibles.
+* Parámetros: form (objeto opcional con los datos de búsqueda).
+* Retorno: ninguno.
 */
 const fillTable = async (form = null) => {
     // Se inicializa el contenido de la tabla.
@@ -106,47 +106,49 @@ const fillTable = async (form = null) => {
             (row.estado_cliente) ? icon = 'bi bi-eye-fill' : icon = 'bi bi-eye-slash-fill';
             // Se crean y concatenan las filas de la tabla con los datos de cada registro.
             CLIENTES.innerHTML += `
-            <div class="col-12 card mt-2 inicioIndex" id="searchForm">
-                <div class="row  ">
-                    <div class="col-3 mt-3 d-flex align-items-center justify-content-center" style="height: 200px; width: 200px;"> <!-- Ajusta la altura según sea necesario -->
-    <img src="${SERVER_URL}images/clientes/${row.imagen_cliente}" class="card-img-top" alt="..."
-        onerror="this.onerror=null; this.src='../../resources/img/error/cliente.jpg';" style="max-width: 100%; max-height: 100%;">
-</div>
+<div class="col-12 card mt-2 inicioIndex" id="searchForm">
+    <div class="row  ">
+        <div class="col-3 mt-3 d-flex align-items-center mx-2 justify-content-center" style="height: 200px; width: 200px;">
+            <!-- Ajusta la altura según sea necesario -->
+            <img src="${SERVER_URL}images/clientes/${row.imagen_cliente}" class="card-img-top" alt="..."
+                onerror="this.onerror=null; this.src='../../resources/img/error/cliente.jpg';"
+                style="max-width: 100%; max-height: 100%;">
+        </div>
 
-                    <div class="col-3 card-body">
-                        <h5 class="text-white" for="">Nombre cliente</h5>
-                        <p class="card-title text-white">${row.nombre_cliente}</p>
-                        <p class="card-text text-white">${row.apellido_cliente}</p>
-                        <h5 class="text-white" for="">Teléfono cliente</h5>
-                        <p class="card-text text-white">${row.telefono_cliente}</p>
-                        <h5 class="text-white" for="">Estado cliente</h5>
-                        <p class="card-text text-white">Estado: <i class="${icon} text-white"></i></p>
-                    </div>
-                    <div class="col-3 text-center my-5">
-                    <div class="mt-3">
-                    <div class="d-flex flex-column">
-                        <button class="btn btn-outline-light mb-2" onclick="openDelete(${row.id_cliente})">
-                            <i class="bi bi-trash3-fill"></i> Eliminar
-                        </button>
-                        <button class="btn btn-outline-light mb-2" onclick="openUpdate(${row.id_cliente})">
-                            <i class="bi bi-pencil-fill"></i>Actualizar
-                        </button>
-                        <button class="btn btn-outline-light mb-2" onclick="openState(${row.id_cliente})">
-                            <i class="bi bi-exclamation-octagon"></i> Cambiar Estado
-                        </button>
-                        <button type="button" class="btn btn-outline-light mb-2" onclick="openChart(${row.id_cliente})">
-                            <i class="bi bi-bar-chart-line-fill"></i> Ver Gráfico
-                        </button>
-                        <button type="button" class="btn btn-outline-light" onclick="openClienteReport(${row.id_cliente})">
-                            <i class="bi bi-file-earmark-code-fill"></i> Informe del Cliente
-                        </button>
-                    </div>
-                </div>
-                
-                    </div>
+        <div class="col-3 card-body">
+            <h5 class="text-white" for="">Nombre cliente</h5>
+            <p class="card-title text-white">${row.nombre_cliente}</p>
+            <p class="card-text text-white">${row.apellido_cliente}</p>
+            <h5 class="text-white" for="">Teléfono cliente</h5>
+            <p class="card-text text-white">${row.telefono_cliente}</p>
+            <h5 class="text-white" for="">Estado cliente</h5>
+            <p class="card-text text-white">Estado: <i class="${icon} text-white"></i></p>
+        </div>
+        <div class="col-3 text-center my-5">
+            <div class="mt-3">
+                <div class="d-flex flex-column">
+                    <button class="btn btn-outline-light mb-2" onclick="openDelete(${row.id_cliente})">
+                        <i class="bi bi-trash3-fill"></i> Eliminar
+                    </button>
+                    <button class="btn btn-outline-light mb-2" onclick="openUpdate(${row.id_cliente})">
+                        <i class="bi bi-pencil-fill"></i>Actualizar
+                    </button>
+                    <button class="btn btn-outline-light mb-2" onclick="openState(${row.id_cliente})">
+                        <i class="bi bi-exclamation-octagon"></i> Cambiar Estado
+                    </button>
+                    <button type="button" class="btn btn-outline-light mb-2" onclick="openChart(${row.id_cliente})">
+                        <i class="bi bi-bar-chart-line-fill"></i> Ver Gráfico
+                    </button>
+                    <button type="button" class="btn btn-outline-light" onclick="openClienteReport(${row.id_cliente})">
+                        <i class="bi bi-file-earmark-code-fill"></i> Informe del Cliente
+                    </button>
                 </div>
             </div>
-            `;
+
+        </div>
+    </div>
+</div>
+`;
         });
         // Se muestra un mensaje de acuerdo con el resultado.
         ROWS_FOUND.textContent = DATA.message;
@@ -156,9 +158,9 @@ const fillTable = async (form = null) => {
 }
 
 /*
-*   Función para preparar el formulario al momento de insertar un registro.
-*   Parámetros: ninguno.
-*   Retorno: ninguno.
+* Función para preparar el formulario al momento de insertar un registro.
+* Parámetros: ninguno.
+* Retorno: ninguno.
 */
 const openCreate = () => {
     // Se muestra la caja de diálogo con su título.
@@ -169,16 +171,16 @@ const openCreate = () => {
 }
 
 /*
-*   Función asíncrona para eliminar un registro.
-*   Parámetros: id (identificador del registro seleccionado).
-*   Retorno: ninguno.
+* Función asíncrona para eliminar un registro.
+* Parámetros: id (identificador del registro seleccionado).
+* Retorno: ninguno.
 */
 
 
 /*
-*   Función asíncrona para preparar un modal de confirmacion para una funcion de estado
-*   Parámetros: id (identificador del registro seleccionado).
-*   Retorno: ninguno.
+* Función asíncrona para preparar un modal de confirmacion para una funcion de estado
+* Parámetros: id (identificador del registro seleccionado).
+* Retorno: ninguno.
 */
 const openState = async (id) => {
     // Se muestra un mensaje de confirmación y se captura la respuesta en una constante.
@@ -203,9 +205,9 @@ const openState = async (id) => {
 }
 
 /*
-*   Función asíncrona para eliminar un registro.
-*   Parámetros: id (identificador del registro seleccionado).
-*   Retorno: ninguno.
+* Función asíncrona para eliminar un registro.
+* Parámetros: id (identificador del registro seleccionado).
+* Retorno: ninguno.
 */
 const openDelete = async (id) => {
     // Llamada a la función para mostrar un mensaje de confirmación, capturando la respuesta en una constante.
@@ -230,9 +232,9 @@ const openDelete = async (id) => {
 }
 
 /*
-*   Función asíncrona para preparar el formulario al momento de actualizar un registro.
-*   Parámetros: id (identificador del registro seleccionado).
-*   Retorno: ninguno.
+* Función asíncrona para preparar el formulario al momento de actualizar un registro.
+* Parámetros: id (identificador del registro seleccionado).
+* Retorno: ninguno.
 */
 const openUpdate = async (id) => {
     // Se define una constante tipo objeto con los datos del registro seleccionado.
@@ -264,9 +266,9 @@ const openUpdate = async (id) => {
 }
 
 /*
-*   Función asíncrona para mostrar un gráfico de barras con la cantidad de productos por categoría.
-*   Parámetros: ninguno.
-*   Retorno: ninguno.
+* Función asíncrona para mostrar un gráfico de barras con la cantidad de productos por categoría.
+* Parámetros: ninguno.
+* Retorno: ninguno.
 */
 const graficoBarras = async () => {
     // Petición para obtener los datos del gráfico.
@@ -291,9 +293,9 @@ const graficoBarras = async () => {
 }
 
 /*
-*   Función asíncrona para mostrar un gráfico parametrizado.
-*   Parámetros: id (identificador del registro seleccionado).
-*   Retorno: ninguno.
+* Función asíncrona para mostrar un gráfico parametrizado.
+* Parámetros: id (identificador del registro seleccionado).
+* Retorno: ninguno.
 */
 const openChart = async (id) => {
     // Se define una constante tipo objeto con los datos del registro seleccionado.
@@ -324,9 +326,9 @@ const openChart = async (id) => {
 }
 
 /*
-*   Función para abrir un reporte automático de productos por categoría.
-*   Parámetros: ninguno.
-*   Retorno: ninguno.
+* Función para abrir un reporte automático de productos por categoría.
+* Parámetros: ninguno.
+* Retorno: ninguno.
 */
 const openReport = () => {
     // Se declara una constante tipo objeto con la ruta específica del reporte en el servidor.

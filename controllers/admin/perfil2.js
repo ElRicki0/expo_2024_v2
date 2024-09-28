@@ -2,6 +2,14 @@
 const NOMBRE_ADMINISTRADOR = document.getElementById('nombreAdmin');
 const CORREO_ADMINISTRADOR = document.getElementById('correoAdmin');
 
+// constantes de para información del empleado
+const NOMBRE_EMPLEADO = document.getElementById('nombreEmpleado'),
+    APELLIDO_EMPLEADO = document.getElementById('apellidoEmpleado'),
+    ESPECIALIDAD_EMPLEADO = document.getElementById('especialidadEmpleado'),
+    DUI_EMPLEADO = document.getElementById('duiEmpleado'),
+    CORREO_EMPLEADO = document.getElementById('correoEmpleado'),
+    FECHA_EMPLEADO = document.getElementById('fechaEmpleado');
+
 // constangtes para poder mostrar la imagen seleccionada
 const FORM_IMAGEN = document.getElementById('formImagen'),
     IMAGEN_MUESTRA = document.getElementById('imagenMuestra'),
@@ -28,21 +36,6 @@ const DELETE_MODAL = new bootstrap.Modal('#deleteModal');
 // Constante para establecer el formulario de eliminar perfil
 const DELETE_FORM = document.getElementById('deleteForm');
 
-IMAGEN_ADMIN.addEventListener('change', function (event) {
-    // Verifica si hay una imagen seleccionada
-    if (event.target.files && event.target.files[0]) {
-        // con el objeto Filereader lee el archivo seleccionado
-        const reader = new FileReader();
-        // Luego de haber leido la imagen selecionada se nos devuelve un objeto de tipo blob
-        // Con el metodo createObjectUrl de fileReader crea una url temporal para la imagen
-        reader.onload = function (event) {
-            // finalmente la url creada se le asigna el atributo de la etiqueta img
-            IMAGEN_MUESTRA.src = event.target.result;
-        };
-        reader.readAsDataURL(event.target.files[0]);
-    }
-});
-
 // Método del evento para cuando el documento ha cargado.
 document.addEventListener('DOMContentLoaded', async () => {
     // Llamada a la función para mostrar el encabezado y pie del documento.
@@ -53,9 +46,17 @@ document.addEventListener('DOMContentLoaded', async () => {
     if (DATA.status) {
         // Se inicializan los campos del formulario con los datos del usuario que ha iniciado sesión.
         const ROW = DATA.dataset;
+        // datos de administrador
         NOMBRE_ADMINISTRADOR.textContent = ROW.nombre_admin;
-            IMAGEN_MUESTRA.src = ROW.imagen_admin;
-            CORREO_ADMINISTRADOR.textContent = ROW.correo_admin;
+        IMAGEN_MUESTRA.src = ROW.imagen_admin;
+        CORREO_ADMINISTRADOR.textContent = ROW.correo_admin;
+        NOMBRE_EMPLEADO.textContent = ROW.nombre_empleado;
+        APELLIDO_EMPLEADO.textContent = ROW.apellido_empleado;
+        CORREO_EMPLEADO.textContent = ROW.correo_empleado;
+        DUI_EMPLEADO.textContent = ROW.dui_empleado;
+        FECHA_EMPLEADO.textContent = ROW.nacimiento_empleado;
+        ESPECIALIDAD_EMPLEADO.textContent = ROW.especialidad_empleado;
+        //datos de empleado
     } else {
         sweetAlert(2, DATA.error, null);
     }

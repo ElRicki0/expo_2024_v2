@@ -181,12 +181,15 @@ if (isset($_GET['action'])) {
                 $_POST = Validator::validateForm($_POST);
                 if (
                     !$administrador->setNombre($_POST['nombreAdminPerfil']) or
-                    !$administrador->setCorreo($_POST['correoAdminPerfil'])
+                    !$administrador->setCorreo($_POST['correoAdminPerfil']) or
+                    !$administrador->setImagen($_FILES['imagenAdmin'])
                 ) {
                     $result['error'] = $administrador->getDataError();
                 } elseif ($administrador->editProfile()) {
                     $result['status'] = 1;
                     $result['message'] = 'Perfil modificado correctamente';
+                    // Se asigna el estado del archivo después de insertar.
+                    $result['fileStatus'] = Validator::saveFile($_FILES['imagenAdmin'], $administrador::RUTA_IMAGEN);
                     $_SESSION['nombre_admin'] = $_POST['nombreAdminPerfil'];
                 } else {
                     $result['error'] = 'Ocurrió un problema al modificar el perfil';

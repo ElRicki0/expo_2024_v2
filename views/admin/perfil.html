@@ -26,9 +26,12 @@
         <!-- Contenedor del perfil -->
         <div class="container bg-white position-absolute top-50 start-50 translate-middle rounded-3">
             <div class="row">
-                <div class="col text-center">
-                    <div class="m-3">
-                        <i class="bi bi-person" id="User"></i>
+                <form class="col text-center card " id="formImagen">
+                    <div id="perfil">
+                        <img id=""
+                            class="rounded  mx-auto d-block img-fluid mt-3 border border-3 border-secondary-subtle rounded-circle imagen_R"
+                            src="http://localhost/expo_2024_v2/api/images/administradores/" alt="..." width="300px" height="300px"
+                            onerror="this.onerror=null; this.src='../../resources/img/error/administrador.jpg';" style="max-width: 100%; max-height: 100%;">
                     </div>
                     <h3 class="fs-4 fw-medium" id="nombreAdmin" name="nombreAdmin"></h3>
                     <h5 class="fs-6 fw-normal text-secondary" id="correoAdmin" name="correoAdmin"></h5>
@@ -45,7 +48,7 @@
                             onclick="openDelete()">Eliminar
                             perfil</button>
                     </div>
-                </div>
+                </form>
             </div>
         </div>
 
@@ -112,7 +115,15 @@
                             </div>
                             <p class="text-white">Ingresa los nuevos datos para actualizar tu cuenta.</p>
                             <div class="col-12">
-                                <div class="row">
+                                <img id="imagenMuestra"
+                                    class="rounded  mx-auto d-block img-fluid mt-3 border border-3 border-secondary-subtle rounded-circle imagen_R"
+                                    src="../../resources/img/persona.png" alt="..." width="300px" height="300px">
+                                <div class="row ">
+                                    <div class="mb-3 col-12">
+                                        <label for="imagenAdmin" class="form-label">Imagen Cliente</label>
+                                        <input id="imagenAdmin" type="file" name="imagenAdmin" class="form-control"
+                                            accept=".png, .jpg">
+                                    </div>
                                     <div class="col-3">
                                         <p class="TituloModal text-end">Nombre Completo</p>
                                     </div>
@@ -143,8 +154,8 @@
         </div>
 
         <!-- Modal Delete -->
-        <div class="modal fade" id="deleteModal" data-bs-backdrop="static" data-bs-theme="dark" data-bs-keyboard="false" tabindex="-1"
-            aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal fade" id="deleteModal" data-bs-backdrop="static" data-bs-theme="dark" data-bs-keyboard="false"
+            tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-body">
@@ -155,7 +166,7 @@
                                 <button type="button" class="btn-close" data-bs-dismiss="modal"
                                     aria-label="Close"></button>
                             </div>
-                            <p class="text-white">Ingresa tu contraseña para verificar la autorización 
+                            <p class="text-white">Ingresa tu contraseña para verificar la autorización
                                 del usuario para realizar la eliminación del perfil.
                             </p>
                             <div class="col-12">

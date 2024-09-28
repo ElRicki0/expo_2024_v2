@@ -130,9 +130,10 @@ class AdministradorHandler
     // Método para leer el perfil del administrador actual.
     public function readProfile()
     {
-        $sql = 'SELECT id_admin, nombre_admin, correo_admin
-                FROM tb_admin
-                WHERE id_admin = ?';
+        $sql = 'SELECT a.id_admin, a.nombre_admin, a.correo_admin, a.imagen_admin, e.id_empleado, e.nombre_empleado, e.apellido_empleado, e.especialidad_empleado, e.dui_empleado, e.correo_empleado, e.nacimiento_empleado
+                FROM tb_admin a
+                INNER JOIN tb_empleados e ON a.id_empleado = e.id_empleado ;
+                WHERE a.id_admin = ?';
         $params = array($_SESSION['idAdministrador']);
         // Se obtiene la información del perfil del administrador actual.
         return Database::getRow($sql, $params);
@@ -152,9 +153,9 @@ class AdministradorHandler
     public function editProfile()
     {
         $sql = 'UPDATE tb_admin
-                SET nombre_admin = ?, correo_admin = ?
+                SET nombre_admin = ?, correo_admin = ?, imagen_admin = ?
                 WHERE id_admin = ?';
-        $params = array($this->nombre, $this->correo, $_SESSION['idAdministrador']);
+        $params = array($this->nombre, $this->correo, $this->imagen, $_SESSION['idAdministrador']);
         // Se ejecuta la consulta para actualizar la información del perfil del administrador.
         return Database::executeRow($sql, $params);
     }

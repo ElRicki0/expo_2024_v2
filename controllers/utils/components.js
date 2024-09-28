@@ -91,7 +91,7 @@ const fillSelect = async (filename, action, select, filter = undefined) => {
     let content = '';
     // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje.
     if (DATA.status) {
-        content += '';
+        content += '<option value="" selected>Seleccione una opción</option>';
         // Se recorre el conjunto de registros fila por fila a través del objeto row.
         DATA.dataset.forEach(row => {
             // Se obtiene el dato del primer campo de la sentencia SQL.
@@ -301,7 +301,7 @@ const lineGraph = (canvas, values, yAxis, xAxis, legend, title) => {
                     display: true,
                     text: title,
                     color: 'white' // Cambia el color del texto del título a blanco
-                    
+
                 },
                 legend: {
                     labels: {

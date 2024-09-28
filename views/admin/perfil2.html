@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <!-- Título del documento -->
+    <title>Quiropráctica Específica</title>
+
+    <!-- Metadatos de la página web -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="../../resources/css/boostrap_css.css">
+    <link rel="stylesheet" href="../../resources/css/general.css">
+    <link rel="stylesheet" href="../../resources/css/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="../../resources/css/barrahorizontal.css">
+    <link rel="stylesheet" href="../../resources/css/admin/perfil.css">
+</head>
+
+<body>
+
+    <!-- Contenedor principal -->
+    <main class="container">
+        <div class="row">
+            <!-- informacion de administrador -->
+            <div class="col-sm-12 col-md-12 col-lg-5 container  mb-3">
+                <div class="row">
+                    <form class="card conteinerInicio col text-center " id="formImagen">
+                        <div id="perfil">
+                            <h3 class="text-white">Información de administrador</h3>
+                            <img id=""
+                                class="rounded  mx-auto d-block img-fluid mt-3 border border-3 border-secondary-subtle rounded-circle imagen_R"
+                                src="http://localhost/expo_2024_v2/api/images/administradores/" alt="..." width="200px"
+                                height="300px"
+                                onerror="this.onerror=null; this.src='../../resources/img/error/administrador.jpg';"
+                                style="max-width: 100%; max-height: 100%;">
+                        </div>
+                        <h3 class="fs-4 fw-medium text-white" id="nombreAdmin" name="nombreAdmin"></h3>
+                        <h5 class="fs-6 fw-normal text-white" id="correoAdmin" name="correoAdmin"></h5>
+                        <div class="d-flex mt-4">
+                            <button type="button" class="btn fw-bold w-100 text-white" id="ButtonPassword"
+                                onclick="openPassword()">Cambiar contraseña</button>
+                        </div>
+                        <div class="d-flex mt-2">
+                            <button type="button" class="btn fw-bold w-100" id="ButtonEdit"
+                                onclick="openProfile()">Editar
+                                perfil</button>
+                        </div>
+                        <div class="d-flex mt-2">
+                            <button type="button" class="btn fw-bold w-100" id="ButtonDelete"
+                                onclick="openDelete()">Eliminar
+                                perfil</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <!-- información de empleado -->
+            <div class="col-sm-12 col-md-12 col-lg-5 container ">
+                <div class="row">
+                    <div class="col text-center card conteinerInicio">
+                        <div>
+                            <h2 class=" text-white">Información de empleado</h2>
+                        </div>
+                        <h4 class="text-white" name="Empleado"> Nombre Completo</h4>
+                        <label class="fw-normal text-secondary" id="nombreEmpleado" name="Empleado"> </label>
+                        <label class="fw-normal text-secondary" id="apellidoEmpleado" name="Empleado"></label>
+                        <h4 class="text-white" name="Empleado">especialidad medica</h4>
+                        <label class="fw-normal text-secondary" id="especialidadEmpleado" name="Empleado"></label>
+                        <h4 class="text-white" name="Empleado">DUI</h4>
+                        <label class="fw-normal text-secondary" id="duiEmpleado" name="Empleado"></label>
+                        <h4 class="text-white" name="Empleado">Correo electrónico</h4>
+                        <label class="fw-normal text-secondary" id="correoEmpleado" name="Empleado"></label>
+                        <h4 class="text-white" name="Empleado">fecha nacimiento</h4>
+                        <label class="fw-normal text-secondary mb-2" id="fechaEmpleado" name="Empleado">
+                        </label>
+                        <div class="d-flex mb-2">
+                            <button type="button" class="btn fw-bold w-100 btn-light texto-verde" id="ButtonPassword"
+                                onclick="openPassword()">Cambiar contraseña</button>
+                        </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+
+
+            <!-- Modal Password -->
+            <div class="modal fade" id="passwordModal" data-bs-theme="dark" tabindex="-1"
+                aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-body">
+                            <form id="passwordForm">
+                                <div class="d-flex justify-content-between">
+                                    <h1 class="modal-title fs-5 TituloModal">Actualizar contraseña
+                                    </h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+                                <p class="text-white">Ingresa tu contraseña actual y la nueva contraseña para
+                                    actualizarla
+                                    en tu cuenta.
+                                </p>
+                                <div class="col-12">
+                                    <div class="row">
+                                        <div class="col-3">
+                                            <p class="TituloModal text-end">Contraseña Actual</p>
+                                        </div>
+                                        <div class="col-9">
+                                            <input type="password" id="contraseñaActual" name="contraseñaActual"
+                                                class="form-control" aria-describedby="passwordHelpInline" required>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="row">
+                                        <div class="col-3">
+                                            <p class="TituloModal text-end">Contraseña Nueva</p>
+                                        </div>
+                                        <div class="col-9">
+                                            <input type="password" id="contraseñaNueva" name="contraseñaNueva"
+                                                class="form-control" aria-describedby="passwordHelpInline" required>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="d-flex flex-row-reverse">
+                                    <button type="submit" class="btn fw-bold" id="ButtonPassword">Actualizar
+                                        contraseña</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal Perfil -->
+            <div class="modal fade" id="PerfilModal" data-bs-theme="dark" tabindex="-1"
+                aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-body">
+                            <form id="editForm">
+                                <div class="d-flex justify-content-between">
+                                    <h1 class="modal-title fs-5 TituloModal">Actualizar perfil
+                                    </h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+                                <p class="text-white">Ingresa los nuevos datos para actualizar tu cuenta.</p>
+                                <div class="col-12">
+                                    <img id="imagenMuestra"
+                                        class="rounded  mx-auto d-block img-fluid mt-3 border border-3 border-secondary-subtle rounded-circle imagen_R"
+                                        src="../../resources/img/persona.png" alt="..." width="300px" height="300px">
+                                    <div class="row ">
+                                        <div class="mb-3 col-12">
+                                            <label for="imagenAdmin" class="form-label">Imagen Cliente</label>
+                                            <input id="imagenAdmin" type="file" name="imagenAdmin" class="form-control"
+                                                accept=".png, .jpg">
+                                        </div>
+                                        <div class="col-3">
+                                            <p class="TituloModal text-end">Nombre Completo</p>
+                                        </div>
+                                        <div class="col-9">
+                                            <input type="text" id="nombreAdminPerfil" name="nombreAdminPerfil"
+                                                class="form-control" aria-describedby="passwordHelpInline" required>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="row">
+                                        <div class="col-3">
+                                            <p class="TituloModal text-end">Correo Electronico</p>
+                                        </div>
+                                        <div class="col-9">
+                                            <input type="email" id="correoAdminPerfil" name="correoAdminPerfil"
+                                                class="form-control" aria-describedby="passwordHelpInline" required>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="d-flex flex-row-reverse">
+                                    <button type="submit" class="btn fw-bold" id="ButtonPassword">Actualizar
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal Delete -->
+            <div class="modal fade" id="deleteModal" data-bs-backdrop="static" data-bs-theme="dark"
+                data-bs-keyboard="false" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-body">
+                            <form id="deleteForm">
+                                <div class="d-flex justify-content-between">
+                                    <h1 class="modal-title fs-5 tituloDelete">Eliminar perfil
+                                    </h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+                                <p class="text-white">Ingresa tu contraseña para verificar la autorización
+                                    del usuario para realizar la eliminación del perfil.
+                                </p>
+                                <div class="col-12">
+                                    <div class="row">
+                                        <div class="col-3">
+                                            <p class="tituloDelete text-end">Contraseña actual</p>
+                                        </div>
+                                        <div class="col-9">
+                                            <input type="password" id="contraseñaAdmin" name="contraseñaAdmin"
+                                                class="form-control" aria-describedby="passwordHelpInline" required>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="d-flex flex-row-reverse">
+                                    <button type="submit" class="btn fw-bold" id="ButtonDelete">Verificar</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </main>
+
+    <!-- Importaciones -->
+    <script src="../../resources/js/sweetalert.min.js"></script>
+    <script src="../../resources/js/bootstrap.bundle.min.js"></script>
+    <script src="../../resources/js/chart.umd.min.js"></script>
+    <script src="../../controllers/utils/admin.js"></script>
+    <script src="../../controllers/utils/components.js"></script>
+    <script src="../../controllers/utils/Validaciones.js"></script>
+    <script src="../../controllers/admin/perfil2.js"></script>
+    <script src="../../controllers/utils/inactividad.js"></script>
+</body>
+
+</html>

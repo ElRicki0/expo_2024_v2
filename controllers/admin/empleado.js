@@ -162,7 +162,7 @@ const openCreate = () => {
 */
 const openUpdate = async (id) => {
     // Se define una constante tipo objeto con los datos del registro seleccionado.
-    const FORM = new FormData();
+    const FORM = new FormData(); 
     FORM.append('idEmpleado', id);
     // Petición para obtener los datos del registro solicitado.
     const DATA = await fetchData(EMPLEADO_API, 'readOne', FORM);
