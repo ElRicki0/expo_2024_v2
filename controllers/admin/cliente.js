@@ -108,23 +108,24 @@ const fillTable = async (form = null) => {
             CLIENTES.innerHTML += `
 <div class="col-12 card mt-2 inicioIndex" id="searchForm">
     <div class="row  ">
-        <div class="col-3 mt-3 d-flex align-items-center mx-2 justify-content-center" style="height: 200px; width: 200px;">
-            <!-- Ajusta la altura según sea necesario -->
-            <img src="${SERVER_URL}images/clientes/${row.imagen_cliente}" class="card-img-top" alt="..."
-                onerror="this.onerror=null; this.src='../../resources/img/error/cliente.jpg';"
-                style="max-width: 100%; max-height: 100%;">
+        <div class="col-sm-12 col-md-12 col-lg-3 mt-3 d-flex align-items-center justify-content-center" 
+             style="height: 300px; width: 300px;">
+                <img src="${SERVER_URL}images/clientes/${row.imagen_cliente}" class="card-img-top" alt="..." 
+                 onerror="this.onerror=null; this.src='../../resources/img/error/cliente.jpg';" 
+                 style="max-width: 100%; max-height: 100%; object-fit: contain;">
         </div>
 
-        <div class="col-3 card-body">
-            <h5 class="text-white" for="">Nombre cliente</h5>
+
+        <div class="col-sm-12 col-md-12 col-lg-3 card-body d-flex flex-column align-items-center text-center">
+            <h5 class="text-white">Nombre cliente</h5>
             <p class="card-title text-white">${row.nombre_cliente}</p>
             <p class="card-text text-white">${row.apellido_cliente}</p>
-            <h5 class="text-white" for="">Teléfono cliente</h5>
+            <h5 class="text-white">Teléfono cliente</h5>
             <p class="card-text text-white">${row.telefono_cliente}</p>
-            <h5 class="text-white" for="">Estado cliente</h5>
+            <h5 class="text-white">Estado cliente</h5>
             <p class="card-text text-white">Estado: <i class="${icon} text-white"></i></p>
-        </div>
-        <div class="col-3 text-center my-5">
+        </div>3
+        <div class="col-sm-12 col-md-12 col-lg-3 text-center my-5">
             <div class="mt-3">
                 <div class="d-flex flex-column">
                     <button class="btn btn-outline-light mb-2" onclick="openDelete(${row.id_cliente})">
