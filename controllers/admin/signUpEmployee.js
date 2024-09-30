@@ -4,7 +4,6 @@ const EMPLEADO_API = 'services/admin/empleado.php';
 const IMAGEN_MUESTRA = document.getElementById('imagenMuestra'),
     IMAGEN_EMPLEADO = document.getElementById('imagenEmpleado');
 
-
 // Constante para establecer el formulario de registro del primer usuario.
 const SIGNUP_FORM = document.getElementById('signupForm');
 // Constante para establecer el formulario de registro del primer usuario.

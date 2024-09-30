@@ -32,11 +32,14 @@ if (isset($_GET['action'])) {
                     !$empleado->setCorreo($_POST['correoEmpleado']) or
                     !$empleado->setDui($_POST['duiEmpleado']) or
                     !$empleado->setFecha($_POST['fechaEmpleado']) or
-                    !$empleado->setEstado(isset($_POST['estadoEmpleado']) ? 1 : 0)
+                    !$empleado->setEstado(isset($_POST['estadoEmpleado']) ? 1 : 0) or
+                    !$empleado->setImagen($_FILES['imagenEmpleado'])
                 ) {
                     $result['error'] = $empleado->getDataError();
                 } elseif ($empleado->createRow()) {
                     $result['status'] = 1;
+                    // Se asigna el estado del archivo después de insertar.
+                    $result['fileStatus'] = Validator::saveFile($_FILES['imagenEmpleado'], $empleado::RUTA_IMAGEN);
                     $result['message'] = 'Empleado creado correctamente';
                 } else {
                     $result['error'] = 'Ocurrió un problema al crear al Empleado';
@@ -50,14 +53,14 @@ if (isset($_GET['action'])) {
                     $result['error'] = 'No existen Empleados registrados';
                 }
                 break;
-                case 'readAllOne':
-                    if ($result['dataset'] = $empleado->readAllOne()) {
-                        $result['status'] = 1;
-                        $result['message'] = 'Existen ' . count($result['dataset']) . ' registro(s)';
-                    } else {
-                        $result['error'] = 'No existen Empleados registrados';
-                    }
-                    break;
+            case 'readAllOne':
+                if ($result['dataset'] = $empleado->readAllOne()) {
+                    $result['status'] = 1;
+                    $result['message'] = 'Existen ' . count($result['dataset']) . ' registro(s)';
+                } else {
+                    $result['error'] = 'No existen Empleados registrados';
+                }
+                break;
             case 'readOne':
                 if (!$empleado->setId($_POST['idEmpleado'])) {
                     $result['error'] = 'Empleado incorrecto';
@@ -172,30 +175,30 @@ if (isset($_GET['action'])) {
                     $result['error'] = 'Debe crear un empleado para comenzar';
                 }
                 break;
-                case 'checkUserCodigoSesion':
-                    // Inicio de sesión de un empleado (puede ser una acción pública).
-                    $_POST = Validator::validateForm($_POST);
-                    if ($cliente->checkUserCodigoSesion($_POST['codigoUsuario'])) {
-                        // Si las credenciales son correctas, se actualiza el estado y mensaje.
-                        $result['status'] = 1;
-                        $result['message'] = 'Autenticación correcta';
-                    } else {
-                        // Si las credenciales son incorrectas, se registra un error.
-                        $result['error'] = 'Credenciales incorrectas';
-                    }
-                    break;
-                    case 'checkUserCodigoSesion':
-                        // Inicio de sesión de un empleado (puede ser una acción pública).
-                        $_POST = Validator::validateForm($_POST);
-                        if ($cliente->checkUserCodigoSesion($_POST['codigoUsuario'])) {
-                            // Si las credenciales son correctas, se actualiza el estado y mensaje.
-                            $result['status'] = 1;
-                            $result['message'] = 'Autenticación correcta';
-                        } else {
-                            // Si las credenciales son incorrectas, se registra un error.
-                            $result['error'] = 'Credenciales incorrectas';
-                        }
-                        break;
+            case 'checkUserCodigoSesion':
+                // Inicio de sesión de un empleado (puede ser una acción pública).
+                $_POST = Validator::validateForm($_POST);
+                if ($cliente->checkUserCodigoSesion($_POST['codigoUsuario'])) {
+                    // Si las credenciales son correctas, se actualiza el estado y mensaje.
+                    $result['status'] = 1;
+                    $result['message'] = 'Autenticación correcta';
+                } else {
+                    // Si las credenciales son incorrectas, se registra un error.
+                    $result['error'] = 'Credenciales incorrectas';
+                }
+                break;
+            case 'checkUserCodigoSesion':
+                // Inicio de sesión de un empleado (puede ser una acción pública).
+                $_POST = Validator::validateForm($_POST);
+                if ($cliente->checkUserCodigoSesion($_POST['codigoUsuario'])) {
+                    // Si las credenciales son correctas, se actualiza el estado y mensaje.
+                    $result['status'] = 1;
+                    $result['message'] = 'Autenticación correcta';
+                } else {
+                    // Si las credenciales son incorrectas, se registra un error.
+                    $result['error'] = 'Credenciales incorrectas';
+                }
+                break;
             default:
                 $result['error'] = 'Acción no disponible dentro de la sesión';
         }
