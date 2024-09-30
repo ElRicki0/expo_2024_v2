@@ -18,10 +18,6 @@ class AdministradorHandler
     protected $empleado = null;
     protected $codigo = null; // Inicialmente nulo
     protected $codigoUsuario = null; // Inicialmente nulo
-    protected $imagen = null; // Inicialmente nulo
-
-    // Constante para establecer la ruta de las imágenes.
-    const RUTA_IMAGEN = '../../images/administradores/';
 
     public function __construct()
     {
@@ -49,7 +45,7 @@ class AdministradorHandler
     // Método para verificar el inicio de sesión del administrador.
     public function checkUser($username, $password)
     {
-        $sql = 'SELECT id_admin, correo_admin, contrasenia_admin, fecha_contrasenia
+        $sql = 'SELECT id_admin, correo_admin, contrasenia_admin, fecha_contrasenia, id_empleado
                 FROM tb_admin
                 WHERE correo_admin = ?';
         $params = array($username);
@@ -61,6 +57,7 @@ class AdministradorHandler
             $_SESSION['idAdministrador'] = $data['id_admin'];
             $_SESSION['correo_admin'] = $data['correo_admin'];
             $_SESSION['fechaContrasenia'] = $data['fecha_contrasenia'];
+            $_SESSION['idEmpleado'] = $data['id_empleado'];
             return true; // Retorna verdadero indicando que el inicio de sesión fue exitoso.
         } else {
             return false; // Si la contrasenia no coincide, retorna falso.
@@ -173,9 +170,9 @@ class AdministradorHandler
     public function editProfile()
     {
         $sql = 'UPDATE tb_admin
-                SET nombre_admin = ?, correo_admin = ?, imagen_admin = ?
+                SET nombre_admin = ?, correo_admin = ?
                 WHERE id_admin = ?';
-        $params = array($this->nombre, $this->correo, $this->imagen, $_SESSION['idAdministrador']);
+        $params = array($this->nombre, $this->correo, $_SESSION['idAdministrador']);
         // Se ejecuta la consulta para actualizar la información del perfil del administrador.
         return Database::executeRow($sql, $params);
     }
@@ -183,9 +180,9 @@ class AdministradorHandler
     // Método para crear un nuevo administrador.
     public function createRow()
     {
-        $sql = 'INSERT INTO tb_admin(nombre_admin, contrasenia_admin, correo_admin, id_empleado, codigo_admin, fecha_contrasenia, imagen_admin)
+        $sql = 'INSERT INTO tb_admin(nombre_admin, contrasenia_admin, correo_admin, id_empleado, codigo_admin, fecha_contrasenia)
                 VALUES(?, ?, ?, ?, ?, ?, ?)';
-        $params = array($this->nombre, $this->contrasenia, $this->correo, $this->empleado, $this->codigo, $this->fechaContrasenia, $this->imagen);
+        $params = array($this->nombre, $this->contrasenia, $this->correo, $this->empleado, $this->codigo, $this->fechaContrasenia);
         // Se ejecuta la consulta para insertar un nuevo registro de administrador.
         return Database::executeRow($sql, $params);
     }
@@ -193,9 +190,9 @@ class AdministradorHandler
     // Método para crear un nuevo administrador.
     public function createNewRow()
     {
-        $sql = 'INSERT INTO tb_admin(nombre_admin, contrasenia_admin, correo_admin, id_empleado, codigo_admin, fecha_contrasenia, imagen_admin)
-                VALUES(?, ?, ?, 1, ?, ?, ?)';
-        $params = array($this->nombre, $this->contrasenia, $this->correo, $this->codigo, $this->fechaContrasenia, $this->imagen);
+        $sql = 'INSERT INTO tb_admin(nombre_admin, contrasenia_admin, correo_admin, id_empleado, codigo_admin, fecha_contrasenia)
+                VALUES(?, ?, ?, 1, ?, ?)';
+        $params = array($this->nombre, $this->contrasenia, $this->correo, $this->codigo, $this->fechaContrasenia);
         // Se ejecuta la consulta para insertar un nuevo registro de administrador.
         return Database::executeRow($sql, $params);
     }
@@ -221,6 +218,15 @@ class AdministradorHandler
         $params = array($_SESSION['idAdministrador']);
         // Se obtiene la información del perfil del administrador actual.
         return Database::getRows($sql, $params);
+    }
+
+    // Método para leer todos los administradores registrados.
+    public function readAllInicio()
+    {
+        $sql = 'SELECT *
+                FROM tb_admin';
+        // Se obtiene la información del perfil del administrador actual.
+        return Database::getRows($sql);
     }
 
     // Método para leer todos los empleados registrados.
@@ -249,15 +255,6 @@ class AdministradorHandler
         $sql = 'SELECT A.id_admin, A.nombre_admin, A.correo_admin, A.id_empleado
                 FROM tb_admin A
                 WHERE A.id_admin = ?';
-        $params = array($this->id);
-        return Database::getRow($sql, $params);
-    }
-
-    public function readFilename()
-    {
-        $sql = 'SELECT imagen_admin
-                FROM tb_admin
-                WHERE id_admin = ?';
         $params = array($this->id);
         return Database::getRow($sql, $params);
     }

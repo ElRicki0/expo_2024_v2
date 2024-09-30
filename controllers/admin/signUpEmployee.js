@@ -1,5 +1,9 @@
 const EMPLEADO_API = 'services/admin/empleado.php';
 
+// CONSTANTES PARA MOSTRAR IMAGEN SELECCIONADA  PARA EL PERFIL DEL EMPLEADO
+const IMAGEN_MUESTRA = document.getElementById('imagenMuestra'),
+    IMAGEN_EMPLEADO = document.getElementById('imagenEmpleado');
+
 
 // Constante para establecer el formulario de registro del primer usuario.
 const SIGNUP_FORM = document.getElementById('signupForm');
@@ -21,8 +25,22 @@ document.addEventListener('DOMContentLoaded', async () => {
         // Se muestra el formulario para registrar el primer usuario.
         sweetAlert(4, DATA.error, false);
     }
-
 });
+
+IMAGEN_EMPLEADO.addEventListener('change', function (event) {
+    // Verifica si hay una imagen seleccionada
+    if (event.target.files && event.target.files[0]) {
+        // con el objeto Filereader lee el archivo seleccionado
+        const reader = new FileReader();
+        // Luego de haber leido la imagen selecionada se nos devuelve un objeto de tipo blob
+        // Con el metodo createObjectUrl de fileReader crea una url temporal para la imagen
+        reader.onload = function (event) {
+            // finalmente la url creada se le asigna el atributo de la etiqueta img
+            IMAGEN_MUESTRA.src = event.target.result;
+        };
+        reader.readAsDataURL(event.target.files[0]);
+    }
+})
 
 // Método del evento para cuando se envía el formulario de registro del primer usuario.
 SIGNUP_FORM.addEventListener('submit', async (event) => {

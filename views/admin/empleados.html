@@ -64,24 +64,7 @@
         <!-- Contenedor para la tabla con scroll -->
         <div id="ContenedorTable">
 
-            <!-- Tabla para mostrar los registros existentes -->
-            <table class="table table-hover table-dark">
-
-                <!-- Cabeza de la tabla para mostrar la cantidad de registros y los títulos de las columnas -->
-                <thead>
-                    <tr>
-                        <th scope="col">NOMBRE</th>
-                        <th scope="col">DUI</th>
-                        <th scope="col">CORREO</th>
-                        <th scope="col">NACIMIENTO</th>
-                        <th scope="col">ESTADO</th>
-                        <th scope="col">ACCIONES</th>
-                    </tr>
-                </thead>
-
-                <!-- Cuerpo de la tabla para mostrar un registro por fila -->
-                <tbody id="tableBody" class="table-group-divider"></tbody>
-            </table>
+            <div id="tableBody"></div>
         </div>
 
         <div class="bg-dark rounded mb-3">
@@ -156,7 +139,7 @@
                                                     <label class="form-label">Fecha de nacimiento</label>
                                                     <input id="fechaEmpleado" name="fechaEmpleado" type="date"
                                                         autocomplete="off" class="form-control" required
-                                                        onclick="validarFecha(this)">
+                                                        oninput="validarFecha(this)">
                                                 </div>
                                             </div>
                                             <div class="form-check form-switch form-check-reverse mt-3">
@@ -168,7 +151,7 @@
                                                 <div class="col-6"></div>
                                                 <div class="col-6 text-end">
                                                     <button type="submit" class="btn btn-primary ps-4 pe-4">
-                                                    0    <i class="bi bi-person-fill-add me-1"></i> Aceptar
+                                                        <i class="bi bi-person-fill-add me-1"></i> Aceptar
                                                     </button>
                                                 </div>
                                             </div>

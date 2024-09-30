@@ -74,7 +74,7 @@ const fillTable = async (form = null) => {
     ROWS_FOUND.textContent = '';
     TABLE_BODY.innerHTML = '';
     // Se verifica la acción a realizar.
-    (form) ? action = 'searchRows' : action = 'readAll';
+    (form) ? action = 'searchRows' : action = 'readAllOne';
     // Petición para obtener los registros disponibles.
     const DATA = await fetchData(EMPLEADO_API, action, form);
     // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
@@ -85,27 +85,47 @@ const fillTable = async (form = null) => {
             (row.estado_empleado) ? icon = 'bi bi-eye-fill' : icon = 'bi bi-eye-slash-fill';
             // Se crean y concatenan las filas de la tabla con los datos de cada registro.
             TABLE_BODY.innerHTML += `
-            <tr>
-                <td>${row.nombre_empleado} ${row.apellido_empleado}</td>
-                <td>${row.dui_empleado}</td>
-                <td>${row.correo_empleado}</td>
-                <td>${row.nacimiento_empleado}</td>
-                <td><i class="${icon}"></i></td>
-                <td>
-                <button class="btn btn-danger" onclick="openDelete(${row.id_empleado})">
-                    <i class="bi bi-trash3-fill"></i>
-                </button>
-                <button class="btn btn-primary" onclick="openUpdate(${row.id_empleado})">
-                    <i class="bi bi-pen-fill"></i>
-                </button>
-                <button class="btn btn-primary" onclick="openState(${row.id_empleado})">
-                    <i class="bi bi-exclamation-octagon"></i>
-                </button>
-                <button type="button" class="btn btn-warning" onclick="openChart(${row.id_empleado})">
-                    <i class="bi bi-bar-chart-line-fill"></i>
-                </button>
-            </td>
-        </tr>
+<div class="col-12 card mt-2 inicioIndex" id="searchForm">
+    <div class="row  ">
+        <div class="col-sm-12 col-md-12 col-lg-3 mt-3 d-flex align-items-center justify-content-center" 
+             style="height: 300px; width: 300px;">
+                <img src="${SERVER_URL}images/clientes/${row.imagen_cliente}" class="card-img-top" alt="..." 
+                 onerror="this.onerror=null; this.src='../../resources/img/error/cliente.jpg';" 
+                 style="max-width: 100%; max-height: 100%; object-fit: contain;">
+        </div>
+
+
+        <div class="col-sm-12 col-md-12 col-lg-3 card-body d-flex flex-column align-items-center text-center">
+            <h5 class="text-white">Nombre empleado</h5>
+            <p class="card-title text-white">${row.nombre_empleado} ${row.apellido_empleado}</p>
+            <h5 class="text-white">DUI Empleado</h5>
+            <p class="card-text text-white">${row.dui_empleado}</p>
+            <h5 class="text-white">Correo Empleado</h5>
+            <p class="card-text text-white">${row.correo_empleado}</p>
+            <h5 class="text-white">Estado empleado</h5>
+            <p class="card-text text-white">Estado: <i class="${icon} text-white"></i></p>
+        </div>3
+        <div class="col-sm-12 col-md-12 col-lg-3 text-center my-5">
+            <div class="mt-3">
+                <div class="d-flex flex-column">
+                    <button class="btn btn-outline-light mb-2" onclick="openDelete(${row.id_empleado})">
+                        <i class="bi bi-trash3-fill"></i> Eliminar
+                    </button>
+                    <button class="btn btn-outline-light mb-2" onclick="openUpdate(${row.id_empleado})">
+                        <i class="bi bi-pencil-fill"></i>Actualizar
+                    </button>
+                    <button class="btn btn-outline-light mb-2" onclick="openState(${row.id_empleado})">
+                        <i class="bi bi-exclamation-octagon"></i> Cambiar Estado
+                    </button>
+                    <button type="button" class="btn btn-outline-light mb-2" onclick="openChart(${row.id_empleado})">
+                        <i class="bi bi-bar-chart-line-fill"></i> Ver Gráfico
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
             `;
         });
         // Se muestra un mensaje de acuerdo con el resultado.
