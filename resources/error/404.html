@@ -1,22 +1,60 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="es">
 
 <head>
-    <!-- Título del documento -->
-    <title>Quiropráctica - Objeto no localizado</title>
-    <!-- Metadatos de la página web -->
-    <meta charset="utf-8">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Llamada de archivos -->
-    <link type="text/css" rel="stylesheet" href="../../resources/css/boostrap_css.css">    
-    <link type="text/css" rel="stylesheet" href="../../resources/css/bootstrap-icons.min.css">
+    <title>Error 404</title>
+    <!-- Se enlaza Bootstrap para estilos adicionales -->
+    <link rel="stylesheet" href="../../resources/css/boostrap_css.css">
+    <link rel="stylesheet" href="../../resources/css/public/Login.css">
+    <link rel="stylesheet" href="../../resources/css/general.css">
 </head>
 
 <body>
-    <div class="text-center py-5">
-        <h4><i class="bi bi-cloud-slash-fill"></i> Error 404: Objeto no localizado</h4>
-        <a href="/expo_2024_v2//views/public/" class="fs-1"><i class="bi bi-arrow-clockwise"></i></a>
-    </div>
+    <main>
+        <div class="container position-absolute top-50 start-50 translate-middle">
+            <div class="row">
+                <div class="col-lg-12 col-md-6 col-sm-7 bg-dark text-center">
+                    <div class="form-group">
+                        <br>
+                        <div class="col-1">
+                            <button type="submit" class="btn text-primary fw-bold pe-4 ps-4 ms-5"
+                                onclick="window.location.href='index.html';">
+                                 <img src="../../resources/img/public/flecha-izquierda.png" alt=""></button>
+                        </div>
+                    </div>
+                    <img src="../../resources/img/alerta404.gif" alt="Imagen" class="img-fluid" width="290px">
+                    <hr class="separadorClaro">
+                    <form id="saveForm">
+                        <div class="form-group mt-5 d-flex justify-content-center">
+                            <div class="col-8">
+                                <p class="descripcionerror">ERROR 404: La URL escrita en la parte superior de tu navegador no es correcta, no localizado, intentalo de nuevo</p>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="form-group mt-2">
+                            <div class="row">
+                                <div class="col-12">
+                                </div>
+                            </div>
+                            <hr>
+                            <br><br>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Librerias -->
+    <!-- Bootstrap -->
+    <script type="text/javascript" src="../../resources/js/bootstrap.bundle.min.js"> </script>
+
+    <!-- Js -->
+    <script type="text/javascript" src="../../controllers/utils/components.js"></script>
+    <script type="text/javascript" src="../../resources/js/sweetalert.min.js"></script>
+    <script type="text/javascript" src="../../controllers/utils/Validaciones.js"></script>
+    <script type="text/javascript" src="../../controllers/public/Login.js"></script>
 </body>
 
 </html>
