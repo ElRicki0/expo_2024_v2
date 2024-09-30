@@ -12,9 +12,6 @@ MAIN.style.paddingBottom = '100px';
 MAIN.classList.add('container');
 // Se establece el título de la página web.
 document.querySelector('title').textContent = 'Quiropráctica Especifica';
-// Constante para establecer el elemento del título principal.
-const MAIN_TITLE = document.getElementById('mainTitle');
-MAIN_TITLE.classList.add('text-center', 'py-3');
 
 /*  Función asíncrona para cargar el encabezado y pie del documento.
 *   Parámetros: ninguno.
@@ -29,7 +26,7 @@ const loadTemplate = async () => {
         if (!location.pathname.endsWith('login.html')) {
             // Se agrega el encabezado de la página web antes del contenido principal.
             MAIN.insertAdjacentHTML('beforebegin',
-                `<nav class="navbar navbar-dark border-bottom border-secondary">
+                `<nav class="navbar navbar-dark">
                     <div class="container-fluid">
                         <a class="navbar-brand fw-bold d-flex align-items-center" href="index.html">
                             <img src="../../resources/img/icons/icon.jpg" alt="" height="50px" class="d-inline-block align-text-top">
@@ -53,7 +50,7 @@ const loadTemplate = async () => {
     } else {
         // Se agrega el encabezado de la página web antes del contenido principal.
         MAIN.insertAdjacentHTML('beforebegin',
-            `<nav class="navbar navbar-dark border-bottom border-secondary">
+            `<nav class="navbar navbar-dark bg-black fixed-top">
                 <div class="row container-fluid">
                     <div class="col-10">
                         <!-- boton del logo en la izquierda -->
@@ -79,10 +76,10 @@ const loadTemplate = async () => {
     // Se agrega el pie de la página web después del contenido principal.
     MAIN.insertAdjacentHTML('afterend', `
         <footer>
-            <nav class="navbar fixed-bottom bg-body-tertiary">
+            <nav class="navbar">
                 <div class="container">
                     <p><a class="nav-link" href="https://github.com/ElRicki0/expo_2024_v2" target="_blank"><i class="bi bi-github"></i> Quiropractica Especifica</a></p>
-                    <p><i class="bi bi-envelope-fill"></i> dacasoft@outlook.com</p>
+                    <p><i class="bi bi-envelope-fill"></i> Quiropractica@gmail.com</p>
                 </div>
             </nav>
         </footer>
