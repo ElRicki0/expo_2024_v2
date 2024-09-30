@@ -126,13 +126,13 @@ if (isset($_GET['action'])) {
                 }
                 break;
             case 'readEmployee':
-                // Lectura de todos los administradores (puede ser una acción pública).
+                // Lectura de todos los empleado (puede ser una acción pública).
                 if ($empleado->readAll()) {
-                    // Si hay administradores registrados, se devuelve un mensaje de autenticación requerida.
+                    // Si hay empleado registrados, se devuelve un mensaje de autenticación requerida.
                     $result['status'] = 1;
                     $result['message'] = 'Debe autenticarse para ingresar';
                 } else {
-                    // Si no hay administradores registrados, se muestra un mensaje de creación requerida.
+                    // Si no hay empleado registrados, se muestra un mensaje de creación requerida.
                     $result['error'] = 'Debe crear un empleado para comenzar';
                 }
                 break;
@@ -148,29 +148,32 @@ if (isset($_GET['action'])) {
                     !$empleado->setApelldo($_POST['apellidoEmpleado']) or
                     !$empleado->setCorreo($_POST['correoEmpleado']) or
                     !$empleado->setDui($_POST['duiEmpleado']) or
+                    !$empleado->setImagen($_FILES['imagenEmpleado']) or
                     !$empleado->setFecha($_POST['fechaEmpleado'])
                 ) {
                     $result['error'] = $empleado->getDataError();
                 } elseif ($empleado->createNewRow()) {
                     $result['status'] = 1;
+                    // Se asigna el estado del archivo después de insertar.
+                    $result['fileStatus'] = Validator::saveFile($_FILES['imagenEmpleado'], $empleado::RUTA_IMAGEN);
                     $result['message'] = 'Empleado creado correctamente';
                 } else {
                     $result['error'] = 'Ocurrió un problema al crear al Empleado';
                 }
                 break;
             case 'readEmployee':
-                // Lectura de todos los administradores (puede ser una acción pública).
+                // Lectura de todos los empleado (puede ser una acción pública).
                 if ($empleado->readAll()) {
-                    // Si hay administradores registrados, se devuelve un mensaje de autenticación requerida.
+                    // Si hay empleado registrados, se devuelve un mensaje de autenticación requerida.
                     $result['status'] = 1;
                     $result['message'] = 'Debe autenticarse para ingresar';
                 } else {
-                    // Si no hay administradores registrados, se muestra un mensaje de creación requerida.
+                    // Si no hay empleado registrados, se muestra un mensaje de creación requerida.
                     $result['error'] = 'Debe crear un empleado para comenzar';
                 }
                 break;
                 case 'checkUserCodigoSesion':
-                    // Inicio de sesión de un administrador (puede ser una acción pública).
+                    // Inicio de sesión de un empleado (puede ser una acción pública).
                     $_POST = Validator::validateForm($_POST);
                     if ($cliente->checkUserCodigoSesion($_POST['codigoUsuario'])) {
                         // Si las credenciales son correctas, se actualiza el estado y mensaje.
@@ -182,7 +185,7 @@ if (isset($_GET['action'])) {
                     }
                     break;
                     case 'checkUserCodigoSesion':
-                        // Inicio de sesión de un administrador (puede ser una acción pública).
+                        // Inicio de sesión de un empleado (puede ser una acción pública).
                         $_POST = Validator::validateForm($_POST);
                         if ($cliente->checkUserCodigoSesion($_POST['codigoUsuario'])) {
                             // Si las credenciales son correctas, se actualiza el estado y mensaje.

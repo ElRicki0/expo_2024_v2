@@ -19,11 +19,16 @@ class EmpleadoHandler
     protected $dui = null;
     protected $correo = null;
     protected $fecha = null;
+    protected $imagen = null; 
     protected $estado = null;
 
     /*
      *  Métodos para gestionar la cuenta del empleado.
      */
+
+    // Constante para establecer la ruta de las imágenes.
+    const RUTA_IMAGEN = '../../images/empleados/';
+
 
     public function updateRowEstado()
     {
@@ -64,9 +69,9 @@ class EmpleadoHandler
     // Método createRow: inserta un nuevo empleado en la base de datos.
     public function createNewRow()
     {
-        $sql = 'INSERT INTO tb_empleados(nombre_empleado, apellido_empleado, dui_empleado, correo_empleado, nacimiento_empleado, estado_empleado)
-                VALUES(?, ?, ?, ?, ?, 1)';
-        $params = array($this->nombre, $this->apellido, $this->dui, $this->correo, $this->fecha);
+        $sql = 'INSERT INTO tb_empleados(nombre_empleado, apellido_empleado, dui_empleado, correo_empleado, nacimiento_empleado, estado_empleado, imagen_empleado)
+                VALUES(?, ?, ?, ?, ?, 1, ?)';
+        $params = array($this->nombre, $this->apellido, $this->dui, $this->correo, $this->fecha, $this->imagen);
         return Database::executeRow($sql, $params);
     }
 
@@ -106,6 +111,16 @@ class EmpleadoHandler
                 FROM tb_empleados
                 WHERE id_empleado = ? AND  id_empleado <> ?';
         $params = array($this->id, $_SESSION['idEmpleado']);
+        return Database::getRow($sql, $params);
+    }
+
+    // método para leer la imagen del empleados
+    public function readFilename()
+    {
+        $sql = 'SELECT imagen_empleado
+                FROM tb_empleados
+                WHERE id_empleado = ?';
+        $params = array($this->id);
         return Database::getRow($sql, $params);
     }
 
