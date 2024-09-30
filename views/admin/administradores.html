@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="../../resources/css/boostrap_css.css">
     <link rel="stylesheet" href="../../resources/css/general.css">
     <link rel="stylesheet" href="../../resources/css/bootstrap-icons.min.css">
-    <link rel="stylesheet" href="../../resources/css/barrahorizontal.css">
+    <!-- <link rel="stylesheet" href="../../resources/css/barrahorizontal.css"> -->
 </head>
 
 <body>
@@ -63,24 +63,7 @@
         <p id="rowsFound" class="text-white fw-bold mt-3"></p>
 
         <!-- Contenedor para la tabla con scroll -->
-        <div id="ContenedorTable">
-
-            <!-- Tabla para mostrar los registros existentes -->
-            <table class="table table-hover table-dark">
-
-                <!-- Cabeza de la tabla para mostrar la cantidad de registros y los títulos de las columnas -->
-                <thead>
-                    <tr>
-                        <th scope="col">NOMBRE</th>
-                        <th scope="col">CORREO</th>
-                        <th scope="col">EMPLEADO</th>
-                        <th scope="col">ACCIONES</th>
-                    </tr>
-                </thead>
-
-                <!-- Cuerpo de la tabla para mostrar un registro por fila -->
-                <tbody id="tableBody" class="table-group-divider"></tbody>
-            </table>
+        <div id="administradores">
         </div>
 
         <!-- Modal agregar Admninistrador -->
@@ -92,9 +75,8 @@
                     <form id="saveForm">
 
                         <!-- Campo oculto para asignar el id del registro al momento de modificar -->
-                        <input type="number" class="d-none" id="idAministrador" name="idAministrador">
+                        <input type="number" class="d-none" id="idAdmin" name="idAministrador">
                         <form class="needs-validation">
-
                             <!-- Body del modal -->
                             <div class="modal-body">
                                 <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
@@ -102,14 +84,26 @@
                                 <h1 class="fs-4 fw-bold text-center mb-4" id="modalTitle"></h1>
 
                                 <!-- Inputs -->
+                                <div class="row">
+                                    <div class="col-12">
+                                        <img id="imagenMuestra"
+                                            class="rounded  mx-auto d-block img-fluid mt-3 border border-3 border-secondary-subtle rounded-circle imagen_R"
+                                            src="../../resources/img/persona.png" alt="..." width="300px"
+                                            height="300px">
+                                    </div>
+                                </div>
                                 <div class="row p-3">
+                                    <div class="col-12">
+                                        <label for="imagenAdmin" class="form-label">Imagen Admin</label>
+                                        <input id="imagenAdmin" type="file" name="imagenAdmin" class="form-control"
+                                            accept=".png, .jpg">
+                                    </div>
                                     <div class="col-12">
                                         <div class="row">
                                             <div class="col-6">
                                                 <label class="textoClaro form-label">Nombre(s)</label>
                                                 <input type="text" id="nombreAdmin" name="nombreAdmin"
-                                                    autocomplete="off" class="form-control" required
-                                                    oninput="formatAlphabetic(this)">
+                                                    autocomplete="off" class="form-control" required>
                                             </div>
                                             <div class="col-6">
                                                 <label class="textoClaro form-label">Correo electronico</label>
@@ -224,11 +218,11 @@
     <script src="../../controllers/utils/components.js"></script>
     <script src="../../resources/js/sweetalert.min.js"></script>
     <script src="../../resources/js/bootstrap.bundle.min.js"></script>
-    <script src="../../controllers/utils/admin.js"></script>
-    <script src="../../controllers/admin/administradores.js"></script>
-    <script src="../../controllers/utils/Validaciones.js"></script>
-    <script src="../../resources/js/chart.umd.min.js"></script>
     <script src="../../controllers/utils/inactividad.js"></script>
+    <script src="../../controllers/utils/admin.js"></script>
+    <script src="../../controllers/utils/Validaciones.js"></script>
+    <script src="../../controllers/admin/administradores.js"></script>
+    <script src="../../resources/js/chart.umd.min.js"></script>
 </body>
 
 </html>

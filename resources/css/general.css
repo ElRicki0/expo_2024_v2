@@ -3,7 +3,8 @@ body {
 }
 
 #ContenedorTable {
-    max-height: 450px;
+    max-height: 650px;
+    width: 100%;
     overflow-y: auto;
     display: block;
 }

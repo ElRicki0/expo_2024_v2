@@ -10,8 +10,11 @@ require_once('../../models/handler/administrador_handler.php'); // Ajusta la rut
 
 class AdministradorData extends AdministradorHandler
 {
-    // Atributo genérico para manejo de errores.
+    /*
+     *  Atributos adicionales.
+     */
     private $data_error = null;
+    private $filename = null;
 
     /*
      *  Métodos para validar y asignar valores de los atributos.
@@ -98,10 +101,46 @@ class AdministradorData extends AdministradorHandler
         }
     }
 
-    // Método getDataError: retorna el error actual de los datos.
+    public function setImagen($file, $filename = null)
+    {
+        if (Validator::validateImageFile($file, 1000)) {
+            $this->imagen = Validator::getFileName();
+            return true;
+        } elseif (Validator::getFileError()) {
+            $this->data_error = Validator::getFileError();
+            return false;
+        } elseif ($filename) {
+            $this->imagen = $filename;
+            return true;
+        } else {
+            $this->imagen = 'cliente.png';
+            return true;
+        }
+    }
+
+    public function setFilename()
+    {
+        if ($data = $this->readFilename()) {
+            $this->filename = $data['imagen_cliente'];
+            return true;
+        } else {
+            $this->data_error = 'Cliente inexistente';
+            return false;
+        }
+    }
+
+    /*
+     *  Métodos para obtener el valor de los atributos adicionales.
+     */
+    
     public function getDataError()
     {
         return $this->data_error;
+    }
+
+    public function getFilename()
+    {
+        return $this->filename;
     }
 }
 ?>

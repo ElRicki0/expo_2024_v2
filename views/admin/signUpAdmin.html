@@ -35,7 +35,7 @@
 
                             <!-- Imagen de fondo en pantallas grandes -->
                             <div class="col-md-6 col-lg-5 d-none d-md-block">
-                                <img src="../../resources/img/admin/espaldadolor.png" alt="login form" height="650px"
+                                <img src="../../resources/img/admin/espaldadolor.png" alt="login form" height="820px"
                                     width="450px" class="rounded" />
                             </div>
 
@@ -48,6 +48,17 @@
 
                                             <h3 class="fw-bold text-white">Registro de primer Administrador</h3>
 
+                                            <div class="col-12">
+                                                <img id="imagenMuestra"
+                                                    class="rounded  mx-auto d-block img-fluid mt-3 border border-3 border-secondary-subtle rounded-circle imagen_R"
+                                                    src="../../resources/img/persona.png" alt="..." width="200px"
+                                                    height="200px">
+                                            </div>
+                                            <div class="col-12">
+                                                <label for="imagenAdmin" class="form-label">Imagen Admin</label>
+                                                <input id="imagenAdmin" type="file" name="imagenAdmin" class="form-control"
+                                                    accept=".png, .jpg">
+                                            </div>
                                             <!-- Campo de correo electrónico -->
                                             <div class="form-outline mt-3">
                                                 <label class="form-label" for="correo_admin2">Correo Electrónico</label>
@@ -69,7 +80,9 @@
                                             <div class="form-outline mt-3">
                                                 <label class="form-label" for="contra_admin2">Contraseña</label>
                                                 <input type="password" id="contraAdmin2" name="contraAdmin2"
-|                                            </div>
+                                                    autocomplete="off" class="form-control" required
+                                                    oninput="formatPassword(this)">
+                                            </div>
 
                                             <!-- Campo para confirmar contraseña -->
                                             <div class="form-outline mt-3">

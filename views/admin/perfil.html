@@ -22,32 +22,69 @@
 
     <!-- Contenedor principal -->
     <main class="container">
-
-        <!-- Contenedor del perfil -->
-        <div class="container bg-white position-absolute top-50 start-50 translate-middle rounded-3">
-            <div class="row">
-                <div class="col text-center">
-                    <div class="m-3">
-                        <i class="bi bi-person" id="User"></i>
-                    </div>
-                    <h3 class="fs-4 fw-medium" id="nombreAdmin" name="nombreAdmin"></h3>
-                    <h5 class="fs-6 fw-normal text-secondary" id="correoAdmin" name="correoAdmin"></h5>
-                    <div class="d-flex mt-4">
-                        <button type="button" class="btn fw-bold w-100 text-white" id="ButtonPassword"
-                            onclick="openPassword()">Cambiar contraseña</button>
-                    </div>
-                    <div class="d-flex mt-2">
-                        <button type="button" class="btn fw-bold w-100" id="ButtonEdit" onclick="openProfile()">Editar
-                            perfil</button>
-                    </div>
-                    <div class="d-flex mt-2">
-                        <button type="button" class="btn fw-bold w-100" id="ButtonDelete"
-                            onclick="openDelete()">Eliminar
-                            perfil</button>
+        <div class="row mt-lg-5">
+            <!-- informacion de administrador -->
+            <div class="col-sm-12 col-md-12 col-lg-5 container  mb-3">
+                <div class="row">
+                    <form class="card conteinerInicio col text-center " id="formImagen">
+                        <div id="perfil">
+                            <h3 class="text-white">Información de administrador</h3>
+                            <img id=""
+                                class="rounded  mx-auto d-block img-fluid mt-3 border border-3 border-secondary-subtle rounded-circle imagen_R"
+                                src="http://localhost/expo_2024_v2/api/images/administradores/" alt="..." width="200px"
+                                height="300px"
+                                onerror="this.onerror=null; this.src='../../resources/img/error/administrador.jpg';"
+                                style="max-width: 100%; max-height: 100%;">
+                        </div>
+                        <h3 class="fs-4 fw-medium text-white" id="nombreAdmin" name="nombreAdmin"></h3>
+                        <h5 class="fs-6 fw-normal text-white" id="correoAdmin" name="correoAdmin"></h5>
+                        <div class="d-flex mt-4">
+                            <button type="button" class="btn fw-bold w-100 text-white" id="ButtonPassword"
+                                onclick="openPassword()">Cambiar contraseña</button>
+                        </div>
+                        <div class="d-flex mt-2">
+                            <button type="button" class="btn fw-bold w-100" id="ButtonEdit"
+                                onclick="openProfile()">Editar
+                                perfil</button>
+                        </div>
+                        <div class="d-flex mt-2">
+                            <button type="button" class="btn fw-bold w-100" id="ButtonDelete"
+                                onclick="openDelete()">Eliminar
+                                perfil</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <!-- información de empleado -->
+            <div class="col-sm-12 col-md-12 col-lg-5 container ">
+                <div class="row">
+                    <div class="col text-center card conteinerInicio">
+                        <div>
+                            <h2 class="mb-2 text-white">Información de empleado</h2>
+                        </div>
+                        <h4 class="text-white" name="Empleado"> Nombre Completo</h4>
+                        <label class="fw-normal text-secondary" id="empleadoNombre" name="Empleado"> </label>
+                        <label class="mb-2 fw-normal text-secondary" id="empleadoApellido" name="Empleado"></label>
+                        <h4 class="text-white" name="Empleado">especialidad medica</h4>
+                        <label class="mb-2 fw-normal text-secondary" id="empleadoEspecialidad" name="Empleado"></label>
+                        <h4 class="text-white" name="Empleado">DUI</h4>
+                        <label class="mb-2 fw-normal text-secondary" id="empleadoDUI" name="Empleado"></label>
+                        <h4 class="text-white" name="Empleado">Correo electrónico</h4>
+                        <label class="mb-2 fw-normal text-secondary" id="empleadoCorreo" name="Empleado"></label>
+                        <h4 class="text-white" name="Empleado">fecha nacimiento</h4>
+                        <label class="mb-2 fw-normal text-secondary mb-2" id="empleadoFecha" name="Empleado">
+                        </label>
+                        <div class="d-flex mb-2">
+                            <button type="button" class="btn fw-bold w-100 btn-light texto-verde"
+                                onclick="openEmpleado()">Editar Datos</button>
+                        </div>
+                        </form>
                     </div>
                 </div>
             </div>
         </div>
+
+
 
         <!-- Modal Password -->
         <div class="modal fade" id="passwordModal" data-bs-theme="dark" tabindex="-1"
@@ -62,7 +99,8 @@
                                 <button type="button" class="btn-close" data-bs-dismiss="modal"
                                     aria-label="Close"></button>
                             </div>
-                            <p class="text-white">Ingresa tu contraseña actual y la nueva contraseña para actualizarla
+                            <p class="text-white">Ingresa tu contraseña actual y la nueva contraseña para
+                                actualizarla
                                 en tu cuenta.
                             </p>
                             <div class="col-12">
@@ -112,7 +150,15 @@
                             </div>
                             <p class="text-white">Ingresa los nuevos datos para actualizar tu cuenta.</p>
                             <div class="col-12">
-                                <div class="row">
+                                <img id="imagenMuestra"
+                                    class="rounded  mx-auto d-block img-fluid mt-3 border border-3 border-secondary-subtle rounded-circle imagen_R"
+                                    src="../../resources/img/persona.png" alt="..." width="300px" height="300px">
+                                <div class="row ">
+                                    <div class="mb-3 col-12">
+                                        <label for="imagenAdmin" class="form-label">Imagen Cliente</label>
+                                        <input id="imagenAdmin" type="file" name="imagenAdmin" class="form-control"
+                                            accept=".png, .jpg">
+                                    </div>
                                     <div class="col-3">
                                         <p class="TituloModal text-end">Nombre Completo</p>
                                     </div>
@@ -143,8 +189,8 @@
         </div>
 
         <!-- Modal Delete -->
-        <div class="modal fade" id="deleteModal" data-bs-backdrop="static" data-bs-theme="dark" data-bs-keyboard="false" tabindex="-1"
-            aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal fade" id="deleteModal" data-bs-backdrop="static" data-bs-theme="dark" data-bs-keyboard="false"
+            tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-body">
@@ -155,7 +201,7 @@
                                 <button type="button" class="btn-close" data-bs-dismiss="modal"
                                     aria-label="Close"></button>
                             </div>
-                            <p class="text-white">Ingresa tu contraseña para verificar la autorización 
+                            <p class="text-white">Ingresa tu contraseña para verificar la autorización
                                 del usuario para realizar la eliminación del perfil.
                             </p>
                             <div class="col-12">
@@ -174,6 +220,83 @@
                             </div>
                         </form>
                     </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal agregar Empleado -->
+        <div class="modal fade" id="empleadoModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-lg">
+                <div class="modal-content bg-dark text-white">
+
+                    <!-- Formulario saveForm -->
+                    <form id="empleadoForm">
+
+                        <!-- Campo oculto para asignar el id del registro al momento de modificar -->
+                        <input type="number" class="d-none" id="idEmpleado" name="idEmpleado">
+                        <form class="needs-validation">
+
+                            <!-- Body del modal -->
+                            <div class="modal-body">
+                                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                                    aria-label="Close"></button> <!-- Cambiar color del botón de cerrar -->
+                                <h1 class="fs-4 fw-bold text-center mb-4" id="modalTitle"> </h1>
+
+                                <!-- Inputs -->
+                                <div class="row p-3">
+                                    <div class="col-12">
+                                        <div class="row">
+                                            <div class="col-6">
+                                                <label class="form-label">Nombre(s)</label>
+                                                <input id="nombreEmpleado" name="nombreEmpleado" class="form-control"
+                                                    autocomplete="off" required oninput="formatAlphabetic(this)">
+                                            </div>
+                                            <div class="col-6">
+                                                <label class="form-label">Apellido(s)</label>
+                                                <input id="apellidoEmpleado" name="apellidoEmpleado" autocomplete="off"
+                                                    class="form-control" required oninput="formatAlphabetic(this)">
+                                            </div>
+                                        </div>
+                                        <div class="col-12 mt-3">
+                                            <label class="form-label">Correo electronico</label>
+                                            <input id="correoEmpleado" name="correoEmpleado" class="form-control"
+                                                autocomplete="off" required oninput="formatEmail(this)">
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <div class="row">
+                                                <div class="col-6 mt-3">
+                                                    <label class="form-label">Documento de identidad</label>
+                                                    <input id="duiEmpleado" name="duiEmpleado" class="form-control"
+                                                        autocomplete="off" required oninput="formatDui(this)">
+                                                </div>
+                                                <div class="col-6 mt-3">
+                                                    <label class="form-label">Fecha de nacimiento</label>
+                                                    <input id="fechaEmpleado" name="fechaEmpleado" type="date"
+                                                        autocomplete="off" class="form-control" required
+                                                        onclick="validarFecha(this)">
+                                                </div>
+                                            </div>
+                                            <div class="form-check form-switch form-check-reverse mt-3">
+                                                <input class="form-check-input" type="checkbox" id="estadoEmpleado"
+                                                    name="estadoEmpleado" checked>
+                                                <label class="form-check-label" for="estadoEmpleado">Estado</label>
+                                            </div>
+                                            <div class="row mt-3">
+                                                <div class="col-6"></div>
+                                                <div class="col-6 text-end">
+                                                    <button type="submit" class="btn btn-primary ps-4 pe-4">
+                                                        <i class="bi bi-person-fill-add me-1"></i> Actualizar
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </form>
                 </div>
             </div>
         </div>

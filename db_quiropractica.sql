@@ -15,7 +15,8 @@ CREATE TABLE tb_clientes(
     telefono_cliente VARCHAR (9) NOT NULL,
     nacimiento_cliente DATE NOT NULL,
     estado_cliente tinyint(1) NOT NULL DEFAULT 1,
-    codigo_cliente VARCHAR(6) NOT NULL 
+    codigo_cliente VARCHAR(6) NOT NULL,
+	 imagen_cliente VARCHAR(500)
 );
 
 -- proximamente
@@ -35,8 +36,7 @@ CREATE TABLE tb_empleados(
     dui_empleado VARCHAR (10) NOT NULL unique,
     correo_empleado VARCHAR (100) NOT NULL unique,
     nacimiento_empleado DATE NOT NULL,
-    estado_empleado TINYINT(1) NOT NULL,
-    imagen_empleado VARCHAR(500) DEFAULT 'empleado.jpg'
+    estado_empleado TINYINT(1) NOT NULL
 );
 
 CREATE TABLE tb_admin(
@@ -47,7 +47,8 @@ CREATE TABLE tb_admin(
     fecha_contrasenia date not null,
     id_empleado INT,
     FOREIGN KEY (id_empleado) REFERENCES tb_empleados (id_empleado) ON DELETE CASCADE,
-    codigo_admin VARCHAR(6) NOT NULL 
+    codigo_admin VARCHAR(6) NOT NULL,
+	 imagen_admin VARCHAR(300) 
 );
 
 -- CREATE TABLE tb_fotos (

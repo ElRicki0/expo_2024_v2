@@ -32,16 +32,20 @@ if (isset($_GET['action'])) {
                 // Validación y creación de un nuevo administrador.
                 $_POST = Validator::validateForm($_POST);
                 if (
+                    !$administrador->setImagen($_FILES['imagenAdmin']) or
                     !$administrador->setCorreo($_POST['correoAdmin']) or
                     !$administrador->setContrasenia($_POST['contraAdmin']) or
                     !$administrador->setNombre($_POST['nombreAdmin']) or
-                    !$administrador->setEmpleado($_POST['empleadoAdmin'])
+                    !$administrador->setEmpleado($_POST['empleadoAdmin']) or
+                    !$administrador->setImagen($_FILES['imagenAdmin'])
                 ) {
                     $result['error'] = $administrador->getDataError();
                 } elseif ($administrador->createRow()) {
                     // Si se crea correctamente, se actualiza el estado y mensaje.
                     $result['status'] = 1;
                     $result['message'] = 'Administrador agregado correctamente';
+                    // Se asigna el estado del archivo después de insertar.
+                    $result['fileStatus'] = Validator::saveFile($_FILES['imagenAdmin'], $administrador::RUTA_IMAGEN);
                 } else {
                     // Si hay un problema al crear, se registra un error.
                     $result['error'] = 'Este administrador ya existe';
@@ -177,12 +181,15 @@ if (isset($_GET['action'])) {
                 $_POST = Validator::validateForm($_POST);
                 if (
                     !$administrador->setNombre($_POST['nombreAdminPerfil']) or
-                    !$administrador->setCorreo($_POST['correoAdminPerfil'])
+                    !$administrador->setCorreo($_POST['correoAdminPerfil']) or
+                    !$administrador->setImagen($_FILES['imagenAdmin'])
                 ) {
                     $result['error'] = $administrador->getDataError();
                 } elseif ($administrador->editProfile()) {
                     $result['status'] = 1;
                     $result['message'] = 'Perfil modificado correctamente';
+                    // Se asigna el estado del archivo después de insertar.
+                    $result['fileStatus'] = Validator::saveFile($_FILES['imagenAdmin'], $administrador::RUTA_IMAGEN);
                     $_SESSION['nombre_admin'] = $_POST['nombreAdminPerfil'];
                 } else {
                     $result['error'] = 'Ocurrió un problema al modificar el perfil';
@@ -273,8 +280,9 @@ if (isset($_GET['action'])) {
                 // Registro de un nuevo administrador (puede ser una acción pública).
                 $_POST = Validator::validateForm($_POST);
                 if (
-                    !$administrador->setCorreo($_POST['correoAdmin2']) ||
-                    !$administrador->setContrasenia($_POST['contraAdmin2']) ||
+                    !$administrador->setImagen($_FILES['imagenAdmin']) or
+                    !$administrador->setCorreo($_POST['correoAdmin2']) or
+                    !$administrador->setContrasenia($_POST['contraAdmin2']) or
                     !$administrador->setNombre($_POST['nombreAdmin2'])
                 ) {
                     // Si los datos no son válidos, se registra un error.
@@ -285,6 +293,8 @@ if (isset($_GET['action'])) {
                 } elseif ($administrador->createNewRow()) {
                     // Si se crea correctamente, se actualiza el estado y mensaje.
                     $result['status'] = 1;
+                    // Se asigna el estado del archivo después de insertar.
+                    $result['fileStatus'] = Validator::saveFile($_FILES['imagenAdmin'], $administrador::RUTA_IMAGEN);
                     $result['message'] = 'Administrador registrado correctamente';
                 } else {
                     // Si hay un problema al registrar, se registra un error.
