@@ -79,11 +79,52 @@ if (isset($_GET['action'])) {
                     !$empleado->setCorreo($_POST['correoEmpleado']) or
                     !$empleado->setDui($_POST['duiEmpleado']) or
                     !$empleado->setFecha($_POST['fechaEmpleado']) or
-                    !$empleado->setEstado(isset($_POST['estadoEmpleado']) ? 1 : 0)
+                    !$empleado->setEstado(isset($_POST['estadoEmpleado']) ? 1 : 0) or
+                    !$empleado->setImagen($_FILES['imagenEmpleado'])
                 ) {
                     $result['error'] = $empleado->getDataError();
                 } elseif ($empleado->updateRow()) {
                     $result['status'] = 1;
+                    // Se asigna el estado del archivo después de insertar.
+                    $result['fileStatus'] = Validator::saveFile($_FILES['imagenEmpleado'], $empleado::RUTA_IMAGEN);
+                    $result['message'] = 'Empleado modificado correctamente';
+                } else {
+                    $result['error'] = 'Ocurrió un problema al modificar el Empleado';
+                }
+                break;
+            case 'updateRowPerfil':
+                $_POST = Validator::validateForm($_POST);
+                if (
+                    !$empleado->setId($_POST['idEmpleado']) or
+                    !$empleado->setNombre($_POST['nombreEmpleado']) or
+                    !$empleado->setApelldo($_POST['apellidoEmpleado']) or
+                    !$empleado->setCorreo($_POST['correoEmpleado']) or
+                    !$empleado->setDui($_POST['duiEmpleado']) or
+                    !$empleado->setFecha($_POST['fechaEmpleado']) or
+                    !$empleado->setEstado(isset($_POST['estadoEmpleado']) ? 1 : 0) or
+                    !$empleado->setImagen($_FILES['imagenEmpleado'])
+                ) {
+                    $result['error'] = $empleado->getDataError();
+                } elseif ($empleado->updateRow()) {
+                    $result['status'] = 1;
+                    // Se asigna el estado del archivo después de insertar.
+                    $result['fileStatus'] = Validator::saveFile($_FILES['imagenEmpleado'], $empleado::RUTA_IMAGEN);
+                    $result['message'] = 'Empleado modificado correctamente';
+                } else {
+                    $result['error'] = 'Ocurrió un problema al modificar el Empleado';
+                }
+                break;
+            case 'updateRowImagen':
+                $_POST = Validator::validateForm($_POST);
+                if (
+                    !$empleado->setId($_POST['empleadoID']) or
+                    !$empleado->setImagen($_FILES['imagenEmpleado'])
+                ) {
+                    $result['error'] = $empleado->getDataError();
+                } elseif ($empleado->updateRowImagen()) {
+                    $result['status'] = 1;
+                    // Se asigna el estado del archivo después de insertar.
+                    $result['fileStatus'] = Validator::saveFile($_FILES['imagenEmpleado'], $empleado::RUTA_IMAGEN);
                     $result['message'] = 'Empleado modificado correctamente';
                 } else {
                     $result['error'] = 'Ocurrió un problema al modificar el Empleado';

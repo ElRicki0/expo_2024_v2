@@ -134,6 +134,16 @@ class EmpleadoHandler
         return Database::executeRow($sql, $params);
     }
 
+    // Método updateRow: actualiza los datos de un empleado en la base de datos.
+    public function updateRowImagen()
+    {
+        $sql = 'UPDATE tb_empleados
+                SET imagen_empleado = ?
+                WHERE id_empleado = ?';
+        $params = array($this->imagen, $this->id);
+        return Database::executeRow($sql, $params);
+    }
+
     // Método deleteRow: elimina un empleado de la base de datos según su ID.
     public function deleteRow()
     {

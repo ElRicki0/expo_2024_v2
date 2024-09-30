@@ -22,68 +22,88 @@
 
     <!-- Contenedor principal -->
     <main class="container">
-        <div class="row mt-lg-5">
-            <!-- informacion de administrador -->
-            <div class="col-sm-12 col-md-12 col-lg-5 container  mb-3">
-                <div class="row">
-                    <form class="card conteinerInicio col text-center " id="formImagen">
-                        <div id="perfil">
-                            <h3 class="text-white">Información de administrador</h3>
-                            <img id=""
-                                class="rounded  mx-auto d-block img-fluid mt-3 border border-3 border-secondary-subtle rounded-circle imagen_R"
-                                src="http://localhost/expo_2024_v2/api/images/administradores/" alt="..." width="200px"
-                                height="300px"
-                                onerror="this.onerror=null; this.src='../../resources/img/error/administrador.jpg';"
-                                style="max-width: 100%; max-height: 100%;">
-                        </div>
-                        <h3 class="fs-4 fw-medium text-white" id="nombreAdmin" name="nombreAdmin"></h3>
-                        <h5 class="fs-6 fw-normal text-white" id="correoAdmin" name="correoAdmin"></h5>
-                        <div class="d-flex mt-4">
-                            <button type="button" class="btn fw-bold w-100 text-white" id="ButtonPassword"
-                                onclick="openPassword()">Cambiar contraseña</button>
-                        </div>
-                        <div class="d-flex mt-2">
-                            <button type="button" class="btn fw-bold w-100" id="ButtonEdit"
-                                onclick="openProfile()">Editar
-                                perfil</button>
-                        </div>
-                        <div class="d-flex mt-2">
-                            <button type="button" class="btn fw-bold w-100" id="ButtonDelete"
-                                onclick="openDelete()">Eliminar
-                                perfil</button>
-                        </div>
-                    </form>
-                </div>
+
+        <h2 class="text-white text-center mt-5">Información de perfil</h2>
+        <div id="perfil" class=" mt-3 text-center position-relative mb-5">
+            <h4 class="text-white text-center">Imagen perfil</h4>
+            <div class="position-relative d-inline-block mb-5">
+                <img id="imagenInicio"
+                    class="rounded mx-auto d-block img-fluid mt-3 border border-3 border-secondary-subtle rounded-circle imagen_R"
+                    src="http://localhost/expo_2024_v2/api/images/administradores/" alt="..." width="200px"
+                    height="300px" onerror="this.onerror=null; this.src='../../resources/img/error/administrador.jpg';"
+                    style="max-width: 100%; max-height: 100%;">
+                <!-- Botón centrado en la parte inferior -->
             </div>
-            <!-- información de empleado -->
-            <div class="col-sm-12 col-md-12 col-lg-5 container ">
-                <div class="row">
-                    <div class="col text-center card conteinerInicio">
-                        <div>
-                            <h2 class="mb-2 text-white">Información de empleado</h2>
+            <button type="button" onclick="openEmpleadoImagen()"
+                class="btn btn-primary position-absolute bottom-0 start-50 translate-middle-x mt-5 ">
+                Actualizar imagen
+            </button>
+        </div>
+
+        <!-- información de administrador -->
+        <div class="accordion container mx-auto accordion-flush conteinerInicio col-5 mt-5" id="accordionFlushExample">
+            <div class="accordion-item conteinerInicio">
+                <h2 class="accordion-header conteinerInicio">
+                    <button class="accordion-button collapsed conteinerInicio text-white text-center" type="button"
+                        data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false"
+                        aria-controls="flush-collapseOne">
+                        Datos de administrador
+                    </button>
+                </h2>
+                <div id="flush-collapseOne" class="accordion-collapse collapse conteinerInicio"
+                    data-bs-parent="#accordionFlushExample">
+                    <div class="accordion-body conteinerInicio text-center"> <!-- Alineación central -->
+
+                        <h4 class="text-white" name="Empleado">Nombre Usuario</h4>
+                        <label class="fw-normal text-secondary" id="nombreAdmin" name="nombreAdmin">Aquí el nombre del
+                            administrador</label>
+
+                        <h4 class="text-white mt-3" name="Empleado">Correo Usuario</h4>
+                        <!-- Añadido margen superior para separar elementos -->
+                        <label class="fw-normal text-secondary" id="correoAdmin" name="correoAdmin">Aquí el correo del
+                            administrador</label>
+
+                        <div class="d-flex flex-column align-items-center mt-4"> <!-- Alineación de botones centrada -->
+                            <button type="button" class="btn fw-bold w-100 text-white mb-2" id="ButtonPassword"
+                                onclick="openPassword()">Cambiar contraseña</button>
+                            <button type="button" class="btn fw-bold w-100 mb-2" id="ButtonEdit"
+                                onclick="openProfile()">Editar perfil</button>
+                            <button type="button" class="btn fw-bold w-100" id="ButtonDelete"
+                                onclick="openDelete()">Eliminar perfil</button>
                         </div>
-                        <h4 class="text-white" name="Empleado"> Nombre Completo</h4>
-                        <label class="fw-normal text-secondary" id="empleadoNombre" name="Empleado"> </label>
-                        <label class="mb-2 fw-normal text-secondary" id="empleadoApellido" name="Empleado"></label>
-                        <h4 class="text-white" name="Empleado">especialidad medica</h4>
-                        <label class="mb-2 fw-normal text-secondary" id="empleadoEspecialidad" name="Empleado"></label>
-                        <h4 class="text-white" name="Empleado">DUI</h4>
-                        <label class="mb-2 fw-normal text-secondary" id="empleadoDUI" name="Empleado"></label>
-                        <h4 class="text-white" name="Empleado">Correo electrónico</h4>
-                        <label class="mb-2 fw-normal text-secondary" id="empleadoCorreo" name="Empleado"></label>
-                        <h4 class="text-white" name="Empleado">fecha nacimiento</h4>
-                        <label class="mb-2 fw-normal text-secondary mb-2" id="empleadoFecha" name="Empleado">
-                        </label>
-                        <div class="d-flex mb-2">
-                            <button type="button" class="btn fw-bold w-100 btn-light texto-verde"
-                                onclick="openEmpleado()">Editar Datos</button>
-                        </div>
-                        </form>
                     </div>
                 </div>
+
             </div>
         </div>
 
+        <!-- información de empleado -->
+        <div class="mt-5 col-sm-12 col-md-12 col-lg-6 container  mb-3">
+            <div class="row">
+                <div class="col text-center card conteinerInicio">
+                    <div>
+                        <h2 class="mb-2 text-white">Información de empleado</h2>
+                    </div>
+                    <h4 class="text-white" name="Empleado"> Nombre Completo</h4>
+                    <label class="fw-normal text-secondary" id="empleadoNombre" name="Empleado"> </label>
+                    <label class="mb-2 fw-normal text-secondary" id="empleadoApellido" name="Empleado"></label>
+                    <h4 class="text-white" name="Empleado">especialidad medica</h4>
+                    <label class="mb-2 fw-normal text-secondary" id="empleadoEspecialidad" name="Empleado"></label>
+                    <h4 class="text-white" name="Empleado">DUI</h4>
+                    <label class="mb-2 fw-normal text-secondary" id="empleadoDUI" name="Empleado"></label>
+                    <h4 class="text-white" name="Empleado">Correo electrónico</h4>
+                    <label class="mb-2 fw-normal text-secondary" id="empleadoCorreo" name="Empleado"></label>
+                    <h4 class="text-white" name="Empleado">fecha nacimiento</h4>
+                    <label class="mb-2 fw-normal text-secondary mb-2" id="empleadoFecha" name="Empleado">
+                    </label>
+                    <div class="d-flex mb-2">
+                        <button type="button" class="btn fw-bold w-100 btn-light texto-verde"
+                            onclick="openEmpleado()">Editar Datos</button>
+                    </div>
+                    </form>
+                </div>
+            </div>
+        </div>
 
 
         <!-- Modal Password -->
@@ -135,6 +155,45 @@
             </div>
         </div>
 
+        <!-- Modal Imagen -->
+        <div class="modal fade" id="imagenModal" data-bs-theme="dark" tabindex="-1" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <form id="imagenForm">
+                            <!-- Campo oculto para asignar el id del registro al momento de modificar -->
+                            <input type="number" class="d-none" id="empleadoID" name="empleadoID">
+
+                            <div class="d-flex justify-content-between">
+                                <h1 class="modal-title fs-5 TituloModal">Actualizar imagen
+                                </h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <p class="text-white">seleccione la imagen a actualizar
+                            </p>
+                            <div class="col-12">
+                                <img id="imagenMuestra"
+                                    class="rounded  mx-auto d-block img-fluid mt-3 border border-3 border-secondary-subtle rounded-circle imagen_R"
+                                    src="../../resources/img/persona.png" alt="..." width="200px" height="200px">
+                            </div>
+                            <div class="col-12">
+                                <label for="imagenEmpleado" class="form-label">Imagen Empleado</label>
+                                <input id="imagenEmpleado" type="file" name="imagenEmpleado" class="form-control"
+                                    accept=".png, .jpg">
+                            </div>
+
+                            <div class="d-flex flex-row-reverse">
+                                <button type="submit" class="btn fw-bold" id="ButtonPassword">Actualizar
+                                    contraseña</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <!-- Modal Perfil -->
         <div class="modal fade" id="PerfilModal" data-bs-theme="dark" tabindex="-1" aria-labelledby="exampleModalLabel"
             aria-hidden="true">
@@ -150,15 +209,7 @@
                             </div>
                             <p class="text-white">Ingresa los nuevos datos para actualizar tu cuenta.</p>
                             <div class="col-12">
-                                <img id="imagenMuestra"
-                                    class="rounded  mx-auto d-block img-fluid mt-3 border border-3 border-secondary-subtle rounded-circle imagen_R"
-                                    src="../../resources/img/persona.png" alt="..." width="300px" height="300px">
                                 <div class="row ">
-                                    <div class="mb-3 col-12">
-                                        <label for="imagenAdmin" class="form-label">Imagen Cliente</label>
-                                        <input id="imagenAdmin" type="file" name="imagenAdmin" class="form-control"
-                                            accept=".png, .jpg">
-                                    </div>
                                     <div class="col-3">
                                         <p class="TituloModal text-end">Nombre Completo</p>
                                     </div>
@@ -233,8 +284,8 @@
                     <form id="empleadoForm">
 
                         <!-- Campo oculto para asignar el id del registro al momento de modificar -->
-                        <input type="number" class="d-none" id="idEmpleado" name="idEmpleado">
-                        <form class="needs-validation">
+                        <input type="hide"  id="idEmpleado" name="idEmpleado">
+                        <div class="needs-validation">
 
                             <!-- Body del modal -->
                             <div class="modal-body">
@@ -295,7 +346,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </form>
+                        </div>
                     </form>
                 </div>
             </div>

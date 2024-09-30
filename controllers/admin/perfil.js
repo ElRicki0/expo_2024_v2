@@ -15,12 +15,15 @@ const NOMBRE_EMPLEADO = document.getElementById('empleadoNombre'),
     ESPECIALIDAD_EMPLEADO = document.getElementById('empleadoEspecialidad'),
     DUI_EMPLEADO = document.getElementById('empleadoDUI'),
     CORREO_EMPLEADO = document.getElementById('empleadoCorreo'),
+    IMAGEN_EMPLEADO = document.getElementById('imagenInicio'),
     FECHA_EMPLEADO = document.getElementById('empleadoFecha');
 
 // constangtes para poder mostrar la imagen seleccionada
-const FORM_IMAGEN = document.getElementById('formImagen'),
+const IMAGEN_MODAL = new bootstrap.Modal('#imagenModal');
+const IMAGEN_FORM = document.getElementById('imagenForm'),
+    ID_EMPLEADO = document.getElementById('empleadoID'),
     IMAGEN_MUESTRA = document.getElementById('imagenMuestra'),
-    IMAGEN_PERFIL = document.getElementById('perfil');
+    IMAGEN_PERFIL = document.getElementById('imagenEmpleado');
 
 // Constante para establecer la modal de cambiar contraseña.
 const PASSWORD_MODAL = new bootstrap.Modal('#passwordModal');
@@ -33,7 +36,6 @@ const PERFIL_MODAL = new bootstrap.Modal('#PerfilModal');
 
 // Constante para establecer el formulario de cambiar datos del administrador.
 const PROFILE_FORM = document.getElementById('editForm'),
-    IMAGEN_ADMIN = document.getElementById('imagenAdmin'),
     NOMBRE_ADMINISTRADOR_PERFIL = document.getElementById('nombreAdminPerfil'),
     CORREO_ADMINISTRADOR_PERFIL = document.getElementById('correoAdminPerfil');
 
@@ -52,6 +54,22 @@ const DELETE_MODAL = new bootstrap.Modal('#deleteModal');
 
 // Constante para establecer el formulario de eliminar perfil
 const DELETE_FORM = document.getElementById('deleteForm');
+
+IMAGEN_PERFIL.addEventListener('change', function (event) {
+    // Verifica si hay una imagen seleccionada
+    if (event.target.files && event.target.files[0]) {
+        // con el objeto Filereader lee el archivo seleccionado
+        const reader = new FileReader();
+        // Luego de haber leido la imagen selecionada se nos devuelve un objeto de tipo blob
+        // Con el metodo createObjectUrl de fileReader crea una url temporal para la imagen
+        reader.onload = function (event) {
+            // finalmente la url creada se le asigna el atributo de la etiqueta img
+            IMAGEN_MUESTRA.src = event.target.result;
+        };
+        reader.readAsDataURL(event.target.files[0]);
+    }
+})
+
 
 // Método del evento para cuando el documento ha cargado.
 document.addEventListener('DOMContentLoaded', async () => {
@@ -73,6 +91,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         DUI_EMPLEADO.textContent = ROW.dui_empleado;
         FECHA_EMPLEADO.textContent = ROW.nacimiento_empleado;
         ESPECIALIDAD_EMPLEADO.textContent = ROW.especialidad_empleado;
+        IMAGEN_EMPLEADO.src = SERVER_URL.concat('images/empleados/', ROW.imagen_empleado);
         //datos de empleado
     } else {
         sweetAlert(2, DATA.error, null);
@@ -121,13 +140,56 @@ PROFILE_FORM.addEventListener('submit', async (event) => {
 });
 
 // Mètodo del evento para cuando se envía el formulario de cambiar contraseña.
+IMAGEN_FORM.addEventListener('submit', async (event) => {
+    // Se evita recargar la página web después de enviar el formulario.
+    event.preventDefault();
+    // Constante tipo objeto con los datos del formulario.
+    const FORM = new FormData(IMAGEN_FORM);
+    // Petición para actualizar la constraseña.
+    const DATA = await fetchData(EMPLEADO_API, 'updateRowImagen', FORM);
+    // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+    if (DATA.status) {
+        // Se cierra la caja de diálogo.
+        IMAGEN_MODAL.hide();
+        // Se muestra un mensaje de éxito.
+        sweetAlert(1, DATA.message, true);
+        setTimeout(() => {
+            location.href = "perfil.html";
+        }, 2000); // Espera 3 segundos antes de redirigir
+    } else {
+        sweetAlert(2, DATA.error, false);
+    }
+});
+
+const openEmpleadoImagen = async (id) => {
+    // Se define una constante tipo objeto con los datos del registro seleccionado.
+    const FORM = new FormData();
+    FORM.append('idEmpleado', id);
+    // Petición para obtener los datos del registro solicitado.
+    const DATA = await fetchData(USER_API, 'readProfile', FORM);
+    // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+    if (DATA.status) {
+        // Se muestra la caja de diálogo con su título.
+        IMAGEN_MODAL.show();
+
+        IMAGEN_FORM.reset();
+        // Se inicializan los campos con los datos.
+        const ROW = DATA.dataset;
+        ID_EMPLEADO.value = ROW.id_empleado;
+        IMAGEN_MUESTRA.src = SERVER_URL.concat('images/empleados/', ROW.imagen_empleado);
+    } else {
+        sweetAlert(2, DATA.error, false);
+    }
+}
+
+// Mètodo del evento para cuando se envía el formulario de cambiar contraseña.
 EMPLEADO_FORM.addEventListener('submit', async (event) => {
     // Se evita recargar la página web después de enviar el formulario.
     event.preventDefault();
     // Constante tipo objeto con los datos del formulario.
     const FORM = new FormData(EMPLEADO_FORM);
     // Petición para actualizar la constraseña.
-    const DATA = await fetchData(EMPLEADO_API, 'updateRow', FORM);
+    const DATA = await fetchData(EMPLEADO_API, 'updateRowPerfil', FORM);
     // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
     if (DATA.status) {
         // Se cierra la caja de diálogo.
@@ -210,7 +272,7 @@ DELETE_FORM.addEventListener('submit', async (event) => {
 });
 
 /*
-*   Función para preparar el formulario al momento de cambiar la constraseña.
+*   Función para preparar el formulario al momento de cambiar la contraseña.
 *   Parámetros: ninguno.
 *   Retorno: ninguno.
 */

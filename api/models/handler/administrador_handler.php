@@ -147,7 +147,7 @@ class AdministradorHandler
     // Método para leer el perfil del administrador actual.
     public function readProfile()
     {
-        $sql = 'SELECT a.id_admin, a.nombre_admin, a.correo_admin, a.imagen_admin, e.id_empleado, e.nombre_empleado, e.apellido_empleado, e.especialidad_empleado, e.dui_empleado, e.correo_empleado, e.nacimiento_empleado
+        $sql = 'SELECT a.id_admin, a.nombre_admin, a.correo_admin, e.id_empleado, e.nombre_empleado, e.apellido_empleado, e.especialidad_empleado, e.dui_empleado, e.correo_empleado, e.nacimiento_empleado,  e.imagen_empleado
                 FROM tb_admin a
                 INNER JOIN tb_empleados e ON a.id_empleado = e.id_empleado ;
                 WHERE a.id_admin = ?';
@@ -211,7 +211,7 @@ class AdministradorHandler
     public function readAll()
     {
         $sql = 'SELECT a.id_admin, a.nombre_admin, a.correo_admin, a.contrasenia_admin, e.nombre_empleado, e.apellido_empleado, a.id_empleado, 
-                    e.nombre_empleado
+                    e.nombre_empleado, e.imagen_empleado
                 FROM tb_admin a
                 INNER JOIN tb_empleados e ON a.id_empleado= e.id_empleado
                 WHERE a.id_admin <> ?';

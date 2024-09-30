@@ -94,7 +94,7 @@ const fillTable = async (form = null) => {
     <div class="row  ">
         <div class="col-sm-12 col-md-12 col-lg-3 mt-3 d-flex align-items-center justify-content-center" style="height: 200px; width: 200px;">
             <!-- Ajusta la altura según sea necesario -->
-            <img src="${SERVER_URL}images/administradores/${row.imagen_admin}" class="card-img-top" alt="..."
+            <img src="${SERVER_URL}images/empleados/${row.imagen_empleado}" class="card-img-top" alt="..."
                 onerror="this.onerror=null; this.src='../../resources/img/error/cliente.jpg';"
                 style="max-width: 100%; max-height: 100%;">
         </div>
