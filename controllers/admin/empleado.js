@@ -19,6 +19,10 @@ const SAVE_FORM = document.getElementById('saveForm'),
     FECHA_EMPLEADO = document.getElementById('fechaEmpleado'),
     ESTADO_EMPLEADO = document.getElementById('estadoEmpleado');
 
+// CONSTANTES PARA MOSTRAR IMAGEN SELECCIONADA  PARA EL PERFIL DEL EMPLEADO
+const IMAGEN_MUESTRA = document.getElementById('imagenMuestra'),
+    IMAGEN_EMPLEADO = document.getElementById('imagenEmpleado');
+
 // Método del evento para cuando el documento ha cargado.
 document.addEventListener('DOMContentLoaded', () => {
     // Llamada a la función para mostrar el encabezado y pie del documento.
@@ -27,6 +31,21 @@ document.addEventListener('DOMContentLoaded', () => {
     // Llamada a la función para llenar la tabla con los registros existentes.
     fillTable();
 });
+
+IMAGEN_EMPLEADO.addEventListener('change', function (event) {
+    // Verifica si hay una imagen seleccionada
+    if (event.target.files && event.target.files[0]) {
+        // con el objeto Filereader lee el archivo seleccionado
+        const reader = new FileReader();
+        // Luego de haber leido la imagen selecionada se nos devuelve un objeto de tipo blob
+        // Con el metodo createObjectUrl de fileReader crea una url temporal para la imagen
+        reader.onload = function (event) {
+            // finalmente la url creada se le asigna el atributo de la etiqueta img
+            IMAGEN_MUESTRA.src = event.target.result;
+        };
+        reader.readAsDataURL(event.target.files[0]);
+    }
+})
 
 // Método del evento para cuando se envía el formulario de buscar.
 SEARCH_FORM.addEventListener('submit', (event) => {
@@ -89,7 +108,7 @@ const fillTable = async (form = null) => {
     <div class="row  ">
         <div class="col-sm-12 col-md-12 col-lg-3 mt-3 d-flex align-items-center justify-content-center" 
              style="height: 300px; width: 300px;">
-                <img src="${SERVER_URL}images/clientes/${row.imagen_cliente}" class="card-img-top" alt="..." 
+                <img src="${SERVER_URL}images/empleados/${row.imagen_empleado}" class="card-img-top" alt="..." 
                  onerror="this.onerror=null; this.src='../../resources/img/error/cliente.jpg';" 
                  style="max-width: 100%; max-height: 100%; object-fit: contain;">
         </div>
@@ -106,7 +125,7 @@ const fillTable = async (form = null) => {
             <p class="card-text text-white">Estado: <i class="${icon} text-white"></i></p>
         </div>3
         <div class="col-sm-12 col-md-12 col-lg-3 text-center my-5">
-            <div class="mt-3">
+            <div class=" ">
                 <div class="d-flex flex-column">
                     <button class="btn btn-outline-light mb-2" onclick="openDelete(${row.id_empleado})">
                         <i class="bi bi-trash3-fill"></i> Eliminar
@@ -182,7 +201,7 @@ const openCreate = () => {
 */
 const openUpdate = async (id) => {
     // Se define una constante tipo objeto con los datos del registro seleccionado.
-    const FORM = new FormData(); 
+    const FORM = new FormData();
     FORM.append('idEmpleado', id);
     // Petición para obtener los datos del registro solicitado.
     const DATA = await fetchData(EMPLEADO_API, 'readOne', FORM);
@@ -202,6 +221,7 @@ const openUpdate = async (id) => {
         DUI_EMPLEADO.value = ROW.dui_empleado;
         FECHA_EMPLEADO.value = ROW.nacimiento_empleado;
         ESTADO_EMPLEADO.checked = ROW.estado_empleado;
+        IMAGEN_MUESTRA.src =    SERVER_URL.concat('images/empleados/', ROW.imagen_empleado);
     } else {
         sweetAlert(2, DATA.error, false);
     }

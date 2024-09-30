@@ -60,9 +60,9 @@ class EmpleadoHandler
     // Método createRow: inserta un nuevo empleado en la base de datos.
     public function createRow()
     {
-        $sql = 'INSERT INTO tb_empleados(nombre_empleado, apellido_empleado, dui_empleado, correo_empleado, nacimiento_empleado, estado_empleado)
-                VALUES(?, ?, ?, ?, ?, ?)';
-        $params = array($this->nombre, $this->apellido, $this->dui, $this->correo, $this->fecha, $this->estado);
+        $sql = 'INSERT INTO tb_empleados(nombre_empleado, apellido_empleado, dui_empleado, correo_empleado, nacimiento_empleado, estado_empleado, imagen_empleado)
+                VALUES(?, ?, ?, ?, ?, ?, ?)';
+        $params = array($this->nombre, $this->apellido, $this->dui, $this->correo, $this->fecha, $this->estado, $this->imagen);
         return Database::executeRow($sql, $params);
     }
 
@@ -107,7 +107,7 @@ class EmpleadoHandler
     // Método readOne: lee un empleado específico de la base de datos según su ID.
     public function readOne()
     {
-        $sql = 'SELECT id_empleado, nombre_empleado, apellido_empleado, dui_empleado, correo_empleado, nacimiento_empleado, estado_empleado
+        $sql = 'SELECT id_empleado, nombre_empleado, apellido_empleado, dui_empleado, correo_empleado, nacimiento_empleado, estado_empleado, imagen_empleado
                 FROM tb_empleados
                 WHERE id_empleado = ? AND  id_empleado <> ?';
         $params = array($this->id, $_SESSION['idEmpleado']);

@@ -37,15 +37,13 @@ const mostrarAdvertencia = () => {
 
 // Función para cerrar sesión
 const cerrarSesion = async () => {
+    // Petición para eliminar la sesión.
     const DATA = await fetchData(USER_API, 'logOut');
+    // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
     if (DATA.status) {
-        sweetAlert(1, DATA.message, true);
-        // Redirigir después de mostrar la alerta
-        setTimeout(() => {
-            window.location.href = 'index.html';
-        }, 2000); // Espera 2 segundos para permitir que la alerta se vea
+        sweetAlert(1, DATA.message, true, 'index.html');
     } else {
-        sweetAlert(4, 'Tu sesión ha sido expirada por inactividad', false);
+        sweetAlert(2, DATA.exception, false);
     }
 };
 
