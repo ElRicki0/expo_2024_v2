@@ -15,12 +15,7 @@ const SAVE_FORM = document.getElementById('saveForm'),
     NOMBRE_ADMINISTRADOR = document.getElementById('nombreAdmin'),
     CORREO_ADMINISTRADOR = document.getElementById('correoAdmin'),
     CONTRASEÑA_ADMINISTRADOR = document.getElementById('contraAdmin'),
-    IMAGEN_ADMINISTRADOR = document.getElementById('imagenAdmin'),
     CONTRASEÑA_TITLE = document.getElementById('TextPassword');
-
-
-// constangtes para poder mostrar la imagen seleccionada
-const IMAGEN_MUESTRA = document.getElementById('imagenMuestra');
 
 const SAVE_FORM_EMPLEADO = new bootstrap.Modal('#modalEmpleado'),
     MODAL_TITLE_EMPLEADO = document.getElementById('modalTitleEmpleado');
@@ -41,21 +36,6 @@ document.addEventListener('DOMContentLoaded', () => {
     loadTemplate();
     // Llamada a la función para llenar la tabla con los registros existentes.
     fillTable();
-});
-
-IMAGEN_ADMINISTRADOR.addEventListener('change', function (event) {
-    // Verifica si hay una imagen seleccionada
-    if (event.target.files && event.target.files[0]) {
-        // con el objeto Filereader lee el archivo seleccionado
-        const reader = new FileReader();
-        // Luego de haber leido la imagen selecionada se nos devuelve un objeto de tipo blob
-        // Con el metodo createObjectUrl de fileReader crea una url temporal para la imagen
-        reader.onload = function (event) {
-            // finalmente la url creada se le asigna el atributo de la etiqueta img
-            IMAGEN_MUESTRA.src = event.target.result;
-        };
-        reader.readAsDataURL(event.target.files[0]);
-    }
 });
 
 // Método del evento para cuando se envía el formulario de buscar.
@@ -112,14 +92,14 @@ const fillTable = async (form = null) => {
             ADMINISTRADORES.innerHTML += `
 <div class="col-12 card mt-2 inicioIndex" id="searchForm">
     <div class="row  ">
-        <div class="col-3 mt-3 d-flex align-items-center mx-3 justify-content-center" style="height: 200px; width: 200px;">
+        <div class="col-sm-12 col-md-12 col-lg-3 mt-3 d-flex align-items-center justify-content-center" style="height: 200px; width: 200px;">
             <!-- Ajusta la altura según sea necesario -->
             <img src="${SERVER_URL}images/administradores/${row.imagen_admin}" class="card-img-top" alt="..."
                 onerror="this.onerror=null; this.src='../../resources/img/error/cliente.jpg';"
                 style="max-width: 100%; max-height: 100%;">
         </div>
 
-        <div class="col-3 card-body">
+        <div class="col-sm-12 col-md-12 col-lg-3 card-body d-flex flex-column align-items-center text-center">
             <h5 class="text-white" for="">Nombre usuario</h5>
             <p class="card-title text-white">${row.nombre_admin}</p>
             <h5 class="text-white" for="">Correo electronico</h5>
@@ -127,7 +107,7 @@ const fillTable = async (form = null) => {
             <h5 class="text-white" for="">Nombre empleado</h5>
             <p class="card-text text-white">${row.nombre_empleado} ${row.apellido_empleado}</p>
         </div>
-        <div class="col-3 text-center my-5">
+        <div class="col-sm-12 col-md-12 col-lg-3 text-center my-5">
             <div class="mt-3">
                 <div class="d-flex flex-column">
                     <button class="btn btn-outline-light mb-2 mx-3" onclick="openEmpleado(${row.id_admin})">
@@ -160,7 +140,7 @@ const openCreate = () => {
     MODAL_TITLE.textContent = 'AGREGAR ADMINISTRADOR';
     // Se prepara el formulario.
     SAVE_FORM.reset();
-    fillSelect(EMPLEADO_API, 'readAll', 'empleadoAdmin');
+    fillSelect(EMPLEADO_API, 'readAllOne', 'empleadoAdmin');
 
 }
 
