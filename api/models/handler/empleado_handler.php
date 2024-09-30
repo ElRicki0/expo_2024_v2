@@ -73,10 +73,21 @@ class EmpleadoHandler
     // Método readAll: lee todos los empleados de la base de datos.
     public function readAll()
     {
-        $sql = 'SELECT id_empleado, nombre_empleado, apellido_empleado, dui_empleado, correo_empleado, nacimiento_empleado, estado_empleado, especialidad_empleado
+        $sql = 'SELECT id_empleado, nombre_empleado, apellido_empleado, dui_empleado, correo_empleado, nacimiento_empleado, estado_empleado, especialidad_empleado, imagen_empleado
                 FROM tb_empleados
                 ORDER BY nombre_empleado';
         return Database::getRows($sql);
+    }
+    
+    // Método readAll: lee todos los empleados de la base de datos.
+    public function readAllOne()
+    {
+        $sql = 'SELECT id_empleado, nombre_empleado, apellido_empleado, dui_empleado, correo_empleado, nacimiento_empleado, estado_empleado, especialidad_empleado, imagen_empleado
+                FROM tb_empleados
+                WHERE id_empleado <> ?';
+        $params = array($_SESSION['idEmpleado']);
+        // Se obtiene la información del perfil del administrador actual.
+        return Database::getRows($sql, $params);
     }
 
     // Método readAll: lee todos los empleados de la base de datos.
@@ -93,8 +104,8 @@ class EmpleadoHandler
     {
         $sql = 'SELECT id_empleado, nombre_empleado, apellido_empleado, dui_empleado, correo_empleado, nacimiento_empleado, estado_empleado
                 FROM tb_empleados
-                WHERE id_empleado = ?';
-        $params = array($this->id);
+                WHERE id_empleado = ? AND  id_empleado <> ?';
+        $params = array($this->id, $_SESSION['idEmpleado']);
         return Database::getRow($sql, $params);
     }
 

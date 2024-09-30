@@ -50,6 +50,14 @@ if (isset($_GET['action'])) {
                     $result['error'] = 'No existen Empleados registrados';
                 }
                 break;
+                case 'readAllOne':
+                    if ($result['dataset'] = $empleado->readAllOne()) {
+                        $result['status'] = 1;
+                        $result['message'] = 'Existen ' . count($result['dataset']) . ' registro(s)';
+                    } else {
+                        $result['error'] = 'No existen Empleados registrados';
+                    }
+                    break;
             case 'readOne':
                 if (!$empleado->setId($_POST['idEmpleado'])) {
                     $result['error'] = 'Empleado incorrecto';
