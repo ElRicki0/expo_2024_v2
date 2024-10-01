@@ -34,19 +34,19 @@ document.addEventListener('DOMContentLoaded', async () => {
 * Retorno: ninguno.
 */
 const fillTable = async (form = null) => {
-    SERVICIOS.innerHTML = '';
+    PREGUNTA.innerHTML = '';
     // Arreglo con los nombres de los números en inglés.
     const numbersInEnglish = ['One', 'Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight'];
 
     // Petición para obtener los registros disponibles.
-    const DATA = await fetchData(SERVICIO_API, 'readAll8', form);
+    const DATA = await fetchData(PREGUNTA_API, 'readAll8', form);
 
     // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
     if (DATA.status) {
         // Se recorre el conjunto de registros (dataset) fila por fila a través del objeto row.
         DATA.dataset.forEach((row, index) => {
             let valor = numbersInEnglish[index % numbersInEnglish.length]; // Asigna el número en inglés basado en el índice.
-            let url = `detalles.html?id=${row.id_servicio}`;
+            let url = `detalles.html?id=${row.id_pregunta}`;
 
             // Se crean y concatenan las filas de la tabla con los datos de cada registro.
             SERVICIOS.innerHTML += `
