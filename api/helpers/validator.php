@@ -7,7 +7,7 @@ class Validator
     /*
     *   Atributos para manejar algunas validaciones.
     */
-    private static $filename = null;
+    public static $filename = null;
     private static $search_value = null;
     private static $password_error = null;
     private static $file_error = null;
@@ -77,37 +77,31 @@ class Validator
     *   Parámetros: $file (archivo de un formulario) y $dimension (medida mínima para la imagen).
     *   Retorno: booleano (true si el archivo es correcto o false en caso contrario).
     */
-    public static function validateImageFile($file, $dimension)
-    {
-        if (is_uploaded_file($file['tmp_name'])) {
-            // Se obtienen los datos de la imagen.
-            $image = getimagesize($file['tmp_name']);
-            // Se comprueba si el archivo tiene un tamaño mayor a 2MB.
-            if ($file['size'] > 2097152) {
-                self::$file_error = 'El tamaño de la imagen debe ser menor a 2MB';
-                return false;
-
-                // } elseif ($image[0] < $dimension) {
-                //     self::$file_error = 'La dimensión de la imagen es menor a ' . $dimension . 'px';
-                //     return false;
-                // } elseif ($image[0] != $image[1]) {
-                //     self::$file_error = 'La imagen no es cuadrada';
-                //     return false;
-
-            } elseif ($image['mime'] == 'image/jpeg' || $image['mime'] == 'image/png') {
-                // Se obtiene la extensión del archivo (.jpg o .png) y se convierte a minúsculas.
-                $extension = strtolower(pathinfo($file['name'], PATHINFO_EXTENSION));
-                // Se establece un nombre único para el archivo.
-                self::$filename = uniqid() . '.' . $extension;
-                return true;
-            } else {
-                self::$file_error = 'El tipo de imagen debe ser jpg o png';
-                return false;
-            }
+    public static function validateImageFile($file)
+{
+    if (is_uploaded_file($file['tmp_name'])) {
+        // Se obtienen los datos de la imagen.
+        $image = getimagesize($file['tmp_name']);
+        
+        // Se comprueba si el archivo tiene un tamaño mayor a 2MB.
+        if ($file['size'] > 2097152) {
+            self::$file_error = 'El tamaño de la imagen debe ser menor a 2MB';
+            return false;
+        } elseif ($image['mime'] == 'image/jpeg' || $image['mime'] == 'image/png') {
+            // Se obtiene la extensión del archivo (.jpg o .png) y se convierte a minúsculas.
+            $extension = strtolower(pathinfo($file['name'], PATHINFO_EXTENSION));
+            self::$filename = uniqid() . '.' . $extension; // Genera un nombre único, si es necesario
+            return true;
         } else {
+            self::$file_error = 'El tipo de imagen debe ser jpg o png';
             return false;
         }
+    } else {
+        return false;
     }
+}
+
+
 
     /*
     *   Método para validar un correo electrónico.
@@ -327,16 +321,23 @@ class Validator
     *   Parámetros: $file (archivo), $path (ruta del archivo) y $name (nombre del archivo).
     *   Retorno: booleano (true si el archivo fue subido al servidor o false en caso contrario).
     */
-    public static function saveFile($file, $path)
-    {
-        if (!$file) {
-            return false;
-        } elseif (move_uploaded_file($file['tmp_name'], $path . self::$filename)) {
-            return true;
-        } else {
-            return false;
-        }
+    public static function saveFile($file, $path, $originalName)
+{
+    if (!$file) {
+        return false;
     }
+
+    // Genera la ruta completa del archivo con el nombre original
+    $targetFilePath = rtrim($path, '/') . '/' . $originalName;
+
+    // Intenta mover el archivo al directorio deseado
+    if (move_uploaded_file($file['tmp_name'], $targetFilePath)) {
+        return $originalName; // Retorna el nombre original si se guardó correctamente
+    } else {
+        return false; // Retorna falso si hubo un error al mover el archivo
+    }
+}
+
 
     /*
     *   Método para validar el cambio de un archivo en el servidor.

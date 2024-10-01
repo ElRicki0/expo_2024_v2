@@ -24,26 +24,40 @@ if (isset($_GET['action'])) {
                     $result['error'] = 'No hay coincidencias';
                 }
                 break;
-            case 'createRow':
-                $_POST = Validator::validateForm($_POST);
-                if (
-                    !$imagen->setNombre($_POST['nombreImagen']) or
-                    !$imagen->setImagen1($_FILES['imagen1']) or
-                    !$imagen->setImagen2($_FILES['imagen2']) or
-                    !$imagen->setImagen3($_FILES['imagen3']) 
-                ) {
-                    $result['error'] = $imagen->getDataError();
-                } elseif ($imagen->createRow()) {
-                    $result['status'] = 1;
-                    $result['message'] = 'Galería creada correctamente';
-                    // Se asigna el estado del archivo después de insertar.
-                    $result['fileStatus2'] = Validator::saveFile($_FILES['imagen1'], $imagen::RUTA_IMAGEN) or
-                    $result['fileStatus3'] = Validator::saveFile($_FILES['imagen2'], $imagen::RUTA_IMAGEN) or
-                    $result['fileStatus1'] = Validator::saveFile($_FILES['imagen3'], $imagen::RUTA_IMAGEN);
-                } else {
-                    $result['error'] = 'Ocurrió un problema al crear la imagen';
-                }
-                break;
+                case 'createRow':
+                    $_POST = Validator::validateForm($_POST);
+                    if (
+                        !$imagen->setNombre($_POST['nombreImagen']) or
+                        !$imagen->setImagen1($_FILES['imagen1']) or
+                        !$imagen->setImagen2($_FILES['imagen2']) or
+                        !$imagen->setImagen3($_FILES['imagen3'])
+                    ) {
+                        $result['error'] = $imagen->getDataError();
+                    } else {
+                        // Intenta crear la fila en la base de datos
+                        if ($imagen->createRow()) {
+                            $result['status'] = 1;
+                            $result['message'] = 'Galería creada correctamente';
+                            
+                            // Guarda los archivos con sus nombres originales
+                            $fileStatuses = [];
+                            $fileStatuses['imagen1'] = Validator::saveFile($_FILES['imagen1'], $imagen::RUTA_IMAGEN, $_FILES['imagen1']['name']);
+                            $fileStatuses['imagen2'] = Validator::saveFile($_FILES['imagen2'], $imagen::RUTA_IMAGEN, $_FILES['imagen2']['name']);
+                            $fileStatuses['imagen3'] = Validator::saveFile($_FILES['imagen3'], $imagen::RUTA_IMAGEN, $_FILES['imagen3']['name']);
+                            
+                            // Verifica que se guardaron todas las imágenes
+                            if ($fileStatuses['imagen1'] && $fileStatuses['imagen2'] && $fileStatuses['imagen3']) {
+                                $result['fileStatus'] = $fileStatuses; // Almacena el estado de los archivos
+                            } else {
+                                $result['error'] = 'Ocurrió un problema al guardar algunas imágenes';
+                            }
+                        } else {
+                            $result['error'] = 'Ocurrió un problema al crear la imagen';
+                        }
+                    }
+                    break;
+                
+                
             case 'readAll':
                 if ($result['dataset'] = $imagen->readAll()) {
                     $result['status'] = 1;

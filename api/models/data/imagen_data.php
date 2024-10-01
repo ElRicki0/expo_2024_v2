@@ -44,25 +44,25 @@ class ImagenData extends ImagenHandler
 
     public function setImagen1($file, $filename = null)
     {
-        if (Validator::validateImageFile($file, 1000)) {
-            $this->imagen1 = Validator::getFileName();
+        if (Validator::validateImageFile($file)) { // Validación sin tamaño especificado
+            $this->imagen1 = $file['name']; // Guarda el nombre original
             return true;
         } elseif (Validator::getFileError()) {
             $this->data_error = Validator::getFileError();
             return false;
         } elseif ($filename) {
-            $this->imagen1 = $filename;
+            $this->imagen1 = $filename; // Guarda el nombre original si se pasa
             return true;
         } else {
-            $this->imagen1 = 'default.png';
+            $this->imagen1 = 'default.png'; // Valor por defecto
             return true;
         }
     }
-
+    
     public function setImagen2($file, $filename = null)
     {
-        if (Validator::validateImageFile($file, 1000)) {
-            $this->imagen2 = Validator::getFileName();
+        if (Validator::validateImageFile($file)) {
+            $this->imagen2 = $file['name']; // Guarda el nombre original
             return true;
         } elseif (Validator::getFileError()) {
             $this->data_error = Validator::getFileError();
@@ -71,15 +71,15 @@ class ImagenData extends ImagenHandler
             $this->imagen2 = $filename;
             return true;
         } else {
-            $this->imagen2 = 'default.png';
+            $this->imagen2 = 'default.png'; // Valor por defecto
             return true;
         }
     }
-
+    
     public function setImagen3($file, $filename = null)
     {
-        if (Validator::validateImageFile($file, 1000)) {
-            $this->imagen3 = Validator::getFileName();
+        if (Validator::validateImageFile($file)) {
+            $this->imagen3 = $file['name']; // Guarda el nombre original
             return true;
         } elseif (Validator::getFileError()) {
             $this->data_error = Validator::getFileError();
@@ -88,10 +88,11 @@ class ImagenData extends ImagenHandler
             $this->imagen3 = $filename;
             return true;
         } else {
-            $this->imagen3 = 'default.png';
+            $this->imagen3 = 'default.png'; // Valor por defecto
             return true;
         }
     }
+    
 
     public function setFilename()
     {
