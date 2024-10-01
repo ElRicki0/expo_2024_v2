@@ -9,7 +9,7 @@ if (isset($_GET['action'])) {
     // Se instancia la clase correspondiente.
     $imagen = new ImagenData;
     // Se declara e inicializa un arreglo para guardar el resultado que retorna la API.
-    $result = array('status' => 0, 'message' => null, 'dataset' => null, 'error' => null, 'exception' => null, 'fileStatus' => null);
+    $result = array('status' => 0, 'message' => null, 'dataset' => null, 'error' => null, 'exception' => null, 'fileStatus1' => null, 'fileStatus2' => null, 'fileStatus3' => null);
     // Se verifica si existe una sesión iniciada como administrador, de lo contrario se finaliza el script con un mensaje de error.
     if (isset($_SESSION['idAdministrador'])) {
         // Se compara la acción a realizar cuando un administrador ha iniciado sesión.
@@ -37,9 +37,9 @@ if (isset($_GET['action'])) {
                     $result['status'] = 1;
                     $result['message'] = 'Galería creada correctamente';
                     // Se asigna el estado del archivo después de insertar.
-                    $result['fileStatus'] = Validator::saveFile($_FILES['imagen1'], $imagen::RUTA_IMAGEN);
-                    $result['fileStatus'] = Validator::saveFile($_FILES['imagen2'], $imagen::RUTA_IMAGEN);
-                    $result['fileStatus'] = Validator::saveFile($_FILES['imagen3'], $imagen::RUTA_IMAGEN);
+                    $result['fileStatus2'] = Validator::saveFile($_FILES['imagen1'], $imagen::RUTA_IMAGEN) or
+                    $result['fileStatus3'] = Validator::saveFile($_FILES['imagen2'], $imagen::RUTA_IMAGEN) or
+                    $result['fileStatus1'] = Validator::saveFile($_FILES['imagen3'], $imagen::RUTA_IMAGEN);
                 } else {
                     $result['error'] = 'Ocurrió un problema al crear la imagen';
                 }
