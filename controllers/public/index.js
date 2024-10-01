@@ -34,19 +34,19 @@ document.addEventListener('DOMContentLoaded', async () => {
 * Retorno: ninguno.
 */
 const fillTable = async (form = null) => {
-    SERVICIOS.innerHTML = '';
+    PREGUNTA.innerHTML = '';
     // Arreglo con los nombres de los números en inglés.
     const numbersInEnglish = ['One', 'Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight'];
 
     // Petición para obtener los registros disponibles.
-    const DATA = await fetchData(SERVICIO_API, 'readAll8', form);
+    const DATA = await fetchData(PREGUNTA_API, 'readAll8', form);
 
     // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
     if (DATA.status) {
         // Se recorre el conjunto de registros (dataset) fila por fila a través del objeto row.
         DATA.dataset.forEach((row, index) => {
             let valor = numbersInEnglish[index % numbersInEnglish.length]; // Asigna el número en inglés basado en el índice.
-            let url = `detalles.html?id=${row.id_servicio}`;
+            let url = `detalles.html?id=${row.id_pregunta}`;
 
             // Se crean y concatenan las filas de la tabla con los datos de cada registro.
             SERVICIOS.innerHTML += `
@@ -55,22 +55,19 @@ const fillTable = async (form = null) => {
     <h2 class="accordion-header">
         <button class="accordion-button collapsed inicioIndex textoClaro" type="button" data-bs-toggle="collapse"
             data-bs-target="#flush-collapse${valor}" aria-expanded="false" aria-controls="flush-collapse${valor}">
-            ${row.tipo_servicio}
+            ${row.nombre_pregunta}
         </button>
     </h2>
     <div id="flush-collapse${valor}" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
         <div class="accordion-body textoClaro">
             <div class="row">
                 <div class="col-lg-2">
-                    <img src="${SERVER_URL}images/servicios/${row.imagen_servicio}" width="150px" class="card" onerror="this.onerror=null; this.src='../../resources/img/error/servicio.jpg';"
-                        alt="${row.tipo_servicio}">
+                    <img src="${SERVER_URL}images/servicios/${row.imagen_pregunta}" width="150px" class="card" onerror="this.onerror=null; this.src='../../resources/img/error/preguntaFrecuente.png';"
+                        alt="${row.nombre_pregunta}">
                 </div>
                 <div class="col-lg-10">
-                    <h1 class="mb-3 title-card">${row.tipo_servicio}</h1>
-                    <p>${row.descripcion_servicio}</p>
-                    <button type="button" class="btn btn-primary">
-                        <a href="${url}" class="sinLink textoClaro">hacer cita</a>
-                    </button>
+                    <h1 class="mb-3 title-card">${row.nombre_pregunta}</h1>
+                    <p>${row.contenido_pregunta}</p>
                 </div>
             </div>
         </div>

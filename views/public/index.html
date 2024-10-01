@@ -11,40 +11,15 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="../../resources/css/boostrap_css.css">
-    <link rel="stylesheet" href="../../resources/css/general.css">
     <link rel="stylesheet" href="../../resources/css/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="../../resources/css/general.css">
+    <link rel="stylesheet" href="../../resources/css/public/inicio.css">
+    <link rel="stylesheet" href="../../resources/css/public/footer.css">
+    <link rel="stylesheet" href="../../resources/css/barrahorizontal.css">
     <link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-        }
 
-        .header {
-            background-image: url('../../resources/img/public/background.png');
-            background-size: cover; /* Asegura que la imagen cubra todo el contenedor */
-            background-position: center; /* Centra la imagen */
-            height: calc(108vh - 56px); /* Ajusta la altura para que sea responsive, restando la altura del navbar */
-            display: flex;
-            flex-direction: column; /* Apilar los elementos verticalmente */
-            align-items: flex-start; /* Alinear a la izquierda */
-            padding-left: 20px;
-            padding-top: 400px; /* Ajusta este valor para mover el texto hacia abajo */
-            color: white;
-        }
-
-        .header h1 {
-            margin: 0; /* Elimina el margen por defecto */
-            font-family: 'Alfa Slab One'; /* Aplica la fuente */
-        }
-
-        .header h1:first-of-type {
-            font-size: 62px; /* Tamaño del primer título */
-        }
-
-        .header h1:last-of-type {
-            font-size: 132px; /* Tamaño del segundo título, más grande */
-        }
     </style>
 </head>
 
@@ -54,8 +29,69 @@
             <h1>Quiropráctica</h1>
             <h1>Específica</h1>
         </div>
+        <div class="container inicioIndex">
+            <div class="row align-items-center">
+                <div class="col-lg-6 col-md-12">
+                    <h2 class="textoClaro">Quiropráctica Específica</h2>
+                    <hr class="separadorClaro">
+                    <p class="textoClaro">
+                        Todos podemos beneficiarnos de la Quiropráctica.
+                        Desde personas sanas que optan por este como un método preventivo de salud, hasta personas
+                        con
+                        patologías crónicas u otros problemas orgánicos que ven en la Quiropráctica la manera de
+                        optimizar el funcionamiento del sistema nervioso para mejorar su calidad de vida.
+                        Agenda tu cita llamando al 2100-9211.
+                    </p>
+                </div>
+                <div class="col-lg-6 col-md-12 d-flex justify-content-lg-end">
+                    <img src="../../resources/img/public/entradaInicioPublic.gif" class="img-fluid"
+                        alt="Imagen Quiropráctica">
+                </div>
+            </div>
+        </div>
+        <hr>
 
-        <!-- Resto de tu contenido -->
+        <!-- acordeón de servicios -->
+        <section id="servicios" class="py-5 mt-3">
+            <div class="col-12 text-center justify-content-center">
+                <h3 class="textoClaro">PREGUNTAS FRECUENTES.</h3>
+                <hr class="linea-verde">
+
+                <!-- inicio acordeón -->
+                <div class="accordion accordion-flush container" id="accordionFlushExample">
+
+                    <div id="pregunta">
+
+                        <!-- cards de acordeón -->
+                        <div class="accordion-item inicioIndex">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed inicioIndex textoClaro" type="button"
+                                    data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false"
+                                    aria-controls="flush-collapseOne">
+                                    Nombre de Servicio
+                                </button>
+                            </h2>
+                            <div id="flush-collapseOne" class="accordion-collapse collapse"
+                                data-bs-parent="#accordionFlushExample">
+                                <div class="accordion-body textoClaro">
+                                    <div class="row">
+                                        <div class="col-2">
+                                            <img src="../../resources/img/public/quiro5.png" width="150px" class="card"
+                                                alt="">
+                                        </div>
+                                        <div class="col-10">
+
+                                            <h1 class="mb-3 title-card">¿Preguntas?</h1>
+                                            <p>texto de ejemplo texto de ejemplo texto de ejemplo texto de ejemplo texto
+                                                de ejemplotexto de ejemplotexto de ejemplo</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </section>
     </main>
 
     <!-- librerías para poder trabajar con bootstrap y sweeteners -->

@@ -41,7 +41,7 @@ const loadTemplate = async () => {
                         </ul>
                     </div>
                 </nav>`
-            );                        
+            );
         } else {
             sweetAlert(3, DATA.error, false, 'index.html');
         }
@@ -73,13 +73,35 @@ const loadTemplate = async () => {
     }
     // Se agrega el pie de la página web después del contenido principal.
     MAIN.insertAdjacentHTML('afterend', `
-        <footer>
-            <nav class="navbar">
-                <div class="container">
-                    <p><a class="nav-link" href="https://github.com/ElRicki0/expo_2024_v2" target="_blank"><i class="bi bi-github"></i> Quiropractica Especifica</a></p>
-                    <p><i class="bi bi-envelope-fill"></i> Quiropractica@gmail.com</p>
-                </div>
-            </nav>
-        </footer>
+    <footer>
+        <div class="footer-container">
+            <div class="footer-column">
+                <h3>Quiropractica</h3>
+                <p class="fw-light">En QUIROPRÁCTICA ESPECIFICA además de cuidar tu columna vertebral y tu postura, nos enfocamos específicamente en el 
+                    cuidado y mantenimiento de tu sistema nervioso que determinan el buen funcionamiento de cada una de las 37.2 trillones 
+                    de célula de tu cuerpo.</p>
+            </div>
+            <div class="footer-column">
+                <p>
+                    <a href="https://facebook.com" target="_blank"><i class="bi bi-facebook"></i></a>
+                    <a href="https://twitter.com" target="_blank"><i class="bi bi-twitter"></i></a>
+                    <a href="https://instagram.com" target="_blank"><i class="bi bi-instagram"></i></a>
+                </p>
+            </div>
+            <div class="footer-column">
+                <h3>Company</h3>
+                <p>Enfermades<br><br>
+                Terapias<br><br>
+                Procesos</p>
+            </div>
+            <div class="footer-column">
+                <h3>Contact us</h3>
+                <p>Visítanos en 87 Avenida Norte y Tercera calle Poniente San Salvador.<br><br>
+                +503 2529 8289<br><br>
+                info@quiropracticaespecificasv.com
+                </p>
+            </div>
+        </div>
+    </footer>
     `);
 }
