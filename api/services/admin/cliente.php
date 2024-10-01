@@ -31,8 +31,19 @@ if (isset($_GET['action'])) {
                 } elseif ($cliente->createAdminRow()) {
                     $result['status'] = 1;
                     $result['message'] = 'Cliente registrado correctamente';
+
+
                     // Se asigna el estado del archivo después de insertar.
-                    $result['fileStatus'] = Validator::saveFile($_FILES['imagenCliente'], $cliente::RUTA_IMAGEN);
+                    //  $result['fileStatus'] = Validator::saveFile($_FILES['imagenCliente'], $cliente::RUTA_IMAGEN);
+
+                    $fileStatuses['imagenCliente'] = Validator::saveFile($_FILES['imagenCliente'], $cliente::RUTA_IMAGEN, $_FILES['imagenCliente']['name']);
+
+                    // Verifica que se guardaron todas las imágenes
+                    if ($fileStatuses['imagenCliente']) {
+                        $result['fileStatus'] = $fileStatuses; // Almacena el estado de los archivos
+                    } else {
+                        $result['error'] = 'Ocurrió un problema al guardar algunas imágenes';
+                    }
                 } else {
                     $result['error'] = 'Ocurrió un problema al registrar el cliente';
                 }
@@ -76,11 +87,18 @@ if (isset($_GET['action'])) {
                     !$cliente->setImagen($_FILES['imagenCliente'])
                 ) {
                     $result['error'] = $cliente->getDataError();
-                } elseif ($cliente->updateRow   ()) {
+                } elseif ($cliente->updateRow()) {
                     $result['status'] = 1;
                     $result['message'] = 'Cliente modificado correctamente';
-                    // Se asigna el estado del archivo después de insertar.
-                    $result['fileStatus'] = Validator::saveFile($_FILES['imagenCliente'], $cliente::RUTA_IMAGEN);
+                    
+                    $fileStatuses['imagenCliente'] = Validator::saveFile($_FILES['imagenCliente'], $cliente::RUTA_IMAGEN, $_FILES['imagenCliente']['name']);
+
+                    // Verifica que se guardaron todas las imágenes
+                    if ($fileStatuses['imagenCliente']) {
+                        $result['fileStatus'] = $fileStatuses; // Almacena el estado de los archivos
+                    } else {
+                        $result['error'] = 'Ocurrió un problema al guardar algunas imágenes';
+                    }
                 } else {
                     $result['error'] = 'Ocurrió un problema al modificar el cliente';
                 }

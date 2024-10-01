@@ -113,17 +113,17 @@ class EmpleadoData extends EmpleadoHandler
 
     public function setImagen($file, $filename = null)
     {
-        if (Validator::validateImageFile($file, 1000)) {
-            $this->imagen = Validator::getFileName();
+        if (Validator::validateImageFile($file)) { // Validación sin tamaño especificado
+            $this->imagen = $file['name']; // Guarda el nombre original
             return true;
         } elseif (Validator::getFileError()) {
             $this->data_error = Validator::getFileError();
             return false;
         } elseif ($filename) {
-            $this->imagen = $filename;
+            $this->imagen = $filename; // Guarda el nombre original si se pasa
             return true;
         } else {
-            $this->imagen = 'cliente.png';
+            $this->imagen = 'default.png'; // Valor por defecto
             return true;
         }
     }
