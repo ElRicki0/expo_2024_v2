@@ -54,8 +54,8 @@ class ImagenData extends ImagenHandler
             $this->imagen1 = $filename; // Guarda el nombre original si se pasa
             return true;
         } else {
-            $this->imagen1 = 'default.png'; // Valor por defecto
-            return true;
+            $this->data_error = 'La imagen no puede ser vació';
+            return false;
         }
     }
     
@@ -71,8 +71,8 @@ class ImagenData extends ImagenHandler
             $this->imagen2 = $filename;
             return true;
         } else {
-            $this->imagen2 = 'default.png'; // Valor por defecto
-            return true;
+            $this->data_error = 'La imagen no puede ser vació';
+            return false;
         }
     }
     
@@ -88,8 +88,8 @@ class ImagenData extends ImagenHandler
             $this->imagen3 = $filename;
             return true;
         } else {
-            $this->imagen3 = 'default.png'; // Valor por defecto
-            return true;
+            $this->data_error = 'La imagen no puede ser vació';
+            return false;
         }
     }
     
@@ -97,7 +97,7 @@ class ImagenData extends ImagenHandler
     public function setFilename()
     {
         if ($data = $this->readFilename()) {
-            $this->filename = $data['imagenes'];
+            $this->filename = $data['name'];
             return true;
         } else {
             $this->data_error = 'Imagen inexistente';

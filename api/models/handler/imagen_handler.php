@@ -41,9 +41,9 @@ class ImagenHandler
     public function updateRow()
     {
         $sql = 'UPDATE tb_imagenes
-                SET nombre_imagen = ?, foto = ?
-                WHERE id_foto = ?';
-        $params = array($this->nombre, $this->imagen1, $this->id);
+                SET nombre_imagen = ?, imagen_1 = ?, imagen_2 = ?, imagen_3 = ?
+                WHERE id_imagen = ?';
+        $params = array($this->nombre, $this->imagen1, $this->imagen2, $this->imagen3, $this->id);
         return Database::executeRow($sql, $params);
     }
 
@@ -56,7 +56,7 @@ class ImagenHandler
     public function readOne()
     {
         $sql = 'SELECT*FROM tb_imagenes 
-                where id_foto = ?';
+                where id_imagen = ?';
         $params = array($this->id);
         return Database::getRow($sql, $params);
     }
@@ -73,7 +73,7 @@ class ImagenHandler
     public function deleteRow()
     {
         $sql = 'DELETE FROM tb_imagenes
-                WHERE id_foto = ?';
+                WHERE id_imagen = ?';
         $params = array($this->id);
         return Database::executeRow($sql, $params);
     }

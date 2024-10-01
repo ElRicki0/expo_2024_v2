@@ -11,6 +11,7 @@ const SAVE_MODAL = new bootstrap.Modal('#saveModal'),
 // Constantes para establecer los elementos del formulario de guardar.
 const SAVE_FORM = document.getElementById('saveForm'),
     ID_IMAGEN = document.getElementById('idImagen'),
+    NOMBRE_IMAGEN = document.getElementById('nombreImagen'),
     IMAGEN_MUESTRA1 = document.getElementById('imagenMuestra1'),
     IMAGEN_MUESTRA2 = document.getElementById('imagenMuestra2'),
     IMAGEN_MUESTRA3 = document.getElementById('imagenMuestra3'),
@@ -146,14 +147,14 @@ const fillTable = async (form = null) => {
         </div>
     </div>
 
-    <div class="container my-2 d-flex justify-content-center">
-        <button type="button" class="btn btn-info mx-1" onclick="openUpdate(${row.id_foto})">
-            <i class="bi bi-pencil-fill"></i>
-        </button>
-        <button type="button" class="btn btn-danger mx-1" onclick="openDelete(${row.id_foto})">
-            <i class="bi bi-trash-fill"></i>
-        </button>
-    </div>
+    <div class="mt-5 mb-3">
+                    <button class="btn btn-outline-light mb-2" onclick="openDelete(${row.id_imagen})">
+                        <i class="bi bi-trash3-fill"></i> Eliminar
+                    </button>
+                    <button class="btn btn-outline-light mb-2" onclick="openUpdate(${row.id_imagen})">
+                        <i class="bi bi-pencil-fill"></i>Actualizar
+                    </button>
+                </div>
 </div>
 
 `;
@@ -174,6 +175,9 @@ const openCreate = () => {
     // Se muestra la caja de diálogo con su título.
     SAVE_MODAL.show();
     MODAL_TITLE.textContent = 'Crear galería';
+    IMAGEN_MUESTRA1.src =    SERVER_URL.concat('images/imagenes/persona.png');
+    IMAGEN_MUESTRA2.src =    SERVER_URL.concat('images/imagenes/persona.png');
+    IMAGEN_MUESTRA3.src =    SERVER_URL.concat('images/imagenes/persona.png');
     // Se prepara el formulario.
     SAVE_FORM.reset();
 }
@@ -187,20 +191,23 @@ const openCreate = () => {
 const openUpdate = async (id) => {
     // Se define un objeto con los datos del registro seleccionado.
     const FORM = new FormData();
-    FORM.append('idFoto', id);
+    FORM.append('idImagen', id);
     // Petición para obtener los datos del registro solicitado.
     const DATA = await fetchData(IMAGEN_API, 'readOne', FORM);
     // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
     if (DATA.status) {
         // Se muestra la caja de diálogo con su título.
         SAVE_MODAL.show();
-        MODAL_TITLE.textContent = 'Actualizar imagen';
+        MODAL_TITLE.textContent = 'Actualizar galería';
         // Se prepara el formulario.
         SAVE_FORM.reset();
         // Se inicializan los campos con los datos.
         const ROW = DATA.dataset;
-        ID_FOTO.value = ROW.id_foto;
-        NOMBRE_FOTO.value = ROW.nombre_foto;
+        ID_IMAGEN.value = ROW.id_imagen;
+        NOMBRE_IMAGEN.value = ROW.nombre_imagen;
+        IMAGEN_MUESTRA1.src =    SERVER_URL.concat('images/imagenes/', ROW.imagen_1);
+        IMAGEN_MUESTRA2.src =    SERVER_URL.concat('images/imagenes/', ROW.imagen_2);
+        IMAGEN_MUESTRA3.src =    SERVER_URL.concat('images/imagenes/', ROW.imagen_3);
         // FOTO.value = ROW.foto;
     } else {
         sweetAlert(2, DATA.error, false);
@@ -219,7 +226,7 @@ const openDelete = async (id) => {
     if (RESPONSE) {
         // Se define una constante tipo objeto con los datos del registro seleccionado.
         const FORM = new FormData();
-        FORM.append('idFoto', id);
+        FORM.append('idImagen', id);
         // Petición para eliminar el registro seleccionado.
         const DATA = await fetchData(IMAGEN_API, 'deleteRow', FORM);
         // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
