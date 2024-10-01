@@ -7,9 +7,7 @@
 const USER_API = 'services/public/cliente.php';
 // Constante para establecer el elemento del contenido principal.
 const MAIN = document.querySelector('main');
-MAIN.style.paddingTop = '75px';
-MAIN.style.paddingBottom = '100px';
-MAIN.classList.add('container');
+
 // Se establece el título de la página web.
 document.querySelector('title').textContent = 'Quiropráctica Especifica';
 
@@ -50,7 +48,7 @@ const loadTemplate = async () => {
     } else {
         // Se agrega el encabezado de la página web antes del contenido principal.
         MAIN.insertAdjacentHTML('beforebegin',
-            `<nav class="navbar navbar-dark bg-black fixed-top">
+            `<nav class="navbar navbar-dark bg-black fixed-top rounded-bottom">
                 <div class="row container-fluid">
                     <div class="col-10">
                         <!-- boton del logo en la izquierda -->
