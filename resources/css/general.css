@@ -83,3 +83,10 @@ header {
     padding: 10px;
     /* Opcional: Agrega un poco de espacio alrededor del contenido del header */
 }
+
+.textoClaro{
+    color: white;
+    /* Opcional: Cambia el color del texto a blanco para que sea visible sobre el fondo negro */
+    padding: 10px;
+    /* Opcional: Agrega un poco de espacio alrededor del contenido del header */
+}
