@@ -20,6 +20,24 @@
     font-size: 62px; /* Tamaño del primer título */
 }
 
+.card-img-overlay {
+    display: flex;           /* Habilita flexbox */
+    flex-direction: column; /* Organiza los elementos en columnas */
+    justify-content: center; /* Centra verticalmente */
+    align-items: center;     /* Centra horizontalmente */
+    height: 100%;            /* Asegura que ocupe toda la altura de la tarjeta */
+}
+
 .header h1:last-of-type {
     font-size: 132px; /* Tamaño del segundo título, más grande */
+}
+
+@media (max-width: 768px) {
+    .header h1:first-of-type {
+        font-size: 20px; /* Tamaño del primer título */
+    }
+    
+    .header h1:last-of-type {
+        font-size: 60px; /* Tamaño del segundo título, más grande */
+    }
 }
