@@ -105,7 +105,7 @@ class ClienteData extends ClienteHandler
             $this->imagen = $filename; // Guarda el nombre original si se pasa
             return true;
         } else {
-            $this->imagen = 'default.png'; // Valor por defecto
+            $this->imagen = 'default.jpg'; // Valor por defecto
             return true;
         }
     }

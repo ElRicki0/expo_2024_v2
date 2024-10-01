@@ -38,7 +38,7 @@ class ServicioData extends ServicioHandler
             $this->foto = $filename;
             return true;
         } else {
-            $this->foto = 'default.png';
+            $this->foto = 'default.jpg';
             return true;
         }
     }

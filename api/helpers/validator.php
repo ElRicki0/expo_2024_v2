@@ -362,7 +362,7 @@ class Validator
     */
     public static function deleteFile($path, $filename)
     {
-        if ($filename == 'default.png') {
+        if ($filename == 'default.jpg') {
             return true;
         } elseif (@unlink($path . $filename)) {
             return true;

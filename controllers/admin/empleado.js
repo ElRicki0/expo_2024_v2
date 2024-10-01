@@ -190,6 +190,7 @@ const openCreate = () => {
     // Se muestra la caja de diálogo con su título.
     SAVE_MODAL.show();
     MODAL_TITLE.textContent = 'AGREGAR EMPLEADO';
+    IMAGEN_MUESTRA.src =    SERVER_URL.concat('images/empleados/persona.png');
     // Se prepara el formulario.
     SAVE_FORM.reset();
 }

@@ -167,6 +167,7 @@ const openCreate = () => {
     // Se muestra la caja de diálogo con su título.
     SAVE_MODAL.show();
     MODAL_TITLE.textContent = 'Crear cliente';
+    IMAGEN_MUESTRA.src =    SERVER_URL.concat('images/clientes/persona.png');
     // Se prepara el formulario.
     SAVE_FORM.reset();
 }
@@ -260,6 +261,7 @@ const openUpdate = async (id) => {
         FECHA_CLIENTE.value = ROW.nacimiento_cliente;
         TELEFONO_CLIENTE.value = ROW.telefono_cliente;
         ESTADO_CLIENTE.checked = ROW.estado_cliente;
+        IMAGEN_MUESTRA.src =    SERVER_URL.concat('images/clientes/', ROW.imagen_cliente);
         console.log(NOMBRE_CLIENTE);
     } else {
         sweetAlert(2, DATA.error, false);
