@@ -1,5 +1,5 @@
 // Constantes para completar las rutas de la API.
-const IMAGEN_API = 'services/admin/foto.php';
+const IMAGEN_API = 'services/admin/imagen.php';
 // Constante para establecer el formulario de buscar.
 const SEARCH_FORM = document.getElementById('searchForm');
 // Constantes para establecer el contenido de la tabla.
@@ -10,9 +10,13 @@ const SAVE_MODAL = new bootstrap.Modal('#saveModal'),
     MODAL_TITLE = document.getElementById('modalTitle');
 // Constantes para establecer los elementos del formulario de guardar.
 const SAVE_FORM = document.getElementById('saveForm'),
-    ID_FOTO = document.getElementById('idFoto'),
-    NOMBRE_FOTO = document.getElementById('nombreFoto'),
-    FOTO = document.getElementById('inputFoto');
+    ID_IMAGEN = document.getElementById('idImagen'),
+    IMAGEN_MUESTRA1 = document.getElementById('imagenMuestra1'),
+    IMAGEN_MUESTRA2 = document.getElementById('imagenMuestra2'),
+    IMAGEN_MUESTRA3 = document.getElementById('imagenMuestra3'),
+    IMAGEN1 = document.getElementById('imagen1'),
+    IMAGEN2 = document.getElementById('imagen2'),
+    IMAGEN3 = document.getElementById('imagen3');
 
     // Método del evento para cuando el documento ha cargado.
 document.addEventListener('DOMContentLoaded', () => {
@@ -22,6 +26,50 @@ document.addEventListener('DOMContentLoaded', () => {
     fillTable();
 });
 
+IMAGEN1.addEventListener('change', function (event) {
+    // Verifica si hay una imagen seleccionada
+    if (event.target.files && event.target.files[0]) {
+        // con el objeto Filereader lee el archivo seleccionado
+        const reader = new FileReader();
+        // Luego de haber leido la imagen selecionada se nos devuelve un objeto de tipo blob
+        // Con el metodo createObjectUrl de fileReader crea una url temporal para la imagen
+        reader.onload = function (event) {
+            // finalmente la url creada se le asigna el atributo de la etiqueta img
+            IMAGEN_MUESTRA1.src = event.target.result;
+        };
+        reader.readAsDataURL(event.target.files[0]);
+    }
+})
+
+IMAGEN2.addEventListener('change', function (event) {
+    // Verifica si hay una imagen seleccionada
+    if (event.target.files && event.target.files[0]) {
+        // con el objeto Filereader lee el archivo seleccionado
+        const reader = new FileReader();
+        // Luego de haber leido la imagen selecionada se nos devuelve un objeto de tipo blob
+        // Con el metodo createObjectUrl de fileReader crea una url temporal para la imagen
+        reader.onload = function (event) {
+            // finalmente la url creada se le asigna el atributo de la etiqueta img
+            IMAGEN_MUESTRA2.src = event.target.result;
+        };
+        reader.readAsDataURL(event.target.files[0]);
+    }
+})
+
+IMAGEN3.addEventListener('change', function (event) {
+    // Verifica si hay una imagen seleccionada
+    if (event.target.files && event.target.files[0]) {
+        // con el objeto Filereader lee el archivo seleccionado
+        const reader = new FileReader();
+        // Luego de haber leido la imagen selecionada se nos devuelve un objeto de tipo blob
+        // Con el metodo createObjectUrl de fileReader crea una url temporal para la imagen
+        reader.onload = function (event) {
+            // finalmente la url creada se le asigna el atributo de la etiqueta img
+            IMAGEN_MUESTRA3.src = event.target.result;
+        };
+        reader.readAsDataURL(event.target.files[0]);
+    }
+})
 
 // Método del evento para cuando se envía el formulario de buscar.
 SEARCH_FORM.addEventListener('submit', (event) => {
@@ -38,7 +86,7 @@ SAVE_FORM.addEventListener('submit', async (event) => {
     // Se evita recargar la página web después de enviar el formulario.
     event.preventDefault();
     // Se verifica la acción a realizar.
-    (ID_FOTO.value) ? action = 'updateRow' : action = 'createRow';
+    (ID_IMAGEN.value) ? action = 'updateRow' : action = 'createRow';
     // Constante tipo objeto con los datos del formulario.
     const FORM = new FormData(SAVE_FORM);
     // Petición para guardar los datos del formulario.
@@ -105,7 +153,7 @@ const fillTable = async (form = null) => {
 const openCreate = () => {
     // Se muestra la caja de diálogo con su título.
     SAVE_MODAL.show();
-    MODAL_TITLE.textContent = 'Crear imagen';
+    MODAL_TITLE.textContent = 'Crear galería';
     // Se prepara el formulario.
     SAVE_FORM.reset();
 }

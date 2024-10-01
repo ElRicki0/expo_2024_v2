@@ -8,7 +8,7 @@ require_once('../../models/handler/imagen_handler.php');
  */
 class ImagenData extends ImagenHandler
 {
-     /*
+    /*
      *  Atributos adicionales.
      */
     private $data_error = null;
@@ -42,19 +42,53 @@ class ImagenData extends ImagenHandler
         }
     }
 
-    public function setImagen($file, $filename = null)
+    public function setImagen1($file, $filename = null)
     {
         if (Validator::validateImageFile($file, 1000)) {
-            $this->imagen = Validator::getFileName();
+            $this->imagen1 = Validator::getFileName();
             return true;
         } elseif (Validator::getFileError()) {
             $this->data_error = Validator::getFileError();
             return false;
         } elseif ($filename) {
-            $this->imagen = $filename;
+            $this->imagen1 = $filename;
             return true;
         } else {
-            $this->imagen = 'default.png';
+            $this->imagen1 = 'default.png';
+            return true;
+        }
+    }
+
+    public function setImagen2($file, $filename = null)
+    {
+        if (Validator::validateImageFile($file, 1000)) {
+            $this->imagen1 = Validator::getFileName();
+            return true;
+        } elseif (Validator::getFileError()) {
+            $this->data_error = Validator::getFileError();
+            return false;
+        } elseif ($filename) {
+            $this->imagen2 = $filename;
+            return true;
+        } else {
+            $this->imagen2 = 'default.png';
+            return true;
+        }
+    }
+
+    public function setImagen3($file, $filename = null)
+    {
+        if (Validator::validateImageFile($file, 1000)) {
+            $this->imagen3 = Validator::getFileName();
+            return true;
+        } elseif (Validator::getFileError()) {
+            $this->data_error = Validator::getFileError();
+            return false;
+        } elseif ($filename) {
+            $this->imagen3 = $filename;
+            return true;
+        } else {
+            $this->imagen3 = 'default.png';
             return true;
         }
     }

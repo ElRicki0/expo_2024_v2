@@ -54,11 +54,15 @@ CREATE TABLE
         codigo_admin VARCHAR(6) NOT NULL
     );
 
--- CREATE TABLE tb_fotos (
--- id_foto INT PRIMARY KEY AUTO_INCREMENT NOT NULL, 
--- nombre_foto VARCHAR (100) not null,
--- foto VARCHAR (250) NOT NULL
--- );
+CREATE TABLE
+    tb_imagenes (
+        id_imagen INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+        nombre_imagen VARCHAR(100) not null,
+        imagen_1 VARCHAR(250) NOT NULL,
+        imagen_2 VARCHAR(250),
+        imagen_3 VARCHAR(250)
+    );
+
 CREATE TABLE
     tb_servicios (
         id_servicio INT PRIMARY KEY AUTO_INCREMENT NOT NULL,

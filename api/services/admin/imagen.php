@@ -14,7 +14,6 @@ if (isset($_GET['action'])) {
     if (isset($_SESSION['idAdministrador'])) {
         // Se compara la acción a realizar cuando un administrador ha iniciado sesión.
         switch ($_GET['action']) {
-
             case 'searchRows':
                 if (!Validator::validateSearch($_POST['search'])) {
                     $result['error'] = Validator::getSearchError();
@@ -28,15 +27,19 @@ if (isset($_GET['action'])) {
             case 'createRow':
                 $_POST = Validator::validateForm($_POST);
                 if (
-                    !$imagen->setNombre($_POST['nombreFoto']) or
-                    !$imagen->setImagen($_FILES['inputFoto'])
+                    !$imagen->setNombre($_POST['nombreImagen']) or
+                    !$imagen->setImagen1($_FILES['imagen1']) or
+                    !$imagen->setImagen2($_FILES['imagen2']) or
+                    !$imagen->setImagen3($_FILES['imagen3']) 
                 ) {
                     $result['error'] = $imagen->getDataError();
                 } elseif ($imagen->createRow()) {
                     $result['status'] = 1;
-                    $result['message'] = 'Foto creada correctamente';
+                    $result['message'] = 'Galería creada correctamente';
                     // Se asigna el estado del archivo después de insertar.
-                    $result['fileStatus'] = Validator::saveFile($_FILES['inputFoto'], $imagen::RUTA_IMAGEN);
+                    $result['fileStatus'] = Validator::saveFile($_FILES['imagen1'], $imagen::RUTA_IMAGEN);
+                    $result['fileStatus'] = Validator::saveFile($_FILES['imagen2'], $imagen::RUTA_IMAGEN);
+                    $result['fileStatus'] = Validator::saveFile($_FILES['imagen3'], $imagen::RUTA_IMAGEN);
                 } else {
                     $result['error'] = 'Ocurrió un problema al crear la imagen';
                 }
@@ -64,7 +67,7 @@ if (isset($_GET['action'])) {
                     !$imagen->setId($_POST['idFoto']) or
                     !$imagen->setFilename() or
                     !$imagen->setNombre($_POST['nombreFoto']) or
-                    !$imagen->setImagen($_FILES['inputFoto'], $imagen->getFilename())
+                    !$imagen->setImagen1($_FILES['inputFoto'], $imagen->getFilename())
                 ) {
                     $result['error'] = $imagen->getDataError();
                 } elseif ($imagen->updateRow()) {

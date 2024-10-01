@@ -13,12 +13,12 @@ document.addEventListener("DOMContentLoaded", async () => {
     // Se comprueba si existe una sesión, de lo contrario se sigue con el flujo normal.
     if (DATA.session) {
         // Se direcciona a la página web de bienvenida.
-        location.href = "inicio.html";
+        location.href = "index.html";
     } else if (DATA.status) {
         sweetAlert(1, DATA.message, false, 'index.html');
     } else {
         // Se muestra el formulario para registrar el primer usuario.
-        location.href = "signUpEmployee.html";
+        sweetAlert(2, DATA.error, false);
     }
 
     // // Petición para consultar los usuarios registrados.

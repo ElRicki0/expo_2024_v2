@@ -128,9 +128,9 @@ class EmpleadoHandler
     public function updateRow()
     {
         $sql = 'UPDATE tb_empleados
-                SET nombre_empleado = ?, apellido_empleado = ?, dui_empleado = ?, correo_empleado = ?, nacimiento_empleado = ?, estado_empleado=?
+                SET nombre_empleado = ?, apellido_empleado = ?, dui_empleado = ?, correo_empleado = ?, nacimiento_empleado = ?, estado_empleado=?, imagen_empleado=?
                 WHERE id_empleado = ?';
-        $params = array($this->nombre, $this->apellido, $this->dui, $this->correo, $this->fecha, $this->estado, $this->id);
+        $params = array($this->nombre, $this->apellido, $this->dui, $this->correo, $this->fecha, $this->estado, $this->imagen, $this->id);
         return Database::executeRow($sql, $params);
     }
 
