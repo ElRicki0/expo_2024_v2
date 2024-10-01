@@ -2,16 +2,18 @@
 const SERVICIO_API = 'services/public/servicio.php';
 const COMENTARIO_API = 'services/public/comentario.php';
 const EMPLEADO_API = 'services/public/empleado.php';
+const PREGUNTA_API = 'services/public/pregunta.php';
 
 // Constantes para establecer el contenido de la tabla.
-const SERVICIOS = document.getElementById('accordionFlushExample');
+const SERVICIOS = document.getElementById('servicio');
 const COMENTARIOS1 = document.getElementById('comentarios1');
 const COMENTARIOS2 = document.getElementById('comentarios2');
 const COMENTARIOS3 = document.getElementById('comentarios3');
 
 const EMPLEADO1 = document.getElementById('empleado1');
-const EMPLEADO2 = document.getElementById('empleado2');
+/*const EMPLEADO2 = document.getElementById('empleado2');*/
 const EMPLEADO3 = document.getElementById('empleado3');
+const PREGUNTAS = document.getElementById('pregunta');
 
 // Método del evento para cuando el documento ha cargado.
 document.addEventListener('DOMContentLoaded', async () => {

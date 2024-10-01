@@ -83,6 +83,7 @@ const loadTemplate = async () => {
             </div>
             <div class="footer-column">
                 <p>
+                    <h3>Redes Sociales</h3>
                     <a href="https://facebook.com" target="_blank"><i class="bi bi-facebook"></i></a>
                     <a href="https://twitter.com" target="_blank"><i class="bi bi-twitter"></i></a>
                     <a href="https://instagram.com" target="_blank"><i class="bi bi-instagram"></i></a>

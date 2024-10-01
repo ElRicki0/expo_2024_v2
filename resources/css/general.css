@@ -55,6 +55,29 @@ body {
     box-shadow: none;
 }
 
+.servicioIndex{
+    max-width: 200px;
+    max-height: 200px;
+    height: auto;
+    width: auto;
+    border: 2px solid transparent; /* Quita el borde o lo hace transparente */
+    border-radius: 0;  
+    border: none; /* Quita el borde */
+    
+}
+.traspante{
+    opacity: 0.7; /* Ajusta el valor según el nivel de opacidad que desees */
+    justify-content: center;
+    align-items: center;
+  }
+  
+.contenedor-tarjetas {
+    max-width: 1100px; /* Limita el ancho máximo del contenedor */
+    margin: 0 auto;    /* Centra el contenedor */
+    padding: 0 15px;   /* Asegura un pequeño padding en los laterales */
+  }
+
+
 #offcanvasNavbar {
     opacity: 0.8;
     border-color: white;
