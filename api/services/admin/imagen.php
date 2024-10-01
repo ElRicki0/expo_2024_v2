@@ -9,7 +9,7 @@ if (isset($_GET['action'])) {
     // Se instancia la clase correspondiente.
     $imagen = new ImagenData;
     // Se declara e inicializa un arreglo para guardar el resultado que retorna la API.
-    $result = array('status' => 0, 'message' => null, 'dataset' => null, 'error' => null, 'exception' => null, 'fileStatus' => null);
+    $result = array('status' => 0, 'message' => null, 'dataset' => null, 'error' => null, 'exception' => null, 'fileStatus1' => null, 'fileStatus2' => null, 'fileStatus3' => null);
     // Se verifica si existe una sesión iniciada como administrador, de lo contrario se finaliza el script con un mensaje de error.
     if (isset($_SESSION['idAdministrador'])) {
         // Se compara la acción a realizar cuando un administrador ha iniciado sesión.
@@ -30,18 +30,30 @@ if (isset($_GET['action'])) {
                     !$imagen->setNombre($_POST['nombreImagen']) or
                     !$imagen->setImagen1($_FILES['imagen1']) or
                     !$imagen->setImagen2($_FILES['imagen2']) or
-                    !$imagen->setImagen3($_FILES['imagen3']) 
+                    !$imagen->setImagen3($_FILES['imagen3'])
                 ) {
                     $result['error'] = $imagen->getDataError();
-                } elseif ($imagen->createRow()) {
-                    $result['status'] = 1;
-                    $result['message'] = 'Galería creada correctamente';
-                    // Se asigna el estado del archivo después de insertar.
-                    $result['fileStatus'] = Validator::saveFile($_FILES['imagen1'], $imagen::RUTA_IMAGEN);
-                    $result['fileStatus'] = Validator::saveFile($_FILES['imagen2'], $imagen::RUTA_IMAGEN);
-                    $result['fileStatus'] = Validator::saveFile($_FILES['imagen3'], $imagen::RUTA_IMAGEN);
                 } else {
-                    $result['error'] = 'Ocurrió un problema al crear la imagen';
+                    // Intenta crear la fila en la base de datos
+                    if ($imagen->createRow()) {
+                        $result['status'] = 1;
+                        $result['message'] = 'Galería creada correctamente';
+
+                        // Guarda los archivos con sus nombres originales
+                        $fileStatuses = [];
+                        $fileStatuses['imagen1'] = Validator::saveFile($_FILES['imagen1'], $imagen::RUTA_IMAGEN, $_FILES['imagen1']['name']);
+                        $fileStatuses['imagen2'] = Validator::saveFile($_FILES['imagen2'], $imagen::RUTA_IMAGEN, $_FILES['imagen2']['name']);
+                        $fileStatuses['imagen3'] = Validator::saveFile($_FILES['imagen3'], $imagen::RUTA_IMAGEN, $_FILES['imagen3']['name']);
+
+                        // Verifica que se guardaron todas las imágenes
+                        if ($fileStatuses['imagen1'] && $fileStatuses['imagen2'] && $fileStatuses['imagen3']) {
+                            $result['fileStatus'] = $fileStatuses; // Almacena el estado de los archivos
+                        } else {
+                            $result['error'] = 'Ocurrió un problema al guardar algunas imágenes';
+                        }
+                    } else {
+                        $result['error'] = 'Ocurrió un problema al crear la imagen';
+                    }
                 }
                 break;
             case 'readAll':
@@ -53,7 +65,7 @@ if (isset($_GET['action'])) {
                 }
                 break;
             case 'readOne':
-                if (!$imagen->setId($_POST['idFoto'])) {
+                if (!$imagen->setId($_POST['idImagen'])) {
                     $result['error'] = $imagen->getDataError();
                 } elseif ($result['dataset'] = $imagen->readOne()) {
                     $result['status'] = 1;
@@ -64,32 +76,44 @@ if (isset($_GET['action'])) {
             case 'updateRow':
                 $_POST = Validator::validateForm($_POST);
                 if (
-                    !$imagen->setId($_POST['idFoto']) or
-                    !$imagen->setFilename() or
-                    !$imagen->setNombre($_POST['nombreFoto']) or
-                    !$imagen->setImagen1($_FILES['inputFoto'], $imagen->getFilename())
+                    !$imagen->setId($_POST['idImagen']) or
+                    !$imagen->setNombre($_POST['nombreImagen']) or
+                    !$imagen->setImagen1($_FILES['imagen1']) or
+                    !$imagen->setImagen2($_FILES['imagen2']) or
+                    !$imagen->setImagen3($_FILES['imagen3'])
                 ) {
                     $result['error'] = $imagen->getDataError();
                 } elseif ($imagen->updateRow()) {
                     $result['status'] = 1;
                     $result['message'] = 'Imagen modificada correctamente';
                     // Se asigna el estado del archivo después de actualizar.
-                    $result['fileStatus'] = Validator::changeFile($_FILES['inputFoto'], $imagen::RUTA_IMAGEN, $imagen->getFilename());
+                    // Guarda los archivos con sus nombres originales
+                    $fileStatuses = [];
+                    $fileStatuses['imagen1'] = Validator::saveFile($_FILES['imagen1'], $imagen::RUTA_IMAGEN, $_FILES['imagen1']['name']);
+                    $fileStatuses['imagen2'] = Validator::saveFile($_FILES['imagen2'], $imagen::RUTA_IMAGEN, $_FILES['imagen2']['name']);
+                    $fileStatuses['imagen3'] = Validator::saveFile($_FILES['imagen3'], $imagen::RUTA_IMAGEN, $_FILES['imagen3']['name']);
+
+                    // Verifica que se guardaron todas las imágenes
+                    if ($fileStatuses['imagen1'] && $fileStatuses['imagen2'] && $fileStatuses['imagen3']) {
+                        $result['fileStatus'] = $fileStatuses; // Almacena el estado de los archivos
+                    } else {
+                        $result['error'] = 'Ocurrió un problema al guardar algunas imágenes';
+                    }
                 } else {
                     $result['error'] = 'Ocurrió un problema al modificar la imagen';
                 }
                 break;
             case 'deleteRow':
                 if (
-                    !$imagen->setId($_POST['idFoto']) or
-                    !$imagen->setFilename()
+                    !$imagen->setId($_POST['idImagen'])
+                    // !$imagen->setFilename()
                 ) {
                     $result['error'] = $imagen->getDataError();
                 } elseif ($imagen->deleteRow()) {
                     $result['status'] = 1;
                     $result['message'] = 'Imagen eliminada correctamente';
                     // Se asigna el estado del archivo después de eliminar.
-                    $result['fileStatus'] = Validator::deleteFile($imagen::RUTA_IMAGEN, $imagen->getFilename());
+                    // $result['fileStatus'] = Validator::deleteFile($imagen::RUTA_IMAGEN, $imagen->getFilename());
                 } else {
                     $result['error'] = 'Ocurrió un problema al eliminar la imagen  ///  La imagen es usada en servicios';
                 }

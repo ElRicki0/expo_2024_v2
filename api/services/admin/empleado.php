@@ -38,8 +38,16 @@ if (isset($_GET['action'])) {
                     $result['error'] = $empleado->getDataError();
                 } elseif ($empleado->createRow()) {
                     $result['status'] = 1;
-                    // Se asigna el estado del archivo después de insertar.
-                    $result['fileStatus'] = Validator::saveFile($_FILES['imagenEmpleado'], $empleado::RUTA_IMAGEN);
+
+                    $fileStatuses['imagenEmpleado'] = Validator::saveFile($_FILES['imagenEmpleado'], $empleado::RUTA_IMAGEN, $_FILES['imagenEmpleado']['name']);
+
+                    // Verifica que se guardaron todas las imágenes
+                    if ($fileStatuses['imagenEmpleado']) {
+                        $result['fileStatus'] = $fileStatuses; // Almacena el estado de los archivos
+                    } else {
+                        $result['error'] = 'Ocurrió un problema al guardar algunas imágenes';
+                    }
+
                     $result['message'] = 'Empleado creado correctamente';
                 } else {
                     $result['error'] = 'Ocurrió un problema al crear al Empleado';
@@ -86,7 +94,16 @@ if (isset($_GET['action'])) {
                 } elseif ($empleado->updateRow()) {
                     $result['status'] = 1;
                     // Se asigna el estado del archivo después de insertar.
-                    $result['fileStatus'] = Validator::saveFile($_FILES['imagenEmpleado'], $empleado::RUTA_IMAGEN);
+
+                    $fileStatuses['imagenEmpleado'] = Validator::saveFile($_FILES['imagenEmpleado'], $empleado::RUTA_IMAGEN, $_FILES['imagenEmpleado']['name']);
+
+                    // Verifica que se guardaron todas las imágenes
+                    if ($fileStatuses['imagenEmpleado']) {
+                        $result['fileStatus'] = $fileStatuses; // Almacena el estado de los archivos
+                    } else {
+                        $result['error'] = 'Ocurrió un problema al guardar algunas imágenes';
+                    }
+
                     $result['message'] = 'Empleado modificado correctamente';
                 } else {
                     $result['error'] = 'Ocurrió un problema al modificar el Empleado';
@@ -108,7 +125,15 @@ if (isset($_GET['action'])) {
                 } elseif ($empleado->updateRow()) {
                     $result['status'] = 1;
                     // Se asigna el estado del archivo después de insertar.
-                    $result['fileStatus'] = Validator::saveFile($_FILES['imagenEmpleado'], $empleado::RUTA_IMAGEN);
+
+                    $fileStatuses['imagenEmpleado'] = Validator::saveFile($_FILES['imagenEmpleado'], $empleado::RUTA_IMAGEN, $_FILES['imagenEmpleado']['name']);
+
+                    // Verifica que se guardaron todas las imágenes
+                    if ($fileStatuses['imagenEmpleado']) {
+                        $result['fileStatus'] = $fileStatuses; // Almacena el estado de los archivos
+                    } else {
+                        $result['error'] = 'Ocurrió un problema al guardar algunas imágenes';
+                    }
                     $result['message'] = 'Empleado modificado correctamente';
                 } else {
                     $result['error'] = 'Ocurrió un problema al modificar el Empleado';
@@ -124,7 +149,16 @@ if (isset($_GET['action'])) {
                 } elseif ($empleado->updateRowImagen()) {
                     $result['status'] = 1;
                     // Se asigna el estado del archivo después de insertar.
-                    $result['fileStatus'] = Validator::saveFile($_FILES['imagenEmpleado'], $empleado::RUTA_IMAGEN);
+
+                    $fileStatuses['imagenEmpleado'] = Validator::saveFile($_FILES['imagenEmpleado'], $empleado::RUTA_IMAGEN, $_FILES['imagenEmpleado']['name']);
+
+                    // Verifica que se guardaron todas las imágenes
+                    if ($fileStatuses['imagenEmpleado']) {
+                        $result['fileStatus'] = $fileStatuses; // Almacena el estado de los archivos
+                    } else {
+                        $result['error'] = 'Ocurrió un problema al guardar algunas imágenes';
+                    }
+
                     $result['message'] = 'Empleado modificado correctamente';
                 } else {
                     $result['error'] = 'Ocurrió un problema al modificar el Empleado';
@@ -199,7 +233,16 @@ if (isset($_GET['action'])) {
                 } elseif ($empleado->createNewRow()) {
                     $result['status'] = 1;
                     // Se asigna el estado del archivo después de insertar.
-                    $result['fileStatus'] = Validator::saveFile($_FILES['imagenEmpleado'], $empleado::RUTA_IMAGEN);
+
+                    $fileStatuses['imagenEmpleado'] = Validator::saveFile($_FILES['imagenEmpleado'], $empleado::RUTA_IMAGEN, $_FILES['imagenEmpleado']['name']);
+
+                    // Verifica que se guardaron todas las imágenes
+                    if ($fileStatuses['imagenEmpleado']) {
+                        $result['fileStatus'] = $fileStatuses; // Almacena el estado de los archivos
+                    } else {
+                        $result['error'] = 'Ocurrió un problema al guardar algunas imágenes';
+                    }
+
                     $result['message'] = 'Empleado creado correctamente';
                 } else {
                     $result['error'] = 'Ocurrió un problema al crear al Empleado';
