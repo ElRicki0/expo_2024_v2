@@ -1,0 +1,40 @@
+footer {
+    background-image: url('../../img/public/Footer.png'); /* Cambia la ruta a la ubicación de tu imagen */
+    background-size: cover; /* Esto asegura que la imagen cubra todo el área del footer */
+    background-position: center; /* Centra la imagen */
+    height: 200px; /* Ajusta la altura según sea necesario */
+    color: white; /* Cambia el color del texto si es necesario */
+}
+
+.footer-container {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+.footer-column {
+    flex: 1;
+    margin: 0 10px;
+}
+
+.footer-column h3 {
+    font-family: 'Work Sans', sans-serif; /* Aplica la fuente Work Sans */
+    margin-bottom: 10px;
+    font-weight: bold; /* Hace que los títulos estén en negrita */
+}
+
+.footer-column p {
+    color: rgb(167, 167, 167);
+    margin: 0;
+    font-size: 13px; /* Tamaño de fuente más pequeño para los párrafos */
+    font-weight: lighter; /* Fuente más ligera para los párrafos */
+}
+
+.footer-column a {
+    text-align: center; /* Centra el contenido de la columna de redes sociales */
+    display: block; /* Hace que cada icono esté en una nueva línea */
+    margin-bottom: 10px;
+    font-size: 26px; /* Aumenta el tamaño de los iconos */
+    text-decoration: none;
+    color: inherit;
+}
