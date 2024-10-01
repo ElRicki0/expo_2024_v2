@@ -18,7 +18,7 @@ const SAVE_FORM = document.getElementById('saveForm'),
     IMAGEN2 = document.getElementById('imagen2'),
     IMAGEN3 = document.getElementById('imagen3');
 
-    // Método del evento para cuando el documento ha cargado.
+// Método del evento para cuando el documento ha cargado.
 document.addEventListener('DOMContentLoaded', () => {
     // Llamada a la función para mostrar el encabezado y pie del documento.
     loadTemplate();
@@ -106,9 +106,9 @@ SAVE_FORM.addEventListener('submit', async (event) => {
 
 
 /*
-*   Función asíncrona para llenar la tabla con los registros disponibles.
-*   Parámetros: form (objeto opcional con los datos de búsqueda).
-*   Retorno: ninguno.
+* Función asíncrona para llenar la tabla con los registros disponibles.
+* Parámetros: form (objeto opcional con los datos de búsqueda).
+* Retorno: ninguno.
 */
 const fillTable = async (form = null) => {
     // Se inicializa el contenido de la tabla.
@@ -124,19 +124,39 @@ const fillTable = async (form = null) => {
         DATA.dataset.forEach(row => {
             // Se crean y concatenan las filas de la tabla con los datos de cada registro.
             TABLE_BODY.innerHTML += `
-                <tr>
-                    <td><img src="${SERVER_URL}images/fotos/${row.foto}" height="50"></td>
-                    <td>${row.nombre_foto}</td>
-                    <td>
-                        <button type="button" class="btn btn-info" onclick="openUpdate(${row.id_foto})">
-                            <i class="bi bi-pencil-fill"></i>
-                        </button>
-                        <button type="button" class="btn btn-danger" onclick="openDelete(${row.id_foto})">
-                            <i class="bi bi-trash-fill"></i>
-                        </button>
-                    </td>
-                </tr>
-            `;
+<div class="col-12 card mt-2 inicioIndex text-center" id="searchForm">
+    <h1 class="text-white">${row.nombre_imagen}</h1>
+    <div class="row d-flex justify-content-center">
+        <div class="col-sm-12 col-md-12 col-lg-4 d-flex justify-content-center align-items-center" style="height: 300px; width: 300px;">
+            <img src="${SERVER_URL}images/imagenes/${row.imagen_1}" class="card-img-top" alt="..."
+                onerror="this.onerror=null; this.src='../../resources/img/error/cliente.jpg';"
+                style="max-width: 100%; max-height: 100%; object-fit: contain;">
+        </div>
+
+        <div class="col-sm-12 col-md-12 col-lg-4 d-flex justify-content-center align-items-center" style="height: 300px; width: 300px;">
+            <img src="${SERVER_URL}images/imagenes/${row.imagen_2}" class="card-img-top" alt="..."
+                onerror="this.onerror=null; this.src='../../resources/img/error/cliente.jpg';"
+                style="max-width: 100%; max-height: 100%; object-fit: contain;">
+        </div>
+
+        <div class="col-sm-12 col-md-12 col-lg-4 d-flex justify-content-center align-items-center" style="height: 300px; width: 300px;">
+            <img src="${SERVER_URL}images/imagenes/${row.imagen_3}" class="card-img-top" alt="..."
+                onerror="this.onerror=null; this.src='../../resources/img/error/cliente.jpg';"
+                style="max-width: 100%; max-height: 100%; object-fit: contain;">
+        </div>
+    </div>
+
+    <div class="container my-2 d-flex justify-content-center">
+        <button type="button" class="btn btn-info mx-1" onclick="openUpdate(${row.id_foto})">
+            <i class="bi bi-pencil-fill"></i>
+        </button>
+        <button type="button" class="btn btn-danger mx-1" onclick="openDelete(${row.id_foto})">
+            <i class="bi bi-trash-fill"></i>
+        </button>
+    </div>
+</div>
+
+`;
         });
         // Se muestra un mensaje de acuerdo con el resultado.
         ROWS_FOUND.textContent = DATA.message;
@@ -146,9 +166,9 @@ const fillTable = async (form = null) => {
 }
 
 /*
-*   Función para preparar el formulario al momento de insertar un registro.
-*   Parámetros: ninguno.
-*   Retorno: ninguno.
+* Función para preparar el formulario al momento de insertar un registro.
+* Parámetros: ninguno.
+* Retorno: ninguno.
 */
 const openCreate = () => {
     // Se muestra la caja de diálogo con su título.
@@ -160,9 +180,9 @@ const openCreate = () => {
 
 
 /*
-*   Función asíncrona para preparar el formulario al momento de actualizar un registro.
-*   Parámetros: id (identificador del registro seleccionado).
-*   Retorno: ninguno.
+* Función asíncrona para preparar el formulario al momento de actualizar un registro.
+* Parámetros: id (identificador del registro seleccionado).
+* Retorno: ninguno.
 */
 const openUpdate = async (id) => {
     // Se define un objeto con los datos del registro seleccionado.
@@ -188,9 +208,9 @@ const openUpdate = async (id) => {
 }
 
 /*
-*   Función asíncrona para eliminar un registro.
-*   Parámetros: id (identificador del registro seleccionado).
-*   Retorno: ninguno.
+* Función asíncrona para eliminar un registro.
+* Parámetros: id (identificador del registro seleccionado).
+* Retorno: ninguno.
 */
 const openDelete = async (id) => {
     // Llamada a la función para mostrar un mensaje de confirmación, capturando la respuesta en una constante.

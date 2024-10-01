@@ -63,9 +63,9 @@ class ImagenHandler
 
     public function readFilename()
     {
-        $sql = 'SELECT foto
+        $sql = 'SELECT imagen_1, imagen_2, imagen_3
                 FROM tb_imagenes
-                WHERE id_foto = ?';
+                WHERE id_imagen = ?';
         $params = array($this->id);
         return Database::getRow($sql, $params);
     }

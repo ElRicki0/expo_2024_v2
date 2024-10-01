@@ -69,6 +69,9 @@ const loadTemplate = async () => {
                             <a class="nav-link" href="administradores.html"><i class="bi bi-shield-lock-fill me-1"></i> Admin</a>
                             </li>
                             <li class="nav-item ms-4">
+                                <a class="nav-link" href="imagenes.html"><i class="bi bi-images"></i> Galería</a>
+                            </li>
+                            <li class="nav-item ms-4">
                                 <a class="nav-link" href="servicios.html"><i class="bi bi-file-medical-fill me-1"></i> Servicios</a>
                             </li>
                             <li class="nav-item ms-4">

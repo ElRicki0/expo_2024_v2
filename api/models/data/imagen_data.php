@@ -62,7 +62,7 @@ class ImagenData extends ImagenHandler
     public function setImagen2($file, $filename = null)
     {
         if (Validator::validateImageFile($file, 1000)) {
-            $this->imagen1 = Validator::getFileName();
+            $this->imagen2 = Validator::getFileName();
             return true;
         } elseif (Validator::getFileError()) {
             $this->data_error = Validator::getFileError();
@@ -96,7 +96,7 @@ class ImagenData extends ImagenHandler
     public function setFilename()
     {
         if ($data = $this->readFilename()) {
-            $this->filename = $data['foto'];
+            $this->filename = $data['imagenes'];
             return true;
         } else {
             $this->data_error = 'Imagen inexistente';
