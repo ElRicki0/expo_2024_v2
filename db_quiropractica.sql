@@ -89,7 +89,6 @@ CREATE TABLE
         id_pregunta INT AUTO_INCREMENT PRIMARY KEY,
         nombre_pregunta VARCHAR(250) NOT NULL unique,
         contenido_pregunta VARCHAR(255) NOT NULL,
-        imagen_pregunta VARCHAR(100) NOT NULL,
         id_empleado INT,
         FOREIGN KEY (id_empleado) REFERENCES tb_empleados (id_empleado),
         id_imagen INT,

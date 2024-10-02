@@ -61,23 +61,7 @@
         <!-- Contenedor para la tabla con scroll -->
         <div id="ContenedorTable">
 
-            <!-- Tabla para mostrar los registros existentes -->
-            <table class="table table-hover table-dark">
-
-                <!-- Cabeza de la tabla para mostrar la cantidad de registros y los títulos de las columnas -->
-                <thead>
-                    <tr>
-                        <th>IMAGEN</th>
-                        <th>PREGUNTA</th>
-                        <th>CONTENIDO</th>
-                        <th>EMPLEADO</th>
-                        <th>ACCIONES</th>
-                    </tr>
-                </thead>
-
-                <!-- Cuerpo de la tabla para mostrar un registro por fila -->
-                <tbody id="tableBody" class="table-group-divider"></tbody>
-            </table>
+            <div id="tableBody"></div>
         </div>
 
         <!-- Modal agregar Pregunta -->
@@ -89,8 +73,8 @@
                     <form id="saveForm">
 
                         <!-- Campo oculto para asignar el id del registro al momento de modificar -->
-                        <input type="number" class="d-none" id="idPregunta" name="idPregunta">
                         <form class="needs-validation">
+                            <input type="number" class="d-none" id="idPregunta" name="idPregunta">
 
                             <!-- Body del modal -->
                             <div class="modal-body">
@@ -102,39 +86,42 @@
                                 <div class="row p-3">
                                     <div class="col-12">
                                         <div class="row">
-                                            <div class="col-6">
-                                                <label for="imagenPregunta" class="form-label">Imagen</label>
-                                                <input id="imagenPregunta" type="file" name="imagenPregunta" autocomplete="off"
-                                                    class="form-control" accept=".png, .jpg" required oninput="formatImg(this)">
-                                            </div>
-                                            <div class="col-6">
+                                            <div class="col-sm-12 col-md-6 col-lg-6 mt-2">
                                                 <label for="nombrePregunta" class="form-label">Pregunta</label>
-                                                <input id="nombrePregunta" type="text" name="nombrePregunta" autocomplete="off"
-                                                    class="form-control" required oninput="formatAlphabetic(this)">
+                                                <input id="nombrePregunta" type="text" name="nombrePregunta"
+                                                    autocomplete="off" class="form-control" required
+                                                    oninput="formatAlphabetic(this)">
                                             </div>
-                                            <div class="col-6 mt-2">
+                                            <div class="col-sm-12 col-md-6 col-lg-6 mt-2">
                                                 <label for="contenidoPregunta" class="form-label">Contenido</label>
-                                                <input id="contenidoPregunta" type="text" name="contenidoPregunta" autocomplete="off"
-                                                    class="form-control" required oninput="formatAlphabetic(this)">
+                                                <input id="contenidoPregunta" type="text" name="contenidoPregunta"
+                                                    autocomplete="off" class="form-control" required
+                                                    oninput="formatAlphabetic(this)">
                                             </div>
-                                            <div class="col-6 mt-2">
+                                            <div class="col-sm-12 col-md-6 col-lg-6 mt-2">
                                                 <label for="empleadoPregunta" class="form-label">Empleado</label>
                                                 <select id="empleadoPregunta" name="empleadoPregunta" autocomplete="off"
                                                     class="form-select" required oninput="formatCombo(this)">
                                                 </select>
                                             </div>
+                                            <div class="col-sm-12 col-md-6 col-lg-6 mt-2">
+                                                <label for="imagenPregunta" class="form-label">Galería</label>
+                                                <select id="imagenPregunta" name="imagenPregunta" autocomplete="off"
+                                                    class="form-select" required oninput="formatCombo(this)">
+                                                </select>
+                                            </div>
                                         </div>
                                         <div class="row mt-3">
-                                            <div class="col-6"></div>
-                                            <div class="col-6 text-end">
-                                                <button type="submit" class="btn btn-primary ps-4 pe-4">
-                                                    <i class="bi bi-person-fill-add me-1"></i> Aceptar
-                                                </button>
+                                            <div class="col-6">
+                                                <div class="col-6 text-end">
+                                                    <button type="submit" class="btn btn-primary ps-4 pe-4">
+                                                        <i class="bi bi-person-fill-add me-1"></i> Aceptar
+                                                    </button>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
                         </form>
                     </form>
                 </div>
@@ -143,14 +130,15 @@
     </main>
 
     <!-- Importaciones -->
+
     <script src="../../controllers/utils/components.js"></script>
     <script src="../../resources/js/sweetalert.min.js"></script>
     <script src="../../resources/js/bootstrap_js.js"></script>
     <script src="../../controllers/utils/admin.js"></script>
-    <script src="../../controllers/admin/preguntas.js"></script>
     <script src="../../controllers/utils/Validaciones.js"></script>
     <script src="../../resources/js/chart.umd.min.js"></script>
     <script src="../../controllers/utils/inactividad.js"></script>
+    <script src="../../controllers/admin/preguntas.js"></script>
 </body>
 
 </html>

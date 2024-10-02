@@ -1,6 +1,7 @@
 // Constantes para completar las rutas de la API.
 const EMPLEADO_API = 'services/admin/empleado.php';
 const PREGUNTA_API = 'services/admin/pregunta.php';
+const IMAGENES_API = 'services/admin/imagen.php';
 
 // Constante para establecer el formulario de buscar.
 const SEARCH_FORM = document.getElementById('searchForm');
@@ -8,7 +9,7 @@ const SEARCH_FORM = document.getElementById('searchForm');
 // Constantes para establecer el contenido de la tabla.
 const TABLE_BODY = document.getElementById('tableBody'),
     ROWS_FOUND = document.getElementById('rowsFound');
-    
+
 // Constantes para establecer los elementos del componente Modal.
 const SAVE_MODAL = new bootstrap.Modal('#saveModal'),
     MODAL_TITLE = document.getElementById('modalTitle');
@@ -63,9 +64,9 @@ SAVE_FORM.addEventListener('submit', async (event) => {
 });
 
 /*
-*   Función asíncrona para llenar la tabla con los registros disponibles.
-*   Parámetros: form (objeto opcional con los datos de búsqueda).
-*   Retorno: ninguno.
+* Función asíncrona para llenar la tabla con los registros disponibles.
+* Parámetros: form (objeto opcional con los datos de búsqueda).
+* Retorno: ninguno.
 */
 const fillTable = async (form = null) => {
     // Se inicializa el contenido de la tabla.
@@ -79,24 +80,46 @@ const fillTable = async (form = null) => {
     if (DATA.status) {
         // Se recorre el conjunto de registros (dataset) fila por fila a través del objeto row.
         DATA.dataset.forEach(row => {
-            
+
             // Se crean y concatenan las filas de la tabla con los datos de cada registro.
             TABLE_BODY.innerHTML += `
-                <tr>
-                    <td><img src="${SERVER_URL}images/preguntas/${row.imagen_pregunta}" height="50"></td>
-                    <td>${row.nombre_pregunta}</td>
-                    <td>${row.contenido_pregunta}</td>
-                    <td>${row.nombre_empleado}</td>
-                    <td>
-                        <button type="button" class="btn btn-danger" onclick="openDelete(${row.id_pregunta})">
-                            <i class="bi bi-trash-fill"></i>
-                        </button>
-                        <button type="button" class="btn btn-primary" onclick="openUpdate(${row.id_pregunta})">
-                            <i class="bi bi-pen-fill"></i>
-                        </button>
-                    </td>
-                </tr>
-            `;
+<div class="col-12 card mt-2 inicioIndex" id="searchForm">
+    <div class="row  ">
+        <div class="col-sm-12 col-md-12 col-lg-3 mt-3 d-flex align-items-center justify-content-center "
+            style="height: 300px; width: 300px;">
+            <div clas="ml-5">
+                <img src="${SERVER_URL}images/imagenes/${row.imagen_1}" class="card-img-top" alt="..."
+                    onerror="this.onerror=null; this.src='../../resources/img/error/cliente.jpg';"
+                    style="max-width: 70%; max-height: 70%; object-fit: contain;">
+            </div>
+        </div>
+
+        <div class="col-sm-12 col-md-12 col-lg-3 card-body d-flex flex-column align-items-center text-center">
+            <h5 class="text-white">Nombre pregunta</h5>
+            <p class="card-title text-white">${row.nombre_pregunta}</p>
+            <h5 class="text-white">Contenido</h5>
+            <p class="card-text text-white">${row.contenido_pregunta}</p>
+            <h5 class="text-white">Nombre Galeria</h5>
+            <p class="card-text text-white">${row.nombre_imagen}</p>
+            <h5 class="text-white">Nombre Empleado</h5>
+            <p class="card-text text-white">${row.nombre_empleado} ${row.apellido_empleado}</p>
+        </div>3
+        <div class="col-sm-12 col-md-12 col-lg-3 text-center my-5">
+            <div class=" ">
+                <div class="d-flex flex-column">
+                    <button class="btn btn-outline-light mb-2" onclick="openDelete(${row.id_pregunta})">
+                        <i class="bi bi-trash3-fill"></i> Eliminar
+                    </button>
+                    <button class="btn btn-outline-light mb-2" onclick="openUpdate(${row.id_pregunta})">
+                        <i class="bi bi-pencil-fill"></i>Actualizar
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+`;
         });
         // Se muestra un mensaje de acuerdo con el resultado.
         ROWS_FOUND.textContent = DATA.message;
@@ -106,9 +129,9 @@ const fillTable = async (form = null) => {
 }
 
 /*
-*   Función para preparar el formulario al momento de insertar un registro.
-*   Parámetros: ninguno.
-*   Retorno: ninguno.
+* Función para preparar el formulario al momento de insertar un registro.
+* Parámetros: ninguno.
+* Retorno: ninguno.
 */
 const openCreate = () => {
     // Se muestra la caja de diálogo con su título.
@@ -117,12 +140,13 @@ const openCreate = () => {
     // Se prepara el formulario.
     SAVE_FORM.reset();
     fillSelect(EMPLEADO_API, 'readAll', 'empleadoPregunta');
+    fillSelect(IMAGENES_API, 'readAll', 'imagenPregunta');
 }
 
 /*
-*   Función asíncrona para preparar el formulario al momento de actualizar un registro.
-*   Parámetros: id (identificador del registro seleccionado).
-*   Retorno: ninguno.
+* Función asíncrona para preparar el formulario al momento de actualizar un registro.
+* Parámetros: id (identificador del registro seleccionado).
+* Retorno: ninguno.
 */
 const openUpdate = async (id) => {
     // Se define un objeto con los datos del registro seleccionado.
@@ -141,17 +165,18 @@ const openUpdate = async (id) => {
         const ROW = DATA.dataset;
         ID_PREGUNTA.value = ROW.id_pregunta;
         NOMBRE_PREGUNTA.value = ROW.nombre_pregunta;
-        CONTENIDO_PREGUNTA.value = ROW.contenido_pregunta;    
+        CONTENIDO_PREGUNTA.value = ROW.contenido_pregunta;
         fillSelect(EMPLEADO_API, 'readAll', 'empleadoPregunta', ROW.id_empleado);
+        fillSelect(IMAGENES_API, 'readAll', 'imagenPregunta', parseInt(ROW.id_imagen));
     } else {
         sweetAlert(2, DATA.error, false);
     }
 }
 
 /*
-*   Función asíncrona para eliminar un registro.
-*   Parámetros: id (identificador del registro seleccionado).
-*   Retorno: ninguno.
+* Función asíncrona para eliminar un registro.
+* Parámetros: id (identificador del registro seleccionado).
+* Retorno: ninguno.
 */
 const openDelete = async (id) => {
     // Llamada a la función para mostrar un mensaje de confirmación, capturando la respuesta en una constante.

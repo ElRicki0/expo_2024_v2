@@ -86,20 +86,14 @@ class PreguntaData extends PreguntasHandler
     }
 
     // Método setImagen: valida y asigna la imagen relacionada con la pregunta.
-    public function setImagen($file, $filename = null)
+    public function setImagen($value)
     {
-        if (Validator::validateImageFile($file, 1000)) {
-            $this->imagen = Validator::getFilename();
-            return true;
-        } elseif (Validator::getFileError()) {
-            $this->data_error = Validator::getFileError();
-            return false;
-        } elseif ($filename) {
-            $this->imagen = $filename;
+        if (Validator::validateNaturalNumber($value)) {
+            $this->imagen = $value;
             return true;
         } else {
-            $this->imagen = 'default.jpg';
-            return true;
+            $this->data_error = 'El identificador de la imagen es incorrecto';
+            return false;
         }
     }
 

@@ -27,7 +27,7 @@ if (isset($_GET['action'])) {
             case 'createRow':
                 $_POST = Validator::validateForm($_POST);
                 if (
-                    !$pregunta->setImagen($_FILES['imagenPregunta']) or
+                    !$pregunta->setImagen($_POST['imagenPregunta']) or
                     !$pregunta->setPregunta($_POST['nombrePregunta']) or
                     !$pregunta->setContenido($_POST['contenidoPregunta']) or
                     !$pregunta->setEmpleado($_POST['empleadoPregunta'])
@@ -36,8 +36,6 @@ if (isset($_GET['action'])) {
                 } elseif ($pregunta->createRow()) {
                     $result['status'] = 1;
                     $result['message'] = 'Pregunta creada correctamente';
-                    // Se asigna el estado del archivo después de insertar.
-                    $result['fileStatus'] = Validator::saveFile($_FILES['imagenPregunta'], $pregunta::RUTA_IMAGEN);
                 } else {
                     $result['error'] = 'Ocurrió un problema al crear la pregunta';
                 }
@@ -63,33 +61,27 @@ if (isset($_GET['action'])) {
                 $_POST = Validator::validateForm($_POST);
                 if (
                     !$pregunta->setId($_POST['idPregunta']) or
-                    !$pregunta->setFilename() or
                     !$pregunta->setPregunta($_POST['nombrePregunta']) or
                     !$pregunta->setContenido($_POST['contenidoPregunta']) or
                     !$pregunta->setEmpleado($_POST['empleadoPregunta']) or
-                    !$pregunta->setImagen($_FILES['imagenPregunta'], $pregunta->getFilename())
+                    !$pregunta->setImagen($_POST['imagenPregunta'])
                 ) {
                     $result['error'] = $pregunta->getDataError();
                 } elseif ($pregunta->updateRow()) {
                     $result['status'] = 1;
                     $result['message'] = 'pregunta modificada correctamente';
-                    // Se asigna el estado del archivo después de actualizar.
-                    $result['fileStatus'] = Validator::changeFile($_FILES['imagenPregunta'], $pregunta::RUTA_IMAGEN, $pregunta->getFilename());
                 } else {
                     $result['error'] = 'Ocurrió un problema al modificar la pregunta';
                 }
                 break;
             case 'deleteRow':
                 if (
-                    !$pregunta->setId($_POST['idPregunta']) or
-                    !$pregunta->setFilename()
+                    !$pregunta->setId($_POST['idPregunta'])
                 ) {
                     $result['error'] = $pregunta->getDataError();
                 } elseif ($pregunta->deleteRow()) {
                     $result['status'] = 1;
                     $result['message'] = 'Pregunta eliminada correctamente';
-                    // Se asigna el estado del archivo después de eliminar.
-                    $result['fileStatus'] = Validator::deleteFile($pregunta::RUTA_IMAGEN, $pregunta->getFilename());
                 } else {
                     $result['error'] = 'Ocurrió un problema al eliminar la pregunta';
                 }
@@ -102,10 +94,10 @@ if (isset($_GET['action'])) {
         // Se indica el tipo de contenido a mostrar y su respectivo conjunto de caracteres.
         header('Content-type: application/json; charset=utf-8');
         // Se imprime el resultado en formato JSON y se retorna al controlador.
-        print (json_encode($result));
+        print(json_encode($result));
     } else {
-        print (json_encode('Acceso denegado'));
+        print(json_encode('Acceso denegado'));
     }
 } else {
-    print (json_encode('Recurso no disponible'));
+    print(json_encode('Recurso no disponible'));
 }

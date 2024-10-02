@@ -35,17 +35,18 @@ class PreguntasHandler
 
     public function createRow()
     {
-        $sql = 'INSERT INTO tb_preguntas(imagen_pregunta, nombre_pregunta, contenido_pregunta, id_empleado)
+        $sql = 'INSERT INTO tb_preguntas(nombre_pregunta, contenido_pregunta, id_empleado, id_imagen)
                 VALUES(?, ?, ?, ?)';
-        $params = array($this->imagen, $this->pregunta, $this->contenido, $this->empleado);
+        $params = array( $this->pregunta, $this->contenido, $this->empleado, $this->imagen);
         return Database::executeRow($sql, $params);
     }
     
     public function readAll()
     {
-        $sql = 'SELECT p. id_pregunta, p.imagen_pregunta, p.nombre_pregunta, p.contenido_pregunta, e.nombre_empleado
+        $sql = 'SELECT p. id_pregunta, p.nombre_pregunta, p.contenido_pregunta, e.nombre_empleado,i.nombre_imagen, i.imagen_1, i.imagen_2, i.imagen_3
                 FROM tb_preguntas p
-                JOIN tb_empleados e ON p.id_empleado = e.id_empleado ';
+                INNER JOIN tb_imagenes i ON i.id_imagen = p.id_imagen
+                INNER JOIN tb_empleados e ON p.id_empleado = e.id_empleado; ';
         return Database::getRows($sql);
     }
 
