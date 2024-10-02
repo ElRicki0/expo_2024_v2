@@ -84,19 +84,24 @@ const fillTable = async (form = null) => {
             TABLE_BODY.innerHTML += `
 <div class="col-12 card mt-2 inicioIndex" id="searchForm">
     <div class="row  ">
-        <div class="col-sm-12 col-md-12 col-lg-3 mt-3 d-flex align-items-center justify-content-center"
+        <div class="col-sm-12 col-md-12 col-lg-3 mt-3 d-flex align-items-center justify-content-center "
             style="height: 300px; width: 300px;">
+            <div clas="ml-5">
             <img src="${SERVER_URL}images/imagenes/${row.imagen_1}" class="card-img-top" alt="..."
                 onerror="this.onerror=null; this.src='../../resources/img/error/cliente.jpg';"
                 style="max-width: 100%; max-height: 100%; object-fit: contain;">
+            </div>
         </div>
-
 
         <div class="col-sm-12 col-md-12 col-lg-3 card-body d-flex flex-column align-items-center text-center">
             <h5 class="text-white">Nombre servicio</h5>
             <p class="card-title text-white">${row.tipo_servicio}</p>
             <h5 class="text-white">Descripción</h5>
             <p class="card-text text-white">${row.descripcion_servicio}</p>
+            <h5 class="text-white">Nombre Galeria</h5>
+            <p class="card-text text-white">${row.nombre_imagen}</p>
+            <h5 class="text-white">Nombre Empleado</h5>
+            <p class="card-text text-white">${row.nombre_empleado} ${row.apellido_empleado}</p>
         </div>3
         <div class="col-sm-12 col-md-12 col-lg-3 text-center my-5">
             <div class=" ">
@@ -166,6 +171,7 @@ const openUpdate = async (id) => {
         ID_SERVICIO.value = ROW.id_servicio;
         TIPO_SERVICIO.value = ROW.tipo_servicio;
         DESCRIPCION_SERVICIO.value = ROW.descripcion_servicio;
+        fillSelect(IMAGENES_API, 'readAll', 'imagenServicio', parseInt(ROW.id_imagen));
     } else {
         sweetAlert(2, DATA.error, false);
     }

@@ -44,17 +44,19 @@ class ServicioHandler
 
     public function createRow()
     {
-        $sql = 'INSERT INTO tb_servicios (tipo_servicio, descripcion_servicio, id_imagen)
-                VALUES(?, ?, ?)';
-        $params = array($this->servicio, $this->descripcion, $this->imagen);
+        $sql = 'INSERT INTO tb_servicios (tipo_servicio, descripcion_servicio, id_imagen, id_empleado)
+                VALUES(?, ?, ?, ?)';
+        $params = array($this->servicio, $this->descripcion, $this->imagen, $_SESSION['idEmpleado']);
         return Database::executeRow($sql, $params);
     }
 
     public function readAll()
     {
-        $sql = 'SELECT s.id_servicio, s.tipo_servicio, s.descripcion_servicio, s.imagen_servicio,  i.nombre_imagen, i.imagen_1, i.imagen_2, i.imagen_3
+        $sql = 'SELECT s.id_servicio, s.tipo_servicio, s.descripcion_servicio, s.imagen_servicio, i.nombre_imagen, i.imagen_1, i.imagen_2, i.imagen_3, 
+                s.id_empleado, e.nombre_empleado, e.apellido_empleado
                 FROM tb_servicios s
-                INNER JOIN tb_imagenes i ON i.id_imagen = s.id_imagen;
+                INNER JOIN tb_imagenes i ON i.id_imagen = s.id_imagen
+                INNER JOIN tb_empleados e ON s.id_empleado = e.id_empleado
                 ORDER BY tipo_servicio';
         return Database::getRows($sql);
     }

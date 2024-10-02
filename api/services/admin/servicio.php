@@ -36,7 +36,7 @@ if (isset($_GET['action'])) {
                     $result['status'] = 1;
                     $result['message'] = 'Servicio creado correctamente';
                 } else {
-                    $result['error'] = 'Ocurrió un problema al crear el Servicio';
+                    $result['error'] = 'Ocurrió un problema al crear el Servicio /// el nombre ya esta en uso';
                 }
                 break;
             case 'readAll':
@@ -62,14 +62,12 @@ if (isset($_GET['action'])) {
                     !$servicio->setId($_POST['idServicio']) or
                     !$servicio->setServicio($_POST['tipoServicio']) or
                     !$servicio->setDescripcion($_POST['descripcionServicio']) or
-                    !$servicio->setImagen($_FILES['imagenServicio'], $servicio->getFilename())
+                    !$servicio->setImagen($_POST['imagenServicio'])
                 ) {
                     $result['error'] = $servicio->getDataError();
                 } elseif ($servicio->updateRow()) {
                     $result['status'] = 1;
                     $result['message'] = 'Servicio modificado correctamente';
-                    // Se asigna el estado del archivo después de actualizar.
-                    $result['fileStatus'] = Validator::changeFile($_FILES['imagenServicio'], $servicio::RUTA_IMAGEN, $servicio->getFilename());
                 } else {
                     $result['error'] = 'Ocurrió un problema al modificar el Servicio';
                 }
