@@ -108,23 +108,35 @@ const fillTable = async (form = null) => {
             CLIENTES.innerHTML += `
 <div class="col-12 card mt-2 inicioIndex" id="searchForm">
     <div class="row  ">
-        <div class="col-sm-12 col-md-12 col-lg-3 mt-3 d-flex align-items-center justify-content-center" 
-             style="height: 300px; width: 300px;">
-                <img src="${SERVER_URL}images/clientes/${row.imagen_cliente}" class="card-img-top" alt="..." 
-                 onerror="this.onerror=null; this.src='../../resources/img/error/cliente.jpg';" 
-                 style="max-width: 100%; max-height: 100%; object-fit: contain;">
+        <div class="col-sm-12 col-md-12 col-lg-3 mt-3 d-flex align-items-center justify-content-center"
+            style="height: 300px; width: 300px;">
+            <img src="${SERVER_URL}images/clientes/${row.imagen_cliente}" class="card-img-top" alt="..."
+                onerror="this.onerror=null; this.src='../../resources/img/error/cliente.jpg';"
+                style="max-width: 100%; max-height: 100%; object-fit: contain;">
         </div>
 
 
         <div class="col-sm-12 col-md-12 col-lg-3 card-body d-flex flex-column align-items-center text-center">
-            <h5 class="text-white">Nombre cliente</h5>
-            <p class="card-title text-white">${row.nombre_cliente}</p>
-            <p class="card-text text-white">${row.apellido_cliente}</p>
-            <h5 class="text-white">Teléfono cliente</h5>
-            <p class="card-text text-white">${row.telefono_cliente}</p>
-            <h5 class="text-white">Estado cliente</h5>
-            <p class="card-text text-white">Estado: <i class="${icon} text-white"></i></p>
-        </div>3
+            <div class="row">
+                <div class="col-sm-12 col-md-6 col-lg-6">
+                    <h5 class="text-white">Nombre cliente</h5>
+                    <p class="card-title text-white">${row.nombre_cliente}</p>
+                    <p class="card-text text-white">${row.apellido_cliente}</p>
+                    <h5 class="text-white">Teléfono cliente</h5>
+                    <p class="card-text text-white">${row.telefono_cliente}</p>
+
+                </div>
+                <div class="col-sm-12 col-md-6 col-lg-6">
+                    <h5 class="text-white">Correo cliente</h5>
+                    <p class="card-text text-white">${row.correo_cliente}</p>
+                    <h5 class="text-white">DUI cliente</h5>
+                    <p class="card-text text-white">${row.dui_cliente}</p>
+                    <h5 class="text-white">Estado cliente</h5>
+                    <p class="card-text text-white">Estado: <i class="${icon} text-white"></i></p>
+                </div>
+            </div>
+
+        </div>
         <div class="col-sm-12 col-md-12 col-lg-3 text-center my-5">
             <div class="mt-3">
                 <div class="d-flex flex-column">
@@ -167,7 +179,7 @@ const openCreate = () => {
     // Se muestra la caja de diálogo con su título.
     SAVE_MODAL.show();
     MODAL_TITLE.textContent = 'Crear cliente';
-    IMAGEN_MUESTRA.src =    SERVER_URL.concat('images/clientes/persona.png');
+    IMAGEN_MUESTRA.src = SERVER_URL.concat('images/clientes/persona.png');
     // Se prepara el formulario.
     SAVE_FORM.reset();
 }
@@ -261,7 +273,7 @@ const openUpdate = async (id) => {
         FECHA_CLIENTE.value = ROW.nacimiento_cliente;
         TELEFONO_CLIENTE.value = ROW.telefono_cliente;
         ESTADO_CLIENTE.checked = ROW.estado_cliente;
-        IMAGEN_MUESTRA.src =    SERVER_URL.concat('images/clientes/', ROW.imagen_cliente);
+        IMAGEN_MUESTRA.src = SERVER_URL.concat('images/clientes/', ROW.imagen_cliente);
         console.log(NOMBRE_CLIENTE);
     } else {
         sweetAlert(2, DATA.error, false);
