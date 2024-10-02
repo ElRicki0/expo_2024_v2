@@ -11,7 +11,7 @@ class ServicioHandler
     protected $id = null;
     protected $servicio = null;
     protected $descripcion = null;
-    protected $foto = null;
+    protected $imagen = null;
 
     // Constante para establecer la ruta de las imágenes.
     const RUTA_IMAGEN = '../../images/servicios/';
@@ -44,16 +44,17 @@ class ServicioHandler
 
     public function createRow()
     {
-        $sql = 'INSERT INTO tb_servicios (tipo_servicio, descripcion_servicio, imagen_servicio)
+        $sql = 'INSERT INTO tb_servicios (tipo_servicio, descripcion_servicio, id_imagen)
                 VALUES(?, ?, ?)';
-        $params = array($this->servicio, $this->descripcion, $this->foto);
+        $params = array($this->servicio, $this->descripcion, $this->imagen);
         return Database::executeRow($sql, $params);
     }
 
     public function readAll()
     {
-        $sql = 'SELECT *
-                FROM tb_servicios
+        $sql = 'SELECT s.id_servicio, s.tipo_servicio, s.descripcion_servicio, s.imagen_servicio,  i.nombre_imagen, i.imagen_1, i.imagen_2, i.imagen_3
+                FROM tb_servicios s
+                INNER JOIN tb_imagenes i ON i.id_imagen = s.id_imagen;
                 ORDER BY tipo_servicio';
         return Database::getRows($sql);
     }
@@ -79,9 +80,9 @@ class ServicioHandler
     public function updateRow()
     {
         $sql = 'UPDATE tb_servicios
-                SET tipo_servicio = ?, descripcion_servicio = ?, imagen_servicio = ?
+                SET tipo_servicio = ?, descripcion_servicio = ?, id_imagen = ?
                 WHERE id_servicio = ?';
-        $params = array($this->servicio, $this->descripcion, $this->foto, $this->id);
+        $params = array($this->servicio, $this->descripcion, $this->imagen, $this->id);
         return Database::executeRow($sql, $params);
     }
 

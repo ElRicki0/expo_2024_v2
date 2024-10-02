@@ -26,20 +26,14 @@ class ServicioData extends ServicioHandler
         }
     }
 
-    public function setImagen($file, $filename = null)
+    public function setImagen($value)
     {
-        if (Validator::validateImageFile($file, 1000)) {
-            $this->foto = Validator::getFileName();
-            return true;
-        } elseif (Validator::getFileError()) {
-            $this->data_error = Validator::getFileError();
-            return false;
-        } elseif ($filename) {
-            $this->foto = $filename;
+        if (Validator::validateNaturalNumber($value)) {
+            $this->imagen = $value;
             return true;
         } else {
-            $this->foto = 'default.jpg';
-            return true;
+            $this->data_error = 'El identificador de la imagen es incorrecto';
+            return false;
         }
     }
 

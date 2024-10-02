@@ -66,23 +66,7 @@
         <!-- Contenedor para la tabla con scroll -->
         <div id="ContenedorTable">
 
-            <!-- Tabla para mostrar los registros existentes -->
-
-            <table class="table table-hover table-dark">
-
-                <!-- Cabeza de la tabla para mostrar la cantidad de registros y los títulos de las columnas -->
-                <thead>
-                    <tr>
-                        <th>IMAGEN</th>
-                        <th>SERVICIO</th>
-                        <th>DESCRIPCION</th>
-                        <th>ACCIONES</th>
-                    </tr>
-                </thead>
-
-                <!-- Cuerpo de la tabla para mostrar un registro por fila -->
-                <tbody id="tableBody" class="table-group-divider"></tbody>
-            </table>
+            <div id="tableBody"></div>
         </div>
 
         <div class="bg-dark rounded mb-3">
@@ -108,7 +92,7 @@
 
         <!-- Modal agregar servicio -->
         <div class="modal fade" id="saveModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-dialog modal-dialog-centered modal-md">
                 <div class="modal-content bg-dark text-white">
 
                     <!-- Formulario para crear o actualizar un registro -->
@@ -117,18 +101,14 @@
                         <!-- Campo oculto para asignar el id del registro al momento de modificar -->
                         <input type="number" class="d-none" id="idServicio" name="idServicio">
                         <form class="needs-validation">
-                            
+
                             <!-- Body del modal -->
                             <div class="modal-body">
                                 <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
                                     aria-label="Close"></button> <!-- Cambiar color del botón de cerrar -->
                                 <h1 class="fs-4 fw-bold text-center mb-4" id="modalTitle"></h1>
 
-                                <div class="col-12">
-                                    <label for="imagenServicio" class="form-label">Imagen</label>
-                                    <input id="imagenServicio" type="file" name="imagenServicio" class="form-control"
-                                        autocomplete="off" accept=".png, .jpg" required oninput="formatImg(this)">
-                                </div>
+
                                 <div class="col-12 mt-3">
                                     <label class="form-label">Servicio</label>
                                     <input id="tipoServicio" name="tipoServicio" class="form-control" required
@@ -140,9 +120,15 @@
                                         autocomplete="off" placeholder="Ingrese una descripción" required
                                         oninput="formatAlphabetic(this)"></textarea></textarea>
                                 </div>
+                                <div class="col-12">
+                                    <label for="imagenServicio" class=" textoClaro form-label">Galeria</label>
+                                    <select id="imagenServicio" name="imagenServicio" class="form-select"
+                                        autocomplete="off" required oninput="formatCombo(this)">
+                                    </select>
+                                </div>
                                 <div class="modal-footer">
                                     <button type="submit" class="btn btn-primary ps-4 pe-4">
-                                        <i class="bi bi-person-fill-add me-1"></i> Aceptar
+                                        <i class="bi bi-person-fill-add me-1"></i> Guardar
                                     </button>
                                 </div>
                             </div>

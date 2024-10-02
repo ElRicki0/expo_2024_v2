@@ -1,5 +1,7 @@
+// constantes de el uso de la api
 const SERVICIO_API = 'services/admin/servicio.php';
 const CITA_API = 'services/admin/cita.php';
+const IMAGENES_API = 'services/admin/imagen.php';
 
 // Constante para establecer el formulario de buscar.
 const SEARCH_FORM = document.getElementById('searchForm');
@@ -61,9 +63,9 @@ SAVE_FORM.addEventListener('submit', async (event) => {
 });
 
 /*
-*   Función asíncrona para llenar la tabla con los registros disponibles.
-*   Parámetros: form (objeto opcional con los datos de búsqueda).
-*   Retorno: ninguno.
+* Función asíncrona para llenar la tabla con los registros disponibles.
+* Parámetros: form (objeto opcional con los datos de búsqueda).
+* Retorno: ninguno.
 */
 const fillTable = async (form = null) => {
     // Se inicializa el contenido de la tabla.
@@ -80,26 +82,45 @@ const fillTable = async (form = null) => {
 
             // Se crean y concatenan las filas de la tabla con los datos de cada registro.
             TABLE_BODY.innerHTML += `
-            <tr>
-                <td><img src="${SERVER_URL}images/servicios/${row.imagen_servicio}" height="50"></td>
-                <td>${row.tipo_servicio}</td>
-                <td>${row.descripcion_servicio}</td>
-                <td>
-                <button class="btn btn-danger" onclick="openDelete(${row.id_servicio})">
-                    <i class="bi bi-trash3-fill"></i>
-                </button>
-                <button class="btn btn-primary" onclick="openUpdate(${row.id_servicio})">
-                    <i class="bi bi-pen-fill"></i>
-                </button>
-                <button type="button" class="btn btn-warning" onclick="openChart(${row.id_servicio})">
-                    <i class="bi bi-bar-chart-line-fill"></i>
-                </button>
-                <button type="button" class="btn btn-info" onclick="openReportCliente(${row.id_servicio})">
-                    <i class="bi bi-file-earmark-code-fill"></i>
-                </button>
-                </td>
-            </tr>
-            `;
+<div class="col-12 card mt-2 inicioIndex" id="searchForm">
+    <div class="row  ">
+        <div class="col-sm-12 col-md-12 col-lg-3 mt-3 d-flex align-items-center justify-content-center"
+            style="height: 300px; width: 300px;">
+            <img src="${SERVER_URL}images/imagenes/${row.imagen_1}" class="card-img-top" alt="..."
+                onerror="this.onerror=null; this.src='../../resources/img/error/cliente.jpg';"
+                style="max-width: 100%; max-height: 100%; object-fit: contain;">
+        </div>
+
+
+        <div class="col-sm-12 col-md-12 col-lg-3 card-body d-flex flex-column align-items-center text-center">
+            <h5 class="text-white">Nombre servicio</h5>
+            <p class="card-title text-white">${row.tipo_servicio}</p>
+            <h5 class="text-white">Descripción</h5>
+            <p class="card-text text-white">${row.descripcion_servicio}</p>
+        </div>3
+        <div class="col-sm-12 col-md-12 col-lg-3 text-center my-5">
+            <div class=" ">
+                <div class="d-flex flex-column">
+                    <button class="btn btn-outline-light mb-2" onclick="openDelete(${row.id_servicio})">
+                        <i class="bi bi-trash3-fill"></i> Eliminar
+                    </button>
+                    <button class="btn btn-outline-light mb-2" onclick="openUpdate(${row.id_servicio})">
+                        <i class="bi bi-pencil-fill"></i>Actualizar
+                    </button>
+                    <button type="button" class="btn btn-outline-light mb-2" onclick="openChart(${row.id_servicio})">
+                        <i class="bi bi-bar-chart-line-fill"></i> Ver Gráfico
+                    </button>
+                    <button type="button" class="btn btn-outline-light mb-2"
+                        onclick="openReportCliente(${row.id_servicio})">
+                        <i class="bi bi-file-earmark-code-fill"></i> Reporte de clientes
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+`;
         });
         // Se muestra un mensaje de acuerdo con el resultado.
         ROWS_FOUND.textContent = DATA.message;
@@ -109,9 +130,9 @@ const fillTable = async (form = null) => {
 }
 
 /*
-*   Función para preparar el formulario al momento de insertar un registro.
-*   Parámetros: ninguno.
-*   Retorno: ninguno.
+* Función para preparar el formulario al momento de insertar un registro.
+* Parámetros: ninguno.
+* Retorno: ninguno.
 */
 const openCreate = () => {
     // Se muestra la caja de diálogo con su título.
@@ -119,12 +140,13 @@ const openCreate = () => {
     MODAL_TITLE.textContent = 'AGREGAR SERVICIO';
     // Se prepara el formulario.
     SAVE_FORM.reset();
+    fillSelect(IMAGENES_API, 'readAll', 'imagenServicio');
 }
 
 /*
-*   Función asíncrona para preparar el formulario al momento de actualizar un registro.
-*   Parámetros: id (identificador del registro seleccionado).
-*   Retorno: ninguno.
+* Función asíncrona para preparar el formulario al momento de actualizar un registro.
+* Parámetros: id (identificador del registro seleccionado).
+* Retorno: ninguno.
 */
 const openUpdate = async (id) => {
     // Se define una constante tipo objeto con los datos del registro seleccionado.
@@ -150,9 +172,9 @@ const openUpdate = async (id) => {
 }
 
 /*
-*   Función asíncrona para eliminar un registro.
-*   Parámetros: id (identificador del registro seleccionado).
-*   Retorno: ninguno.
+* Función asíncrona para eliminar un registro.
+* Parámetros: id (identificador del registro seleccionado).
+* Retorno: ninguno.
 */
 const openDelete = async (id) => {
     // Llamada a la función para mostrar un mensaje de confirmación, capturando la respuesta en una constante.
@@ -201,9 +223,9 @@ const graficoPastelServicio = async () => {
 };
 
 /*
-*   Función asíncrona para mostrar un gráfico parametrizado.
-*   Parámetros: id (identificador del registro seleccionado).
-*   Retorno: ninguno.
+* Función asíncrona para mostrar un gráfico parametrizado.
+* Parámetros: id (identificador del registro seleccionado).
+* Retorno: ninguno.
 */
 const openChart = async (id) => {
     // Se define una constante tipo objeto con los datos del registro seleccionado.
@@ -234,9 +256,9 @@ const openChart = async (id) => {
 }
 
 /*
-*   Función para abrir un reporte automático de productos por categoría.
-*   Parámetros: ninguno.
-*   Retorno: ninguno.
+* Función para abrir un reporte automático de productos por categoría.
+* Parámetros: ninguno.
+* Retorno: ninguno.
 */
 const openReport = () => {
     // Se declara una constante tipo objeto con la ruta específica del reporte en el servidor.
@@ -246,9 +268,9 @@ const openReport = () => {
 }
 
 /*
-*   Función para abrir un reporte parametrizado.
-*   Parámetros: id (identificador del registro seleccionado).
-*   Retorno: ninguno.
+* Función para abrir un reporte parametrizado.
+* Parámetros: id (identificador del registro seleccionado).
+* Retorno: ninguno.
 */
 const openReportCliente = (id) => {
     // Se declara una constante tipo objeto con la ruta específica del reporte en el servidor.

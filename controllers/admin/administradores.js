@@ -97,7 +97,7 @@ const fillTable = async (form = null) => {
             <img src="${SERVER_URL}images/empleados/${row.imagen_empleado}" class="card-img-top" alt="..."
                 onerror="this.onerror=null; this.src='../../resources/img/error/cliente.jpg';"
                 style="max-width: 100%; max-height: 100%;">
-        </div>
+        </div> 
 
         <div class="col-sm-12 col-md-12 col-lg-3 card-body d-flex flex-column align-items-center text-center">
             <h5 class="text-white" for="">Nombre usuario</h5>

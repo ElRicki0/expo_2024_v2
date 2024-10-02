@@ -70,7 +70,9 @@ CREATE TABLE
         descripcion_servicio VARCHAR(250) NOT NULL,
         imagen_servicio varchar(300) DEFAULT 'servicio.jpg',
         id_empleado INT,
-        FOREIGN KEY (id_empleado) REFERENCES tb_empleados (id_empleado)
+        FOREIGN KEY (id_empleado) REFERENCES tb_empleados (id_empleado),
+        id_imagen INT,
+        FOREIGN KEY (id_imagen) REFERENCES tb_imagenes (id_imagen)
     );
 
 CREATE TABLE
@@ -89,7 +91,9 @@ CREATE TABLE
         contenido_pregunta VARCHAR(255) NOT NULL,
         imagen_pregunta VARCHAR(100) NOT NULL,
         id_empleado INT,
-        FOREIGN KEY (id_empleado) REFERENCES tb_empleados (id_empleado)
+        FOREIGN KEY (id_empleado) REFERENCES tb_empleados (id_empleado),
+        id_imagen INT,
+        FOREIGN KEY (id_imagen) REFERENCES tb_imagenes (id_imagen)
     );
 
 CREATE TABLE
