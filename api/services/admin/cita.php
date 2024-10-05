@@ -29,7 +29,7 @@ if (isset($_GET['action'])) {
                 if (
                     !$cita->setNombre($_POST['nombreCita']) or
                     !$cita->setFecha($_POST['fechaCita']) or
-                    !$cita->setEstado(isset($_POST['estadoCita']) ? 1 : 0) or
+                    !$cita->setEstado($_POST['estadoCita']) or
                     !$cita->setSeciones($_POST['sesionesCita']) or
                     !$cita->setCliente($_POST['clienteCita']) or
                     !$cita->setServicio($_POST['servicioCita']) or
