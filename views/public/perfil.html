@@ -74,8 +74,8 @@
                         <div class="form-group mt-4 d-flex justify-content-center">
                             <div class="col-4">
                                 <h5 class="font-weight-bold font-monospace text-white text-start">Telefono:</h5>
-                                <input type="tel" class="form-control disabled" id="telefonoCliente"
-                                    name="telefonoCliente" aria-describedby="addon-wrapping">
+                                <input type="tel" class="form-control disabled" placeholder="Telefono..." id="telefonoCliente"
+                                    name="telefonoCliente" oninput="formatPhoneNumber(this)" aria-describedby="addon-wrapping">
                             </div>
                             <div class="col-4 ms-2">
                                 <h5 class="font-weight-bold font-monospace text-white text-start">Cumpleaños:</h5>
