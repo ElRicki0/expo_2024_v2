@@ -1,6 +1,10 @@
 // Constante para establecer el formulario de inicio de sesión.
 const LOGIN_FORM = document.getElementById('saveForm');
 
+document.addEventListener('DOMContentLoaded', async () => {
+    // Llamada a la función para mostrar el encabezado y pie del documento.
+    loadTemplate();
+})
 
 // Método del evento para cuando se envía el formulario de inicio de sesión.
 LOGIN_FORM.addEventListener('submit', async (event) => {

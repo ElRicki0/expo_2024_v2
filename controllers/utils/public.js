@@ -21,7 +21,7 @@ const loadTemplate = async () => {
     // Se comprueba si el usuario está autenticado   para establecer el encabezado respectivo.
     if (DATA.session) {
         // Se verifica si la página web no es el inicio de sesión, de lo contrario se direcciona a la página web principal.
-        if (!location.pathname.endsWith('index.html')) {
+        if (!location.pathname.endsWith('login.html')) {
             // Se agrega el encabezado de la página web antes del contenido principal.
             MAIN.insertAdjacentHTML('beforebegin',
                 `<nav class="navbar navbar-dark">
@@ -48,24 +48,15 @@ const loadTemplate = async () => {
     } else {
         // Se agrega el encabezado de la página web antes del contenido principal.
         MAIN.insertAdjacentHTML('beforebegin',
-            `<nav class="navbar navbar-dark bg-black fixed-top rounded-bottom">
+            `<nav class="navbar navbar-dark bg-black  rounded-bottom">
                 <div class="row container-fluid">
                     <div class="col-10">
                         <!-- boton del logo en la izquierda -->
-                        <a class="navbar-brand fw-bold d-flex align-items-center" href="inicio.html">
+                        <a class="navbar-brand fw-bold d-flex align-items-center" href="index.html">
                             <img src="../../resources/img/icons/icon.jpg" alt="" height="50px"
                                 class="d-inline-block align-text-top">
                             Quiropractica Especifica
                         </a>
-                    </div>
-                    <div class="col-2 justify-content-end">
-                        <!-- boton del logo de acciones en la derecha -->
-                        <a class="sinLink" href="buscador.html">
-                            <button type="button" class="btn btn-info text-white">
-                                <i class="bi bi-search"></i>
-                            </button>
-                        </a>
-                        <a href="login.html" class="btn btn-dark" role="button">Iniciar sesión</a>
                     </div>
                 </div>
             </nav>`

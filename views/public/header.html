@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <!-- Título del documento -->
+    <title>Quiropráctica Específica</title>
+
+    <!-- Metadatos de la página web -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="../../resources/css/boostrap_css.css">
+    <link rel="stylesheet" href="../../resources/css/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="../../resources/css/general.css">
+    <link rel="stylesheet" href="../../resources/css/public/inicio.css">
+    <link rel="stylesheet" href="../../resources/css/public/footer.css">
+    <link rel="stylesheet" href="../../resources/css/barrahorizontal.css">
+    <link rel="stylesheet" href="../../resources/fonts/Alfa Slab One.css">
+    <link rel="stylesheet" href="../../resources/fonts/Work Sans.css">
+</head>
+
+<body>
+    <nav class="navbar navbar-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand fw-bold d-flex align-items-center" href="index.html">
+                <img src="../../resources/img/icons/icon.jpg" alt="" height="50px"
+                    class="d-inline-block align-text-top">
+                Quiropractica Especifica
+            </a>
+            <div class="dropdown ms-auto">
+                <button class="btn btn-black dropdown-toggle fs-7 text-white" type="button" id="userDropdown"
+                    data-bs-toggle="dropdown" aria-expanded="false">
+                    <b>${DATA.username}</b>
+                </button>
+                <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="userDropdown">
+                    <li><a class="dropdown-item" href="perfil.html">Ver perfil</a></li>
+                    <li>
+                        <hr class="dropdown-divider">
+                    </li>
+                    <li><a class="dropdown-item" href="#" onclick="logOut()">Cerrar sesión</a></li>
+                </ul>
+            </div>
+    </nav>
+
+    <!-- librerías para poder trabajar con bootstrap y sweeteners -->
+    <script src="../../resources/js/bootstrap_js.js"></script>
+    <script src="../../resources/js/sweetalert.min.js"></script>
+
+    <!-- llamar al controntrolador del sitio privado-->
+    <script src="../../controllers/utils/components.js"></script>
+
+    <!-- llamar al controntrolador del los sitios-->
+    <script src="../../controllers/utils/public.js"></script>
+    <script src="../../controllers/public/index.js"></script>
+
+</body>
+
+</html>
