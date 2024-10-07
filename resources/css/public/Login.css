@@ -14,6 +14,10 @@
     }
 }
 
+.margen-nav{
+    margin-top: 100px;
+}
+
 .bg-dark {
     position: relative;
 }
