@@ -1,5 +1,6 @@
 body {
-    background-color: #000000;
+    background-color: #151515;
+    overflow-x: hidden;
 }
 
 #ContenedorTable {
@@ -22,14 +23,6 @@ body {
 
 .conteinerInicio {
     background-color: rgb(49, 49, 49);
-}
-
-.linea-verde {
-    border: none;
-    border-top: 3px solid rgb(131, 239, 131);
-    /* Cambia el color y el grosor aquí */
-    width: 100%;
-    /* Ajusta el ancho de la línea */
 }
 
 .inicioIndex {

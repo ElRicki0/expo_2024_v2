@@ -47,13 +47,17 @@
     /* Asegura que ocupe toda la altura de la tarjeta */
 }
 
-.col-12 {
-    max-width: 1400px;
-    /* Establece un ancho máximo */
-    margin: 0 auto;
-    /* Centra el contenedor */
-    text-align: center;
-    /* Alinea el texto al centro */
+.cardPortfolio {
+    display: flex;
+    /* Habilita flexbox */
+    flex-direction: column;
+    /* Organiza los elementos en columnas */
+    justify-content: center;
+    /* Centra verticalmente */
+    align-items: center;
+    /* Centra horizontalmente */
+    height: 100%;
+    /* Asegura que ocupe toda la altura de la tarjeta */
 }
 
 .traspante {
@@ -62,6 +66,79 @@
     justify-content: center;
     align-items: center;
 }
+
+.col-12 {
+    max-width: auto;
+    /* Establece un ancho máximo */
+    margin: 0 auto;
+    /* Centra el contenedor */
+    text-align: center;
+    /* Alinea el texto al centro */
+    background-color: #000000;
+}
+
+.traspante:hover {
+    opacity: 1.0;
+    /* Ajusta el valor según el nivel de opacidad que desees */
+}
+
+.comment-container {
+    display: flex;
+    align-items: flex-start;
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 16px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+}
+
+.avatar {
+    margin-right: 16px;
+}
+
+.avatar-image {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+
+.comment-content {
+    flex: 1;
+}
+
+.comment-header {
+    display: flex;
+    align-items: center;
+}
+
+.username {
+    font-weight: bold;
+    font-size: 1rem;
+}
+
+.comment-time {
+    font-size: 0.875rem;
+    color: #888;
+    margin-left: 8px;
+}
+
+.commenting-on {
+    font-size: 0.875rem;
+    color: #555;
+}
+
+.highlight {
+    font-weight: bold;
+    color: #007bff; /* Color primario */
+}
+
+.comment-text {
+    font-size: 1rem;
+    line-height: 1.5;
+    margin-top: 8px;
+}
+
 
 /* Estilos para moviles */
 @media (max-width: 768px) {
