@@ -18,10 +18,10 @@ document.querySelector('title').textContent = 'Quiropráctica Especifica';
 const loadTemplate = async () => {
     // Petición para obtener en nombre del usuario que ha iniciado sesión.
     const DATA = await fetchData(USER_API, 'getUser');
-    // Se comprueba si el usuario está autenticado para establecer el encabezado respectivo.
+    // Se comprueba si el usuario está autenticado   para establecer el encabezado respectivo.
     if (DATA.session) {
         // Se verifica si la página web no es el inicio de sesión, de lo contrario se direcciona a la página web principal.
-        if (!location.pathname.endsWith('login.html')) {
+        if (!location.pathname.endsWith('index.html')) {
             // Se agrega el encabezado de la página web antes del contenido principal.
             MAIN.insertAdjacentHTML('beforebegin',
                 `<nav class="navbar navbar-dark">

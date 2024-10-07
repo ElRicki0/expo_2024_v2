@@ -6,58 +6,72 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ingresar</title>
     <!-- Se enlaza Bootstrap para estilos adicionales -->
-    <link rel="stylesheet" href="../../resources/css/boostrap_css.css">
     <link rel="stylesheet" href="../../resources/css/public/Login.css">
+    <!-- <link rel="stylesheet" href="../../resources/css/colores.css"> -->
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="../../resources/css/boostrap_css.css">
+    <link rel="stylesheet" href="../../resources/css/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="../../resources/css/general.css">
+    <link rel="stylesheet" href="../../resources/css/public/footer.css">
+    <link rel="stylesheet" href="../../resources/css/barrahorizontal.css">
+    <link rel="stylesheet" href="../../resources/fonts/Alfa Slab One.css">
+    <link rel="stylesheet" href="../../resources/fonts/Work Sans.css">
 </head>
 
 <body>
     <main>
-        <div class="container position-absolute top-50 start-50 translate-middle">
-            <div class="row">
-                <div class="col-lg-4 col-md-7 col-sm-6 d-none d-sm-block">
-                    <img src="../../resources/img/public/bonita.png" alt="Imagen" width="418px">
-                </div>
-                <div class="col-lg-8 col-md-5 col-sm-6 bg-dark text-center">
-                    <h3 class="font-weight-bold font-monospace text-white mt-5 mb-4">INICIO DE SESIÓN</h3>
-                    <img src="../../resources/img/public/profile.png" alt="Imagen" class="img-fluid" width="150px">
-                    <form id="saveForm">
-                        <div class="form-group mt-5 d-flex justify-content-center">
-                            <div class="col-8">
-                                <input type="email" class="form-control" placeholder="Correo electronico..."
-                                    id="correoCliente" name="correoCliente" aria-label="Username"
-                                    oninput="formatEmail(this)" aria-describedby="addon-wrapping">
-                            </div>
-                        </div>
-                        <div class="form-group mt-4 d-flex justify-content-center">
-                            <div class="col-8">
-                                <input type="password" class="form-control" placeholder="Contraseña..."
-                                    id="contraCliente" name="contraCliente" aria-label="Username"
-                                    oninput="formatPassword(this)" aria-describedby="addon-wrapping">
-                            </div>
-                        </div>
-                        <br>
-                        <div class="form-group mt-2">
-                            <div class="row">
-                                <div class="col-12">
-                                    <a href="registro.html" class="text-white fw-bold"><em>¿No tienes una cuenta?</em></a>
-                                </div>
-                                <br>
-                                <br>
-                                <div class="col-12">
-                                    <a href="recuperacion.html" class="text-white fw-bold"><em>¿Se te olvidó la contraseña?</em></a>
+        <div class="container my-5 mt-5">
+            <div class="margen-nav">
+                <div class="row">
+                    <div class="col-lg-4 col-md-7 col-sm-6 d-none d-sm-block">
+                        <img src="../../resources/img/public/bonita.png" alt="Imagen" width="418px">
+                    </div>
+                    <div class="col-lg-8 col-md-5 col-sm-6 bg-dark text-center">
+                        <h3 class="font-weight-bold font-monospace text-white mt-5 mb-4">INICIO DE SESIÓN</h3>
+                        <img src="../../resources/img/public/profile.png" alt="Imagen" class="img-fluid" width="150px">
+                        <form id="saveForm">
+                            <div class="form-group mt-5 d-flex justify-content-center">
+                                <div class="col-8">
+                                    <input type="email" class="form-control" placeholder="Correo electronico..."
+                                        id="correoCliente" name="correoCliente" aria-label="Username"
+                                        oninput="formatEmail(this)" aria-describedby="addon-wrapping">
                                 </div>
                             </div>
-                        </div>
-                        
-                        <div class="form-group mt-5">
-                            <div class="col-5 mb-5">
-                                <button type="submit"
-                                    class="btn btn-light text-primary fw-bold pe-4 ps-4 ms-5">Ingresar</button>
+                            <div class="form-group mt-4 d-flex justify-content-center">
+                                <div class="col-8">
+                                    <input type="password" class="form-control" placeholder="Contraseña..."
+                                        id="contraCliente" name="contraCliente" aria-label="Username"
+                                        oninput="formatPassword(this)" aria-describedby="addon-wrapping">
+                                </div>
                             </div>
-                        </div>
-                    </form>
+                            <br>
+                            <div class="form-group mt-2">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <a href="registro.html" class="text-white fw-bold"><em>¿No tienes una
+                                                cuenta?</em></a>
+                                    </div>
+                                    <br>
+                                    <br>
+                                    <div class="col-12">
+                                        <a href="recuperacion.html" class="text-white fw-bold"><em>¿Se te olvidó la
+                                                contraseña?</em></a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group mt-5">
+                                <div class="col-5 mb-5">
+                                    <button type="submit"
+                                        class="btn btn-light text-primary fw-bold pe-4 ps-4 ms-5">Ingresar</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
+
         </div>
     </main>
 
@@ -70,6 +84,7 @@
     <script type="text/javascript" src="../../resources/js/sweetalert.min.js"></script>
     <script type="text/javascript" src="../../controllers/utils/Validaciones.js"></script>
     <script type="text/javascript" src="../../controllers/public/Login.js"></script>
+    <script src="../../controllers/utils/public.js"></script>
 </body>
 
 </html>
