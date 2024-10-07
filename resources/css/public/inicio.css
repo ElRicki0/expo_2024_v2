@@ -17,6 +17,12 @@
     color: white;
 }
 
+.fs-1 {
+    font-family: "Abel", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
 .header h1 {
     margin: 0;
     /* Elimina el margen por defecto */

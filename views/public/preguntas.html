@@ -7,8 +7,6 @@
     <title>Quiropráctica Específica </title>
     <link rel="stylesheet" href="../../resources/css/boostrap_css.css">
     <link rel="stylesheet" href="../../resources/css/general.css">
-    <link rel="stylesheet" href="../../resources/css/admin/inicio.css">
-    <link rel="stylesheet" href="../../resources/css/public/inicio.css">
     <link rel="stylesheet" href="../../resources/css/bootstrap-icons.min.css">
 
 </head>
@@ -17,6 +15,7 @@
     <header>
 
     </header>
+    
     <main class="container-principal">
         <div class="conteiner col-12 justify-content-center text-center">
             <h2 class="Preguntas">Preguntas frecuentes</h2>
@@ -30,23 +29,10 @@
         </div>
         <hr>
         <hr>
-        <!-- Buscador -->
-
-        <div class="conteiner col-12 justify-content-center text-center">
-            <div class="container col-7 justify-content-center text-center align-items-center">
-                <form class="d-flex justify-content-center text-center" role="search">
-                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-success" type="submit"><img
-                            src="../../resources/img/admin/lupitaverde.png" alt=""
-                            style="width: 20px; height: 22px;"></button>
-                </form>
-            </div>
-        </div>
-        <hr>
 
         <!--espacios de preguntas-->
         <div class="container col-md-12">
-            <div class="accordion accordion-flush" id="accordionFlushExample">
+            <div class="accordion rg-dark accordion-flush" id="accordionFlushExample">
                 <div class="accordion-item">
                     <h2 class="accordion-header">
                         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
@@ -222,21 +208,72 @@
                 </div>
             </div>
         </div>
-    </main>
-    <hr>
-    <footer>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+            }
 
-    </footer>
+            .container {
+                max-width: 1200px;
+                margin: 0 auto;
+                padding: 2rem;
+            }
 
-    <script src="../../resources/js/bootstrap_js.js"></script>
-    <script type="text/javascript" src="../../resources/js/sweetalert.min.js"></script>
+            .header {
+                text-align: center;
+                margin-bottom: 2rem;
+            }
 
-    <!-- llamar al controntrolador del sitio privado-->
-    <script src="../../controllers/utils/components.js"></script>
-    <!-- llamar al controntrolador del los sitios-->
-    <script src="../../controllers/utils/admin.js"></script>
+            .header h2 {
+                font-size: 2rem;
+                font-weight: bold;
+            }
 
-    <script type="module" src="../../controllers/admin/inicio.js"></script>
+            .accordion {
+                width: 100%;
+                max-width: 768px;
+                margin: 0 auto;
+            }
+
+            .accordion-item {
+                border-bottom: 1px solid #ddd;
+            }
+
+            .accordion-trigger {
+                background: none;
+                border: none;
+                font-size: 1.2rem;
+                font-weight: bold;
+                padding: 1rem;
+                text-align: left;
+                width: 100%;
+                cursor: pointer;
+            }
+
+            .accordion-content {
+                display: none;
+                padding: 1rem;
+                font-size: 1rem;
+            }
+
+            .accordion-item.active .accordion-content {
+                display: block;
+            }
+        </style>
+        <hr>
+        <footer>
+
+        </footer>
+
+        <script src="../../resources/js/bootstrap_js.js"></script>
+        <script type="text/javascript" src="../../resources/js/sweetalert.min.js"></script>
+
+        <!-- llamar al controntrolador del sitio privado-->
+        <script src="../../controllers/utils/components.js"></script>
+        <!-- llamar al controntrolador del los sitios-->
+        <script src="../../controllers/utils/admin.js"></script>
+
+        <script type="module" src="../../controllers/admin/inicio.js"></script>
 </body>
 
 </html>
