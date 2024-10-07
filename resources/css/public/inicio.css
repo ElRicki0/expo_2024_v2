@@ -1,43 +1,96 @@
 .header {
     background-image: url('../../img/public/background.png');
-    background-size: cover; /* Asegura que la imagen cubra todo el contenedor */
-    background-position: center; /* Centra la imagen */
-    height: calc(108vh - 56px); /* Ajusta la altura para que sea responsive, restando la altura del navbar */
+    background-size: cover;
+    /* Asegura que la imagen cubra todo el contenedor */
+    background-position: center;
+    /* Centra la imagen */
+    height: calc(108vh - 56px);
+    /* Ajusta la altura para que sea responsive, restando la altura del navbar */
     display: flex;
-    flex-direction: column; /* Apilar los elementos verticalmente */
-    align-items: flex-start; /* Alinear a la izquierda */
+    flex-direction: column;
+    /* Apilar los elementos verticalmente */
+    align-items: flex-start;
+    /* Alinear a la izquierda */
     padding-left: 20px;
-    padding-top: 400px; /* Ajusta este valor para mover el texto hacia abajo */
+    padding-top: 400px;
+    /* Ajusta este valor para mover el texto hacia abajo */
     color: white;
 }
 
 .header h1 {
-    margin: 0; /* Elimina el margen por defecto */
-    font-family: 'Alfa Slab One'; /* Aplica la fuente */
+    margin: 0;
+    /* Elimina el margen por defecto */
+    font-family: 'Alfa Slab One';
+    /* Aplica la fuente */
 }
 
 .header h1:first-of-type {
-    font-size: 62px; /* Tamaño del primer título */
-}
-
-.card-img-overlay {
-    display: flex;           /* Habilita flexbox */
-    flex-direction: column; /* Organiza los elementos en columnas */
-    justify-content: center; /* Centra verticalmente */
-    align-items: center;     /* Centra horizontalmente */
-    height: 100%;            /* Asegura que ocupe toda la altura de la tarjeta */
+    font-size: 62px;
+    /* Tamaño del primer título */
 }
 
 .header h1:last-of-type {
-    font-size: 132px; /* Tamaño del segundo título, más grande */
+    font-size: 132px;
+    /* Tamaño del segundo título, más grande */
 }
 
+.card-img-overlay {
+    display: flex;
+    /* Habilita flexbox */
+    flex-direction: column;
+    /* Organiza los elementos en columnas */
+    justify-content: center;
+    /* Centra verticalmente */
+    align-items: center;
+    /* Centra horizontalmente */
+    height: 100%;
+    /* Asegura que ocupe toda la altura de la tarjeta */
+}
+
+.col-12 {
+    max-width: 1400px;
+    /* Establece un ancho máximo */
+    margin: 0 auto;
+    /* Centra el contenedor */
+    text-align: center;
+    /* Alinea el texto al centro */
+}
+
+.traspante {
+    opacity: 0.8;
+    /* Ajusta el valor según el nivel de opacidad que desees */
+    justify-content: center;
+    align-items: center;
+}
+
+/* Estilos para moviles */
 @media (max-width: 768px) {
     .header h1:first-of-type {
-        font-size: 20px; /* Tamaño del primer título */
+        font-size: 20px;
+        /* Tamaño del primer título */
+    }
+
+    .header h1:last-of-type {
+        font-size: 60px;
+        /* Tamaño del segundo título, más grande */
+    }
+}
+
+/* Estilos para escritorios grandes */
+@media (min-width: 1920px) {
+    .header {
+        padding-left: 20px;
+        padding-top: 600px;
+        /* Ajusta este valor para mover el texto hacia abajo */
+    }
+
+    .header h1:first-of-type {
+        font-size: 86px;
+        /* Tamaño del primer título */
     }
     
     .header h1:last-of-type {
-        font-size: 60px; /* Tamaño del segundo título, más grande */
+        font-size: 156px;
+        /* Tamaño del segundo título, más grande */
     }
 }

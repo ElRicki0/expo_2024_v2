@@ -68,13 +68,6 @@ body {
 
 }
 
-.traspante {
-    opacity: 0.7;
-    /* Ajusta el valor según el nivel de opacidad que desees */
-    justify-content: center;
-    align-items: center;
-}
-
 .contenedor-tarjetas {
     max-width: 1100px;
     /* Limita el ancho máximo del contenedor */
