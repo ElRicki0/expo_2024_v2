@@ -53,10 +53,9 @@ class ClienteHandler
                 FROM tb_clientes
                 WHERE correo_cliente = ?';
         $params = array($email);
-        $data = Database::getRow($sql, $params);
-
-        // Verifica si la contraseña coincide con el hash almacenado y establece los datos del cliente si es válido
-        if (password_verify($contraseña, $data['contrasenia_cliente'])) {
+        if (!($data = Database::getRow($sql, $params))) {
+            return false;
+        } elseif (password_verify($contraseña, $data['contrasenia_cliente'])) {
             $this->id = $data['id_cliente'];
             $this->correo = $data['correo_cliente'];
             $this->estado = $data['estado_cliente'];
@@ -128,7 +127,7 @@ class ClienteHandler
             or correo_cliente like ?
             or telefono_cliente like ?
             order by nombre_cliente';
-        $params = array($value, $value, $value, $value  );
+        $params = array($value, $value, $value, $value);
         return Database::getRows($sql, $params);
     }
 
@@ -313,22 +312,22 @@ class ClienteHandler
 
 
 
-//     // Método para verificar el inicio de sesión del administrador.
-//     public function checkUserCodigo($codigoUsuario)
-//     {
-//         $sql = 'SELECT a.id_cliente, a.correo_cliente, a.nombre_cliente, a.codigo_cliente
-//                     FROM tb_clientes a
-//                     WHERE a.codigo_cliente =?';
-//         $params = array($codigoUsuario);
-//         // Se intenta obtener el registro del administrador según el correo.
-//         if (!($data = Database::getRow($sql, $params))) {
-//             return false; // Si no se encuentra el usuario, retorna falso.
-//         } else {
-//             // Si la contrasenia coincide con el hash almacenado, se inicia la sesión del administrador.
-//             $_SESSION['idCliente'] = $data['id_cliente'];
-//             $_SESSION['correo_cliente'] = $data['correo_cliente'];
-//             return true; // Retorna verdadero indicando que el inicio de sesión fue exitoso.
-//         }
-//         return false; // Si la contrasenia no coincide, retorna falso.
-//     }
+    //     // Método para verificar el inicio de sesión del administrador.
+    //     public function checkUserCodigo($codigoUsuario)
+    //     {
+    //         $sql = 'SELECT a.id_cliente, a.correo_cliente, a.nombre_cliente, a.codigo_cliente
+    //                     FROM tb_clientes a
+    //                     WHERE a.codigo_cliente =?';
+    //         $params = array($codigoUsuario);
+    //         // Se intenta obtener el registro del administrador según el correo.
+    //         if (!($data = Database::getRow($sql, $params))) {
+    //             return false; // Si no se encuentra el usuario, retorna falso.
+    //         } else {
+    //             // Si la contrasenia coincide con el hash almacenado, se inicia la sesión del administrador.
+    //             $_SESSION['idCliente'] = $data['id_cliente'];
+    //             $_SESSION['correo_cliente'] = $data['correo_cliente'];
+    //             return true; // Retorna verdadero indicando que el inicio de sesión fue exitoso.
+    //         }
+    //         return false; // Si la contrasenia no coincide, retorna falso.
+    //     }
 }

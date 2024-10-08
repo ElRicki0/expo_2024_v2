@@ -5,8 +5,12 @@ body{
 
 
 main {
-    margin-top: 30px;
+    margin-top: 50px;
     /* Márgen superior de 60 px */
+}
+
+.margen-nav{
+    margin-top: 100px;
 }
 
 .mainNotas {
