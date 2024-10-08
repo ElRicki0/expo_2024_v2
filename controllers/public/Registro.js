@@ -1,7 +1,11 @@
 // Constante para establecer el formulario de registrar cliente.
 const SIGNUP_FORM = document.getElementById('signupForm');
-// Constante para establecer el directorio de la api de clientes.
-const USER_API = 'services/public/cliente.php';
+
+// Método del evento para cuando el documento ha cargado.
+document.addEventListener('DOMContentLoaded', async () => {
+    // Llamada a la función para mostrar el encabezado y pie del documento.
+    loadTemplate();
+})
 
 // Método del evento para cuando el documento ha cargado.
 document.addEventListener('DOMContentLoaded', () => {

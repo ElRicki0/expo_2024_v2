@@ -21,7 +21,9 @@ const loadTemplate = async () => {
     // Se comprueba si el usuario está autenticado   para establecer el encabezado respectivo.
     if (DATA.session) {
         // Se verifica si la página web no es el inicio de sesión, de lo contrario se direcciona a la página web principal.
-        if (!location.pathname.endsWith('login.html')) {
+        if (!location.pathname.endsWith('login.html') && 
+            !location.pathname.endsWith('registro.html') && 
+            !location.pathname.endsWith('recuperacion.html')){
             // Se agrega el encabezado de la página web antes del contenido principal.
             MAIN.insertAdjacentHTML('beforebegin',
                 `<nav class="navbar navbar-dark">

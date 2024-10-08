@@ -9,11 +9,18 @@
     <link rel="stylesheet" href="../../resources/css/boostrap_css.css">
     <link rel="stylesheet" href="../../resources/css/public/Login.css">
     <link rel="stylesheet" href="../../resources/css/colores.css">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="../../resources/css/general.css">
+    <link rel="stylesheet" href="../../resources/css/public/footer.css">
+    <link rel="stylesheet" href="../../resources/css/barrahorizontal.css">
+    <link rel="stylesheet" href="../../resources/fonts/Alfa Slab One.css">
+    <link rel="stylesheet" href="../../resources/fonts/Work Sans.css">
 </head>
 
 <body>
     <main>
-        <div class="container position-absolute top-50 start-50 translate-middle">
+        <div class="container mb-4">
             <div class="row">
                 <div class="col-lg-4 col-md-7 col-sm-6 d-none d-sm-block">
                     <img src="../../resources/img/public/bonita.png" alt="Imagen" width="418px">
@@ -30,19 +37,18 @@
                         <form id="saveForm">
                             <div class="form-group mt-5 d-flex justify-content-center">
                                 <div data-mdb-input-init class="form-outline mb-4">
-                                    <label class="form-label text-white" for="claveUser" >Nueva
+                                    <label class="form-label text-white" for="claveUser">Nueva
                                         clave</label>
                                     <input type="password" id="claveUser" name="claveUser"
                                         class="form-control form-control-lg" />
-                                        <br>
-                                    <label class="form-label text-white" for="repetirUser" >Repetir clave
+                                    <br>
+                                    <label class="form-label text-white" for="repetirUser">Repetir clave
                                         clave</label>
                                     <input type="password" id="repetirUser" name="repetirUser"
                                         class="form-control form-control-lg" />
                                 </div>
                             </div>
-                            <button type="submit"
-                                class="btn btn-light text-primary fw-bold">Enviar</button>
+                            <button type="submit" class="btn btn-light text-primary fw-bold">Enviar</button>
                         </form>
                     </div>
                 </div>
@@ -57,6 +63,7 @@
     <script type="text/javascript" src="../../resources/js/sweetalert.min.js"></script>
     <script type="text/javascript" src="../../controllers/utils/Validaciones.js"></script>
     <script type="text/javascript" src="../../controllers/public/actualizarContra.js"></script>
+    <script type="text/javascript" src="../../controllers/utils/public.js"></script>
 </body>
 
 </html>

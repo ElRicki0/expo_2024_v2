@@ -1,6 +1,11 @@
 // se usa la api del administrador
-const USER_API = 'services/public/cliente.php';
 const CORREO = 'libraries/PHPMailer/enviar.php';
+
+// Método del evento para cuando el documento ha cargado.
+document.addEventListener('DOMContentLoaded', async () => {
+    // Llamada a la función para mostrar el encabezado y pie del documento.
+    loadTemplate();
+})
 
 // Constantes para establecer los elementos del formulario de guardar.
 const SAVE_FORM = document.getElementById('saveForm');
