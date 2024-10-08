@@ -7,10 +7,29 @@ const PROFILE_FORM = document.getElementById('profileForm'),
     NACIMIENTO_CLIENTE = document.getElementById('nacimientoCliente'),
     TELEFONO_CLIENTE = document.getElementById('telefonoCliente');
 
+// CONSTANTES PARA MOSTRAR IMAGEN SELECCIONADA  PARA EL PERFIL DEL EMPLEADO
+const IMAGEN_MUESTRA = document.getElementById('imagenMuestra'),
+    IMAGEN_CLIENTE = document.getElementById('imagenCliente');
+
 // Constante para establecer la modal de cambiar contraseña.
 const PASSWORD_MODAL = new bootstrap.Modal('#passwordModal');
 // Constante para establecer el formulario de cambiar contraseña.
 const PASSWORD_FORM = document.getElementById('passwordForm');
+
+IMAGEN_CLIENTE.addEventListener('change', function (event) {
+    // Verifica si hay una imagen seleccionada
+    if (event.target.files && event.target.files[0]) {
+        // con el objeto Filereader lee el archivo seleccionado
+        const reader = new FileReader();
+        // Luego de haber leido la imagen selecionada se nos devuelve un objeto de tipo blob
+        // Con el metodo createObjectUrl de fileReader crea una url temporal para la imagen
+        reader.onload = function (event) {
+            // finalmente la url creada se le asigna el atributo de la etiqueta img
+            IMAGEN_MUESTRA.src = event.target.result;
+        };
+        reader.readAsDataURL(event.target.files[0]);
+    }
+})
 
 // Método del evento para cuando el documento ha cargado.
 document.addEventListener('DOMContentLoaded', async () => {
@@ -22,7 +41,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     limitarFechasPasadas();
 
     // Se establece el título del contenido principal.
-    MAIN_TITLE.textContent = 'Perfil';
 
     // Petición para obtener los datos del usuario que ha iniciado sesión.
     const DATA = await fetchData(USER_API, 'readProfile');
@@ -37,6 +55,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         DUI_CLIENTE.value = ROW.dui_cliente;
         NACIMIENTO_CLIENTE.value = ROW.nacimiento_cliente;
         TELEFONO_CLIENTE.value = ROW.telefono_cliente;
+        IMAGEN_MUESTRA.src =    SERVER_URL.concat('images/empleados/', ROW.imagen_cliente);
     } else {
         sweetAlert(2, DATA.error, null);
     }

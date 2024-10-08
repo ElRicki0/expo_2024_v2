@@ -56,12 +56,22 @@ if (isset($_GET['action'])) {
                     !$cliente->setCorreo($_POST['correoCliente']) or
                     !$cliente->setDui($_POST['duiCliente']) or
                     !$cliente->setNacimiento($_POST['nacimientoCliente']) or
-                    !$cliente->setTelefono($_POST['telefonoCliente'])
+                    !$cliente->setTelefono($_POST['telefonoCliente']) or
+                    !$cliente->setImagen($_FILES['imagenCliente'])
                 ) {
                     $result['error'] = $cliente->getDataError();
                 } elseif ($cliente->editProfile()) {
                     $result['status'] = 1;
                     $result['message'] = 'Perfil modificado correctamente';
+
+                    $fileStatuses['imagenCliente'] = Validator::saveFile($_FILES['imagenCliente'], $cliente::RUTA_IMAGEN, $_FILES['imagenCliente']['name']);
+
+                    // Verifica que se guardaron todas las imágenes
+                    if ($fileStatuses['imagenCliente']) {
+                        $result['fileStatus'] = $fileStatuses; // Almacena el estado de los archivos
+                    } else {
+                        $result['error'] = 'Ocurrió un problema al guardar algunas imágenes';
+                    }
                 } else {
                     $result['error'] = 'Ocurrió un problema al modificar el perfil';
                 }
