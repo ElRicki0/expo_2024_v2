@@ -161,9 +161,9 @@ class ClienteHandler
     // Método para crear un nuevo registro de cliente
     public function createRow()
     {
-        $sql = 'INSERT INTO tb_clientes(nombre_cliente, apellido_cliente, dui_cliente, telefono_cliente, correo_cliente, contrasenia_cliente, nacimiento_cliente, codigo_cliente, fecha_contrasenia)
-                    VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)';
-        $params = array($this->nombre, $this->apellido, $this->dui, $this->telefono, $this->correo, $this->contrasenia, $this->nacimiento, $this->codigo, $this->fechaContrasenia);
+        $sql = 'INSERT INTO tb_clientes(nombre_cliente, apellido_cliente, dui_cliente, telefono_cliente, correo_cliente, contrasenia_cliente, nacimiento_cliente, codigo_cliente, fecha_contrasenia, imagen_cliente)
+                    VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)';
+        $params = array($this->nombre, $this->apellido, $this->dui, $this->telefono, $this->correo, $this->contrasenia ,$this->nacimiento, $this->codigo, $this->fechaContrasenia, $this->imagen);
         return Database::executeRow($sql, $params);
     }
 
@@ -198,6 +198,15 @@ class ClienteHandler
                 SET nombre_cliente = ?, apellido_cliente = ?, dui_cliente = ?, correo_cliente = ?, telefono_cliente = ?, nacimiento_cliente = ?, imagen_cliente =?
                 WHERE id_cliente = ?';
         $params = array($this->nombre, $this->apellido, $this->dui, $this->correo, $this->telefono, $this->nacimiento,  $this->imagen, $_SESSION['idCliente']);
+        return Database::executeRow($sql, $params);
+    }
+
+    public function editProfileImagen()
+    {
+        $sql = 'UPDATE tb_clientes
+                SET imagen_cliente =?
+                WHERE id_cliente = ?';
+        $params = array($this->imagen, $_SESSION['idCliente']);
         return Database::executeRow($sql, $params);
     }
 

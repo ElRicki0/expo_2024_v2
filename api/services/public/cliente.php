@@ -56,13 +56,26 @@ if (isset($_GET['action'])) {
                     !$cliente->setCorreo($_POST['correoCliente']) or
                     !$cliente->setDui($_POST['duiCliente']) or
                     !$cliente->setNacimiento($_POST['nacimientoCliente']) or
-                    !$cliente->setTelefono($_POST['telefonoCliente']) or
-                    !$cliente->setImagen($_FILES['imagenCliente'])
+                    !$cliente->setTelefono($_POST['telefonoCliente']) 
                 ) {
                     $result['error'] = $cliente->getDataError();
                 } elseif ($cliente->editProfile()) {
                     $result['status'] = 1;
                     $result['message'] = 'Perfil modificado correctamente';
+                } else {
+                    $result['error'] = 'Ocurrió un problema al modificar el perfil';
+                }
+                break;
+            case 'editProfileImagen':
+                $_POST = Validator::validateForm($_POST);
+                if (
+                    
+                    !$cliente->setImagen($_FILES['imagenCliente'])
+                ) {
+                    $result['error'] = $cliente->getDataError();
+                } elseif ($cliente->editProfileImagen()) {
+                    $result['status'] = 1;
+                    $result['message'] = 'Imagen modificado correctamente';
 
                     $fileStatuses['imagenCliente'] = Validator::saveFile($_FILES['imagenCliente'], $cliente::RUTA_IMAGEN, $_FILES['imagenCliente']['name']);
 
@@ -73,7 +86,7 @@ if (isset($_GET['action'])) {
                         $result['error'] = 'Ocurrió un problema al guardar algunas imágenes';
                     }
                 } else {
-                    $result['error'] = 'Ocurrió un problema al modificar el perfil';
+                    $result['error'] = 'Ocurrió un problema al modificar la imagen';
                 }
                 break;
             case 'changePassword':
@@ -154,16 +167,22 @@ if (isset($_GET['action'])) {
                     !$cliente->setTelefono($_POST['telefonoCliente']) or
                     !$cliente->setNacimiento($_POST['nacimientoCliente']) or
                     !$cliente->setContrasenia($_POST['contraCliente']) or
-                    !$cliente->setConfirmar($_POST['confirmarCliente'])
+                    !$cliente->setConfirmar($_POST['confirmarCliente']) or
+                    !$cliente->setImagen($_FILES['imagenCliente'])
                 ) {
                     $result['error'] = $cliente->getDataError();
-                } elseif ($_POST['contraCliente'] != $_POST['confirmarCliente']) {
-                    $result['error'] = 'Contraseñas diferentes';
                 } elseif ($cliente->createRow()) {
                     $result['status'] = 1;
-                    $result['message'] = 'Cuenta registrada correctamente';
+                    $result['message'] = 'Cliente registrado correctamente';
+                    $fileStatuses['imagenCliente'] = Validator::saveFile($_FILES['imagenCliente'], $cliente::RUTA_IMAGEN, $_FILES['imagenCliente']['name']);
+                    // Verifica que se guardaron todas las imágenes
+                    if ($fileStatuses['imagenCliente']) {
+                        $result['fileStatus'] = $fileStatuses; // Almacena el estado de los archivos
+                    } else {
+                        $result['error'] = 'Ocurrió un problema al guardar algunas imágenes';
+                    }
                 } else {
-                    $result['error'] = 'Ocurrió un problema al registrar la cuenta';
+                    $result['error'] = 'Ocurrió un problema al registrar el cliente';
                 }
                 break;
             case 'readOneRecuperacion':

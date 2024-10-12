@@ -18,7 +18,6 @@ if (isset($_GET['action'])) {
             case 'createAdminRow':
                 $_POST = Validator::validateForm($_POST);
                 if (
-
                     !$cliente->setNombre($_POST['nombreCliente']) or
                     !$cliente->setApellido($_POST['apellidoCliente']) or
                     !$cliente->setCorreo($_POST['correoCliente']) or
@@ -31,13 +30,7 @@ if (isset($_GET['action'])) {
                 } elseif ($cliente->createAdminRow()) {
                     $result['status'] = 1;
                     $result['message'] = 'Cliente registrado correctamente';
-
-
-                    // Se asigna el estado del archivo después de insertar.
-                    //  $result['fileStatus'] = Validator::saveFile($_FILES['imagenCliente'], $cliente::RUTA_IMAGEN);
-
                     $fileStatuses['imagenCliente'] = Validator::saveFile($_FILES['imagenCliente'], $cliente::RUTA_IMAGEN, $_FILES['imagenCliente']['name']);
-
                     // Verifica que se guardaron todas las imágenes
                     if ($fileStatuses['imagenCliente']) {
                         $result['fileStatus'] = $fileStatuses; // Almacena el estado de los archivos

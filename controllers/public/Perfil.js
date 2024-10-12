@@ -1,5 +1,7 @@
 const PROFILE_FORM = document.getElementById('profileForm'),
+    IMAGEN_FORM = document.getElementById('profileForm'),
     ID_CLIENTE = document.getElementById('idCliente'),
+    ID_IMAGEN_CLIENTE = document.getElementById('idClienteImagen'),
     NOMBRE_CLIENTE = document.getElementById('nombreCliente'),
     APELLIDO_CLIENTE = document.getElementById('apellidoCliente'),
     CORREO_CLIENTE = document.getElementById('correoCliente'),
@@ -33,18 +35,13 @@ IMAGEN_CLIENTE.addEventListener('change', function (event) {
 
 // Método del evento para cuando el documento ha cargado.
 document.addEventListener('DOMContentLoaded', async () => {
-
     // Llamada a la función para mostrar el encabezado y pie del documento.
     loadTemplate();
-
     // Llamar a la función para limitar las fechas pasadas al cargar la página
     limitarFechasPasadas();
-
     // Se establece el título del contenido principal.
-
     // Petición para obtener los datos del usuario que ha iniciado sesión.
     const DATA = await fetchData(USER_API, 'readProfile');
-
     // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
     if (DATA.status) {
         // Se inicializan los campos del formulario con los datos del usuario que ha iniciado sesión.
@@ -55,7 +52,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         DUI_CLIENTE.value = ROW.dui_cliente;
         NACIMIENTO_CLIENTE.value = ROW.nacimiento_cliente;
         TELEFONO_CLIENTE.value = ROW.telefono_cliente;
-        IMAGEN_MUESTRA.src =    SERVER_URL.concat('images/empleados/', ROW.imagen_cliente);
+        IMAGEN_MUESTRA.src = SERVER_URL.concat('images/clientes/', ROW.imagen_cliente);
     } else {
         sweetAlert(2, DATA.error, null);
     }
@@ -77,6 +74,21 @@ PROFILE_FORM.addEventListener('submit', async (event) => {
     }
 });
 
+// Método del evento para cuando se envía el formulario de editar perfil.
+IMAGEN_FORM.addEventListener('submit', async (event) => {
+    // Se evita recargar la página web después de enviar el formulario.
+    event.preventDefault();
+    // Constante tipo objeto con los datos del formulario.
+    const FORM = new FormData(IMAGEN_FORM);
+    // Petición para actualizar los datos personales del usuario.
+    const DATA = await fetchData(USER_API, 'editProfileImagen', FORM);
+    // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+    if (DATA.status) {
+        sweetAlert(1, DATA.message, true);
+    } else {
+        sweetAlert(2, DATA.error, false);
+    }
+});
 
 // Método del evento para cuando se envía el formulario de cambiar contraseña.
 PASSWORD_FORM.addEventListener('submit', async (event) => {

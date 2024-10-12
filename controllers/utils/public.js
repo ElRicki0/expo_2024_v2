@@ -54,7 +54,7 @@ const loadTemplate = async () => {
                 <div class="row container-fluid">
                     <div class="col-10">
                         <!-- boton del logo en la izquierda -->
-                        <a class="navbar-brand fw-bold d-flex align-items-center" href="inicio.html">
+                        <a class="navbar-brand fw-bold d-flex align-items-center" href="index.html">
                             <img src="../../resources/img/icons/icon.jpg" alt="" height="50px"
                                 class="d-inline-block align-text-top">
                             Quiropractica Especifica
