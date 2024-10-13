@@ -30,20 +30,29 @@
                         <input type="number" class="d-none" id="idClienteImagen" name="idClienteImagen">
                         <div class="col-12">
                             <img id="imagenMuestra"
-                                class="rounded  mx-auto d-block img-fluid mt-3 border border-3 border-secondary-subtle rounded-circle imagen_R"
-                                src="../../resources/img/persona.png" alt="..." width="200px" height="200px">
+                                class="rounded mx-auto d-block img-fluid mt-3 border border-3 border-secondary-subtle rounded-circle imagen_R"
+                                src="../../resources/img/persona.png" alt="..." width="200px" height="200px"
+                                style="cursor: pointer;">
                         </div>
-                        <div class="container col-4">
-                            <label for="imagenCliente" class="text-white mt4 form-label">Imagen Usuario</label>
-                            <input id="imagenCliente" type="file" name="imagenCliente" class="form-control"
+                        <div class="container col-4 d-none">
+                            <!-- Input invisible -->
+                            <label for="imagenCliente" class="text-white mt4 form-label d-none">Imagen Usuario</label>
+                            <input id="imagenCliente" type="file" name="imagenCliente" class="form-control d-none"
                                 accept=".png, .jpg" required>
                         </div>
                         <button type="submit" class="btn btn-light text-primary mt-2 fw-bold pe-4 ps-4">
                             Actualizar imagen<i class="bi bi-pen-fill ms-2"></i></button>
                     </form>
+                    
+                    <script>
+                        // Detectar clic en la imagen y activar el input invisible
+                        document.getElementById("imagenMuestra").addEventListener("click", function() {
+                            document.getElementById("imagenCliente").click();
+                        });
+                    </script>
+                    
+
                     <form id="profileForm">
-
-
                         <input type="number" class="d-none" id="idCliente" name="idCliente">
                         <div class="form-group mt-2 d-flex justify-content-center">
                             <div class="col-4">
