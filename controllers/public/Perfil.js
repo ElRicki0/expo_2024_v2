@@ -1,5 +1,5 @@
 const PROFILE_FORM = document.getElementById('profileForm'),
-    IMAGEN_FORM = document.getElementById('profileForm'),
+    IMAGEN_FORM = document.getElementById('imagenForm'),
     ID_CLIENTE = document.getElementById('idCliente'),
     ID_IMAGEN_CLIENTE = document.getElementById('idClienteImagen'),
     NOMBRE_CLIENTE = document.getElementById('nombreCliente'),
