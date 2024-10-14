@@ -26,7 +26,7 @@ const loadTemplate = async () => {
             !location.pathname.endsWith('recuperacion.html')){
             // Se agrega el encabezado de la página web antes del contenido principal.
             MAIN.insertAdjacentHTML('beforebegin',
-                `<nav class="navbar navbar-dark">
+                `<nav class="navbar navbar-dark bg-black fixed-top rounded-bottom">
                     <div class="container-fluid">
                         <a class="navbar-brand fw-bold d-flex align-items-center" href="index.html">
                             <img src="../../resources/img/icons/icon.jpg" alt="" height="50px" class="d-inline-block align-text-top">
@@ -113,17 +113,6 @@ const loadTemplate = async () => {
                         <div class="copyright-text">
                             <p>Copyright &copy; 2024, All Right Reserved <a
                                     href="https://codepen.io/anupkumar92/">Here</a></p>
-                        </div>
-                    </div>
-                    <div class="col-xl-6 col-lg-6 d-none d-lg-block text-right">
-                        <div class="footer-menu">
-                            <ul>
-                                <li><a href="#">Home</a></li>
-                                <li><a href="#">Terms</a></li>
-                                <li><a href="#">Privacy</a></li>
-                                <li><a href="#">Policy</a></li>
-                                <li><a href="#">Contact</a></li>
-                            </ul>
                         </div>
                     </div>
                 </div>
