@@ -79,11 +79,13 @@ const fillTable = async (form = null) => {
             // Se crean y concatenan las filas de la tabla con los datos de cada registro.
             TABLE_BODY.innerHTML += `
             <tr>
-                    <td><img src="${SERVER_URL}images/servicios/${row.imagen_servicio}" height="50"></td>
+                <td><img src="${SERVER_URL}images/servicios/${row.imagen_servicio}" height="50"></td>
                 <td>${row.tipo_servicio}</td>
                 <td>${row.descripcion_servicio}</td>
                 <td>
-                <button class="btn btn-primary"><i class="bi bi-pen-fill" onclick="openUpdate(${row.id_servicio})"></i></button>
+                <button type="button" class="btn btn-primary" onclick="openUpdate(${row.id_servicio})">
+                    <i class="bi bi-pen-fill"></i>
+                </button>
             </td>
         </tr>
             `;
@@ -121,8 +123,8 @@ const fillTable2 = async (form = null) => {
                     <td>${row.contenido_beneficio}</td>
                     <td>${row.tipo_servicio}</td>
                     <td>
-                        <button type="button" class="btn btn-info" onclick="openUpdate2(${row.id_beneficio})">
-                            <i class="bi bi-pencil-fill"></i>
+                        <button type="button" class="btn btn-primary" onclick="openUpdate2(${row.id_beneficio})">
+                            <i class="bi bi-pen-fill"></i>
                         </button>
                     </td>
                 </tr>
