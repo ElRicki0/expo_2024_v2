@@ -31,7 +31,7 @@ if (isset($_GET['action'])) {
                 $result['status'] = 1;
                 $result['message'] = 'Existen ' . count($result['dataset']) . ' registros';
             } else {
-                $result['error'] = 'No existen comentarios registrados';
+                $result['error'] = 'No hay comentarios por el momento';
             }
             break;
         case 'readOne':
