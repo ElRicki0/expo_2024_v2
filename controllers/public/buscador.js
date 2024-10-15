@@ -68,7 +68,7 @@ const fillTable = async (form = null) => {
     ROWS_FOUND.textContent = '';
     TABLE_BODY.innerHTML = '';
     // Se verifica la acción a realizar.
-    (form) ? action = 'searchRows' : action = 'readAll';
+    (form) ? action = 'searchRows' : action = 'readAll8';
     // Petición para obtener los registros disponibles.
     const DATA = await fetchData(SERVICIO_API, action, form);
     // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
@@ -83,9 +83,6 @@ const fillTable = async (form = null) => {
                 <td>${row.tipo_servicio}</td>
                 <td>${row.descripcion_servicio}</td>
                 <td>
-                <button type="button" class="btn btn-primary" onclick="openUpdate(${row.id_servicio})">
-                    <i class="bi bi-pen-fill"></i>
-                </button>
             </td>
         </tr>
             `;
@@ -96,7 +93,6 @@ const fillTable = async (form = null) => {
         sweetAlert(4, DATA.error, true);
     }
 }
-
 
 /*
 *   Función asíncrona para llenar la tabla con los registros disponibles.
@@ -122,11 +118,6 @@ const fillTable2 = async (form = null) => {
                     <td>${row.titulo_beneficio}</td>
                     <td>${row.contenido_beneficio}</td>
                     <td>${row.tipo_servicio}</td>
-                    <td>
-                        <button type="button" class="btn btn-primary" onclick="openUpdate2(${row.id_beneficio})">
-                            <i class="bi bi-pen-fill"></i>
-                        </button>
-                    </td>
                 </tr>
             `;
         });
@@ -136,8 +127,6 @@ const fillTable2 = async (form = null) => {
         sweetAlert(4, DATA.error, true);
     }
 }
-
-
 
 /*
 *   Función asíncrona para preparar el formulario al momento de actualizar un registro.

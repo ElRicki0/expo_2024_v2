@@ -33,6 +33,12 @@ const loadTemplate = async () => {
                             Quiropractica Especifica
                         </a>
                         <div class="dropdown ms-auto">
+                        <!-- boton del logo de acciones en la derecha -->
+                        <a class="sinLink" href="buscador.html">
+                            <button type="button" class="btn btn-info text-white">
+                                <i class="bi bi-search"></i>
+                            </button>
+                        </a>
                             <button class="btn btn-black dropdown-toggle fs-7 text-white" type="button" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
                                 <b>${DATA.username}</b>
                             </button>
