@@ -68,7 +68,7 @@ const fillTable = async (form = null) => {
     ROWS_FOUND.textContent = '';
     TABLE_BODY.innerHTML = '';
     // Se verifica la acción a realizar.
-    (form) ? action = 'searchRows' : action = 'readAll';
+    (form) ? action = 'searchRows' : action = 'readAll8';
     // Petición para obtener los registros disponibles.
     const DATA = await fetchData(SERVICIO_API, action, form);
     // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
@@ -79,11 +79,10 @@ const fillTable = async (form = null) => {
             // Se crean y concatenan las filas de la tabla con los datos de cada registro.
             TABLE_BODY.innerHTML += `
             <tr>
-                    <td><img src="${SERVER_URL}images/servicios/${row.imagen_servicio}" height="50"></td>
+                <td><img src="${SERVER_URL}images/servicios/${row.imagen_servicio}" height="50"></td>
                 <td>${row.tipo_servicio}</td>
                 <td>${row.descripcion_servicio}</td>
                 <td>
-                <button class="btn btn-primary"><i class="bi bi-pen-fill" onclick="openUpdate(${row.id_servicio})"></i></button>
             </td>
         </tr>
             `;
@@ -94,7 +93,6 @@ const fillTable = async (form = null) => {
         sweetAlert(4, DATA.error, true);
     }
 }
-
 
 /*
 *   Función asíncrona para llenar la tabla con los registros disponibles.
@@ -120,11 +118,6 @@ const fillTable2 = async (form = null) => {
                     <td>${row.titulo_beneficio}</td>
                     <td>${row.contenido_beneficio}</td>
                     <td>${row.tipo_servicio}</td>
-                    <td>
-                        <button type="button" class="btn btn-info" onclick="openUpdate2(${row.id_beneficio})">
-                            <i class="bi bi-pencil-fill"></i>
-                        </button>
-                    </td>
                 </tr>
             `;
         });
@@ -134,8 +127,6 @@ const fillTable2 = async (form = null) => {
         sweetAlert(4, DATA.error, true);
     }
 }
-
-
 
 /*
 *   Función asíncrona para preparar el formulario al momento de actualizar un registro.

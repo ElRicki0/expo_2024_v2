@@ -6,28 +6,16 @@ const PREGUNTA_API = 'services/public/pregunta.php';
 
 // Constantes para establecer el contenido de la tabla.
 const SERVICIOS = document.getElementById('servicio');
-const COMENTARIOS1 = document.getElementById('comentarios1');
-const COMENTARIOS2 = document.getElementById('comentarios2');
-const COMENTARIOS3 = document.getElementById('comentarios3');
-
-const EMPLEADO1 = document.getElementById('empleado1');
-/*const EMPLEADO2 = document.getElementById('empleado2');*/
-const EMPLEADO3 = document.getElementById('empleado3');
-const PREGUNTAS = document.getElementById('pregunta');
+const COMENTARIOS = document.getElementById('comentario');
+const EMPLEADO = document.getElementById('empleado');
+const PREGUNTA = document.getElementById('pregunta');
 
 // Método del evento para cuando el documento ha cargado.
 document.addEventListener('DOMContentLoaded', async () => {
     // Llamada a la función para mostrar el encabezado y pie del documento.
     loadTemplate();
-    tablaComentarios1();
-    tablaComentarios2();
-    tablaComentarios3();
-    tablaEmpleados1();
-    tablaEmpleados2();
-    tablaEmpleados3();
-
-    // método para llenar los servicios con mayores citas
-    fillTable();
+    tablaServicios();
+    tablaComentarios();
 })
 
 /*
@@ -35,267 +23,71 @@ document.addEventListener('DOMContentLoaded', async () => {
 * Parámetros: form (objeto opcional con los datos de búsqueda).
 * Retorno: ninguno.
 */
-const fillTable = async (form = null) => {
-    PREGUNTA.innerHTML = '';
-    // Arreglo con los nombres de los números en inglés.
-    const numbersInEnglish = ['One', 'Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight'];
+const tablaServicios = async (form = null) => {
 
     // Petición para obtener los registros disponibles.
-    const DATA = await fetchData(PREGUNTA_API, 'readAll8', form);
+    const DATA = await fetchData(SERVICIO_API, 'readAll8', form);
+    SERVICIOS.innerHTML = ``;
 
     // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
     if (DATA.status) {
         // Se recorre el conjunto de registros (dataset) fila por fila a través del objeto row.
-        DATA.dataset.forEach((row, index) => {
-            let valor = numbersInEnglish[index % numbersInEnglish.length]; // Asigna el número en inglés basado en el índice.
-            let url = `detalles.html?id=${row.id_pregunta}`;
+        DATA.dataset.forEach((row) => {
 
             // Se crean y concatenan las filas de la tabla con los datos de cada registro.
             SERVICIOS.innerHTML += `
-<!-- cards de acordeón -->
-<div class="accordion-item inicioIndex">
-    <h2 class="accordion-header">
-        <button class="accordion-button collapsed inicioIndex textoClaro" type="button" data-bs-toggle="collapse"
-            data-bs-target="#flush-collapse${valor}" aria-expanded="false" aria-controls="flush-collapse${valor}">
-            ${row.nombre_pregunta}
-        </button>
-    </h2>
-    <div id="flush-collapse${valor}" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
-        <div class="accordion-body textoClaro">
-            <div class="row">
-                <div class="col-lg-2">
-                    <img src="${SERVER_URL}images/servicios/${row.imagen_pregunta}" width="150px" class="card" onerror="this.onerror=null; this.src='../../resources/img/error/preguntaFrecuente.png';"
-                        alt="${row.nombre_pregunta}">
+                <div class="col">
+                    <div class="card traspante text-bg-dark">
+                        <img src="${SERVER_URL}images/servicios/${row.imagen_servicio}" class="card-img" alt="...">
+                        <div class="card-img-overlay">
+                            <p class="card-title fs-4 fw-medium" id="TipoServicio">${row.tipo_servicio}</p>
+                            <p class="card-text" id="DescripcionServicio">${row.descripcion_servicio}</p>
+                        </div>
+                    </div>
                 </div>
-                <div class="col-lg-10">
-                    <h1 class="mb-3 title-card">${row.nombre_pregunta}</h1>
-                    <p>${row.contenido_pregunta}</p>
+            `;
+        });
+    } else {
+        sweetAlert(4, DATA.error, true);
+    }
+}
+
+/*
+* Función asíncrona para llenar la tabla con los registros disponibles.
+* Parámetros: form (objeto opcional con los datos de búsqueda).
+* Retorno: ninguno.
+*/
+const tablaComentarios = async (form = null) => {
+
+    // Petición para obtener los registros disponibles.
+    const DATA = await fetchData(COMENTARIO_API, 'readIndex', form);
+    COMENTARIOS.innerHTML = ``;
+
+    // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+    if (DATA.status) {
+        // Se recorre el conjunto de registros (dataset) fila por fila a través del objeto row.
+        DATA.dataset.forEach((row) => {
+
+            // Se crean y concatenan las filas de la tabla con los datos de cada registro.
+            COMENTARIOS.innerHTML += `
+                <div class="col">
+                    <div class="comment-container">
+                        <div class="avatar">
+                            <img src="${SERVER_URL}images/clientes/${row.imagen_cliente}" class="avatar-image"
+                                height="50px">
+                        </div>
+                        <div class="comment-content">
+                            <div class="comment-header">
+                                <h3 class="username">${row.nombre_cliente} ${row.apellido_cliente}</h3>
+                            </div>
+                            <p class="commenting-on">
+                                Comentando sobre: <span class="highlight">${row.tipo_servicio}</span>
+                            </p>
+                            <p class="comment-text">${row.tipo_servicio}</p>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
-    </div>
-</div>
-`;
-        });
-    } else {
-        sweetAlert(4, DATA.error, true);
-    }
-}
-
-
-/*
-* Función asíncrona para llenar la tabla con los registros disponibles.
-* Parámetros: form (objeto opcional con los datos de búsqueda).
-* Retorno: ninguno.
-*/
-const tablaComentarios1 = async (form = null) => {
-
-    // Petición para obtener los registros disponibles.
-    const DATA = await fetchData(COMENTARIO_API, 'readIndex', form);
-
-    COMENTARIOS1.innerHTML = ``;
-
-
-    // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
-    if (DATA.status) {
-        // Se recorre el conjunto de registros (dataset) fila por fila a través del objeto row.
-        DATA.dataset.forEach((row) => {
-
-            // Se crean y concatenan las filas de la tabla con los datos de cada registro.
-            COMENTARIOS1.innerHTML += `
-
-<div class="col-md-4">
-    <div class="card">
-        <img src="${SERVER_URL}images/servicios/${row.imagen_servicio}" class="card-img-top" alt="...">
-        <div class="card-body">
-            <h5 class="card-title">${row.tipo_servicio}</h5>
-            <p class="card-text">${row.contenido_comentario}</p>
-            <p class="text-secondary">${row.nombre_cliente}</p>
-        </div>
-    </div>
-</div>
-
-`;
-        });
-    } else {
-        sweetAlert(4, DATA.error, true);
-    }
-}
-
-/*
-* Función asíncrona para llenar la tabla con los registros disponibles.
-* Parámetros: form (objeto opcional con los datos de búsqueda).
-* Retorno: ninguno.
-*/
-const tablaComentarios2 = async (form = null) => {
-
-    // Petición para obtener los registros disponibles.
-    const DATA = await fetchData(COMENTARIO_API, 'readIndex', form);
-
-    COMENTARIOS2.innerHTML = ``;
-    // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
-    if (DATA.status) {
-        // Se recorre el conjunto de registros (dataset) fila por fila a través del objeto row.
-        DATA.dataset.forEach((row) => {
-            // Se crean y concatenan las filas de la tabla con los datos de cada registro.
-            COMENTARIOS2.innerHTML += `
-
-<div class="col-md-4">
-    <div class="card">
-        <img src="${SERVER_URL}images/servicios/${row.imagen_servicio}" class="card-img-top" alt="...">
-        <div class="card-body">
-            <h5 class="card-title">${row.tipo_servicio}</h5>
-            <p class="card-text">${row.contenido_comentario}</p>
-            <p class="text-secondary">${row.nombre_cliente}</p>
-        </div>
-    </div>
-</div>
-
-`;
-        });
-    } else {
-        sweetAlert(4, DATA.error, true);
-    }
-}
-
-/*
-* Función asíncrona para llenar la tabla con los registros disponibles.
-* Parámetros: form (objeto opcional con los datos de búsqueda).
-* Retorno: ninguno.
-*/
-const tablaComentarios3 = async (form = null) => {
-    // Petición para obtener los registros disponibles.
-    const DATA = await fetchData(COMENTARIO_API, 'readIndex', form);
-    COMENTARIOS3.innerHTML = ``;
-    // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
-    if (DATA.status) {
-        // Se recorre el conjunto de registros (dataset) fila por fila a través del objeto row.
-        DATA.dataset.forEach((row) => {
-            // Se crean y concatenan las filas de la tabla con los datos de cada registro.
-            COMENTARIOS3.innerHTML += `
-
-<div class="col-md-4">
-    <div class="card">
-        <img src="${SERVER_URL}images/servicios/${row.imagen_servicio}" class="card-img-top" alt="..." onerror="this.onerror=null; this.src='../../resources/img/error/';">
-        <div class="card-body">
-            <h5 class="card-title">${row.tipo_servicio}</h5>
-            <p class="card-text">${row.contenido_comentario}</p>
-            <p class="text-secondary">${row.nombre_cliente}</p>
-        </div>
-    </div>
-</div>
-`;
-        });
-    } else {
-        sweetAlert(4, DATA.error, true);
-    }
-}
-
-/*
-* Función asíncrona para llenar la tabla con los registros disponibles.
-* Parámetros: form (objeto opcional con los datos de búsqueda).
-* Retorno: ninguno.
-*/
-const tablaEmpleados1 = async (form = null) => {
-
-    // Petición para obtener los registros disponibles.
-    const DATA = await fetchData(EMPLEADO_API, 'readIndex', form);
-
-    EMPLEADO1.innerHTML = ``;
-
-
-    // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
-    if (DATA.status) {
-        // Se recorre el conjunto de registros (dataset) fila por fila a través del objeto row.
-        DATA.dataset.forEach((row) => {
-
-            // Se crean y concatenan las filas de la tabla con los datos de cada registro.
-            EMPLEADO1.innerHTML += `
-<div class="col-4">
-    <div class="card quirpracticos" style="width: 18rem; background-color: black;">
-        <img src="${SERVER_URL}images/empleados/${row.imagen_empleado}" class="card-img-top" alt="..." onerror="this.onerror=null; this.src='../../resources/img/error/empleado.jpg';">
-        <div class="card-body">
-            <h4 class="justify-content-center text-center">${row.nombre_empleado}</h4>
-            <p class="card-text">${row.especialidad_empleado}</p>
-        </div>
-    </div>
-</div>
-
-`;
-        });
-    } else {
-        sweetAlert(4, DATA.error, true);
-    }
-}
-
-/*
-* Función asíncrona para llenar la tabla con los registros disponibles.
-* Parámetros: form (objeto opcional con los datos de búsqueda).
-* Retorno: ninguno.
-*/
-const tablaEmpleados2 = async (form = null) => {
-
-    // Petición para obtener los registros disponibles.
-    const DATA = await fetchData(EMPLEADO_API, 'readIndex', form);
-
-    EMPLEADO2.innerHTML = ``;
-
-
-    // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
-    if (DATA.status) {
-        // Se recorre el conjunto de registros (dataset) fila por fila a través del objeto row.
-        DATA.dataset.forEach((row) => {
-
-            // Se crean y concatenan las filas de la tabla con los datos de cada registro.
-            EMPLEADO2.innerHTML += `
-<div class="col-4">
-    <div class="card quirpracticos" style="width: 18rem; background-color: black;">
-        <img src="${SERVER_URL}images/empleados/${row.imagen_empleado}" class="card-img-top" alt="..." onerror="this.onerror=null; this.src='../../resources/img/error/empleado.jpg';">
-        <div class="card-body">
-            <h4 class="justify-content-center text-center">${row.nombre_empleado}</h4>
-            <p class="card-text">${row.especialidad_empleado}</p>
-        </div>
-    </div>
-</div>
-
-`;
-        });
-    } else {
-        sweetAlert(4, DATA.error, true);
-    }
-}
-
-/*
-* Función asíncrona para llenar la tabla con los registros disponibles.
-* Parámetros: form (objeto opcional con los datos de búsqueda).
-* Retorno: ninguno.
-*/
-const tablaEmpleados3 = async (form = null) => {
-
-    // Petición para obtener los registros disponibles.
-    const DATA = await fetchData(EMPLEADO_API, 'readIndex', form);
-
-    EMPLEADO3.innerHTML = ``;
-
-
-    // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
-    if (DATA.status) {
-        // Se recorre el conjunto de registros (dataset) fila por fila a través del objeto row.
-        DATA.dataset.forEach((row) => {
-
-            // Se crean y concatenan las filas de la tabla con los datos de cada registro.
-            EMPLEADO3.innerHTML += `
-<div class="col-4">
-    <div class="card quirpracticos" style="width: 18rem; background-color: black;">
-        <img src="${SERVER_URL}images/empleados/${row.imagen_empleado}" class="card-img-top" alt="..." onerror="this.onerror=null; this.src='../../resources/img/error/empleado.jpg';">
-        <div class="card-body">
-            <h4 class="justify-content-center text-center">${row.nombre_empleado}</h4>
-            <p class="card-text">${row.especialidad_empleado}</p>
-        </div>
-    </div>
-</div>
-
-`;
+            `;
         });
     } else {
         sweetAlert(4, DATA.error, true);

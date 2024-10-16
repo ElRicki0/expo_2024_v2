@@ -2,41 +2,55 @@
 <html lang="es">
 
 <head>
+    <!-- Título del documento -->
+    <title>Quiropráctica Específica</title>
+
+    <!-- Metadatos de la página web -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Buscador</title>
+
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="../../resources/css/boostrap_css.css">
-    <link rel="stylesheet" href="../../resources/css/general.css">
     <link rel="stylesheet" href="../../resources/css/bootstrap-icons.min.css">
-
+    <link rel="stylesheet" href="../../resources/css/general.css">
+    <link rel="stylesheet" href="../../resources/css/public/footer.css">
+    <link rel="stylesheet" href="../../resources/css/barrahorizontal.css">
+    <link rel="stylesheet" href="../../resources/fonts/Alfa Slab One.css">
+    <link rel="stylesheet" href="../../resources/fonts/Work Sans.css">
 </head>
 
 <body>
 
+    <!-- Contenedor principal -->
     <main class="py-5">
+
         <!-- Título del contenido principal -->
         <h4 id="mainTitle"></h4>
 
         <div class="mt-5 justify-content-center">
+
             <!-- titulo principal -->
-            <div class="container-fluid text-center">
-                <div class="row justify-content-center py-5">
-                    <h3 class="fw-bold text-white">Buscador</h3>
+            <div class="container-fluid">
+                <div class="row py-4">
+                    <h3 class="fw-bold text-white ms-3"> <i class="bi bi-search"></i> Buscador</h3>
+                    <h6 class="fw-medium text-secondary ms-3">Bienvenido a la sección de servicios y beneficios. Aquí puedes
+                        buscar mediante un buscador nuestros datos para que se adapten a lo mejor de nuestros usuarios. <br>
+                        La tabla te permite ver a detalle los datos de cada sección.</h6>
                 </div>
             </div>
 
             <div class="row ">
+
                 <!-- buscador de servicios -->
                 <div class="col mx-auto ms-3 me-3">
 
                     <!-- Formulario de búsqueda -->
-                    <h3 class="fw-bold text-white text-center">Servicios</h3>
-                    <form class="col-sm-12 col-md-12" id="searchForm">
+                    <h3 class="fw-bold text-white mb-4">Servicios</h3>
+                    <form class="col-sm-12 col-md-12 col-lg-10" id="searchForm">
                         <div class="row">
-                            <div class="col-4">
-                                <input type="search" class="form-control" id="search" name="search" placeholder="Buscar"
-                                    required>
+                            <div class="col-6">
+                                <input type="search" class="form-control custom-input border-2" id="search"
+                                    name="search" placeholder="Nombre servicio" required>
                             </div>
                             <div class="col-6">
                                 <button type="submit" class="btn btn-success">
@@ -49,44 +63,38 @@
                         </div>
                     </form>
 
-                    <!-- Tabla de empleado con opciones -->
+                    <p id="rowsFound" class="text-white fw-bold mt-3"></p>
+
+                    <!-- Tabla -->
                     <div class="table-responsive">
 
-                        <!-- Tabla -->
-                        <div class="table-responsive">
+                        <!-- Tabla para mostrar los registros existentes -->
+                        <table class="table table-hover table-dark">
 
-                            <!-- Tabla para mostrar los registros existentes -->
-                            <table class="table table-hover table-dark">
+                            <!-- Cabeza de la tabla para mostrar la cantidad de registros y los títulos de las columnas -->
+                            <thead>
+                                <tr>
+                                    <th scope="col">IMAGEN</th>
+                                    <th scope="col">TIPO</th>
+                                    <th scope="col">DESCRIPCIÓN</th>
+                                </tr>
+                            </thead>
 
-                                <!-- Cabeza de la tabla para mostrar la cantidad de registros y los títulos de las columnas -->
-                                <thead>
-                                    <tr>
-                                        <td colspan="6" id="rowsFound"></td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="col">IMAGEN</th>
-                                        <th scope="col">TIPO</th>
-                                        <th scope="col">DESCRIPCIÓN</th>
-                                    </tr>
-                                </thead>
-
-                                <!-- Filas -->
-                                <tbody id="tableBody">
-                                </tbody>
-                            </table>
-                        </div>
+                            <!-- Cuerpo de la tabla para mostrar un registro por fila -->
+                            <tbody id="tableBody" class="table-group-divider"></tbody>
+                        </table>
                     </div>
                 </div>
 
                 <div class="col mx-auto ms-3 me-3">
 
                     <!-- Formulario de búsqueda -->
-                    <h3 class="fw-bold text-white text-center">BENEFICIOS</h3>
-                    <form class="col-sm-12 col-md-12" id="searchForm2">
+                    <h3 class="fw-bold text-white mb-4">Beneficios</h3>
+                    <form class="col-sm-12 col-md-12 col-lg-10" id="searchForm2">
                         <div class="row">
-                            <div class="col-4">
-                                <input type="search" class="form-control" id="search2" name="search2"
-                                    placeholder="Buscar" required>
+                            <div class="col-6">
+                                <input type="search" class="form-control custom-input border-2" id="search2"
+                                    name="search" placeholder="Nombre servicio" required>
                             </div>
                             <div class="col-6">
                                 <button type="submit" class="btn btn-success">
@@ -99,122 +107,116 @@
                         </div>
                     </form>
 
-                    <!-- Tabla de empleado con opciones -->
+                    <p id="rowsFound2" class="text-white fw-bold mt-3"></p>
+
+                    <!-- Tabla -->
                     <div class="table-responsive">
 
-                        <!-- Tabla -->
-                        <div class="table-responsive">
+                        <!-- Tabla para mostrar los registros existentes -->
+                        <table class="table table-hover table-dark">
 
-                            <!-- Tabla para mostrar los registros existentes -->
-                            <table class="table table-hover table-dark">
+                            <!-- Cabeza de la tabla para mostrar la cantidad de registros y los títulos de las columnas -->
+                            <thead>
+                                <tr>
+                                    <th>TITULO</th>
+                                    <th>CONTENIDO</th>
+                                    <th>SERVICIO</th>
+                                </tr>
+                            </thead>
 
-                                <!-- Cabeza de la tabla para mostrar la cantidad de registros y los títulos de las columnas -->
-                                <thead>
-                                    <tr>
-                                        <td colspan="4" class="text-white fw-bold mt-3" id="rowsFound2"></td>
-                                    </tr>
-                                    <tr>
-                                        <th>TITULO</th>
-                                        <th>CONTENIDO</th>
-                                        <th>SERVICIO</th>
-                                        <th>ACCIONES</th>
-                                    </tr>
-                                </thead>
-
-                                <!-- Filas -->
-                                <tbody id="tableBody2">
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-
-            <!-- Componente Modal para visualizar un registro de servicios-->
-            <div class="modal fade" id="saveModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-                aria-labelledby="modalTitle" aria-hidden="true">
-                <div class="modal-dialog modal-lg modal-dialog-centered">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h1 class="modal-title fs-5" id="modalTitle"></h1>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <!-- Formulario para crear o actualizar un registro -->
-                        <form id="saveForm">
-                            <div class="modal-body row g-3">
-                                <!-- Campo oculto para asignar el id del registro al momento de modificar -->
-                                <input type="number" class="d-none" id="idServicio" name="idServicio" disabled>
-                                <div class="col-12">
-                                    <label class="form-label">Servicio</label>
-                                    <input id="tipoServicio" name="tipoServicio" class="form-control" required disabled>
-                                    <!-- Add disabled attribute -->
-                                </div>
-                                <div class="col-sm-12 mt-3">
-                                    <label class="form-label">Descripcion</label>
-                                    <textarea id="descripcionServicio" name="descripcionServicio" class="form-control"
-                                        placeholder="Ingrese una descripción" required disabled></textarea>
-                                    <!-- Add disabled attribute -->
-                                </div>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="submit" class="btn btn-primary">Guardar</button>
-                                <!-- Add disabled attribute -->
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-
-            <!-- componente modal para visualizar un registro de beneficios -->
-            <div class="modal fade" id="saveModal2" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-                aria-labelledby="modalTitle2 aria-hidden=" true">
-                <div class="modal-dialog modal-lg modal-dialog-centered">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h1 class="modal-title fs-5" id="modalTitle2"></h1>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <!-- Formulario para crear o actualizar un registro -->
-                        <form id="saveForm2">
-                            <div class="modal-body row g-3">
-                                <!-- Campo oculto para asignar el id del registro al momento de modificar -->
-                                <input type="number" class="d-none" id="idBeneficio" name="idBeneficio">
-                                <div class="col-sm-12 col-md-6">
-                                    <label for="tituloBeneficio" class="form-label">Beneficio</label>
-                                    <input id="tituloBeneficio" type="text" name="tituloBeneficio" class="form-control"
-                                        required disabled>
-                                </div>
-                                <div class="col-sm-12 col-md-6">
-                                    <label for="contenidoBeneficio" class="form-label">Contenido</label>
-                                    <input id="contenidoBeneficio" type="text" name="contenidoBeneficio"
-                                        class="form-control" required disabled>
-                                </div>
-                                <div class="col-sm-12 col-md-6">
-                                    <label for="servicioBeneficio" class="form-label">Servicio</label>
-                                    <select id="servicioBeneficio" name="servicioBeneficio" class="form-select" required
-                                        disabled>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="submit" class="btn btn-primary">Cerrar</button>
-                            </div>
-                        </form>
+                            <!-- Cuerpo de la tabla para mostrar un registro por fila -->
+                            <tbody id="tableBody2" class="table-group-divider"></tbody>
+                        </table>
                     </div>
                 </div>
             </div>
         </div>
+
+        <!-- Componente Modal para visualizar un registro de servicios-->
+        <div class="modal fade" id="saveModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+            aria-labelledby="modalTitle" aria-hidden="true">
+            <div class="modal-dialog modal-lg modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="modalTitle"></h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <!-- Formulario para crear o actualizar un registro -->
+                    <form id="saveForm">
+                        <div class="modal-body row g-3">
+                            <!-- Campo oculto para asignar el id del registro al momento de modificar -->
+                            <input type="number" class="d-none" id="idServicio" name="idServicio" disabled>
+                            <div class="col-12">
+                                <label class="form-label">Servicio</label>
+                                <input id="tipoServicio" name="tipoServicio" class="form-control" required disabled>
+                                <!-- Add disabled attribute -->
+                            </div>
+                            <div class="col-sm-12 mt-3">
+                                <label class="form-label">Descripcion</label>
+                                <textarea id="descripcionServicio" name="descripcionServicio" class="form-control"
+                                    placeholder="Ingrese una descripción" required disabled></textarea>
+                                <!-- Add disabled attribute -->
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-primary">Guardar</button>
+                            <!-- Add disabled attribute -->
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- componente modal para visualizar un registro de beneficios -->
+        <div class="modal fade" id="saveModal2" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+            aria-labelledby="modalTitle2 aria-hidden=" true">
+            <div class="modal-dialog modal-lg modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="modalTitle2"></h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <!-- Formulario para crear o actualizar un registro -->
+                    <form id="saveForm2">
+                        <div class="modal-body row g-3">
+                            <!-- Campo oculto para asignar el id del registro al momento de modificar -->
+                            <input type="number" class="d-none" id="idBeneficio" name="idBeneficio">
+                            <div class="col-sm-12 col-md-6">
+                                <label for="tituloBeneficio" class="form-label">Beneficio</label>
+                                <input id="tituloBeneficio" type="text" name="tituloBeneficio" class="form-control"
+                                    required disabled>
+                            </div>
+                            <div class="col-sm-12 col-md-6">
+                                <label for="contenidoBeneficio" class="form-label">Contenido</label>
+                                <input id="contenidoBeneficio" type="text" name="contenidoBeneficio"
+                                    class="form-control" required disabled>
+                            </div>
+                            <div class="col-sm-12 col-md-6">
+                                <label for="servicioBeneficio" class="form-label">Servicio</label>
+                                <select id="servicioBeneficio" name="servicioBeneficio" class="form-select" required
+                                    disabled>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-primary">Cerrar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        </div>
     </main>
 
     <!-- Bootstrap -->
-    <script src="../../resources/js/bootstrap_js.js"></script>
-    <script src="../../resources/js/sweetalert.min.js"></script>
-    <!-- controladores del sitio privado -->
-    <script src="../../controllers/utils/components.js"></script>
-    <script src="../../controllers/utils/public.js"></script>
-    <script src="../../controllers/public/buscador.js"></script>
+    <script type="text/javascript" src="../../resources/js/bootstrap.bundle.min.js"> </script>
 
+    <!-- Js -->
+    <script type="text/javascript" src="../../controllers/utils/components.js"></script>
+    <script type="text/javascript" src="../../resources/js/sweetalert.min.js"></script>
+    <script type="text/javascript" src="../../controllers/utils/Validaciones.js"></script>
+    <script type="text/javascript" src="../../controllers/utils/public.js"></script>
+    <script type="text/javascript" src="../../controllers/public/buscador.js"></script>
 </body>
 
 </html>
