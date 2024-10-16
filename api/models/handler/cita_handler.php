@@ -83,12 +83,14 @@ WHERE
 
     public function readAllClienteAprobado()
     {
-        $sql = 'SELECT ct.id_cita, ct.fecha_creacion_cita, ct.fecha_creacion_cita, ct.numero_seciones, ct.fecha_asignacion_cita, ct.estado_cita, ct.numero_seciones, s.tipo_servicio, ep.nombre_empleado
+        $sql = 'SELECT ct.id_cita, ct.fecha_creacion_cita, ct.fecha_creacion_cita, ct.numero_seciones, 
+        ct.fecha_asignacion_cita, ct.estado_cita, ct.numero_seciones, s.tipo_servicio, ep.nombre_empleado, 
+        ep.apellido_empleado, img.nombre_imagen, img.imagen_1 AS imagen_1, img.imagen_2 AS imagen_2, img.imagen_3 AS imagen_3
                 from tb_citas ct
                 inner join tb_clientes c on ct.id_cliente = c.id_cliente
                 inner join tb_servicios s on ct.id_servicio = s.id_servicio
                 inner join tb_empleados ep on ct.id_empleado = ep.id_empleado
-
+                INNER JOIN tb_imagenes img ON s.id_imagen = img.id_imagen
                 where ct.id_cliente = ? AND ct.estado_cita <> "pendiente"';
         $params = array($_SESSION['idCliente']);
         return Database::getRows($sql, $params);

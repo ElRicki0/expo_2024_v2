@@ -3,6 +3,10 @@ body {
     overflow-x: hidden;
 }
 
+.distancia-main {
+    margin-top: 130px;
+}
+
 #ContenedorTable {
     max-height: 650px;
     width: 100%;
@@ -127,7 +131,7 @@ ul {
     color: #6CB559;
     font-size: 30px;
     float: left;
-    margin-top: 8px;
+    header: 8px;
 }
 
 .cta-text {
@@ -303,6 +307,8 @@ ul {
 }
 
 a {
-    text-decoration: none; /* Remueve el subrayado */
-    color: inherit; /* Toma el color del contenedor padre, en este caso del botón */
+    text-decoration: none;
+    /* Remueve el subrayado */
+    color: inherit;
+    /* Toma el color del contenedor padre, en este caso del botón */
 }

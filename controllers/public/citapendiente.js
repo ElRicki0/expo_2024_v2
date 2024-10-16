@@ -8,7 +8,7 @@ const CITA_BODY = document.getElementById('citas');
 // Constantes para establecer los elementos del componente Modal.
 const SAVE_MODAL = new bootstrap.Modal('#saveModal'),
     MODAL_TITLE = document.getElementById('modalTitle');
-    
+
 // Constantes para establecer los elementos del formulario de guardar.
 const SAVE_FORM = document.getElementById('saveForm'),
     ID_SERVICIO = document.getElementById('idServicio'),
@@ -26,9 +26,9 @@ document.addEventListener('DOMContentLoaded', async () => {
 
 
 /*
-*   Función asíncrona para llenar la tabla con los registros disponibles.
-*   Parámetros: form (objeto opcional con los datos de búsqueda).
-*   Retorno: ninguno.
+* Función asíncrona para llenar la tabla con los registros disponibles.
+* Parámetros: form (objeto opcional con los datos de búsqueda).
+* Retorno: ninguno.
 */
 const fillTable = async (form = null) => {
     CITA_BODY.innerHTML = '';
@@ -37,7 +37,7 @@ const fillTable = async (form = null) => {
         DATA.dataset.forEach(row => {
             const fecha = row.fecha_creacion_cita ? row.fecha_creacion_cita : 'Fecha no asignada';
             CITA_BODY.innerHTML += `
-          <!-- Primera card -->
+<!-- Primera card -->
 <div class="col-lg-6 col-md-12 col-sm-12 mb-4">
     <div class="conteinerInicio card card-body text-center">
         <div class="row">
@@ -61,16 +61,18 @@ const fillTable = async (form = null) => {
                 <h4 class="card-text text-success">${fecha}</h4>
             </div>
         </div>
-        <button type="button" onclick="openDelete(${row.id_cita})" class="col-2 mb-1 btn btn-danger">
-            <i class="bi bi-trash3-fill"></i>
-        </button>
-        <button type="button" onclick="openLook(${row.id_servicio})" class="col-2 mb-1 btn btn-primary">
-            Servicio
-        </button>
+        <div class="mt-5">
+            <button type="button" onclick="openDelete(${row.id_cita})" class="btn btn-outline-light mb-2">
+                <i class="bi bi-trash3-fill"></i>
+            </button>
+            <button type="button" onclick="openLook(${row.id_servicio})" class="btn btn-outline-light mb-2">
+                Servicio
+            </button>
+        </div>
     </div>
 </div>
 
-            `;
+`;
         });
     } else {
         sweetAlert(4, DATA.error, true);
@@ -99,8 +101,8 @@ const openLook = async (id) => {
         const ROW = DATA.dataset;
         ID_SERVICIO.value = ROW.id_servicio;
         TIPO_SERVICIO.value = ROW.tipo_servicio;
-        DESCRIPCION_SERVICIO.value = ROW.descripcion_servicio;        
-        // IMAGEN_EMPLEADO.src = SERVER_URL.concat('images/empleados/', ROW.imagen_empleado);        
+        DESCRIPCION_SERVICIO.value = ROW.descripcion_servicio;
+        // IMAGEN_EMPLEADO.src = SERVER_URL.concat('images/empleados/', ROW.imagen_empleado);
     } else {
         sweetAlert(2, DATA.error, false);
     }

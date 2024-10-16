@@ -8,58 +8,91 @@
     <link rel="stylesheet" href="../../resources/css/boostrap_css.css">
     <link rel="stylesheet" href="../../resources/css/general.css">
     <link type="text/css" rel="stylesheet" href="../../resources/css/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="../../resources/css/public/footer.css">
+    <link rel="stylesheet" href="../../resources/css/barrahorizontal.css">
 </head>
 
 <body>
 
-    <main>
-        <h1 id="mainTitle" class="textoClaro mb-5"></h1>
+    <main class="distancia-main">
+        <h1 id="mainTitle" class="my-4 text-center text-white"></h1>
 
-        <div class="row">
+        <div class="container">
             <!-- pantalla de citas -->
-            <div class="col-lg-9 col-md-8 col-sm-12 ">
-                <div class="row" id="citas">
-                    <!-- cards de citas -->
+            <div class="row justify-content-center" id="citas">
+                <!-- Primera card -->
+                <div class="col-lg-6 col-md-12 col-sm-12 mb-4">
                     <div class="card card-body text-center">
                         <div class="row">
                             <div class="col-3">
                                 <img src="..." class="card-img-top" alt="ERROR CARGAR IMAGEN">
                             </div>
                             <div class="col-3">
-                                <h3>Servicio</h3>
-                                <p class="card-title">${row.tipo_servicio}</p>
+                                <h2 class="mb-5">Servicio</h2>
+                                <h4 class="card-title">${row.tipo_servicio}</h4>
                             </div>
                             <div class="col-3">
-                                <h3>Estado de cita</h3>
-                                <p class="card-text text-warning">${row.estado_cita}</p>
+                                <h2 class="mb-5">Estado de cita</h2>
+                                <h4 class="card-text text-warning">${row.estado_cita}</h4>
                             </div>
                             <div class="col-3">
-                                <h3>Fecha de cita</h3>
-                                <p class="card-text text-info-emphasis">${fecha}</p>
+                                <h2 class="mb-5">Fecha de cita</h2>
+                                <h4 class="card-text text-info-emphasis">${fecha}</h4>
                             </div>
                         </div>
-
+                        <button type="button" onclick="openDelete($)" class="col-2 mb-1 btn btn-danger">
+                            <i class="bi bi-cart-dash"></i>
+                        </button>
                         <a href="#" class="btn btn-primary col-2">Go somewhere</a>
                     </div>
                 </div>
             </div>
+        </div>
+        <!-- Modal agregar servicio -->
+        <div class="modal fade" id="saveModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-md">
+                <div class="modal-content bg-dark text-white">
 
-            <div class="col-lg-3 col-md-4 col-sm-12 ">
-                <div class="text-center">
-                    <h1 class="textoClaro"> te puede interesar</h1>
-                    <div class="card" style="width: 18rem;">
-                        <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-                            <h6 class="card-subtitle mb-2 text-body-secondary">Card subtitle</h6>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk
-                                of
-                                the card's content.</p>
-                            <a href="#" class="card-link">Card link</a>
-                            <a href="#" class="card-link">Another link</a>
-                        </div>
-                    </div>
+                    <!-- Formulario para crear o actualizar un registro -->
+                    <form id="saveForm">
+
+                        <!-- Campo oculto para asignar el id del registro al momento de modificar -->
+                        <input type="number" class="d-none" id="idServicio" name="idServicio">
+                        <form class="needs-validation">
+
+                            <!-- Body del modal -->
+                            <div class="modal-body">
+                                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                                    aria-label="Close"></button> <!-- Cambiar color del botón de cerrar -->
+                                <h1 class="fs-4 fw-bold text-center mb-4" id="modalTitle"></h1>
+
+
+                                <div class="col-12 mt-3">
+                                    <label class="form-label">Servicio</label>
+                                    <input id="tipoServicio" name="tipoServicio" class="form-control" required
+                                        autocomplete="off" oninput="formatAlphabetic(this)">
+                                </div>
+                                <div class="col-12 mt-3">
+                                    <label class="form-label">Descripcion</label>
+                                    <textarea id="descripcionServicio" name="descripcionServicio" class="form-control"
+                                        autocomplete="off" placeholder="Ingrese una descripción" required
+                                        oninput="formatAlphabetic(this)"></textarea></textarea>
+                                </div>
+                                <div class="col-12">
+                                    <label for="imagenServicio" class=" textoClaro form-label">Galeria</label>
+                                    <select id="imagenServicio" name="imagenServicio" class="form-select"
+                                        autocomplete="off" required oninput="formatCombo(this)">
+                                    </select>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="submit" class="btn btn-primary ps-4 pe-4">
+                                        <i class="bi bi-person-fill-add me-1"></i> Guardar
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </form>
                 </div>
-
             </div>
         </div>
     </main>
