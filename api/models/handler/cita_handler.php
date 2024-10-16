@@ -55,11 +55,28 @@ class Citahandler
 
     public function readAllCliente()
     {
-        $sql = 'SELECT ct.id_cita, ct.fecha_creacion_cita, ct.fecha_asignacion_cita, ct.estado_cita, ct.numero_seciones, s.tipo_servicio
-                from tb_citas ct
-                inner join tb_clientes c on ct.id_cliente = c.id_cliente
-                inner join tb_servicios s on ct.id_servicio = s.id_servicio
-                where ct.id_cliente = ? AND ct.estado_cita = "pendiente"';
+        $sql = 'SELECT 
+    ct.id_cita, 
+    ct.fecha_creacion_cita, 
+    ct.fecha_asignacion_cita, 
+    ct.estado_cita, 
+    ct.numero_seciones, 
+    s.id_servicio,
+    s.tipo_servicio,
+    img.nombre_imagen,
+    img.imagen_1 AS imagen_1,
+    img.imagen_2 AS imagen_2,
+    img.imagen_3 AS imagen_3
+FROM 
+    tb_citas ct
+INNER JOIN 
+    tb_servicios s ON ct.id_servicio = s.id_servicio
+INNER JOIN 
+    tb_imagenes img ON s.id_imagen = img.id_imagen
+WHERE 
+    ct.id_cliente = ? 
+    AND ct.estado_cita = "pendiente";
+';
         $params = array($_SESSION['idCliente']);
         return Database::getRows($sql, $params);
     }

@@ -7,6 +7,8 @@
 const USER_API = 'services/public/cliente.php';
 // Constante para establecer el elemento del contenido principal.
 const MAIN = document.querySelector('main');
+const MAIN_TITLE = document.getElementById('mainTitle');
+
 
 // Se establece el título de la página web.
 document.querySelector('title').textContent = 'Quiropráctica Especifica';
