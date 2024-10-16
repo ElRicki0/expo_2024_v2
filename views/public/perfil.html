@@ -45,14 +45,14 @@
                         <button type="submit" class="btn btn-light text-primary mt-2 fw-bold pe-4 ps-4">
                             Actualizar imagen<i class="bi bi-pen-fill ms-2"></i></button>
                     </form>
-                    
+
                     <script>
                         // Detectar clic en la imagen y activar el input invisible
-                        document.getElementById("imagenMuestra").addEventListener("click", function() {
+                        document.getElementById("imagenMuestra").addEventListener("click", function () {
                             document.getElementById("imagenCliente").click();
                         });
                     </script>
-                    
+
 
                     <form id="profileForm">
                         <input type="number" class="d-none" id="idCliente" name="idCliente">
@@ -112,8 +112,7 @@
                             </div>
                         </div>
                     </form>
-                    <button type="button" onclick="openPassword()"
-                        class="btn btn-warning mb-3  fw-bold pe-4 ps-4">
+                    <button type="button" onclick="openPassword()" class="btn btn-warning mb-3  fw-bold pe-4 ps-4">
                         Cambiar contraseña<i class="bi bi-file-lock2-fill ms-2"></i>
                     </button>
                 </div>
@@ -125,33 +124,35 @@
             aria-labelledby="modalTitle" aria-hidden="true">
             <div class="modal-dialog modal-lg modal-dialog-centered">
                 <!-- Contenido del componente Modal -->
-                <div class="modal-content">
-                    <div class="modal-header">
+                <div class="modal-content bg-dark text-white">
+                    <div class="modal-header border-secondary">
                         <h1 class="modal-title fs-5" id="modalTitle">Cambiar contraseña</h1>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                            aria-label="Close"></button>
                     </div>
                     <!-- Formulario para actualizar contraseña -->
                     <form id="passwordForm">
                         <div class="modal-body row g-3">
                             <div class="col-sm-12 col-md-6 offset-md-3">
                                 <label for="claveActual" class="form-label">Contraseña actual</label>
-                                <input id="claveActual" type="password" name="claveActual" class="form-control"
-                                    required>
+                                <input id="claveActual" type="password" name="claveActual"
+                                    class="form-control bg-dark text-white" required>
                             </div>
                             <div class="col-12 text-center">
                                 <span>CONTRASEÑA NUEVA</span>
                             </div>
                             <div class="col-sm-12 col-md-6">
                                 <label for="claveNueva" class="form-label">Contraseña</label>
-                                <input id="claveNueva" type="password" name="claveNueva" class="form-control" required>
+                                <input id="claveNueva" type="password" name="claveNueva"
+                                    class="form-control bg-dark text-white" required>
                             </div>
                             <div class="col-sm-12 col-md-6">
                                 <label for="confirmarClave" class="form-label">Confirmar contraseña</label>
-                                <input id="confirmarClave" type="password" name="confirmarClave" class="form-control"
-                                    required>
+                                <input id="confirmarClave" type="password" name="confirmarClave"
+                                    class="form-control bg-dark text-white" required>
                             </div>
                         </div>
-                        <div class="modal-footer">
+                        <div class="modal-footer border-secondary">
                             <button type="reset" class="btn btn-secondary">Cancelar</button>
                             <button type="submit" class="btn btn-primary">Guardar</button>
                         </div>
@@ -159,7 +160,6 @@
                 </div>
             </div>
         </div>
-
     </main>
 
     <!-- Bootstrap -->
