@@ -61,12 +61,28 @@ class ServicioHandler
         return Database::getRows($sql);
     }
 
+    public function readAllGaleria()
+    {
+        $sql = ' SELECT imagen_1 AS imagen FROM tb_imagenes
+                    UNION ALL
+                    SELECT imagen_2 FROM tb_imagenes
+                    WHERE imagen_2 IS NOT NULL
+                    UNION ALL
+                    SELECT imagen_3 FROM tb_imagenes
+                    WHERE imagen_3 IS NOT NULL
+                    ORDER BY RAND();
+                    ';
+        return Database::getRows($sql);
+    }
+
     public function readAll8()
     {
-        $sql = 'SELECT *
-                FROM tb_servicios
-                ORDER BY tipo_servicio
-                limit 8';
+        $sql = 'SELECT s.id_servicio, s.tipo_servicio, s.descripcion_servicio, i.imagen_1
+                FROM tb_servicios s
+                INNER JOIN tb_imagenes i ON s.id_imagen = i.id_imagen
+                ORDER BY RAND()
+                LIMIT 8;
+                ';
         return Database::getRows($sql);
     }
 

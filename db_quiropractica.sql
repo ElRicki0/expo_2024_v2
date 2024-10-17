@@ -68,7 +68,6 @@ CREATE TABLE
         id_servicio INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
         tipo_servicio VARCHAR(45) NOT NULL unique,
         descripcion_servicio VARCHAR(250) NOT NULL,
-        imagen_servicio varchar(300) DEFAULT 'servicio.jpg',
         id_empleado INT,
         FOREIGN KEY (id_empleado) REFERENCES tb_empleados (id_empleado),
         id_imagen INT,
