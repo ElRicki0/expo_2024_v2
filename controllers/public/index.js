@@ -114,7 +114,7 @@ const tablaGaleria = async (form = null) => {
 
             // Se crean y concatenan las filas de la tabla con los datos de cada registro.
             GALERIA.innerHTML += `
-                <div class="text-bg-dark">
+                <div class="col-6">
     <img src="${SERVER_URL}images/imagenes/${row.imagen}" class="card-img-top img-size-fixed" style="width: 300px;">
 </div>
 

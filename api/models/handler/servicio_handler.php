@@ -52,9 +52,9 @@ class ServicioHandler
 
     public function readAll()
     {
-        $sql = 'SELECT s.id_servicio, s.tipo_servicio, s.descripcion_servicio, s.imagen_servicio, i.nombre_imagen, i.imagen_1, i.imagen_2, i.imagen_3, 
+        $sql = 'SELECT s.id_servicio, s.tipo_servicio, s.descripcion_servicio, i.nombre_imagen, i.imagen_1, i.imagen_2, i.imagen_3, 
                 s.id_empleado, e.nombre_empleado, e.apellido_empleado
-                FROM tb_servicios s
+                FROM tb_servicios
                 INNER JOIN tb_imagenes i ON i.id_imagen = s.id_imagen
                 INNER JOIN tb_empleados e ON s.id_empleado = e.id_empleado
                 ORDER BY tipo_servicio';
@@ -86,7 +86,7 @@ class ServicioHandler
         return Database::getRows($sql);
     }
 
-    public function readOne()
+    public function readOne() 
     {
         $sql = 'SELECT *
                 FROM tb_servicios
