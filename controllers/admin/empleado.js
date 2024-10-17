@@ -150,6 +150,11 @@ const fillTable = async (form = null) => {
         // Se muestra un mensaje de acuerdo con el resultado.
         ROWS_FOUND.textContent = DATA.message;
     } else {
+        TABLE_BODY.innerHTML = `
+        <div class="col-5    justify-content-center align-items-center">
+                <img src="../../resources/img/error/errorCitas.png" class="card-img-top" alt="ERROR CARGAR IMAGEN">
+            </div>
+        `
         sweetAlert(4, DATA.error, true);
     }
 }
@@ -190,7 +195,7 @@ const openCreate = () => {
     // Se muestra la caja de diálogo con su título.
     SAVE_MODAL.show();
     MODAL_TITLE.textContent = 'AGREGAR EMPLEADO';
-    IMAGEN_MUESTRA.src =    SERVER_URL.concat('images/empleados/persona.png');
+    IMAGEN_MUESTRA.src = SERVER_URL.concat('images/empleados/persona.png');
     // Se prepara el formulario.
     SAVE_FORM.reset();
 }
@@ -222,7 +227,7 @@ const openUpdate = async (id) => {
         DUI_EMPLEADO.value = ROW.dui_empleado;
         FECHA_EMPLEADO.value = ROW.nacimiento_empleado;
         ESTADO_EMPLEADO.checked = ROW.estado_empleado;
-        IMAGEN_MUESTRA.src =    SERVER_URL.concat('images/empleados/', ROW.imagen_empleado);
+        IMAGEN_MUESTRA.src = SERVER_URL.concat('images/empleados/', ROW.imagen_empleado);
     } else {
         sweetAlert(2, DATA.error, false);
     }
