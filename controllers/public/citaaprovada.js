@@ -6,11 +6,11 @@ const CITA_BODY = document.getElementById('citas');
 
 // Método del evento para cuando el documento ha cargado.
 document.addEventListener('DOMContentLoaded', async () => {
-// Llamada a la función para mostrar el encabezado y pie del documento.
-loadTemplate();
-fillTable();
-// Se establece el título del contenido principal.
-MAIN_TITLE.textContent = 'Citas aprobadas';
+    // Llamada a la función para mostrar el encabezado y pie del documento.
+    loadTemplate();
+    fillTable();
+    // Se establece el título del contenido principal.
+    MAIN_TITLE.textContent = 'Citas aprobadas';
 });
 
 
@@ -20,12 +20,12 @@ MAIN_TITLE.textContent = 'Citas aprobadas';
 * Retorno: ninguno.
 */
 const fillTable = async (form = null) => {
-CITA_BODY.innerHTML = '';
-const DATA = await fetchData(CITA_API, 'readAllClienteAprobado', form);
-if (DATA.status) {
-DATA.dataset.forEach(row => {
-const fecha = row.fecha_asignacion_cita ? row.fecha_asignacion_cita : 'Fecha no asignada';
-CITA_BODY.innerHTML += `
+    CITA_BODY.innerHTML = '';
+    const DATA = await fetchData(CITA_API, 'readAllClienteAprobado', form);
+    if (DATA.status) {
+        DATA.dataset.forEach(row => {
+            const fecha = row.fecha_asignacion_cita ? row.fecha_asignacion_cita : 'Fecha no asignada';
+            CITA_BODY.innerHTML += `
 <!-- Primera card -->
 <div class="col-lg-12 col-md-12 col-sm-12 mb-4">
     <div class="conteinerInicio card card-body text-center">
@@ -56,8 +56,13 @@ CITA_BODY.innerHTML += `
 </div>
 </div>
 `;
-});
-} else {
-sweetAlert(4, DATA.error, true);
-}
+        });
+    } else {
+        CITA_BODY.innerHTML = `
+        <div class="col-5 justify-content-center align-items-center">
+                <img src="../../resources/img/error/errorCitas.png" class="card-img-top" alt="ERROR CARGAR IMAGEN">
+            </div>
+        `
+        sweetAlert(4, DATA.error, true);
+    }
 }

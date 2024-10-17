@@ -75,6 +75,11 @@ const fillTable = async (form = null) => {
 `;
         });
     } else {
+        CITA_BODY.innerHTML = `
+        <div class="col-5 justify-content-center align-items-center">
+                <img src="../../resources/img/error/errorCitas.png" class="card-img-top" alt="ERROR CARGAR IMAGEN">
+            </div>
+        `
         sweetAlert(4, DATA.error, true);
     }
 }
