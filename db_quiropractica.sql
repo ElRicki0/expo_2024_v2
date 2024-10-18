@@ -63,7 +63,7 @@ CREATE TABLE
         imagen_3 VARCHAR(250)
     );
 
-CREATE TABLE
+CREATE TABLE 
     tb_servicios (
         id_servicio INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
         tipo_servicio VARCHAR(45) NOT NULL unique,

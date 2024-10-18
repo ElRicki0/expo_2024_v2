@@ -11,6 +11,9 @@ const EMPLEADO = document.getElementById('empleado');
 const PREGUNTA = document.getElementById('pregunta');
 const GALERIA = document.getElementById('galeria');
 
+// Constante tipo objeto para obtener los parámetros disponibles en la URL.
+const PARAMS = new URLSearchParams(location.search);
+
 // Método del evento para cuando el documento ha cargado.
 document.addEventListener('DOMContentLoaded', async () => {
     // Llamada a la función para mostrar el encabezado y pie del documento.
@@ -25,10 +28,14 @@ document.addEventListener('DOMContentLoaded', async () => {
 * Parámetros: form (objeto opcional con los datos de búsqueda).
 * Retorno: ninguno.
 */
-const tablaServicios = async (form = null) => {
+const tablaServicios = async () => {
+
+    // Se define un objeto con los datos de la categoría seleccionada.
+    const FORM = new FormData();
+    FORM.append('idServicio', PARAMS.get('id'));
 
     // Petición para obtener los registros disponibles.
-    const DATA = await fetchData(SERVICIO_API, 'readAll8', form);
+    const DATA = await fetchData(SERVICIO_API, 'readAll8', FORM);
     SERVICIOS.innerHTML = ``;
 
     // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
@@ -38,15 +45,26 @@ const tablaServicios = async (form = null) => {
 
             // Se crean y concatenan las filas de la tabla con los datos de cada registro.
             SERVICIOS.innerHTML += `
-                <div class="col">
-                    <div class="card traspante text-bg-dark">
-                        <img src="${SERVER_URL}images/imagenes/${row.imagen_1}" class="card-img" alt="...">
-                        <div class="card-img-overlay">
-                            <p class="card-title fs-4 fw-medium" id="TipoServicio">${row.tipo_servicio}</p>
-                            <p class="card-text" id="DescripcionServicio">${row.descripcion_servicio}</p>
-                        </div>
-                    </div>
-                </div>
+                <div class="col-lg-6 col-md-12 col-sm-12 mt-3">
+    <div class="card traspante text-bg-dark">
+        <a href="detail.html?id=${row.id_servicio}" class="stretched-link">
+            <img src="${SERVER_URL}images/imagenes/${row.imagen_1}" class="card-img" alt="..."
+                style="height: 150px; width: 100%; object-fit: cover;"
+                onerror="this.onerror=null; this.src='${SERVER_URL}images/imagenes/default.jpg';">
+            <div class="card-img-overlay">
+                <p class="card-title fs-4 fw-medium" id="TipoServicio">${row.tipo_servicio}</p>
+                <p class="card-text" id="DescripcionServicio">${row.descripcion_servicio}</p>
+            </div>
+        </a>
+    </div>
+</div>
+
+
+
+
+
+                
+
             `;
         });
     } else {
@@ -114,8 +132,11 @@ const tablaGaleria = async (form = null) => {
 
             // Se crean y concatenan las filas de la tabla con los datos de cada registro.
             GALERIA.innerHTML += `
-                <div class="col-6">
-    <img src="${SERVER_URL}images/imagenes/${row.imagen}" class="card-img-top img-size-fixed" style="width: 300px;">
+                    <div class="col-lg-6 col-md-12 mb-3 d-flex justify-content-center align-items-center">
+                    <div class="card " style="width: 18rem;">
+                      <img src="${SERVER_URL}images/imagenes/${row.imagen}" style="height: 300px; width: 300px%;" class="card-img-top" alt="..." 
+     onerror="this.onerror=null; this.src='${SERVER_URL}images/imagenes/default.jpg';">
+
 </div>
 
                     

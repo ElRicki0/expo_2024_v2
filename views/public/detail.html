@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<!-- Declaración del idioma para el documento -->
+<html lang="es">
+
+<head>
+    <!-- Título del documento -->
+    <title>Quiropráctica Específica</title>
+    <!-- Metadatos de la página web -->
+    <meta charset="utf-8">
+    <meta name="author" content="Daniel Carranza">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- IMPORTACIÓN DE RECURSOS EXTERNOS -->
+    <!-- Llamada al icono de la página web -->
+    <link type="image/png" rel="icon" href="../../resources/img/icons/icon.jpg">
+
+    <!-- Llamada a las hojas de estilos del framework e iconos -->
+    <link type="text/css" rel="stylesheet" href="../../resources/css/bootstrap-icons.min.css">
+    <link type="text/css" rel="stylesheet" href="../../resources/css/boostrap_css.css">
+    <link rel="stylesheet" href="../../resources/css/public/footer.css">
+    <link rel="stylesheet" href="../../resources/css/barrahorizontal.css">
+    <link rel="stylesheet" href="../../resources/fonts/Alfa Slab One.css">
+    <link rel="stylesheet" href="../../resources/css/general.css">
+    <link rel="stylesheet" href="../../resources/fonts/Work Sans.css">
+</head>
+
+<body>
+    <!-- Contenido principal del documento -->
+    <main class="distancia-main">
+        <!-- Título del contenido principal -->
+        <h4 id="mainTitle" class="text-center text-white"></h4>
+        <!-- Componente Horizontal Card para mostrar el detalle de un producto -->
+        <div class="container">
+            <div class="card conteinerInicio mb-3" id="detalle">
+                <div class="row align-items-center">
+                    <div class="col-md-4">
+                        <!-- Se muestra la imagen del producto -->
+                        <div class="container ms-3 my-3 mx-3">
+                            <img id="imagenServicio" class="img-fluid rounded-start" width="175px">
+                        </div>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h5 class="card-title text-white" id="nombreServicio"></h5>
+                            <p class="card-text text-white" id="descripcionServicio"></p>
+                            <!-- Formulario para agregar el producto al carrito de compras -->
+                            <form class="row" id="shoppingForm">
+                                <!-- Campo oculto para asignar el id del producto -->
+                                <input type="number" class="d-none" id="idServicio" name="idServicio">
+                                <div class="col-6 align-self-end">
+                                    <button type="submit" class="btn btn-primary">
+                                        <i class="bi bi-cart-plus-fill"></i> Solicitar cita
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <!-- Comentarios de producto -->
+            <div class="row">
+                <!-- Parte del input y las estrellas -->
+                <div class="col-lg-6 col-sm-12">
+                    <div class="starcom">
+                        <form action="" id="saveForm">
+
+                            <div class="cocomen">
+                                <div class="text-white fs-3">Comenta el producto</div>
+                                <textarea id="comentario" name="comentario" type="text" class="form-control fs-3"
+                                    aria-label="Sizing example input" style="height: 100px; width: 100%;"
+                                    aria-describedby="inputGroup-sizing-default"></textarea>
+                                <div class="text-center mt-3">
+                                    <button class="btn btn-primary" type="submit">Añadir Comentario</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+
+
+    </main>
+    <!-- IMPORTACIÓN DE ARCHIVOS JAVASCRIPT -->
+    <!-- Llamada al framework y librería de mensajes -->
+    <script type="text/javascript" src="../../resources/js/bootstrap.bundle.min.js"></script>
+    <script type="text/javascript" src="../../resources/js/sweetalert.min.js"></script>
+    <!-- Llamada al controlador general de la aplicación -->
+    <script type="text/javascript" src="../../controllers/utils/components.js"></script>
+    <!-- Llamada al controlador del sitio público -->
+    <script type="text/javascript" src="../../controllers/utils/public.js"></script>
+    <!-- Llamada al controlador de la página web -->
+    <script type="text/javascript" src="../../controllers/public/detail.js"></script>
+</body>
+
+</html>

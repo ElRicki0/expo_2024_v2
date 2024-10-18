@@ -35,12 +35,27 @@
                 bienestar a través de un enfoque integral y personalizado. Ofrecemos una amplia gama de servicios
                 diseñados para aliviar el dolor, mejorar la movilidad y promover una salud óptima. Nuestros servicios
                 incluyen: </p>
+                
+            <div class="container">
+                <div class="row" id="servicio">
 
-            <div class="row row-cols-1 row-cols-md-3 g-4 p-5">
-                <div class="container" id="servicio">
+                    <!-- elemento ejemplo -->
+                    <div class="col-lg-6 col-md-12 col-sm-12">
+                        <div class="card traspante text-bg-dark">
+                            <img src="${SERVER_URL}images/imagenes/${row.imagen_1}" class="card-img" alt="..."
+                                style="height: 150px; width: 100%; object-fit: cover;">
+                            <div class="card-img-overlay">
+                                <p class="card-title fs-4 fw-medium" id="TipoServicio">${row.tipo_servicio}</p>
+                                <p class="card-text" id="DescripcionServicio">${row.descripcion_servicio}</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Puedes duplicar el bloque de arriba para más elementos -->
 
                 </div>
             </div>
+
         </div>
 
         <div class="col-12 text-center justify-content-center my-5 py-5">
@@ -66,11 +81,26 @@
                 que ilustran la esencia de nuestros servicios y el impacto positivo que hemos tenido en la vida de
                 nuestros pacientes. </p>
 
-            <div class="row ">
-                <div id="galeria" class="container">
-                    
+            <div class=" container">
+                <div id="galeria" class="row">
+                    <div class="col-6 mb-3">
+                        <img src="../../resources/img/persona.png" class="card-img-top img-size-fixed"
+                            style="width: 300px;">
+                    </div>
+                    <div class="col-6 mb-3">
+                        <img src="../../resources/img/persona.png" class="card-img-top img-size-fixed"
+                            style="width: 300px;">
+                    </div>
+                    <div class="col-6 mb-3">
+                        <img src="../../resources/img/persona.png" class="card-img-top img-size-fixed"
+                            style="width: 300px;">
+                    </div>
+                    <div class="col-6 mb-3">
+                        <img src="../../resources/img/persona.png" class="card-img-top img-size-fixed"
+                            style="width: 300px;">
+                    </div>
                 </div>
-                
+
             </div>
         </div>
     </main>

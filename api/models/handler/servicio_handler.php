@@ -64,13 +64,15 @@ class ServicioHandler
     public function readAllGaleria()
     {
         $sql = ' SELECT imagen_1 AS imagen FROM tb_imagenes
-                    UNION ALL
-                    SELECT imagen_2 FROM tb_imagenes
-                    WHERE imagen_2 IS NOT NULL
-                    UNION ALL
-                    SELECT imagen_3 FROM tb_imagenes
-                    WHERE imagen_3 IS NOT NULL
-                    ORDER BY RAND();
+UNION ALL
+SELECT imagen_2 FROM tb_imagenes
+WHERE imagen_2 IS NOT NULL
+UNION ALL
+SELECT imagen_3 FROM tb_imagenes
+WHERE imagen_3 IS NOT NULL
+ORDER BY RAND()
+LIMIT 8;
+
                     ';
         return Database::getRows($sql);
     }
@@ -87,6 +89,16 @@ class ServicioHandler
     }
 
     public function readOne() 
+    {
+        $sql = 'SELECT s.id_servicio, s.tipo_servicio, s.descripcion_servicio, i.imagen_1, s.id_empleado
+                FROM tb_servicios s
+                INNER JOIN tb_imagenes i ON s.id_imagen = i.id_imagen
+                WHERE id_servicio = ?';
+        $params = array($this->id);
+        return Database::getRow($sql, $params);
+    }
+
+    public function readOnePublico() 
     {
         $sql = 'SELECT *
                 FROM tb_servicios
