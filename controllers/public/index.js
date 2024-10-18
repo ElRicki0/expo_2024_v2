@@ -110,6 +110,11 @@ const tablaComentarios = async (form = null) => {
             `;
         });
     } else {
+        COMENTARIOS.innerHTML = `
+        <div class="col-5 justify-content-center align-items-center">
+                <img src="../../resources/img/error/errorCitas.png" class="card-img-top" alt="ERROR CARGAR IMAGEN">
+            </div>
+        `
         sweetAlert(4, DATA.error, true);
     }
 }

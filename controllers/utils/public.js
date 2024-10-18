@@ -28,29 +28,63 @@ const loadTemplate = async () => {
             !location.pathname.endsWith('recuperacion.html')){
             // Se agrega el encabezado de la página web antes del contenido principal.
             MAIN.insertAdjacentHTML('beforebegin',
-                `<nav class="navbar navbar-dark bg-black fixed-top rounded-bottom">
-                    <div class="container-fluid">
-                        <a class="navbar-brand fw-bold d-flex align-items-center" href="index.html">
-                            <img src="../../resources/img/icons/icon.jpg" alt="" height="50px" class="d-inline-block align-text-top">
-                            Quiropractica Especifica
-                        </a>
-                        <div class="dropdown ms-auto">
-                        <!-- boton del logo de acciones en la derecha -->
+                `                
+                <header>
+        <nav class="navbar navbar-dark border-bottom border-secondary ">
+            <div class="container-fluid">
+                <a class="navbar-brand fw-bold d-flex align-items-center" href="index.html">
+                    <img src="../../resources/img/icons/icon.jpg" alt="" height="50px"
+                        class="d-inline-block align-text-top">
+                    Quiropractica Especifica
+                </a>
+                <button class="navbar-toggler rounded-5" type="button" data-bs-toggle="offcanvas"
+                    data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1" id="offcanvasNavbar"
+                    aria-labelledby="offcanvasNavbarLabel">
+                    <div class="offcanvas-header">
+                        <a type="button" class="btn-close" data-bs-dismiss="offcanvas"></i></a>
+                    </div>
+                    <div class="offcanvas-body">
+                        <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                            <li class="nav-item dropdown text-center">
+                                <a class="nav-link" href="#" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="bi bi-gear-fill"></i> <b>${DATA.username}</b>
+                                </a>
+                                <hr>
+                                <ul class="dropdown-menu dropdown-menu-dark">
+                                    <li><a class="dropdown-item" href="perfil.html"> Ver perfil </a></li>
+                                    <li>
+                                        <hr class="dropdown-divider">
+                                    </li>
+                                    <li><a class="dropdown-item" href="#" onclick="logOut()"> Cerrar sesion </a></li>
+                                </ul>
+                            </li>
+                            <li class="nav-item ms-4">
+                            <!-- boton del logo de acciones en la derecha -->
                         <a class="sinLink" href="buscador.html">
                             <button type="button" class="btn btn-info text-white">
                                 <i class="bi bi-search"></i>
                             </button>
-                        </a>
-                            <button class="btn btn-black dropdown-toggle fs-7 text-white" type="button" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-                                <b>${DATA.username}</b>
-                            </button>
-                        <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="userDropdown">
-                            <li><a class="dropdown-item" href="perfil.html">Ver perfil</a></li>
-                            <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item" href="#" onclick="logOut()">Cerrar sesión</a></li>
+                        </a></li>
+                            <li class="nav-item ms-4">
+                                <a class="nav-link active" aria-current="page" href="index.html"><i class="bi bi-house-fill me-1"></i> Inicio</a>
+                            </li>
+                            <li class="nav-item ms-4">
+                                <a class="nav-link" href="citasaprovadas.html"><i class="bi bi-people-fill me-1"></i> citas aprovadas</a>
+                            </li>
+                            <li class="nav-item ms-4">
+                            <a class="nav-link" href="citaspendientes.html"><i class="bi bi-person-vcard-fill me-1"></i> citas pendientes</a>
+                            </li>
                         </ul>
                     </div>
-                </nav>`
+                </div>
+            </div>
+        </nav>
+    </header>
+
+                `
             );
         } else {
             sweetAlert(3, DATA.error, false, 'index.html');
