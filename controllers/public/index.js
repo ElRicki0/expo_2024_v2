@@ -42,12 +42,11 @@ const tablaServicios = async () => {
     if (DATA.status) {
         // Se recorre el conjunto de registros (dataset) fila por fila a través del objeto row.
         DATA.dataset.forEach((row) => {
-
             // Se crean y concatenan las filas de la tabla con los datos de cada registro.
             SERVICIOS.innerHTML += `
                 <div class="col-lg-6 col-md-12 col-sm-12 mt-3">
     <div class="card traspante text-bg-dark">
-        <a href="detail.html?id=${row.id_servicio}" class="stretched-link">
+        <a href="detalles.html?id=${row.id_servicio}" class="stretched-link">
             <img src="${SERVER_URL}images/imagenes/${row.imagen_1}" class="card-img" alt="..."
                 style="height: 150px; width: 100%; object-fit: cover;"
                 onerror="this.onerror=null; this.src='${SERVER_URL}images/imagenes/default.jpg';">
@@ -58,13 +57,6 @@ const tablaServicios = async () => {
         </a>
     </div>
 </div>
-
-
-
-
-
-                
-
             `;
         });
     } else {
@@ -137,14 +129,11 @@ const tablaGaleria = async (form = null) => {
 
             // Se crean y concatenan las filas de la tabla con los datos de cada registro.
             GALERIA.innerHTML += `
-                    <div class="col-lg-6 col-md-12 mb-3 d-flex justify-content-center align-items-center">
-                    <div class="card " style="width: 18rem;">
-                      <img src="${SERVER_URL}images/imagenes/${row.imagen}" style="height: 300px; width: 300px%;" class="card-img-top" alt="..." 
-     onerror="this.onerror=null; this.src='${SERVER_URL}images/imagenes/default.jpg';">
-
-</div>
-
-                    
+                <div class="col-lg-6 col-md-12 mb-3 d-flex justify-content-center align-items-center">
+                    <div class="card">
+                      <img src="${SERVER_URL}images/imagenes/${row.imagen}" style="height:300" class="card-img-top" alt="..." 
+                onerror="this.onerror=null; this.src='${SERVER_URL}images/imagenes/default.jpg';">
+                </div>                    
             `;
         });
     } else {

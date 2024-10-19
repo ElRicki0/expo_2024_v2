@@ -52,6 +52,15 @@ class ComentarioHandler
         ';
         return Database::getRows($sql);
     }
+
+    public function createRow()
+    {
+        $sql = 'INSERT INTO tb_com(nombre_empleado, apellido_empleado, dui_empleado, correo_empleado, nacimiento_empleado, estado_empleado, imagen_empleado)
+                VALUES(?, ?, ?, ?, ?, ?, ?)';
+        $params = array($this->comentario, $this->cliente, $this->servicio, $this->estado);
+        return Database::executeRow($sql, $params);
+    }
+
     // Método para obtener un comentario específico según su ID.
     public function readOne()
     {
